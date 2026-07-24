@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>War Thunder Event Map Visualizer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #0f111a; color: #f7fafc; }
+        #map { width: 100vw; height: 100vh; background: #0a0a0a; }
+
+        .info-panel {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            width: min(360px, calc(100vw - 70px));
+            padding: 14px 16px;
+            border: 1px solid #3b4252;
+            border-radius: 8px;
+            background: rgba(15, 17, 26, 0.94);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+            font-size: 13px;
+            line-height: 1.45;
+            backdrop-filter: blur(5px);
+        }
+
+        .title { font-size: 15px; font-weight: 700; }
+        #status { display: block; margin-top: 4px; color: #f6ad55; }
+
+        .era-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #3b4252;
+        }
+
+        .era-selector span { font-weight: 700; margin-right: 2px; }
+        .era-selector label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border: 1px solid #4a5568;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .era-selector label:has(input:checked) {
+            color: #0f111a;
+            border-color: #63b3ed;
+            background: #63b3ed;
+        }
+
+        .era-selector input { margin: 0; }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px 12px;
+            margin-top: 10px;
+            color: #cbd5e0;
+            font-size: 12px;
+        }
+
+        .legend-item { display: inline-flex; align-items: center; gap: 5px; }
+        .dot {
+            width: 9px;
+            height: 9px;
+            border: 1px solid #111;
+            border-radius: 50%;
+        }
+
+        .nato-leaflet-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 0;
+        }
+
+        .nato-leaflet-icon img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.85));
+        }
+
+        .bomber-map-icon img {
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));
+        }
+
+        .grouped-layers {
+            width: 285px;
+            max-height: calc(100vh - 24px);
+            overflow-y: auto;
+            padding: 7px;
+            border: 1px solid #4a5568;
+            border-radius: 7px;
+            color: #edf2f7;
+            background: rgba(15, 17, 26, 0.96);
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.55);
+            font: 12px/1.35 Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .grouped-layers details + details {
+            margin-top: 4px;
+        }
+
+        .grouped-layers .force-details + .force-details {
+            margin-top: 7px;
+        }
+
+        .grouped-layers summary {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            list-style: none;
+            padding: 5px 7px;
+            border-radius: 4px;
+            background: #252a36;
+            cursor: pointer;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        .grouped-layers summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .folder-eye {
+            position: relative;
+            flex: 0 0 22px;
+            width: 22px;
+            height: 20px;
+            padding: 0;
+            border: 0;
+            color: #718096;
+            background: transparent;
+            cursor: pointer;
+            font: 15px/20px sans-serif;
+            text-align: center;
+        }
+
+        .folder-eye.active {
+            color: #e2e8f0;
+        }
+
+        .folder-eye.partial {
+            color: #90cdf4;
+        }
+
+        .folder-eye:not(.active)::after {
+            position: absolute;
+            left: 3px;
+            top: 9px;
+            width: 16px;
+            height: 2px;
+            background: #fc8181;
+            content: "";
+            transform: rotate(-42deg);
+        }
+
+        .folder-triangle {
+            flex: 0 0 10px;
+            color: #a0aec0;
+            transition: transform 120ms ease;
+        }
+
+        .grouped-layers details[open] > summary .folder-triangle {
+            transform: rotate(90deg);
+        }
+
+        .folder-title {
+            flex: 1 1 auto;
+        }
+
+        .force-details > summary {
+            min-height: 34px;
+            border: 1px solid #4a5568;
+            font-size: 13px;
+            letter-spacing: 0.04em;
+        }
+
+        .force-children {
+            padding: 4px 0 2px 13px;
+        }
+
+        .force-children > details > summary {
+            background: #1c2230;
+            font-weight: 600;
+        }
+
+        .folder-icon {
+            display: inline-flex;
+            flex: 0 0 22px;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            color: #cbd5e0;
+            font-size: 17px;
+        }
+
+        .folder-icon img {
+            display: block;
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .folder-icon.multi {
+            flex-basis: 34px;
+            width: 34px;
+        }
+
+        .folder-icon.multi img {
+            width: 19px;
+            height: 19px;
+            margin-right: -4px;
+        }
+
+        .grouped-layers .layer-options {
+            padding: 4px 4px 3px 31px;
+        }
+
+        .layer-actions {
+            display: flex;
+            gap: 5px;
+            margin: 2px 0 5px;
+        }
+
+        .layer-actions button {
+            padding: 3px 7px;
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            color: #e2e8f0;
+            background: #1a202c;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .layer-actions button:hover {
+            border-color: #90cdf4;
+            background: #2d3748;
+        }
+
+        .global-layer-actions {
+            padding: 0 0 6px;
+            border-bottom: 1px solid #4a5568;
+            margin-bottom: 6px;
+        }
+
+        .grouped-layers label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 24px;
+            cursor: pointer;
+        }
+
+        .grouped-layers input {
+            flex: 0 0 auto;
+            margin: 0;
+        }
+
+        .team-red { color: #fc8181; }
+        .team-blue { color: #90cdf4; }
+
+        .terrain-readout,
+        .terrain-legend {
+            padding: 6px 8px;
+            border: 1px solid #4a5568;
+            border-radius: 5px;
+            color: #edf2f7;
+            background: rgba(15, 17, 26, 0.92);
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.48);
+            font: 11px/1.35 Inter, ui-sans-serif, system-ui, sans-serif;
+            backdrop-filter: blur(4px);
+        }
+
+        .terrain-readout {
+            min-width: 220px;
+        }
+
+        .terrain-legend {
+            display: none;
+            width: 205px;
+        }
+
+        .terrain-legend.visible {
+            display: block;
+        }
+
+        .terrain-legend strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .terrain-gradient {
+            height: 9px;
+            margin: 4px 0 2px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: linear-gradient(
+                90deg,
+                #184160 0%,
+                #466944 2%,
+                #677e4b 7%,
+                #908953 12%,
+                #a97e54 22%,
+                #976552 36%,
+                #7e6965 56%,
+                #979189 76%,
+                #e0ded3 100%
+            );
+        }
+
+        .terrain-scale-labels {
+            display: flex;
+            justify-content: space-between;
+            color: #cbd5e0;
+            font-size: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="info-panel">
+    <div class="title">War Thunder Map Visualizer</div>
+    <span id="status">Loading map data…</span>
+
+    <div class="era-selector">
+        <span>Scenario:</span>
+        <label>
+            <input type="radio" name="era" value="1980" checked>
+            1980
+        </label>
+        <label>
+            <input type="radio" name="era" value="2018">
+            2018
+        </label>
+    </div>
+
+    <div class="legend">
+        <span class="legend-item"><i class="dot" style="background:#fc8181"></i>Team 1 / REDFOR</span>
+        <span class="legend-item"><i class="dot" style="background:#90cdf4"></i>Team 2 / BLUFOR</span>
+        <span class="legend-item">NATO symbols identify unit roles</span>
+        <span class="legend-item">Click units to toggle their ranges · click the map to clear all</span>
+    </div>
+</div>
+
+<div id="map"></div>
+
+
+<script>
+    const MAP_IMAGE = "map_4k.png";
+    const TOPOGRAPHIC_IMAGE = "topographic_map.webp";
+    const TERRAIN_HEIGHT_IMAGE = "terrain_height_8bit.png";
+    const MAP_SPAN = 262144;
+    const HALF_SPAN = MAP_SPAN / 2;
+    const IMG_SIZE = 4096;
+    const WORLD_METERS_PER_MAP_UNIT = MAP_SPAN / IMG_SIZE;
+    const TERRAIN_ENCODED_MIN = -149;
+    const TERRAIN_ENCODED_RANGE = 5120;
+
+    function worldToLatLng(x, z) {
+        const px = (x + HALF_SPAN) / MAP_SPAN * IMG_SIZE;
+        const py = (HALF_SPAN + z) / MAP_SPAN * IMG_SIZE;
+        return [py, px];
+    }
+
+    function worldRadiusToMapRadius(radiusMeters) {
+        return radiusMeters / WORLD_METERS_PER_MAP_UNIT;
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    function displayName(value) {
+        const tail = String(value ?? "unit").split("/").pop();
+        return tail.replaceAll("_", " ");
+    }
+
+    const bounds = [[0, 0], [IMG_SIZE, IMG_SIZE]];
+    const map = L.map("map", {
+        crs: L.CRS.Simple,
+        minZoom: -3,
+        maxZoom: 6,
+        zoomSnap: 0.25
+    });
+
+    const standardMapLayer = L.imageOverlay(MAP_IMAGE, bounds).addTo(map);
+    const topographicMapLayer = L.imageOverlay(
+        TOPOGRAPHIC_IMAGE,
+        bounds
+    );
+    map.fitBounds(bounds);
+
+    const terrainCanvas = document.createElement("canvas");
+    terrainCanvas.width = IMG_SIZE;
+    terrainCanvas.height = IMG_SIZE;
+    const terrainContext = terrainCanvas.getContext("2d", {
+        willReadFrequently: true
+    });
+    let terrainReadoutReady = false;
+    const terrainImage = new Image();
+    terrainImage.addEventListener("load", () => {
+        terrainContext.drawImage(terrainImage, 0, 0);
+        terrainReadoutReady = true;
+    });
+    terrainImage.src = TERRAIN_HEIGHT_IMAGE;
+
+    const terrainReadoutControl = L.control({ position: "bottomleft" });
+    let terrainReadoutElement;
+    terrainReadoutControl.onAdd = () => {
+        terrainReadoutElement = L.DomUtil.create(
+            "div",
+            "terrain-readout"
+        );
+        terrainReadoutElement.textContent =
+            "Terrain: loading compiled height data…";
+        return terrainReadoutElement;
+    };
+    terrainReadoutControl.addTo(map);
+
+    const terrainLegendControl = L.control({ position: "bottomright" });
+    let terrainLegendElement;
+    terrainLegendControl.onAdd = () => {
+        terrainLegendElement = L.DomUtil.create(
+            "div",
+            "terrain-legend"
+        );
+        terrainLegendElement.innerHTML = `
+            <strong>Compiled terrain elevation</strong>
+            100 m contours · darker 500 m contours
+            <div class="terrain-gradient"></div>
+            <div class="terrain-scale-labels">
+                <span>sea</span><span>0 m</span><span>2,500 m</span><span>5,000 m</span>
+            </div>
+        `;
+        return terrainLegendElement;
+    };
+    terrainLegendControl.addTo(map);
+
+    function refreshTerrainLegend() {
+        terrainLegendElement?.classList.toggle(
+            "visible",
+            map.hasLayer(topographicMapLayer)
+        );
+    }
+
+    map.on("layeradd layerremove", event => {
+        if (event.layer === topographicMapLayer) refreshTerrainLegend();
+    });
+
+    map.on("mousemove", event => {
+        if (!terrainReadoutElement) return;
+        const mapX = event.latlng.lng;
+        const mapY = event.latlng.lat;
+        if (
+            mapX < 0 || mapX >= IMG_SIZE ||
+            mapY < 0 || mapY >= IMG_SIZE
+        ) {
+            terrainReadoutElement.textContent = "Outside terrain grid";
+            return;
+        }
+        const worldX = mapX * WORLD_METERS_PER_MAP_UNIT - HALF_SPAN;
+        const worldZ = mapY * WORLD_METERS_PER_MAP_UNIT - HALF_SPAN;
+        if (!terrainReadoutReady) {
+            terrainReadoutElement.textContent =
+                `X ${worldX.toFixed(0)} m · Z ${worldZ.toFixed(0)} m`;
+            return;
+        }
+        const imageX = Math.min(IMG_SIZE - 1, Math.max(0, Math.floor(mapX)));
+        const imageY = Math.min(
+            IMG_SIZE - 1,
+            Math.max(0, Math.floor(IMG_SIZE - 1 - mapY))
+        );
+        const encoded = terrainContext.getImageData(
+            imageX,
+            imageY,
+            1,
+            1
+        ).data[0];
+        const elevation =
+            TERRAIN_ENCODED_MIN +
+            encoded / 255 * TERRAIN_ENCODED_RANGE;
+        terrainReadoutElement.textContent =
+            `Terrain ≈ ${Math.round(elevation).toLocaleString()} m · ` +
+            `X ${worldX.toFixed(0)} · Z ${worldZ.toFixed(0)}`;
+    });
+
+    map.createPane("strategicTargets");
+    map.getPane("strategicTargets").style.zIndex = 660;
+    map.createPane("depotMarkers");
+    map.getPane("depotMarkers").style.zIndex = 675;
+    map.createPane("guideSupportUnits");
+    map.getPane("guideSupportUnits").style.zIndex = 620;
+
+    const selectedRangeGroup = L.layerGroup().addTo(map);
+    const selectedRangeLayers = new Map();
+
+    function clearSelectedRanges() {
+        selectedRangeGroup.clearLayers();
+        selectedRangeLayers.clear();
+    }
+
+    map.on("click", () => {
+        clearSelectedRanges();
+        clearRouteSelection();
+    });
+
+    function makeVisibleLayerGroup() {
+        return L.layerGroup().addTo(map);
+    }
+
+    const operationalKeys = [
+        "strongpoints",
+        "vehicleDepots",
+        "fuelAmmoDepots",
+        "shortSams",
+        "longSams",
+        "ewRadars",
+        "airfields",
+        "strategic",
+        "fleet"
+    ];
+
+    function makeOperationalUnitGroups() {
+        return Object.fromEntries(
+            operationalKeys.map(key => [key, makeVisibleLayerGroup()])
+        );
+    }
+
+    const unitGroups = {
+        1: makeOperationalUnitGroups(),
+        2: makeOperationalUnitGroups()
+    };
+
+    const asphaltRoadGroup = L.layerGroup();
+    const gravelRoadGroup = L.layerGroup();
+
+    function makeMissionGroups() {
+        return {
+            strongpoints: {
+                objectives: L.layerGroup(),
+                capture: L.layerGroup()
+            },
+            vehicleDepots: {
+                objectives: L.layerGroup().addTo(map),
+                capture: L.layerGroup(),
+                armored: L.layerGroup()
+            },
+            fuelAmmoDepots: {
+                objectives: L.layerGroup().addTo(map),
+                capture: L.layerGroup(),
+                convoy: L.layerGroup()
+            },
+            airfields: {
+                runways: L.layerGroup().addTo(map),
+                capture: L.layerGroup()
+            },
+            strategic: {
+                mlrsSpawn: L.layerGroup(),
+                tbmSpawn: L.layerGroup(),
+                mlrsMove: L.layerGroup(),
+                tbmMove: L.layerGroup(),
+                targets: L.layerGroup(),
+                bombers: L.layerGroup()
+            },
+            fleet: {
+                routes: L.layerGroup().addTo(map)
+            }
+        };
+    }
+
+    const missionGroups = {
+        1: makeMissionGroups(),
+        2: makeMissionGroups()
+    };
+
+    function makeCoverageCategory() {
+        return {
+            detection: L.layerGroup(),
+            tracking: L.layerGroup(),
+            engagement: L.layerGroup()
+        };
+    }
+
+    function makeTeamCoverage() {
+        return Object.fromEntries(
+            operationalKeys.map(key => [key, makeCoverageCategory()])
+        );
+    }
+
+    const coverageGroups = {
+        1: makeTeamCoverage(),
+        2: makeTeamCoverage()
+    };
+
+    const renderedGroups = [
+        ...Object.values(unitGroups).flatMap(groups => Object.values(groups)),
+        ...Object.values(missionGroups).flatMap(groups => [
+            groups.airfields.runways,
+            groups.fleet.routes
+        ]),
+        ...Object.values(coverageGroups).flatMap(categories =>
+            Object.values(categories).flatMap(groups => Object.values(groups))
+        )
+    ];
+
+    let globalSiteData = [];
+    let globalUnitSpecs = {};
+    let globalMissionLogic = null;
+    let globalConvoyRoutes = new Map();
+    let globalArmoredRoutes = new Map();
+    let globalRoadGraph = null;
+    const routeVisuals = new Map();
+    const selectedDepotGroup = L.layerGroup().addTo(map);
+    let selectedRouteKeys = new Set();
+    let selectedDepotName = null;
+
+    function operationalCategory(site) {
+        const siteName = String(site.name || "").toLowerCase();
+        const sourceGroup = String(site.source_group || "").toLowerCase();
+        if (sourceGroup === "ships") return "fleet";
+        if (
+            sourceGroup === "tankmodels" &&
+            (
+                siteName.includes("tactical_missile") ||
+                siteName.includes("tbm") ||
+                siteName.includes("mlrs")
+            )
+        ) return "strategic";
+        if (siteName.includes("longrange_radar")) return "ewRadars";
+        if (siteName.includes("airfield")) return "airfields";
+        if (
+            siteName.includes("fuel_storage") ||
+            siteName.includes("ammo_storage")
+        ) return "fuelAmmoDepots";
+        if (/t[12]_base_/.test(siteName)) return "vehicleDepots";
+        if (siteName.includes("long_sam_site")) return "longSams";
+        if (
+            siteName.includes("short_sam_site") ||
+            siteName.includes("sam_cover_foundation") ||
+            siteName.includes("spaa_cover_foundation")
+        ) return "shortSams";
+        return "strongpoints";
+    }
+
+    function drawRunway(runway, team) {
+        const [startX, , startZ] = runway.start;
+        const [endX, , endZ] = runway.end;
+        const width = runway.width || 80;
+        const dx = endX - startX;
+        const dz = endZ - startZ;
+        const length = Math.hypot(dx, dz);
+        if (!length) return;
+
+        const normalX = -dz / length;
+        const normalZ = dx / length;
+        const halfWidth = width / 2;
+        const corners = [
+            worldToLatLng(startX + normalX * halfWidth, startZ + normalZ * halfWidth),
+            worldToLatLng(startX - normalX * halfWidth, startZ - normalZ * halfWidth),
+            worldToLatLng(endX - normalX * halfWidth, endZ - normalZ * halfWidth),
+            worldToLatLng(endX + normalX * halfWidth, endZ + normalZ * halfWidth)
+        ];
+
+        L.polygon(corners, {
+            color: "#e2e8f0",
+            fillColor: "#2d3748",
+            fillOpacity: 0.85,
+            weight: 2
+        }).bindTooltip(`<b>Landing strip</b><br>Width: ${width} m`)
+            .addTo((missionGroups[team] || missionGroups[1]).airfields.runways);
+
+        L.polyline([
+            worldToLatLng(startX, startZ),
+            worldToLatLng(endX, endZ)
+        ], {
+            color: "#f6e05e",
+            weight: 2,
+            dashArray: "8, 8"
+        }).addTo((missionGroups[team] || missionGroups[1]).airfields.runways);
+    }
+
+    function drawShipRoute(route, site) {
+        if (!route?.points?.length) return;
+        const positions = route.points.map(point => {
+            const [x, , z] = point.world_pos;
+            return worldToLatLng(x, z);
+        });
+        if (route.closed && positions.length > 1) {
+            positions.push(positions[0]);
+        }
+
+        const color = site.team === 1 ? "#fc8181" : site.team === 2 ? "#90cdf4" : "#cbd5e0";
+        const speed = route.speed == null ? "" : `<br>Stored speed: ${escapeHtml(route.speed)}`;
+        L.polyline(positions, {
+            color,
+            weight: 2,
+            opacity: 0.8,
+            dashArray: "7, 5"
+        }).bindTooltip(`
+            <b>${escapeHtml(site.name)} patrol route</b><br>
+            ${route.points.length} waypoints · ${route.closed ? "closed loop" : "open route"}
+            ${speed}
+        `).addTo((missionGroups[site.team] || missionGroups[1]).fleet.routes);
+    }
+
+    function drawRoadNetwork(roads) {
+        asphaltRoadGroup.clearLayers();
+        gravelRoadGroup.clearLayers();
+
+        roads.forEach(road => {
+            if (!road?.points?.length) return;
+            const positions = road.points.map(point => {
+                const [x, , z] = point;
+                return worldToLatLng(x, z);
+            });
+            const isAsphalt = road.surface === "asphalt";
+            const targetGroup = isAsphalt ? asphaltRoadGroup : gravelRoadGroup;
+            L.polyline(positions, {
+                color: isAsphalt ? "#f7fafc" : "#d6bc8b",
+                weight: isAsphalt ? 1.7 : 1.25,
+                opacity: isAsphalt ? 0.65 : 0.5,
+                interactive: false
+            }).addTo(targetGroup);
+        });
+    }
+
+    function convoyRouteKey(link) {
+        return `convoy::${link.factory}::${link.assembly}`;
+    }
+
+    function armoredRouteKey(link) {
+        return `armored::${link.assembly}::${link.target}`;
+    }
+
+    function worldPathDistance(points) {
+        let total = 0;
+        for (let index = 1; index < points.length; index += 1) {
+            const previous = points[index - 1];
+            const current = points[index];
+            total += Math.hypot(
+                current[0] - previous[0],
+                current[2] - previous[2]
+            );
+        }
+        return total;
+    }
+
+    function makeMinHeap() {
+        const heap = [];
+        return {
+            get size() {
+                return heap.length;
+            },
+            push(priority, node) {
+                let index = heap.length;
+                heap.push([priority, node]);
+                while (index > 0) {
+                    const parent = Math.floor((index - 1) / 2);
+                    if (heap[parent][0] <= priority) break;
+                    heap[index] = heap[parent];
+                    index = parent;
+                }
+                heap[index] = [priority, node];
+            },
+            pop() {
+                if (!heap.length) return null;
+                const root = heap[0];
+                const tail = heap.pop();
+                if (heap.length && tail) {
+                    let index = 0;
+                    while (true) {
+                        const left = index * 2 + 1;
+                        const right = left + 1;
+                        if (left >= heap.length) break;
+                        let child = left;
+                        if (
+                            right < heap.length &&
+                            heap[right][0] < heap[left][0]
+                        ) {
+                            child = right;
+                        }
+                        if (heap[child][0] >= tail[0]) break;
+                        heap[index] = heap[child];
+                        index = child;
+                    }
+                    heap[index] = tail;
+                }
+                return root;
+            }
+        };
+    }
+
+    function buildRoadGraph(roads, joinTolerance = 50) {
+        const nodes = [];
+        const roadIds = [];
+        const edges = [];
+
+        function addEdge(from, to, distance) {
+            edges[from].push([to, distance]);
+            edges[to].push([from, distance]);
+        }
+
+        roads.forEach((road, roadIndex) => {
+            let previousIndex = null;
+            (road.points || []).forEach(point => {
+                const nodeIndex = nodes.length;
+                nodes.push(point);
+                roadIds.push(roadIndex);
+                edges.push([]);
+                if (previousIndex != null) {
+                    addEdge(
+                        previousIndex,
+                        nodeIndex,
+                        Math.hypot(
+                            point[0] - nodes[previousIndex][0],
+                            point[2] - nodes[previousIndex][2]
+                        )
+                    );
+                }
+                previousIndex = nodeIndex;
+            });
+        });
+
+        // Separate spline objects often meet within a few metres without
+        // sharing an identical control point. Join the nearest point from each
+        // neighbouring road inside a small spatial-hash cell.
+        const buckets = new Map();
+        nodes.forEach((point, nodeIndex) => {
+            const cellX = Math.floor(point[0] / joinTolerance);
+            const cellZ = Math.floor(point[2] / joinTolerance);
+            const nearestByRoad = new Map();
+
+            for (let offsetX = -1; offsetX <= 1; offsetX += 1) {
+                for (let offsetZ = -1; offsetZ <= 1; offsetZ += 1) {
+                    const bucket = buckets.get(
+                        `${cellX + offsetX}:${cellZ + offsetZ}`
+                    ) || [];
+                    bucket.forEach(otherIndex => {
+                        const otherRoad = roadIds[otherIndex];
+                        if (otherRoad === roadIds[nodeIndex]) return;
+                        const other = nodes[otherIndex];
+                        if (Math.abs(point[1] - other[1]) > 20) return;
+                        const distance = Math.hypot(
+                            point[0] - other[0],
+                            point[2] - other[2]
+                        );
+                        if (distance > joinTolerance) return;
+                        const existing = nearestByRoad.get(otherRoad);
+                        if (!existing || distance < existing.distance) {
+                            nearestByRoad.set(otherRoad, {
+                                nodeIndex: otherIndex,
+                                distance
+                            });
+                        }
+                    });
+                }
+            }
+
+            nearestByRoad.forEach(join => {
+                addEdge(nodeIndex, join.nodeIndex, join.distance);
+            });
+
+            const key = `${cellX}:${cellZ}`;
+            if (!buckets.has(key)) buckets.set(key, []);
+            buckets.get(key).push(nodeIndex);
+        });
+
+        return { nodes, edges };
+    }
+
+    function nearestRoadNode(nodes, worldPoint) {
+        let nearestIndex = -1;
+        let nearestDistanceSquared = Infinity;
+        nodes.forEach((node, index) => {
+            const distanceSquared =
+                Math.pow(node[0] - worldPoint[0], 2) +
+                Math.pow(node[2] - worldPoint[2], 2);
+            if (distanceSquared < nearestDistanceSquared) {
+                nearestIndex = index;
+                nearestDistanceSquared = distanceSquared;
+            }
+        });
+        return nearestIndex;
+    }
+
+    function findRoadPath(graph, from, to) {
+        const { nodes, edges } = graph;
+        const start = nearestRoadNode(nodes, from);
+        const goal = nearestRoadNode(nodes, to);
+        if (start < 0 || goal < 0) return null;
+
+        const distance = new Float64Array(nodes.length);
+        distance.fill(Infinity);
+        distance[start] = 0;
+
+        const previous = new Int32Array(nodes.length);
+        previous.fill(-1);
+        const queue = makeMinHeap();
+        queue.push(0, start);
+
+        function heuristic(nodeIndex) {
+            return Math.hypot(
+                nodes[nodeIndex][0] - nodes[goal][0],
+                nodes[nodeIndex][2] - nodes[goal][2]
+            );
+        }
+
+        while (queue.size) {
+            const item = queue.pop();
+            if (!item) break;
+            const [estimatedTotal, current] = item;
+            if (
+                estimatedTotal >
+                distance[current] + heuristic(current) + 0.001
+            ) {
+                continue;
+            }
+            if (current === goal) break;
+
+            edges[current].forEach(([next, edgeDistance]) => {
+                const candidate = distance[current] + edgeDistance;
+                if (candidate >= distance[next]) return;
+                distance[next] = candidate;
+                previous[next] = current;
+                queue.push(candidate + heuristic(next), next);
+            });
+        }
+
+        if (!Number.isFinite(distance[goal])) return null;
+        const nodePath = [];
+        for (let current = goal; current >= 0; current = previous[current]) {
+            nodePath.push(current);
+            if (current === start) break;
+        }
+        if (nodePath[nodePath.length - 1] !== start) return null;
+        nodePath.reverse();
+
+        const worldPoints = [
+            from,
+            ...nodePath.map(nodeIndex => nodes[nodeIndex]),
+            to
+        ];
+        return {
+            worldPoints,
+            distance: worldPathDistance(worldPoints),
+            entranceDistance: Math.hypot(
+                from[0] - nodes[start][0],
+                from[2] - nodes[start][2]
+            ),
+            exitDistance: Math.hypot(
+                to[0] - nodes[goal][0],
+                to[2] - nodes[goal][2]
+            )
+        };
+    }
+
+    function buildRoadRoutes(graph, links, keyFunction) {
+        const routes = new Map();
+        links.forEach(link => {
+            const route = findRoadPath(graph, link.from, link.to);
+            if (route) routes.set(keyFunction(link), route);
+        });
+        return routes;
+    }
+
+    function convoyRoute(link) {
+        return globalConvoyRoutes.get(convoyRouteKey(link)) || {
+            worldPoints: [link.from, link.to],
+            distance: worldPathDistance([link.from, link.to]),
+            entranceDistance: 0,
+            exitDistance: 0
+        };
+    }
+
+    function armoredRoute(link) {
+        return globalArmoredRoutes.get(armoredRouteKey(link)) || {
+            worldPoints: [link.from, link.to],
+            distance: worldPathDistance([link.from, link.to]),
+            entranceDistance: 0,
+            exitDistance: 0
+        };
+    }
+
+    function applyRouteStyle(routeVisual, hovered = false) {
+        const selected = selectedRouteKeys.has(routeVisual.key);
+        routeVisual.line.setStyle({
+            weight: selected ? 3.7 : hovered ? 3 : routeVisual.baseWeight,
+            opacity: selected ? 1 : hovered ? 0.95 : routeVisual.baseOpacity
+        });
+        routeVisual.halo.setStyle({
+            opacity: selected ? 0.72 : hovered ? 0.34 : 0,
+            weight: selected ? 7 : 6
+        });
+    }
+
+    function refreshRouteHighlights() {
+        routeVisuals.forEach(routeVisual => applyRouteStyle(routeVisual));
+    }
+
+    function clearRouteSelection() {
+        selectedRouteKeys = new Set();
+        selectedDepotName = null;
+        selectedDepotGroup.clearLayers();
+        refreshRouteHighlights();
+    }
+
+    function stopLeafletClick(event) {
+        if (event?.originalEvent) {
+            L.DomEvent.stopPropagation(event.originalEvent);
+        }
+    }
+
+    function selectRoute(routeKey, event) {
+        stopLeafletClick(event);
+        selectedDepotName = null;
+        selectedDepotGroup.clearLayers();
+        selectedRouteKeys = selectedRouteKeys.has(routeKey)
+            ? new Set()
+            : new Set([routeKey]);
+        refreshRouteHighlights();
+    }
+
+    function selectDepotRoutes(site, position, event) {
+        stopLeafletClick(event);
+        const wasSelected = selectedDepotName === site.name;
+        selectedDepotGroup.clearLayers();
+        selectedDepotName = wasSelected ? null : site.name;
+        selectedRouteKeys = new Set();
+
+        if (!wasSelected) {
+            routeVisuals.forEach(routeVisual => {
+                if (routeVisual.endpoints.includes(site.name)) {
+                    selectedRouteKeys.add(routeVisual.key);
+                    L.polyline(routeVisual.positions, {
+                        color: "#f7fafc",
+                        weight: 7,
+                        opacity: 0.72,
+                        dashArray: routeVisual.dashArray,
+                        interactive: false
+                    }).addTo(selectedDepotGroup);
+                    L.polyline(routeVisual.positions, {
+                        color: routeVisual.color,
+                        weight: 3.7,
+                        opacity: 1,
+                        dashArray: routeVisual.dashArray,
+                        interactive: false
+                    }).addTo(selectedDepotGroup);
+                }
+            });
+            L.circleMarker(position, {
+                pane: "strategicTargets",
+                radius: 20,
+                color: "#f7fafc",
+                fill: false,
+                weight: 3,
+                opacity: 0.9,
+                interactive: false
+            }).addTo(selectedDepotGroup);
+        }
+        refreshRouteHighlights();
+    }
+
+    function drawSelectableRoute({
+        key,
+        endpoints,
+        route,
+        color,
+        dashArray,
+        tooltip,
+        group,
+        baseWeight = 2,
+        baseOpacity = 0.72
+    }) {
+        const positions = route.worldPoints.map(point =>
+            worldToLatLng(point[0], point[2])
+        );
+        const halo = L.polyline(positions, {
+            color: "#f7fafc",
+            weight: 6,
+            opacity: 0,
+            dashArray,
+            interactive: false
+        }).addTo(group);
+        const line = L.polyline(positions, {
+            color,
+            weight: baseWeight,
+            opacity: baseOpacity,
+            dashArray,
+            interactive: false
+        }).addTo(group);
+        const hitLine = L.polyline(positions, {
+            color: "#ffffff",
+            weight: 16,
+            opacity: 0.001
+        }).bindTooltip(tooltip).addTo(group);
+        const routeVisual = {
+            key,
+            endpoints,
+            line,
+            halo,
+            hitLine,
+            positions,
+            color,
+            dashArray,
+            baseWeight,
+            baseOpacity
+        };
+        routeVisuals.set(key, routeVisual);
+        hitLine.on("mouseover", () => applyRouteStyle(routeVisual, true));
+        hitLine.on("mouseout", () => applyRouteStyle(routeVisual));
+        hitLine.on("click", event => selectRoute(key, event));
+        return routeVisual;
+    }
+
+    function teamColor(team) {
+        return team === 1 ? "#e53e3e" : team === 2 ? "#4299e1" : "#a0aec0";
+    }
+
+    function toggleSelectedUnitRanges(selectionKey, position, unit, site, specs) {
+        if (selectedRangeLayers.has(selectionKey)) {
+            selectedRangeGroup.removeLayer(selectedRangeLayers.get(selectionKey));
+            selectedRangeLayers.delete(selectionKey);
+            return;
+        }
+        if (!specs) return;
+
+        const color = teamColor(site.team);
+        const unitRanges = L.layerGroup();
+        const ranges = [
+            {
+                value: specs.sensors?.detection?.nominal,
+                label: "Radar detection",
+                style: {
+                    color,
+                    weight: 2,
+                    opacity: 0.9,
+                    fill: false,
+                    dashArray: "9, 6"
+                }
+            },
+            {
+                value: specs.sensors?.tracking?.nominal,
+                label: "Radar tracking",
+                style: {
+                    color,
+                    weight: 2,
+                    opacity: 0.95,
+                    fill: false,
+                    dashArray: "2, 5"
+                }
+            },
+            {
+                value: specs.engagement_range,
+                label: "Weapon engagement",
+                style: {
+                    color,
+                    fillColor: color,
+                    fillOpacity: 0.045,
+                    weight: 2.25,
+                    opacity: 1
+                }
+            }
+        ];
+
+        ranges.forEach(range => {
+            const radius = Number(range.value);
+            if (!(radius > 0)) return;
+            L.circle(position, {
+                radius: worldRadiusToMapRadius(radius),
+                interactive: false,
+                ...range.style
+            }).addTo(unitRanges);
+        });
+
+        if (!unitRanges.getLayers().length) return;
+        L.circleMarker(position, {
+            radius: 17,
+            color: "#ffffff",
+            fill: false,
+            weight: 2,
+            opacity: 0.95,
+            dashArray: "3, 3",
+            interactive: false
+        }).addTo(unitRanges);
+        unitRanges.addTo(selectedRangeGroup);
+        selectedRangeLayers.set(selectionKey, unitRanges);
+    }
+
+    function natoIconPath(team, iconType) {
+        const isRed = team === 1;
+        const folder = isRed ? "REDFOR" : "BLUFOR";
+        const side = isRed ? "enemy" : "ally";
+        return `icons/${folder}/def_nato_${side}_${iconType}_radar.svg`;
+    }
+
+    function natoIcon(team, iconType, size = 30) {
+        const path = natoIconPath(team, iconType);
+        return L.divIcon({
+            className: "nato-leaflet-icon",
+            html: `<img src="${path}" alt="">`,
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2],
+            tooltipAnchor: [0, -size / 2]
+        });
+    }
+
+    function bomberIcon(team) {
+        const path = team === 1
+            ? "icons/REDFOR/tu_95m_ico.svg"
+            : "icons/BLUFOR/b_52h_ico.svg";
+        return L.divIcon({
+            className: "nato-leaflet-icon bomber-map-icon",
+            html: `<img src="${path}" alt="">`,
+            iconSize: [36, 36],
+            iconAnchor: [18, 18],
+            tooltipAnchor: [0, -18]
+        });
+    }
+
+    function shipIconType(name) {
+        const value = String(name).toLowerCase();
+        if (value.includes("aircraftcarrier") || value.includes("aircraft_carrier")) return "aircraft_carrier";
+        if (value.includes("battleship")) return "battleship";
+        if (value.includes("missile_cruiser")) return "missile_cruiser";
+        if (value.includes("heavy_cruiser")) return "heavy_cruiser";
+        if (value.includes("cruiser")) return "cruiser";
+        if (value.includes("destroyer")) return "destroyer";
+        if (value.includes("frigate")) return "frigate";
+        if (value.includes("corvette")) return "corvette";
+        return "boat";
+    }
+
+    function unitIconType(unit, site) {
+        const role = String(unit.role || "").toLowerCase();
+        const name = String(unit.name || "").toLowerCase();
+        if (site.source_group === "ships" || role === "ship") return shipIconType(name);
+        if (name.includes("tactical_missile") || name.includes("tbm_")) return "tbm";
+        if (name.includes("mlrs") || name.includes("smerch") || name.includes("m270")) return "mlrs";
+        if (role.includes("radar") || name.includes("radar")) return "radar_station";
+        if (role.includes("launcher") || name.includes("_sam_")) return "sam";
+        if (role === "spaa" || name.includes("zprk") || name.includes("flarak") || name.includes("crotale")) return "spaa";
+        if (name.includes("bmp") || name.includes("bradley")) return "ifv";
+        if (name.includes("truck") || name.includes("kamaz") || name.includes("m978") || name.includes("m939")) return "truck";
+        return "tank";
+    }
+
+    function drawLogicSite(site) {
+        const [x, , z] = site.world_pos;
+        const position = worldToLatLng(x, z);
+        const labels = {
+            fuel_factory: "Fuel factory",
+            ammo_factory: "Ammunition factory",
+            assembly_area: "Assembly area",
+            strongpoint: "Strongpoint",
+            airfield: "Airfield"
+        };
+        const category = labels[site.category] || displayName(site.category);
+        const tooltip = `
+            <b>${escapeHtml(site.name)}</b><br>
+            ${escapeHtml(category)} · Team ${escapeHtml(site.team)}<br>
+            Capture radius: ${Number(site.capture_radius).toFixed(0)} m
+        `;
+
+        const teamMission = missionGroups[site.team] || missionGroups[1];
+        let categoryGroup = null;
+        let iconType = null;
+        if (site.category === "fuel_factory") {
+            categoryGroup = teamMission.fuelAmmoDepots;
+            iconType = "fuel_storage";
+        } else if (site.category === "ammo_factory") {
+            categoryGroup = teamMission.fuelAmmoDepots;
+            iconType = "ammo_storage";
+        } else if (site.category === "assembly_area") {
+            categoryGroup = teamMission.vehicleDepots;
+            iconType = "tank_storage";
+        } else if (site.category === "strongpoint") {
+            categoryGroup = teamMission.strongpoints;
+        } else if (site.category === "airfield") {
+            categoryGroup = teamMission.airfields;
+        }
+
+        if (categoryGroup && iconType) {
+            const marker = L.marker(position, {
+                icon: natoIcon(site.team, iconType, 32),
+                pane: "depotMarkers",
+                zIndexOffset: 300,
+                riseOnHover: true
+            }).bindTooltip(
+                `${tooltip}<br><i>Click to highlight this depot's routes</i>`
+            ).addTo(categoryGroup.objectives);
+            marker.on("click", event =>
+                selectDepotRoutes(site, position, event)
+            );
+        }
+
+        if (categoryGroup?.capture) {
+            L.circle(position, {
+                radius: worldRadiusToMapRadius(site.capture_radius),
+                color: teamColor(site.team),
+                fillColor: teamColor(site.team),
+                fillOpacity: 0.035,
+                weight: 1,
+                dashArray: "4, 4"
+            }).bindTooltip(tooltip).addTo(categoryGroup.capture);
+        }
+    }
+
+    function drawMobileFireUnit(unit) {
+        const color = teamColor(unit.team);
+        const isMlrs = unit.unit_type === "mlrs";
+        const strategicGroups =
+            (missionGroups[unit.team] || missionGroups[1]).strategic;
+        const spawnGroup = isMlrs
+            ? strategicGroups.mlrsSpawn
+            : strategicGroups.tbmSpawn;
+        const moveGroup = isMlrs
+            ? strategicGroups.mlrsMove
+            : strategicGroups.tbmMove;
+        const typeLabel = isMlrs ? "MLRS" : "TBM";
+
+        if (unit.spawn_area) {
+            const [x, , z] = unit.spawn_area.center;
+            L.circle(worldToLatLng(x, z), {
+                radius: worldRadiusToMapRadius(unit.spawn_area.radius),
+                color,
+                fillColor: color,
+                fillOpacity: 0.08,
+                weight: 2
+            }).bindTooltip(`
+                <b>${escapeHtml(unit.name)}</b><br>
+                ${typeLabel} randomized spawn area<br>
+                Radius: ${Number(unit.spawn_area.radius).toFixed(0)} m
+            `).addTo(spawnGroup);
+            L.marker(worldToLatLng(x, z), {
+                icon: natoIcon(unit.team, isMlrs ? "mlrs" : "tbm", 30)
+            }).bindTooltip(`
+                <b>${escapeHtml(unit.name)}</b><br>
+                Representative marker at randomized spawn-area centre
+            `).addTo(spawnGroup);
+        }
+
+        unit.move_areas.forEach((area, index) => {
+            const [x, , z] = area.center;
+            const position = worldToLatLng(x, z);
+            L.circle(position, {
+                radius: worldRadiusToMapRadius(area.radius),
+                color,
+                fillColor: color,
+                fillOpacity: 0.035,
+                weight: 1.5,
+                dashArray: "6, 5"
+            }).bindTooltip(`
+                <b>${escapeHtml(unit.name)}</b><br>
+                ${typeLabel} relocation destination ${index + 1}<br>
+                AI drives to the centre · ${Number(area.radius).toFixed(0)} m editor area
+            `).addTo(moveGroup);
+            L.circleMarker(position, {
+                radius: 3,
+                color,
+                fillColor: color,
+                fillOpacity: 1,
+                weight: 1
+            }).addTo(moveGroup);
+        });
+    }
+
+    function drawMissionLogic(logic) {
+        logic.sites.forEach(drawLogicSite);
+        logic.mobile_fire_units.forEach(drawMobileFireUnit);
+
+        logic.likely_convoy_links.forEach(link => {
+            const color = link.resource === "fuel" ? "#68d391" : "#f6ad55";
+            const route = convoyRoute(link);
+            drawSelectableRoute({
+                key: convoyRouteKey(link),
+                endpoints: [link.factory, link.assembly],
+                route,
+                color,
+                dashArray: "5, 6",
+                tooltip: `
+                <b>Possible ${escapeHtml(link.resource)} convoy</b><br>
+                ${escapeHtml(link.factory)} → ${escapeHtml(link.assembly)}<br>
+                Selection distance: ${formatDistance(link.distance)} · rank ${link.rank_by_distance}<br>
+                Approximate road route: ${formatDistance(route.distance)}<br>
+                Routed through extracted roads; short entrance connectors may be off-road<br>
+                Actual destination choice also depends on free storage capacity<br>
+                <i>Click to keep this route highlighted</i>
+                `,
+                group: (missionGroups[link.team] || missionGroups[1])
+                    .fuelAmmoDepots.convoy
+            });
+        });
+
+        (logic.likely_armored_links || []).forEach(link => {
+            const route = armoredRoute(link);
+            drawSelectableRoute({
+                key: armoredRouteKey(link),
+                endpoints: [link.assembly, link.target],
+                route,
+                color: teamColor(link.team),
+                dashArray: "11, 5",
+                baseWeight: 2.25,
+                baseOpacity: 0.78,
+                tooltip: `
+                <b>Likely initial armored-column route</b><br>
+                ${escapeHtml(link.assembly)} → ${escapeHtml(link.target)}<br>
+                Target: ${escapeHtml(displayName(link.target_category))} · nearest rank ${link.rank_by_distance}<br>
+                Direct selection distance: ${formatDistance(link.distance)}<br>
+                Approximate road route: ${formatDistance(route.distance)}<br>
+                The game randomly chooses among the three nearest eligible targets;
+                ownership and surviving defenders can change eligibility<br>
+                <i>Click to keep this route highlighted</i>
+                `,
+                group: (missionGroups[link.team] || missionGroups[1])
+                    .vehicleDepots.armored
+            });
+        });
+
+        logic.mlrs_tbm_targets.forEach(target => {
+            const [x, , z] = target.world_pos;
+            const position = worldToLatLng(x, z);
+            const tooltip = `
+                <b>${escapeHtml(target.name)}</b><br>
+                Eligible enemy target for MLRS/TBM · ${escapeHtml(displayName(target.category))}
+            `;
+
+            // Eligible targets share their coordinates with the normal objective
+            // markers. Draw a high-contrast screen-sized ring in a dedicated pane
+            // so switching this overlay on always produces a visible change.
+            L.circleMarker(position, {
+                pane: "strategicTargets",
+                radius: 13,
+                color: "#f6e05e",
+                fill: false,
+                weight: 3,
+                opacity: 1,
+                dashArray: "3, 3"
+            }).bindTooltip(tooltip).addTo(
+                (missionGroups[target.team === 1 ? 2 : 1] || missionGroups[1])
+                    .strategic.targets
+            );
+
+            L.marker(position, {
+                pane: "strategicTargets",
+                icon: natoIcon(target.team, "tank_radar_target", 18),
+                zIndexOffset: 1000
+            }).bindTooltip(tooltip).addTo(
+                (missionGroups[target.team === 1 ? 2 : 1] || missionGroups[1])
+                    .strategic.targets
+            );
+        });
+
+        (logic.bomber_spawns || []).forEach(spawn => {
+            const [x, , z] = spawn.world_pos;
+            L.marker(worldToLatLng(x, z), {
+                icon: bomberIcon(spawn.team)
+            }).bindTooltip(`
+                <b>${escapeHtml(spawn.name)}</b><br>
+                ${spawn.team === 1 ? "Tu-95M" : "B-52H"} strategic-bomber spawn
+            `).addTo(
+                (missionGroups[spawn.team] || missionGroups[1]).strategic.bombers
+            );
+        });
+    }
+
+    function drawUnit(unit, site) {
+        const [x, , z] = unit.world_pos;
+        const unitLatLng = worldToLatLng(x, z);
+        const role = String(unit.role || "vehicle").toLowerCase();
+        const name = String(unit.name || "unit");
+        const teamGroups = unitGroups[site.team] || unitGroups[1];
+        const categoryKey = operationalCategory(site);
+        const targetGroup = teamGroups[categoryKey];
+        const specs = globalUnitSpecs[name.toLowerCase()];
+        const threatRange = unit.threat_range && !specs
+            ? `<br>Threat range: ${Number(unit.threat_range).toLocaleString()} m`
+            : "";
+        const preset = unit.preset
+            ? `<br>Preset: ${escapeHtml(unit.preset)}`
+            : "";
+
+        let specificationDetails = "";
+        if (specs) {
+            const details = [];
+            const detection = specs.sensors?.detection;
+            const tracking = specs.sensors?.tracking;
+            const irst = specs.sensors?.irst;
+            if (detection?.nominal) {
+                details.push(`AI detection: ${formatDistance(detection.nominal)}`);
+            }
+            if (tracking?.nominal) {
+                details.push(`AI tracking: ${formatDistance(tracking.nominal)}`);
+            }
+            if (irst?.nominal) {
+                details.push(`IRST: ${formatDistance(irst.nominal)}`);
+            }
+            if (specs.engagement_range) {
+                details.push(`Engagement: ${formatDistance(specs.engagement_range)}`);
+            }
+            if (specs.target_channels) {
+                details.push(`Target channels: ${escapeHtml(specs.target_channels)}`);
+            }
+            if (specs.maximum_speed_kph) {
+                details.push(`Maximum speed: ${escapeHtml(specs.maximum_speed_kph)} km/h`);
+            }
+            (specs.weapons || []).slice(0, 3).forEach(weapon => {
+                const minimum = Number(weapon.minimum || 0);
+                const maximum = Number(weapon.effective_maximum || 0);
+                const ammo = weapon.ammo == null ? "" : ` · ${weapon.ammo} rounds`;
+                const guidance = weapon.guidance
+                    ? ` · ${escapeHtml(displayName(weapon.guidance))}`
+                    : "";
+                details.push(
+                    `${escapeHtml(displayName(weapon.name))}: ` +
+                    `${formatDistance(minimum)}–${formatDistance(maximum)}` +
+                    `${guidance}${ammo}`
+                );
+            });
+            if (details.length) {
+                specificationDetails = `<br>${details.join("<br>")}`;
+            }
+
+            const teamCoverage = coverageGroups[site.team] || coverageGroups[1];
+            const coverageCategory = teamCoverage[categoryKey];
+
+            if (detection?.nominal) {
+                L.circle(unitLatLng, {
+                    radius: worldRadiusToMapRadius(detection.nominal),
+                    color: teamColor(site.team),
+                    fill: false,
+                    weight: 1.5,
+                    opacity: 0.75,
+                    dashArray: "8, 6",
+                    interactive: false
+                }).addTo(coverageCategory.detection);
+            }
+            if (tracking?.nominal) {
+                L.circle(unitLatLng, {
+                    radius: worldRadiusToMapRadius(tracking.nominal),
+                    color: teamColor(site.team),
+                    fill: false,
+                    weight: 1.25,
+                    opacity: 0.8,
+                    dashArray: "2, 5",
+                    interactive: false
+                }).addTo(coverageCategory.tracking);
+            }
+            if (specs.engagement_range) {
+                L.circle(unitLatLng, {
+                    radius: worldRadiusToMapRadius(specs.engagement_range),
+                    color: teamColor(site.team),
+                    fillColor: teamColor(site.team),
+                    fillOpacity: 0.025,
+                    weight: 1.5,
+                    opacity: 0.9,
+                    interactive: false
+                }).addTo(coverageCategory.engagement);
+            }
+        }
+
+        const marker = L.marker(unitLatLng, {
+            icon: natoIcon(site.team, unitIconType(unit, site), 28)
+        }).bindTooltip(`
+            <b>${escapeHtml(displayName(name))}</b><br>
+            Role: ${escapeHtml(displayName(role))}<br>
+            Site: ${escapeHtml(site.name)}
+            ${preset}${threatRange}<br>
+            Position: [${x.toFixed(1)}, ${z.toFixed(1)}]
+            ${specificationDetails}
+        `).addTo(targetGroup);
+        marker.on("click", event => {
+            if (event.originalEvent) {
+                L.DomEvent.stopPropagation(event.originalEvent);
+            }
+            const selectionKey = [
+                site.team,
+                site.name,
+                name,
+                x.toFixed(2),
+                z.toFixed(2)
+            ].join(":");
+            toggleSelectedUnitRanges(
+                selectionKey,
+                unitLatLng,
+                unit,
+                site,
+                specs
+            );
+            marker.openTooltip();
+        });
+
+    }
+
+    function drawVehicleDepotBuilding(building, site) {
+        if (operationalCategory(site) !== "vehicleDepots") return false;
+        const name = String(building.name || "").toLowerCase();
+        let iconType = null;
+        let buildingLabel = null;
+        if (name.includes("ammo_storage")) {
+            iconType = "ammo_storage";
+            buildingLabel = "Internal ammunition storage";
+        } else if (name.includes("fuel_storage")) {
+            iconType = "fuel_storage";
+            buildingLabel = "Internal fuel storage";
+        }
+        // The tank factory occupies the site origin, where the normal assembly
+        // depot marker is already drawn. Avoid placing a duplicate marker there.
+        if (!iconType) return false;
+
+        const [x, , z] = building.world_pos;
+        const targetGroup =
+            (unitGroups[site.team] || unitGroups[1]).vehicleDepots;
+        L.marker(worldToLatLng(x, z), {
+            icon: natoIcon(site.team, iconType, 26)
+        }).bindTooltip(`
+            <b>${escapeHtml(buildingLabel)}</b><br>
+            Assembly depot: ${escapeHtml(site.name)}<br>
+            Structure: ${escapeHtml(displayName(building.name))}<br>
+            Position: [${x.toFixed(1)}, ${z.toFixed(1)}]
+        `).addTo(targetGroup);
+        return true;
+    }
+
+    function renderMapData(selectedEra) {
+        clearSelectedRanges();
+        renderedGroups.forEach(group => group.clearLayers());
+
+        const counts = {
+            sites: 0,
+            runways: 0,
+            launchers: 0,
+            radars: 0,
+            vehicles: 0,
+            ships: 0,
+            shipRoutes: 0,
+            depotBuildings: 0
+        };
+
+        globalSiteData.forEach(site => {
+            counts.sites += 1;
+            (site.runways || []).forEach(runway => {
+                counts.runways += 1;
+                drawRunway(runway, site.team);
+            });
+
+            if (site.route?.points?.length) {
+                counts.shipRoutes += 1;
+                drawShipRoute(site.route, site);
+            }
+
+            const units = site.units_by_era?.[selectedEra] || [];
+            units.forEach(unit => {
+                const role = String(unit.role || "").toLowerCase();
+                const name = String(unit.name || "").toLowerCase();
+                if (site.source_group === "ships" || role === "ship") {
+                    counts.ships += 1;
+                } else if (role.includes("radar") || name.includes("radar")) {
+                    counts.radars += 1;
+                } else if (role.includes("launcher") || role === "spaa") {
+                    counts.launchers += 1;
+                } else {
+                    counts.vehicles += 1;
+                }
+                drawUnit(unit, site);
+            });
+
+            const buildings = site.buildings_by_era?.[selectedEra] || [];
+            buildings.forEach(building => {
+                if (drawVehicleDepotBuilding(building, site)) {
+                    counts.depotBuildings += 1;
+                }
+            });
+        });
+
+        const status = document.getElementById("status");
+        status.style.color = "#68d391";
+        status.innerHTML = `
+            <b>${selectedEra}</b>:
+            ${counts.launchers} launcher/SPAA ·
+            ${counts.radars} radar ·
+            ${counts.vehicles} strongpoint/other units ·
+            ${counts.depotBuildings} depot storage buildings ·
+            ${counts.ships} ships
+        `;
+    }
+
+    document.querySelectorAll('input[name="era"]').forEach(input => {
+        input.addEventListener("change", event => renderMapData(event.target.value));
+    });
+
+    function formatDistance(meters) {
+        const value = Number(meters);
+        if (!Number.isFinite(value)) return "unknown";
+        if (value >= 1000) {
+            return `${(value / 1000).toLocaleString(undefined, {
+                maximumFractionDigits: 1
+            })} km`;
+        }
+        return `${value.toLocaleString()} m`;
+    }
+
+    Promise.all([
+        fetch("map_data.json").then(response => {
+            if (!response.ok) throw new Error(`map_data.json: HTTP ${response.status}`);
+            return response.json();
+        }),
+        fetch("road_network.json").then(response => {
+            if (!response.ok) throw new Error(`road_network.json: HTTP ${response.status}`);
+            return response.json();
+        }),
+        fetch("mission_logic.json").then(response => {
+            if (!response.ok) throw new Error(`mission_logic.json: HTTP ${response.status}`);
+            return response.json();
+        }),
+        fetch("unit_specs.json").then(response => {
+            if (!response.ok) throw new Error(`unit_specs.json: HTTP ${response.status}`);
+            return response.json();
+        })
+    ])
+        .then(([siteData, roadData, logicData, unitSpecs]) => {
+            globalSiteData = siteData;
+            globalUnitSpecs = unitSpecs;
+            globalMissionLogic = logicData;
+            drawRoadNetwork(roadData);
+            const roadGraph = buildRoadGraph(roadData);
+            globalRoadGraph = roadGraph;
+            globalConvoyRoutes = buildRoadRoutes(
+                roadGraph,
+                logicData.likely_convoy_links,
+                convoyRouteKey
+            );
+            globalArmoredRoutes = buildRoadRoutes(
+                roadGraph,
+                logicData.likely_armored_links || [],
+                armoredRouteKey
+            );
+            drawMissionLogic(logicData);
+            renderMapData(document.querySelector('input[name="era"]:checked').value);
+        })
+        .catch(error => {
+            const status = document.getElementById("status");
+            status.style.color = "#fc8181";
+            status.textContent = `Could not load map_data.json: ${error.message}`;
+        });
+
+    function layerOption(label, layer) {
+        return { label, layer };
+    }
+
+    function folderOptions(team, key, additionalOptions = []) {
+        const coverage = coverageGroups[team][key];
+        return [
+            layerOption(
+                key === "fleet" ? "Ships" : "Units",
+                unitGroups[team][key]
+            ),
+            ...additionalOptions,
+            layerOption("Radar detection", coverage.detection),
+            layerOption("Radar tracking", coverage.tracking),
+            layerOption("Weapon engagement", coverage.engagement)
+        ];
+    }
+
+    function forceFolder(team, title, key, iconType, additionalOptions = [], glyph = "") {
+        return {
+            title,
+            team,
+            key,
+            iconType,
+            glyph,
+            options: folderOptions(team, key, additionalOptions)
+        };
+    }
+
+    function makeForceCategory(team, title) {
+        const mission = missionGroups[team];
+        return {
+            title,
+            team,
+            open: true,
+            force: true,
+            glyph: "●",
+            children: [
+                forceFolder(
+                    team,
+                    "Strongpoints",
+                    "strongpoints",
+                    "tank",
+                    [
+                        layerOption(
+                            "Capture zones",
+                            mission.strongpoints.capture
+                        )
+                    ]
+                ),
+                forceFolder(
+                    team,
+                    "Vehicle depots",
+                    "vehicleDepots",
+                    "tank_storage",
+                    [
+                        layerOption(
+                            "Depot markers",
+                            mission.vehicleDepots.objectives
+                        ),
+                        layerOption(
+                            "Capture zones",
+                            mission.vehicleDepots.capture
+                        ),
+                        layerOption(
+                            "Likely armored-column routes",
+                            mission.vehicleDepots.armored
+                        )
+                    ]
+                ),
+                forceFolder(
+                    team,
+                    "Fuel/ammo depots",
+                    "fuelAmmoDepots",
+                    ["fuel_storage", "ammo_storage"],
+                    [
+                        layerOption(
+                            "Depot markers",
+                            mission.fuelAmmoDepots.objectives
+                        ),
+                        layerOption(
+                            "Capture zones",
+                            mission.fuelAmmoDepots.capture
+                        ),
+                        layerOption(
+                            "Likely convoy links",
+                            mission.fuelAmmoDepots.convoy
+                        )
+                    ]
+                ),
+                forceFolder(team, "Short SAMs", "shortSams", "spaa"),
+                forceFolder(team, "Long SAMs", "longSams", "sam"),
+                forceFolder(
+                    team,
+                    "EW radars",
+                    "ewRadars",
+                    "radar_station"
+                ),
+                forceFolder(
+                    team,
+                    "Airfields",
+                    "airfields",
+                    null,
+                    [
+                        layerOption("Landing strips", mission.airfields.runways),
+                        layerOption("Capture zones", mission.airfields.capture)
+                    ],
+                    "✈"
+                ),
+                forceFolder(
+                    team,
+                    "TBM/MLRS",
+                    "strategic",
+                    ["mlrs", "tbm"],
+                    [
+                        layerOption("MLRS spawn areas", mission.strategic.mlrsSpawn),
+                        layerOption("TBM spawn areas", mission.strategic.tbmSpawn),
+                        layerOption(
+                            "MLRS relocation areas",
+                            mission.strategic.mlrsMove
+                        ),
+                        layerOption(
+                            "TBM relocation areas",
+                            mission.strategic.tbmMove
+                        ),
+                        layerOption(
+                            "Eligible enemy targets",
+                            mission.strategic.targets
+                        ),
+                        layerOption(
+                            "Strategic bomber spawns",
+                            mission.strategic.bombers
+                        )
+                    ]
+                ),
+                forceFolder(
+                    team,
+                    "Fleet",
+                    "fleet",
+                    "aircraft_carrier",
+                    [
+                        layerOption("Patrol routes", mission.fleet.routes)
+                    ]
+                )
+            ]
+        };
+    }
+
+    function makeMapCategory() {
+        return {
+            title: "MAP & TERRAIN",
+            open: false,
+            force: true,
+            glyph: "⌖",
+            children: [
+                {
+                    title: "Terrain",
+                    glyph: "⌁",
+                    options: [
+                        layerOption(
+                            "True topographic terrain",
+                            topographicMapLayer
+                        )
+                    ]
+                },
+                {
+                    title: "Road network",
+                    glyph: "╫",
+                    options: [
+                        layerOption("Asphalt roads", asphaltRoadGroup),
+                        layerOption(
+                            "Gravel/sand roads",
+                            gravelRoadGroup
+                        )
+                    ]
+                }
+            ]
+        };
+    }
+
+    function addGroupedLayerControl(forces) {
+        const control = L.control({ position: "topright" });
+        control.onAdd = () => {
+            const container = L.DomUtil.create("div", "grouped-layers");
+            L.DomEvent.disableClickPropagation(container);
+            L.DomEvent.disableScrollPropagation(container);
+
+            function descendantOptions(node) {
+                return [
+                    ...(node.options || []),
+                    ...(node.children || []).flatMap(descendantOptions)
+                ];
+            }
+
+            function setOptionVisibility(option, visible) {
+                option.checkbox.checked = visible;
+                if (visible && !map.hasLayer(option.layer)) {
+                    option.layer.addTo(map);
+                } else if (!visible && map.hasLayer(option.layer)) {
+                    map.removeLayer(option.layer);
+                }
+            }
+
+            function refreshFolderEye(node) {
+                if (!node.eyeButton) return;
+                const options = descendantOptions(node);
+                const visibleCount = options.filter(option =>
+                    map.hasLayer(option.layer)
+                ).length;
+                const anyVisible = visibleCount > 0;
+                const allVisible = visibleCount === options.length;
+                node.eyeButton.classList.toggle("active", anyVisible);
+                node.eyeButton.classList.toggle(
+                    "partial",
+                    anyVisible && !allVisible
+                );
+                node.eyeButton.title = anyVisible
+                    ? `Hide all ${node.title}`
+                    : `Show all ${node.title}`;
+                node.eyeButton.setAttribute(
+                    "aria-label",
+                    node.eyeButton.title
+                );
+                node.eyeButton.setAttribute(
+                    "aria-pressed",
+                    String(anyVisible)
+                );
+            }
+
+            function refreshAllFolderEyes() {
+                function refreshTree(node) {
+                    refreshFolderEye(node);
+                    (node.children || []).forEach(refreshTree);
+                }
+                forces.forEach(refreshTree);
+            }
+
+            function makeHeaderIcon(node) {
+                const icon = document.createElement("span");
+                icon.className = "folder-icon";
+                if (node.iconType) {
+                    const iconTypes = Array.isArray(node.iconType)
+                        ? node.iconType
+                        : [node.iconType];
+                    if (iconTypes.length > 1) icon.classList.add("multi");
+                    iconTypes.forEach(iconType => {
+                        const image = document.createElement("img");
+                        image.src = natoIconPath(node.team, iconType);
+                        image.alt = "";
+                        icon.appendChild(image);
+                    });
+                } else {
+                    icon.textContent = node.glyph || "•";
+                }
+                return icon;
+            }
+
+            function renderNode(node, isForce = false) {
+                const details = document.createElement("details");
+                details.open = Boolean(node.open);
+                if (isForce) details.classList.add("force-details");
+                const summary = document.createElement("summary");
+                const eyeButton = document.createElement("button");
+                eyeButton.type = "button";
+                eyeButton.className = "folder-eye";
+                eyeButton.textContent = "◉";
+                node.eyeButton = eyeButton;
+                eyeButton.addEventListener("click", event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const options = descendantOptions(node);
+                    const anyVisible = options.some(option =>
+                        map.hasLayer(option.layer)
+                    );
+                    options.forEach(option =>
+                        setOptionVisibility(option, !anyVisible)
+                    );
+                    refreshAllFolderEyes();
+                });
+
+                const triangle = document.createElement("span");
+                triangle.className = "folder-triangle";
+                triangle.textContent = "▸";
+                triangle.setAttribute("aria-hidden", "true");
+
+                const title = document.createElement("span");
+                title.className = "folder-title";
+                title.textContent = node.title;
+                summary.append(
+                    eyeButton,
+                    triangle,
+                    makeHeaderIcon(node),
+                    title
+                );
+                if (node.team === 1) summary.classList.add("team-red");
+                if (node.team === 2) summary.classList.add("team-blue");
+                details.appendChild(summary);
+
+                if (node.children?.length) {
+                    const children = document.createElement("div");
+                    children.className = "force-children";
+                    node.children.forEach(child => {
+                        children.appendChild(renderNode(child));
+                    });
+                    details.appendChild(children);
+                }
+
+                if (node.options?.length) {
+                    const options = document.createElement("div");
+                    options.className = "layer-options";
+                    node.options.forEach(option => {
+                        const label = document.createElement("label");
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.checked = map.hasLayer(option.layer);
+                        option.checkbox = checkbox;
+                        checkbox.addEventListener("change", () => {
+                            if (checkbox.checked) {
+                                option.layer.addTo(map);
+                            } else {
+                                map.removeLayer(option.layer);
+                            }
+                            refreshAllFolderEyes();
+                        });
+                        label.append(
+                            checkbox,
+                            document.createTextNode(option.label)
+                        );
+                        options.appendChild(label);
+                    });
+                    details.appendChild(options);
+                }
+                return details;
+            }
+
+            forces.forEach(force => {
+                container.appendChild(renderNode(force, true));
+            });
+            refreshAllFolderEyes();
+            return container;
+        };
+        control.addTo(map);
+    }
+
+    addGroupedLayerControl([
+        makeMapCategory(),
+        makeForceCategory(1, "REDFOR"),
+        makeForceCategory(2, "BLUFOR")
+    ]);
+
+</script>
+
+</body>
+</html>
