@@ -444,8 +444,8 @@
         }
 
         .guide-escalation-icon {
-            width: 22px;
-            height: 22px;
+            width: 27px;
+            height: 27px;
             opacity: 0.3;
             filter:
                 brightness(0)
@@ -720,6 +720,166 @@
             transform: rotate(0deg);
             transform-origin: 50% 50%;
             will-change: transform;
+        }
+
+        .guide-strike-aircraft {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .guide-strike-aircraft img {
+            width: 100%;
+            height: 100%;
+            transform-origin: 50% 50%;
+            will-change: transform;
+        }
+
+        .guide-strike-aircraft.red img {
+            filter:
+                brightness(0) saturate(100%) invert(57%) sepia(89%)
+                saturate(2380%) hue-rotate(321deg) brightness(104%)
+                contrast(103%) drop-shadow(0 2px 3px #000)
+                drop-shadow(0 0 7px #ff6666);
+        }
+
+        .guide-strike-aircraft.blue img {
+            filter:
+                brightness(0) saturate(100%) invert(71%) sepia(42%)
+                saturate(1057%) hue-rotate(166deg) brightness(101%)
+                contrast(95%) drop-shadow(0 2px 3px #000)
+                drop-shadow(0 0 7px #63b3ed);
+        }
+
+        .guide-altitude-badge {
+            position: absolute;
+            left: 44px;
+            top: -4px;
+            width: max-content;
+            padding: 3px 5px;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            color: #8ff0a4;
+            background: rgba(10, 13, 20, 0.94);
+            box-shadow: 0 2px 5px #000;
+            font: 900 9px/1.15 Inter, ui-sans-serif, system-ui, sans-serif;
+            letter-spacing: 0.04em;
+        }
+
+        .guide-altitude-badge.high {
+            color: #ffcf70;
+        }
+
+        .guide-radar-ping {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #8ce7ff;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #63d8ff;
+            animation: guide-radar-ping 1.7s ease-out infinite;
+        }
+
+        .guide-nuclear-aircraft {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            color: var(--guide-aircraft-color);
+            font-size: 38px;
+            line-height: 48px;
+            text-align: center;
+            text-shadow: 0 2px 4px #000, 0 0 9px currentColor;
+        }
+
+        .guide-nuclear-aircraft .guide-cas-aircraft-icon {
+            display: inline-block;
+            transform: rotate(0deg);
+        }
+
+        .guide-nuclear-yield {
+            position: absolute;
+            left: 38px;
+            top: -7px;
+            width: max-content;
+            padding: 3px 5px;
+            border: 1px solid #f6e05e;
+            border-radius: 10px;
+            color: #111318;
+            background: #f6e05e;
+            box-shadow: 0 0 8px rgba(246, 224, 94, 0.8);
+            font: 900 9px/1 Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .guide-nuclear-flash {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle, #fff 0 8%, #fff6a6 15%,
+                #ffb020 31%, #ef4444 50%, rgba(239, 68, 68, 0) 72%);
+            filter:
+                drop-shadow(0 0 15px #fff)
+                drop-shadow(0 0 28px #ffb020);
+            animation: guide-nuclear-flash 1500ms ease-out forwards;
+        }
+
+        @keyframes guide-nuclear-flash {
+            0% {
+                opacity: 0;
+                transform: scale(0.08);
+            }
+            18% {
+                opacity: 1;
+                transform: scale(1.45);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(3.2);
+            }
+        }
+
+        .guide-hp-counter {
+            width: 188px;
+            padding: 6px 8px 7px;
+            border: 1px solid #718096;
+            border-radius: 6px;
+            color: #f7fafc;
+            background: rgba(12, 15, 23, 0.96);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.72);
+            font: 800 10px/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .guide-hp-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .guide-hp-track {
+            height: 8px;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #2d3748;
+        }
+
+        .guide-hp-fill {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #ef4444, #f6e05e, #65d68b);
+            transition: width 650ms ease;
+        }
+
+        @keyframes guide-radar-ping {
+            0% {
+                opacity: 1;
+                transform: scale(0.35);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(9);
+            }
         }
 
         .guide-resource-counter {
@@ -1928,7 +2088,8 @@
                 icon: natoIcon(site.team, iconType, 32),
                 pane: "depotMarkers",
                 zIndexOffset: 300,
-                riseOnHover: true
+                riseOnHover: true,
+                guideSiteName: site.name
             }).bindTooltip(
                 `${tooltip}<br><i>Click to highlight this depot's routes</i>`
             ).addTo(categoryGroup.objectives);
@@ -2203,7 +2364,9 @@
         }
 
         const marker = L.marker(unitLatLng, {
-            icon: natoIcon(site.team, unitIconType(unit, site), 28)
+            icon: natoIcon(site.team, unitIconType(unit, site), 28),
+            guideSiteName: site.name,
+            guideUnitRole: role
         }).bindTooltip(`
             <b>${escapeHtml(displayName(name))}</b><br>
             Role: ${escapeHtml(displayName(role))}<br>
@@ -2255,7 +2418,9 @@
         const targetGroup =
             (unitGroups[site.team] || unitGroups[1]).vehicleDepots;
         L.marker(worldToLatLng(x, z), {
-            icon: natoIcon(site.team, iconType, 26)
+            icon: natoIcon(site.team, iconType, 26),
+            guideSiteName: site.name,
+            guideUnitRole: "building"
         }).bindTooltip(`
             <b>${escapeHtml(buildingLabel)}</b><br>
             Assembly depot: ${escapeHtml(site.name)}<br>
@@ -2823,26 +2988,80 @@
             speaker: "GENERAL",
             text: "On spawn, each mobile missile unit selects one of its assigned relocation areas and drives there. After halting it rearms for 60 seconds, fires at the nearest surviving eligible enemy target until its primary ammunition is empty, then immediately selects a different area and moves again. The MLRS fires a three-rocket guide salvo while the TBM launches one larger missile. Destroying the targeted depot entity costs its team 30 tickets; any nearby units destroyed also apply their own values.",
             tickets: {
-                red: 8225,
+                red: 8115,
                 blue: 10000
             }
         },
         {
-            kicker: "Air defence · Layered SAM network",
+            kicker: "Air defence · Early warning",
             speaker: "GENERAL",
-            text: "Long-range SAM sites challenge aircraft across the wider battlespace. Short-range sites protect individual sectors and important objectives. Aircraft that penetrate one layer may still meet the next; the highlights here show each layer's role, not a literal range scale.",
+            text: "Early-warning radars watch broad sectors of the battlefield. Here a BLUFOR radar detects an approaching REDFOR aircraft while friendly patrols remain visible over the logistics line. Detection provides awareness; it is not itself a weapon engagement.",
             tickets: {
-                red: 8225,
-                blue: 9880
+                red: 8115,
+                blue: 10000
+            }
+        },
+        {
+            kicker: "Air defence · Layered engagement",
+            speaker: "GENERAL",
+            text: "Strongpoints and vehicle depots have short-range SPAA protection, but stand-off weapons can be released outside those local engagement zones. Long-range SAM sites reach far into opposing airspace. Staying below roughly 300 metres protects aircraft from that long-range layer, but terrain, short-range SAMs and local SPAA remain dangerous.",
+            tickets: {
+                red: 8115,
+                blue: 10000
             }
         },
         {
             kicker: "Naval operations · Fleet groups",
             speaker: "GENERAL",
-            text: "Carriers, cruisers and destroyers follow their own closed patrol routes offshore. Each ship uses its own sensors and weapons; the files do not show a separate carrier-screening rule. They remain valuable strategic targets for anti-ship attacks.",
+            text: "Carriers, missile cruisers and destroyers patrol offshore. Missile cruisers also provide powerful long-range naval air defence: this cruiser engages a REDFOR aircraft following the coastline. Ships remain valuable strategic targets for anti-ship weapons.",
             tickets: {
-                red: 8225,
-                blue: 9880
+                red: 8115,
+                blue: 10000
+            }
+        },
+        {
+            kicker: "Nuclear escalation · First stage",
+            speaker: "GENERAL",
+            text: "Escalation is based on the combined tickets lost by both teams. When total losses reach 3,000, the first nuclear stage begins and the first radiation symbol illuminates. The next stages begin at 7,000 and 15,000 combined losses.",
+            tickets: {
+                red: 8115,
+                blue: 10000
+            }
+        },
+        {
+            kicker: "Nuclear weapons · 5 kilotons",
+            speaker: "GENERAL",
+            text: "A 5 kt weapon deals up to 200,000 damage. Its full-damage inner radius is 175 metres and its wider blast radius is 1 kilometre. A centred hit removes 40% of a 500,000-HP front airfield; a near miss deals less. Resource depots and exposed units are much softer targets.",
+            tickets: {
+                red: 7000,
+                blue: 10000
+            }
+        },
+        {
+            kicker: "Nuclear weapons · 30 kilotons",
+            speaker: "GENERAL",
+            text: "At 7,000 combined ticket losses the second escalation stage begins. A 30 kt weapon deals up to 1,200,000 damage, with a 315-metre inner radius and a 1.8-kilometre outer radius. One well-centred strike destroys a front airfield and removes another 1,000 tickets from its team.",
+            tickets: {
+                red: 6500,
+                blue: 6500
+            }
+        },
+        {
+            kicker: "Nuclear escalation · Third stage",
+            speaker: "GENERAL",
+            text: "The third stage begins at 15,000 combined ticket losses. The mission contains strategic-bomber spawns and 20,000,000-HP main airfields, but strategic bombers were disabled in the played event. The explosive table also supports larger yields; the supplied files do not prove that players could access them in this version.",
+            tickets: {
+                red: 2500,
+                blue: 2500
+            }
+        },
+        {
+            kicker: "Final briefing · How to influence the battle",
+            speaker: "GENERAL",
+            text: "Protect logistics, intercept resource and armoured convoys, support friendly ground attacks, suppress radar-guided air defences, and use stand-off or anti-ship weapons against valuable targets. Nuclear weapons are most efficient when their inner blast radius covers the intended objective and nearby units.",
+            tickets: {
+                red: 2500,
+                blue: 2500
             }
         }
     ];
@@ -2865,6 +3084,7 @@
     const guideNext = document.getElementById("guide-next");
     const guideMapGroup = L.layerGroup().addTo(map);
     const guideHiddenMapLayers = new Set();
+    const guideHiddenChildLayers = [];
     const guideAnimationFrames = new Set();
     const guideTimeouts = new Set();
     let guideStepIndex = 0;
@@ -2948,6 +3168,27 @@
         }
     }
 
+    function temporarilyHideGuideSiteUnits(team, siteName) {
+        const groups = [
+            ...Object.values(unitGroups[team] || {}),
+            ...Object.values(missionGroups[team] || {})
+                .map(category => category?.objectives)
+                .filter(Boolean)
+        ];
+        groups.forEach(group => {
+            const matches = [];
+            group.eachLayer(layer => {
+                if (layer.options?.guideSiteName === siteName) {
+                    matches.push(layer);
+                }
+            });
+            matches.forEach(layer => {
+                group.removeLayer(layer);
+                guideHiddenChildLayers.push({ group, layer });
+            });
+        });
+    }
+
     function clearGuideScene() {
         guideAnimationFrames.forEach(cancelAnimationFrame);
         guideAnimationFrames.clear();
@@ -2960,6 +3201,9 @@
         guideOverviewLayerGroups.clear();
         selectedGuideOverviewRegion = null;
         guideMapGroup.clearLayers();
+        guideHiddenChildLayers.splice(0).forEach(({ group, layer }) => {
+            group.addLayer(layer);
+        });
         guideHiddenMapLayers.forEach(layer => layer.addTo(map));
         guideHiddenMapLayers.clear();
     }
@@ -2994,6 +3238,135 @@
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2]
         });
+    }
+
+    function guideStrikeAircraftIcon(
+        team,
+        size = 46,
+        altitude = ""
+    ) {
+        const side = team === 1 ? "red" : "blue";
+        const source = team === 1
+            ? "icons/REDFOR/su_24m_ico.svg"
+            : "icons/BLUFOR/a_10a_late_ico.svg";
+        const altitudeClass = altitude.includes("HIGH") ? " high" : "";
+        const badge = altitude
+            ? `<span class="guide-altitude-badge${altitudeClass}">` +
+                `${altitude}</span>`
+            : "";
+        return L.divIcon({
+            className: "",
+            html: `<div class="guide-strike-aircraft ${side}">` +
+                `<img class="guide-cas-aircraft-icon" ` +
+                `src="${source}" alt="">${badge}</div>`,
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2]
+        });
+    }
+
+    function guideRadarPing(position) {
+        return L.marker(position, {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 2600,
+            icon: L.divIcon({
+                className: "",
+                html: '<div class="guide-radar-ping"></div>',
+                iconSize: [28, 28],
+                iconAnchor: [14, 14]
+            })
+        }).addTo(guideMapGroup);
+    }
+
+    function guideNuclearAircraftIcon(team, yieldLabel, size = 50) {
+        return L.divIcon({
+            className: "",
+            html: `<div class="guide-nuclear-aircraft" ` +
+                `style="--guide-aircraft-color:${teamColor(team)}">` +
+                `<span class="guide-cas-aircraft-icon">✈</span>` +
+                `<span class="guide-nuclear-yield">${yieldLabel}</span>` +
+                `</div>`,
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2]
+        });
+    }
+
+    function guideNuclearBlast(position, parameters) {
+        L.circle(position, {
+            radius: worldRadiusToMapRadius(parameters.outerRadius),
+            color: "#ffb347",
+            fillColor: "#ffb347",
+            fillOpacity: 0.055,
+            weight: 3,
+            opacity: 0.88,
+            dashArray: "7, 6",
+            interactive: false
+        }).addTo(guideMapGroup);
+        L.circle(position, {
+            radius: worldRadiusToMapRadius(parameters.innerRadius),
+            color: "#ff4f4f",
+            fillColor: "#ff4f4f",
+            fillOpacity: 0.18,
+            weight: 4,
+            opacity: 0.96,
+            interactive: false
+        }).addTo(guideMapGroup);
+        const flash = L.marker(position, {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 4000,
+            icon: L.divIcon({
+                className: "",
+                html: '<div class="guide-nuclear-flash"></div>',
+                iconSize: [80, 80],
+                iconAnchor: [40, 40]
+            })
+        }).addTo(guideMapGroup);
+        scheduleGuideTimeout(() => {
+            if (guideMapGroup.hasLayer(flash)) {
+                guideMapGroup.removeLayer(flash);
+            }
+        }, 1600);
+        return flash;
+    }
+
+    function guideHpCounter(position, label, maximum, current = maximum) {
+        const percentage = Math.max(
+            0,
+            Math.min(100, current / maximum * 100)
+        );
+        return L.marker(position, {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 3400,
+            icon: L.divIcon({
+                className: "",
+                html: `<div class="guide-hp-counter">` +
+                    `<div class="guide-hp-heading"><span>${label}</span>` +
+                    `<span data-guide-hp-value>` +
+                    `${percentage.toFixed(0)}% · ` +
+                    `${current.toLocaleString()} HP</span></div>` +
+                    `<div class="guide-hp-track">` +
+                    `<i class="guide-hp-fill" data-guide-hp-fill ` +
+                    `style="width:${percentage}%"></i></div></div>`,
+                iconSize: [204, 43],
+                iconAnchor: [102, 70]
+            })
+        }).addTo(guideMapGroup);
+    }
+
+    function setGuideHp(marker, maximum, current) {
+        const normalized = Math.max(0, Math.min(maximum, current));
+        const percentage = normalized / maximum * 100;
+        const element = marker.getElement();
+        const fill = element?.querySelector("[data-guide-hp-fill]");
+        const value = element?.querySelector("[data-guide-hp-value]");
+        if (fill) fill.style.width = `${percentage}%`;
+        if (value) {
+            value.textContent =
+                `${percentage.toFixed(0)}% · ` +
+                `${normalized.toLocaleString()} HP`;
+        }
     }
 
     function guideLabel(position, html, direction = "top") {
@@ -3848,7 +4221,7 @@
             animateGuideConvoy(
                 convoyMarkers,
                 positions,
-                6500,
+                3250,
                 {
                     loop: false,
                     onComplete: completedMarkers => {
@@ -3862,23 +4235,24 @@
                     }
                 }
             );
-            runProductionCycle();
+            runProductionCycle(0);
         }
 
-        function runProductionCycle() {
+        function runProductionCycle(startValue = 0) {
             animateGuideResource(
                 counter,
                 "fuel",
-                0,
+                startValue,
                 600,
-                2100,
+                3150 * ((600 - startValue) / 600),
                 () => {
                     dispatchReady = true;
                     tryDispatchConvoy();
                 }
             );
         }
-        runProductionCycle();
+        setGuideResource(counter, "fuel", 300);
+        runProductionCycle(300);
     }
 
     function showConvoyScene() {
@@ -4408,12 +4782,25 @@
             "<b>BLUFOR strongpoint</b><br>Selected objective",
             "right"
         );
-        animateGuideConvoy(
-            guideArmoredMarkers(1, start, 31),
-            positions,
-            4800,
-            { loop: false }
+        const counter = guideResourceCounter(
+            start,
+            ["fuel", "ammo"],
+            "Vehicle depot"
         );
+        requestGuideAnimationFrame(() => {
+            setGuideResource(counter, "fuel", 600);
+            setGuideResource(counter, "ammo", 600);
+        });
+        scheduleGuideTimeout(() => {
+            setGuideResource(counter, "fuel", 0);
+            setGuideResource(counter, "ammo", 0);
+            animateGuideConvoy(
+                guideArmoredMarkers(1, start, 31),
+                positions,
+                4800,
+                { loop: false }
+            );
+        }, 1000);
     }
 
     function stagedGuideFormation(team, center, types) {
@@ -4436,6 +4823,27 @@
                 icon: natoIcon(team, type, 31)
             }).addTo(guideMapGroup)
         );
+    }
+
+    function guideSiteUnitMarkers(siteName, team) {
+        const site = guideMapSite(siteName);
+        const era = document.querySelector(
+            'input[name="era"]:checked'
+        )?.value || "1980";
+        return (site?.units_by_era?.[era] || []).map((unit, index) => {
+            const [x, , z] = unit.world_pos;
+            const marker = L.marker(worldToLatLng(x, z), {
+                pane: "guideSupportUnits",
+                interactive: false,
+                zIndexOffset: 2300 + index,
+                icon: natoIcon(team, unitIconType(unit, site), 31)
+            }).addTo(guideMapGroup);
+            marker.guideTicketCost =
+                String(unit.role || "").toLowerCase() === "spaa"
+                    ? 20
+                    : 5;
+            return marker;
+        });
     }
 
     function removeGuideUnit(marker) {
@@ -4490,16 +4898,35 @@
                 perpendicular.lng * across
         );
         const turnStart = move(target, 38);
+        const center = move(turnStart, 0, turnRadius);
+        const turn = [];
+        for (let index = 1; index <= 20; index += 1) {
+            const angle = Math.PI * index / 20;
+            turn.push(L.latLng(
+                center.lat +
+                    direction.lat * Math.sin(angle) * turnRadius -
+                    perpendicular.lat * Math.cos(angle) * turnRadius,
+                center.lng +
+                    direction.lng * Math.sin(angle) * turnRadius -
+                    perpendicular.lng * Math.cos(angle) * turnRadius
+            ));
+        }
         return [
             start,
             move(target, -38),
             turnStart,
-            move(turnStart, turnRadius * 0.68, turnRadius * 0.28),
-            move(turnStart, turnRadius, turnRadius),
-            move(turnStart, turnRadius * 0.68, turnRadius * 1.72),
-            move(turnStart, 0, turnRadius * 2),
+            ...turn,
             move(start, 0, turnRadius * 2)
         ];
+    }
+
+    function shiftGuidePath(path, rightMeters = 0, upMeters = 0) {
+        const right = worldRadiusToMapRadius(rightMeters);
+        const up = worldRadiusToMapRadius(upMeters);
+        return path.map(point => L.latLng(
+            point.lat + up,
+            point.lng + right
+        ));
     }
 
     function showRedCasInterceptionScene() {
@@ -4522,10 +4949,10 @@
             sceneBounds.getNorth() + latSpan * 0.3,
             sceneBounds.getEast() + lngSpan * 0.34
         );
-        const aircraftPath = guideCasUturnPath(
-            aircraftStart,
-            center,
-            58
+        const aircraftPath = shiftGuidePath(
+            guideCasUturnPath(aircraftStart, center, 58),
+            15000,
+            0
         );
 
         map.fitBounds(L.latLngBounds(
@@ -4827,10 +5254,10 @@
             approachBounds.getNorth() + latSpan * 0.28,
             approachBounds.getEast() + lngSpan * 0.3
         );
-        const aircraftPath = guideCasUturnPath(
-            aircraftStart,
-            center,
-            56
+        const aircraftPath = shiftGuidePath(
+            guideCasUturnPath(aircraftStart, center, 56),
+            15000,
+            15000
         );
         map.fitBounds(L.latLngBounds(approach.concat(aircraftPath)), {
             animate: true,
@@ -4839,18 +5266,14 @@
             paddingTopLeft: [130, 105],
             paddingBottomRight: [390, 290]
         });
-        temporarilyHideGuideMapLayer(unitGroups[1].strongpoints);
+        temporarilyHideGuideSiteUnits(1, target.name);
         L.polyline(approach, {
             color: teamColor(2),
             weight: 5,
             opacity: 0.88,
             interactive: false
         }).addTo(guideMapGroup);
-        const defenders = stagedGuideFormation(
-            1,
-            center,
-            ["tank", "tank", "tank", "ifv", "ifv", "spaa"]
-        );
+        const defenders = guideSiteUnitMarkers(target.name, 1);
         const blueColumn = guideArmoredMarkers(2, approach[0], 29);
         const aircraft = L.marker(aircraftPath[0], {
             pane: "guideSupportUnits",
@@ -4913,6 +5336,7 @@
                             "<b>Strongpoint captured by BLUFOR</b><br>" +
                             "REDFOR −50 capture tickets"
                         );
+                        guideSiteUnitMarkers(target.name, 2);
                     }, 1100);
                 }
             }
@@ -5037,8 +5461,6 @@
             paddingTopLeft: [120, 90],
             paddingBottomRight: [420, 310]
         });
-        temporarilyHideGuideMapLayer(unitGroups[1].strongpoints);
-
         const objectiveLayers = new Map();
 
         function removeLayers(layers) {
@@ -5105,10 +5527,8 @@
             return 500;
         }
 
-        function objectiveDefenderCount(cycle) {
-            return cycle.targetType === "tank_radar_target" ? 1 : 3;
-        }
-
+        temporarilyHideGuideSiteUnits(1, "t1_strongpoint_06");
+        guideSiteUnitMarkers("t1_strongpoint_06", 2);
         setObjective(
             "t2_base_05",
             2,
@@ -5219,14 +5639,9 @@
                     23
                 );
                 const targetPosition = cycle.armoredRoute.at(-1);
-                const objectiveDefenders = stagedGuideFormation(
-                    1,
-                    targetPosition,
-                    Array.from(
-                        { length: objectiveDefenderCount(cycle) },
-                        () => "spaa"
-                    )
-                );
+                temporarilyHideGuideSiteUnits(1, cycle.target);
+                const objectiveDefenders =
+                    guideSiteUnitMarkers(cycle.target, 1);
                 animateGuideConvoy(
                     column,
                     cycle.armoredRoute,
@@ -5240,7 +5655,10 @@
                                 (defender, defenderIndex) => {
                                     scheduleGuideTimeout(() => {
                                         removeGuideUnit(defender);
-                                        changeGuideTickets(1, -20);
+                                        changeGuideTickets(
+                                            1,
+                                            -defender.guideTicketCost
+                                        );
                                     }, defenderIndex * 230);
                                 }
                             );
@@ -5260,6 +5678,7 @@
                                         ? "right"
                                         : "top"
                                 );
+                                guideSiteUnitMarkers(cycle.target, 2);
                                 guidePulseMarker(targetPosition);
                                 scheduleGuideTimeout(
                                     () => runCycle(index + 1),
@@ -5386,6 +5805,7 @@
         sceneState.targetVisuals.delete(target.name);
         sceneState.claimedTargets.delete(target.name);
         sceneState.destroyedTargets.add(target.name);
+        temporarilyHideGuideSiteUnits(target.team, target.name);
         changeGuideTickets(target.team, -30);
         const position = visual?.position || L.latLng(worldToLatLng(
             target.world_pos[0],
@@ -5755,156 +6175,289 @@
         });
     }
 
-    function showSamLayerScene() {
-        const longSite = guideMapSite("t2_long_sam_site_02");
-        const shortSite = guideMapSite("t2_short_sam_site_01");
-        const airfield = guideMapSite("t2_airfield_04");
-        if (!longSite || !shortSite || !airfield) return;
-        const longPosition = L.latLng(worldToLatLng(
-            longSite.world_pos[0],
-            longSite.world_pos[2]
+    function showEarlyWarningScene() {
+        const radar = guideMapSite("t2_longrange_radar_02");
+        if (!radar) return;
+        const landSites = (globalSiteData || []).filter(
+            site => site.source_group !== "ships"
+        );
+        const landPoints = landSites.map(site => L.latLng(
+            worldToLatLng(site.world_pos[0], site.world_pos[2])
         ));
+        map.fitBounds(L.latLngBounds(landPoints), {
+            animate: true,
+            duration: 0.8,
+            maxZoom: 0.82,
+            paddingTopLeft: [105, 85],
+            paddingBottomRight: [105, 255]
+        });
+
+        const patrolPaths = [
+            [[17000, -7000], [55500, -7000], [17000, -7000]],
+            [[20500, -16000], [60500, -16000], [20500, -16000]]
+        ].map(path => path.map(([x, z]) =>
+            L.latLng(worldToLatLng(x, z))
+        ));
+        patrolPaths.forEach((path, index) => {
+            L.polyline(path.slice(0, 2), {
+                color: teamColor(2),
+                weight: 2,
+                opacity: 0.48,
+                dashArray: "5, 8",
+                interactive: false
+            }).addTo(guideMapGroup);
+            const aircraft = L.marker(path[0], {
+                pane: "guideSupportUnits",
+                interactive: false,
+                zIndexOffset: 2500,
+                icon: guideStrikeAircraftIcon(2, 40)
+            }).addTo(guideMapGroup);
+            animateGuideMarker(aircraft, path, 6800 + index * 900, {
+                rotateToPath: true
+            });
+        });
+
+        const hostilePath = [
+            L.latLng(worldToLatLng(-7000, -36500)),
+            L.latLng(worldToLatLng(9000, -33500)),
+            L.latLng(worldToLatLng(-7000, -36500))
+        ];
+        const hostile = L.marker(hostilePath[0], {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 2700,
+            icon: guideStrikeAircraftIcon(1, 44)
+        }).addTo(guideMapGroup);
+        animateGuideMarker(hostile, hostilePath, 8500, {
+            rotateToPath: true
+        });
+
+        const radarPosition = L.latLng(worldToLatLng(
+            radar.world_pos[0],
+            radar.world_pos[2]
+        ));
+        guidePulseMarker(radarPosition);
+        guideLabel(
+            radarPosition,
+            "<b>BLUFOR early-warning radar</b><br>Wide-area detection",
+            "right"
+        );
+        scheduleGuideTimeout(() => {
+            guideRadarPing(radarPosition);
+            L.polyline([radarPosition, hostile.getLatLng()], {
+                color: "#8ce7ff",
+                weight: 2,
+                opacity: 0.8,
+                dashArray: "3, 8",
+                interactive: false
+            }).addTo(guideMapGroup);
+            guidePulseMarker(hostile.getLatLng());
+            guideLabel(
+                hostile.getLatLng(),
+                "<b>REDFOR aircraft detected</b><br>Track reported to BLUFOR",
+                "left"
+            );
+        }, 1800);
+    }
+
+    function showSamLayerScene() {
+        const origin = guideMapSite("t2_base_03");
+        const target = guideMapSite("t1_base_05");
+        const shortSite = guideMapSite("t1_short_sam_site_01");
+        if (!origin || !target || !shortSite) return;
+        const era = document.querySelector(
+            'input[name="era"]:checked'
+        )?.value || "1980";
+        const protectedSites = (globalSiteData || []).filter(site =>
+            site.team === 1 &&
+            (
+                site.name.includes("strongpoint") ||
+                /^t1_base_/.test(site.name)
+            )
+        );
+        temporarilyHideGuideMapLayer(unitGroups[1].strongpoints);
+        temporarilyHideGuideMapLayer(unitGroups[1].vehicleDepots);
+
+        protectedSites.forEach(site => {
+            (site.units_by_era?.[era] || [])
+                .filter(unit =>
+                    String(unit.role || "").toLowerCase() === "spaa"
+                )
+                .forEach(unit => {
+                    const position = L.latLng(worldToLatLng(
+                        unit.world_pos[0],
+                        unit.world_pos[2]
+                    ));
+                    const range = globalUnitSpecs[
+                        String(unit.name || "").toLowerCase()
+                    ]?.engagement_range;
+                    if (range) {
+                        L.circle(position, {
+                            radius: worldRadiusToMapRadius(range),
+                            color: teamColor(1),
+                            fillColor: teamColor(1),
+                            fillOpacity: 0.018,
+                            weight: 1.4,
+                            opacity: 0.55,
+                            dashArray: "5, 6",
+                            interactive: false
+                        }).addTo(guideMapGroup);
+                    }
+                    L.marker(position, {
+                        pane: "guideSupportUnits",
+                        interactive: false,
+                        zIndexOffset: 2200,
+                        icon: natoIcon(1, "spaa", 24)
+                    }).addTo(guideMapGroup);
+                });
+        });
+
+        const start = L.latLng(worldToLatLng(
+            origin.world_pos[0],
+            origin.world_pos[2]
+        ));
+        const targetPosition = L.latLng(worldToLatLng(
+            target.world_pos[0],
+            target.world_pos[2]
+        ));
+        const firstPath = [start, targetPosition, start];
+        const scenePoints = protectedSites.map(site => L.latLng(
+            worldToLatLng(site.world_pos[0], site.world_pos[2])
+        )).concat(firstPath);
+        map.fitBounds(L.latLngBounds(scenePoints), {
+            animate: true,
+            duration: 0.8,
+            maxZoom: 1.08,
+            paddingTopLeft: [105, 85],
+            paddingBottomRight: [400, 285]
+        });
+
+        const firstAircraft = L.marker(start, {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 2800,
+            icon: guideStrikeAircraftIcon(2, 46, "LOW · 180 m AGL")
+        }).addTo(guideMapGroup);
+        animateGuideMarker(firstAircraft, firstPath, 6500, {
+            rotateToPath: true,
+            loop: false,
+            onComplete: marker => guideMapGroup.removeLayer(marker)
+        });
+        guideLabel(
+            start,
+            "<b>First sortie</b><br>Stand-off attack from outside local SPAA range",
+            "right"
+        );
+        scheduleGuideTimeout(() => {
+            animateGuideRocket(
+                firstAircraft.getLatLng(),
+                targetPosition,
+                1150,
+                null,
+                {
+                    iconSize: 20,
+                    trailWeight: 2,
+                    onImpact: guideExplosion
+                }
+            );
+        }, 1700);
+
         const shortPosition = L.latLng(worldToLatLng(
             shortSite.world_pos[0],
             shortSite.world_pos[2]
         ));
-        const airfieldPosition = L.latLng(worldToLatLng(
-            airfield.world_pos[0],
-            airfield.world_pos[2]
-        ));
-        const inboundStart = L.latLng(
-            longPosition.lat - 330,
-            longPosition.lng - 360
-        );
-        const aircraftPath = [
-            inboundStart,
-            longPosition,
-            shortPosition,
-            airfieldPosition
-        ];
-
-        map.fitBounds(L.latLngBounds(aircraftPath), {
-            animate: true,
-            duration: 0.8,
-            maxZoom: 1.55,
-            paddingTopLeft: [120, 90],
-            paddingBottomRight: [400, 300]
-        });
-        temporarilyHideGuideMapLayer(unitGroups[2].longSams);
-        temporarilyHideGuideMapLayer(unitGroups[2].shortSams);
-        L.polyline(aircraftPath, {
-            color: teamColor(1),
-            weight: 3,
-            opacity: 0.7,
-            dashArray: "7, 7",
-            interactive: false
-        }).addTo(guideMapGroup);
-
-        [
-            {
-                position: longPosition,
-                radius: 54,
-                label: "<b>Long-range SAM layer</b><br>" +
-                    "Challenges aircraft earlier",
-                size: 45
-            },
-            {
-                position: shortPosition,
-                radius: 38,
-                label: "<b>Short-range SAM layer</b><br>" +
-                    "Close sector defence",
-                size: 39
-            }
-        ].forEach((layer, index) => {
-            L.circleMarker(layer.position, {
-                radius: layer.radius,
-                color: teamColor(2),
-                fillColor: teamColor(2),
-                fillOpacity: index ? 0.1 : 0.06,
+        scheduleGuideTimeout(() => {
+            const range = globalUnitSpecs[
+                "ussr_ai_sam_launcher_9a310"
+            ]?.engagement_range || 35000;
+            L.circle(shortPosition, {
+                radius: worldRadiusToMapRadius(range),
+                color: "#f6e05e",
+                fillColor: teamColor(1),
+                fillOpacity: 0.055,
                 weight: 4,
-                dashArray: index ? "5, 4" : null,
+                opacity: 0.95,
                 interactive: false
             }).addTo(guideMapGroup);
-            L.marker(layer.position, {
+            L.marker(shortPosition, {
                 pane: "guideSupportUnits",
                 interactive: false,
-                zIndexOffset: 2400,
-                icon: natoIcon(2, "sam", layer.size)
+                zIndexOffset: 2600,
+                icon: natoIcon(1, "sam", 40)
             }).addTo(guideMapGroup);
             guideLabel(
-                layer.position,
-                layer.label,
-                index ? "right" : "top"
-            );
-        });
-
-        L.marker(airfieldPosition, {
-            pane: "depotMarkers",
-            interactive: false,
-            zIndexOffset: 2300,
-            icon: guideAircraftIcon(2, 40)
-        }).addTo(guideMapGroup);
-        guideLabel(
-            airfieldPosition,
-            "<b>Defended objective</b><br>Airfield",
-            "right"
-        );
-        const aircraft = L.marker(inboundStart, {
-            pane: "guideSupportUnits",
-            interactive: false,
-            zIndexOffset: 2800,
-            icon: guideAircraftIcon(1, 43)
-        }).addTo(guideMapGroup);
-        animateGuideMarker(aircraft, aircraftPath, 7200);
-
-        [
-            [
-                longPosition,
-                L.latLng(
-                    longPosition.lat + 34,
-                    longPosition.lng + 46
-                )
-            ],
-            [
                 shortPosition,
-                L.latLng(
-                    shortPosition.lat + 28,
-                    shortPosition.lng + 38
+                "<b>REDFOR short-range SAM</b><br>Second sortie enters its layer",
+                "left"
+            );
+            const secondAircraft = L.marker(start, {
+                pane: "guideSupportUnits",
+                interactive: false,
+                zIndexOffset: 2850,
+                icon: guideStrikeAircraftIcon(
+                    2,
+                    46,
+                    "HIGH · 1,200 m AGL"
                 )
-            ]
-        ].forEach((interceptPath, index) => {
-            L.polyline(interceptPath, {
-                color: "#f6e05e",
-                weight: index ? 2 : 3,
-                opacity: 0.85,
-                dashArray: "4, 5",
-                interactive: false
             }).addTo(guideMapGroup);
-        });
+            animateGuideMarker(secondAircraft, firstPath, 6600, {
+                rotateToPath: true,
+                loop: false
+            });
+            scheduleGuideTimeout(() => {
+                animateGuideRocket(
+                    shortPosition,
+                    secondAircraft.getLatLng(),
+                    1300,
+                    null,
+                    {
+                        iconSize: 25,
+                        trailWeight: 3,
+                        onImpact: position => {
+                            if (guideMapGroup.hasLayer(secondAircraft)) {
+                                guideMapGroup.removeLayer(secondAircraft);
+                            }
+                            guideExplosion(position);
+                            guideLabel(
+                                position,
+                                "<b>Aircraft shot down</b><br>" +
+                                "Low altitude avoids the long-range layer, " +
+                                "not every local defence"
+                            );
+                        }
+                    }
+                );
+            }, 2100);
+        }, 4300);
     }
 
     function showFleetScene() {
-        const ships = [
-            {
-                site: guideMapSite("t2_aircraftcarrier_01"),
-                icon: "aircraft_carrier",
-                label: "Aircraft carrier"
-            },
-            {
-                site: guideMapSite("t2_destroyer_01"),
-                icon: "cruiser",
-                label: "Missile cruiser"
-            },
-            {
-                site: guideMapSite("t2_frigate_01"),
-                icon: "destroyer",
-                label: "Destroyer"
-            }
-        ].filter(entry => entry.site?.route?.points?.length);
-        if (ships.length < 3) return;
-        temporarilyHideGuideMapLayer(unitGroups[2].fleet);
-        temporarilyHideGuideMapLayer(missionGroups[2].fleet.routes);
+        const era = document.querySelector(
+            'input[name="era"]:checked'
+        )?.value || "1980";
+        const ships = (globalSiteData || [])
+            .filter(site =>
+                site.source_group === "ships" &&
+                site.route?.points?.length
+            )
+            .map(site => {
+                const unit = site.units_by_era?.[era]?.[0] || {};
+                const icon = shipIconType(unit.name || site.name);
+                const label = icon === "aircraft_carrier"
+                    ? "Aircraft carrier"
+                    : icon.includes("cruiser")
+                        ? "Missile cruiser"
+                        : "Destroyer";
+                return { site, unit, icon, label };
+            });
+        if (!ships.length) return;
+        [1, 2].forEach(team => {
+            temporarilyHideGuideMapLayer(unitGroups[team].fleet);
+            temporarilyHideGuideMapLayer(missionGroups[team].fleet.routes);
+        });
         const allPositions = [];
+        let cruiserMarker = null;
+        let cruiserPosition = null;
 
         ships.forEach((entry, index) => {
             const positions = entry.site.route.points.map(point =>
@@ -5926,27 +6479,357 @@
                 pane: "guideSupportUnits",
                 interactive: false,
                 zIndexOffset: 2400 - index,
-                icon: natoIcon(2, entry.icon, 42 - index * 3)
+                icon: natoIcon(
+                    entry.site.team,
+                    entry.icon,
+                    entry.icon === "aircraft_carrier" ? 42 : 35
+                )
             }).addTo(guideMapGroup);
             animateGuideMarker(
                 marker,
                 positions,
-                11500 + index * 1200
+                11000 + index * 370
             );
-            guideLabel(
-                positions[index % positions.length],
-                `<b>${entry.label}</b><br>` +
-                `${entry.site.route.points.length}-point closed patrol`,
-                index ? "right" : "top"
-            );
+            if (
+                entry.site.name === "t2_destroyer_01" ||
+                entry.icon === "aircraft_carrier"
+            ) {
+                guideLabel(
+                    positions[0],
+                    `<b>${entry.label}</b><br>Closed patrol route`,
+                    index % 2 ? "right" : "top"
+                );
+            }
+            if (entry.site.name === "t2_destroyer_01") {
+                cruiserMarker = marker;
+                cruiserPosition = positions[0];
+            }
         });
 
+        const coastalPath = [
+            L.latLng(worldToLatLng(57000, -72000)),
+            L.latLng(worldToLatLng(61000, -50000)),
+            L.latLng(worldToLatLng(65000, -18000))
+        ];
+        allPositions.push(...coastalPath);
         map.fitBounds(L.latLngBounds(allPositions), {
             animate: true,
             duration: 0.8,
-            maxZoom: 2.1,
+            maxZoom: 1.25,
             paddingTopLeft: [120, 90],
             paddingBottomRight: [400, 300]
+        });
+        if (!cruiserMarker || !cruiserPosition) return;
+
+        L.circle(cruiserPosition, {
+            radius: worldRadiusToMapRadius(80000),
+            color: teamColor(2),
+            fillColor: teamColor(2),
+            fillOpacity: 0.025,
+            weight: 3,
+            opacity: 0.8,
+            dashArray: "8, 7",
+            interactive: false
+        }).addTo(guideMapGroup);
+        guidePulseMarker(cruiserPosition);
+        guideLabel(
+            cruiserPosition,
+            "<b>Missile cruiser</b><br>Long-range naval SAM engagement",
+            "left"
+        );
+        const aircraft = L.marker(coastalPath[0], {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 2900,
+            icon: guideStrikeAircraftIcon(1, 46, "HIGH · COASTAL ROUTE")
+        }).addTo(guideMapGroup);
+        L.polyline(coastalPath, {
+            color: teamColor(1),
+            weight: 2.5,
+            opacity: 0.68,
+            dashArray: "6, 7",
+            interactive: false
+        }).addTo(guideMapGroup);
+        animateGuideMarker(aircraft, coastalPath, 7600, {
+            rotateToPath: true,
+            loop: false
+        });
+        scheduleGuideTimeout(() => {
+            animateGuideRocket(
+                cruiserMarker.getLatLng(),
+                aircraft.getLatLng(),
+                1550,
+                null,
+                {
+                    iconSize: 27,
+                    trailWeight: 3,
+                    onImpact: position => {
+                        if (guideMapGroup.hasLayer(aircraft)) {
+                            guideMapGroup.removeLayer(aircraft);
+                        }
+                        guideExplosion(position);
+                        guideLabel(
+                            position,
+                            "<b>REDFOR aircraft intercepted</b><br>" +
+                            "Naval SAM engagement"
+                        );
+                    }
+                }
+            );
+        }, 3100);
+    }
+
+    function showFirstEscalationScene() {
+        focusGuideTheatre();
+        guideTicketBoard.classList.add("attention");
+        const center = map.getCenter();
+        guideLabel(
+            L.latLng(center.lat - 80, center.lng),
+            "<b>Combined losses approaching 3,000</b><br>" +
+            "The first nuclear stage is about to begin"
+        );
+        scheduleGuideTimeout(() => {
+            changeGuideTickets(1, -1115);
+            guideLabel(
+                L.latLng(center.lat + 20, center.lng),
+                "<b>FIRST ESCALATION</b><br>" +
+                "3,000 combined tickets lost · 5 kt stage available"
+            );
+        }, 1600);
+    }
+
+    function showFiveKtScene() {
+        const depot = guideMapSite("t2_fuel_storage_large_02");
+        const airfield = guideMapSite("t2_airfield_03");
+        if (!depot || !airfield) return;
+        const depotPosition = L.latLng(worldToLatLng(
+            depot.world_pos[0],
+            depot.world_pos[2]
+        ));
+        const airfieldPosition = L.latLng(worldToLatLng(
+            airfield.world_pos[0],
+            airfield.world_pos[2]
+        ));
+        const paths = [
+            [
+                L.latLng(depotPosition.lat - 300, depotPosition.lng - 260),
+                depotPosition
+            ],
+            [
+                L.latLng(airfieldPosition.lat - 300, airfieldPosition.lng - 260),
+                airfieldPosition
+            ]
+        ];
+        map.fitBounds(L.latLngBounds(
+            paths.flat().concat(depotPosition, airfieldPosition)
+        ), {
+            animate: true,
+            duration: 0.8,
+            maxZoom: 1.65,
+            paddingTopLeft: [110, 90],
+            paddingBottomRight: [420, 300]
+        });
+        const hp = guideHpCounter(
+            airfieldPosition,
+            "FRONT AIRFIELD",
+            500000
+        );
+        guideLabel(
+            depotPosition,
+            "<b>Resource depot</b><br>Softer strategic target",
+            "right"
+        );
+        guideLabel(
+            airfieldPosition,
+            "<b>Front airfield</b><br>500,000 HP",
+            "right"
+        );
+        paths.forEach((path, index) => {
+            L.polyline(path, {
+                color: teamColor(1),
+                weight: 2.5,
+                opacity: 0.7,
+                dashArray: "6, 7",
+                interactive: false
+            }).addTo(guideMapGroup);
+            const aircraft = L.marker(path[0], {
+                pane: "guideSupportUnits",
+                interactive: false,
+                zIndexOffset: 3000,
+                icon: guideNuclearAircraftIcon(1, "5 kt", 52)
+            }).addTo(guideMapGroup);
+            animateGuideMarker(aircraft, path, 3900 + index * 450, {
+                rotateToPath: true,
+                loop: false
+            });
+            scheduleGuideTimeout(() => {
+                if (guideMapGroup.hasLayer(aircraft)) {
+                    guideMapGroup.removeLayer(aircraft);
+                }
+                const impact = index ? airfieldPosition : depotPosition;
+                guideNuclearBlast(impact, {
+                    innerRadius: 175,
+                    outerRadius: 1000
+                });
+                if (index === 0) {
+                    temporarilyHideGuideSiteUnits(2, depot.name);
+                    guideLabel(
+                        depotPosition,
+                        "<b>Depot destroyed</b><br>" +
+                        "175 m inner · 1,000 m outer radius"
+                    );
+                } else {
+                    setGuideHp(hp, 500000, 300000);
+                    guideLabel(
+                        airfieldPosition,
+                        "<b>Maximum 5 kt damage: 200,000</b><br>" +
+                        "Airfield remains at 60%"
+                    );
+                }
+            }, 2850 + index * 500);
+        });
+    }
+
+    function showThirtyKtScene() {
+        const airfield = guideMapSite("t1_airfield_02");
+        if (!airfield) return;
+        const position = L.latLng(worldToLatLng(
+            airfield.world_pos[0],
+            airfield.world_pos[2]
+        ));
+        const start = L.latLng(position.lat + 330, position.lng + 290);
+        const path = [start, position];
+        map.fitBounds(L.latLngBounds(path), {
+            animate: true,
+            duration: 0.8,
+            maxZoom: 1.9,
+            paddingTopLeft: [110, 90],
+            paddingBottomRight: [420, 300]
+        });
+        const hp = guideHpCounter(
+            position,
+            "FRONT AIRFIELD",
+            500000
+        );
+        L.circle(position, {
+            radius: worldRadiusToMapRadius(315),
+            color: "#ff4f4f",
+            fillColor: "#ff4f4f",
+            fillOpacity: 0.12,
+            weight: 3,
+            interactive: false
+        }).addTo(guideMapGroup);
+        guideLabel(
+            position,
+            "<b>Aim the inner circle across the runway</b><br>" +
+            "315 m maximum-damage radius",
+            "right"
+        );
+        const aircraft = L.marker(start, {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 3000,
+            icon: guideNuclearAircraftIcon(2, "30 kt", 54)
+        }).addTo(guideMapGroup);
+        animateGuideMarker(aircraft, path, 4300, {
+            rotateToPath: true,
+            loop: false
+        });
+        scheduleGuideTimeout(() => {
+            if (guideMapGroup.hasLayer(aircraft)) {
+                guideMapGroup.removeLayer(aircraft);
+            }
+            guideNuclearBlast(position, {
+                innerRadius: 315,
+                outerRadius: 1800
+            });
+            setGuideHp(hp, 500000, 0);
+            temporarilyHideGuideSiteUnits(1, airfield.name);
+            changeGuideTickets(1, -1000);
+            guideLabel(
+                position,
+                "<b>Front airfield destroyed</b><br>" +
+                "1,200,000 maximum damage · REDFOR −1,000 tickets",
+                "right"
+            );
+        }, 3150);
+    }
+
+    function showThirdEscalationScene() {
+        const redMain = guideMapSite("t1_airfield_main");
+        const blueMain = guideMapSite("t2_airfield_main");
+        if (!redMain || !blueMain) return;
+        const redPosition = L.latLng(worldToLatLng(
+            redMain.world_pos[0],
+            redMain.world_pos[2]
+        ));
+        const bluePosition = L.latLng(worldToLatLng(
+            blueMain.world_pos[0],
+            blueMain.world_pos[2]
+        ));
+        map.fitBounds(L.latLngBounds([redPosition, bluePosition]), {
+            animate: true,
+            duration: 0.8,
+            maxZoom: 0.95,
+            paddingTopLeft: [110, 90],
+            paddingBottomRight: [420, 300]
+        });
+        [
+            [redPosition, 1, "REDFOR main airfield"],
+            [bluePosition, 2, "BLUFOR main airfield"]
+        ].forEach(([position, team, label]) => {
+            L.marker(position, {
+                pane: "guideSupportUnits",
+                interactive: false,
+                zIndexOffset: 2500,
+                icon: guideAircraftIcon(team, 44)
+            }).addTo(guideMapGroup);
+            guideHpCounter(position, label, 20000000);
+            guideLabel(
+                position,
+                `<b>${label}</b><br>` +
+                "20,000,000 HP · a perfect 30 kt hit deals only 6%",
+                team === 1 ? "right" : "left"
+            );
+        });
+        const middle = L.latLng(
+            (redPosition.lat + bluePosition.lat) / 2,
+            (redPosition.lng + bluePosition.lng) / 2
+        );
+        L.marker(middle, {
+            pane: "guideSupportUnits",
+            interactive: false,
+            zIndexOffset: 2800,
+            opacity: 0.48,
+            icon: bomberIcon(2)
+        }).addTo(guideMapGroup);
+        guideLabel(
+            middle,
+            "<b>Strategic bomber logic present</b><br>" +
+            "Disabled in the released event · larger player yields unconfirmed"
+        );
+    }
+
+    function showFinalBriefingScene() {
+        focusGuideTheatre();
+        [
+            ["t2_fuel_storage_large_02", "Protect logistics"],
+            ["t2_base_05", "Support friendly columns"],
+            ["t1_short_sam_site_01", "Suppress air defences"],
+            ["t1_airfield_02", "Strike valuable objectives"]
+        ].forEach(([name, label], index) => {
+            const site = guideMapSite(name);
+            if (!site) return;
+            const position = L.latLng(worldToLatLng(
+                site.world_pos[0],
+                site.world_pos[2]
+            ));
+            guidePulseMarker(position);
+            guideLabel(
+                position,
+                `<b>${index + 1}. ${label}</b>`,
+                index % 2 ? "right" : "top"
+            );
         });
     }
 
@@ -5976,9 +6859,21 @@
         } else if (index === 11) {
             showMobileFireScene();
         } else if (index === 12) {
-            showSamLayerScene();
+            showEarlyWarningScene();
         } else if (index === 13) {
+            showSamLayerScene();
+        } else if (index === 14) {
             showFleetScene();
+        } else if (index === 15) {
+            showFirstEscalationScene();
+        } else if (index === 16) {
+            showFiveKtScene();
+        } else if (index === 17) {
+            showThirtyKtScene();
+        } else if (index === 18) {
+            showThirdEscalationScene();
+        } else if (index === 19) {
+            showFinalBriefingScene();
         }
     }
 
