@@ -1339,10 +1339,21 @@
 
     const selectedRangeGroup = L.layerGroup().addTo(map);
     const selectedRangeLayers = new Map();
+    let rangeDisclaimerPopup = null;
+    let rangeDisclaimerSelectionKey = null;
 
     function clearSelectedRanges() {
         selectedRangeGroup.clearLayers();
         selectedRangeLayers.clear();
+        clearRangeDisclaimer();
+    }
+
+    function clearRangeDisclaimer() {
+        if (rangeDisclaimerPopup) {
+            map.closePopup(rangeDisclaimerPopup);
+            rangeDisclaimerPopup = null;
+        }
+        rangeDisclaimerSelectionKey = null;
     }
 
     map.on("click", () => {
@@ -2125,13 +2136,41 @@
         return team === 1 ? "#e53e3e" : team === 2 ? "#4299e1" : "#a0aec0";
     }
 
+    function isGroundUnit(unit, site) {
+        return site.source_group !== "ships" &&
+            String(unit.role || "").toLowerCase() !== "ship";
+    }
+
+    function showRangeDisclaimer(position, selectionKey) {
+        if (rangeDisclaimerPopup) map.closePopup(rangeDisclaimerPopup);
+        rangeDisclaimerSelectionKey = selectionKey;
+        rangeDisclaimerPopup = L.popup({
+            closeButton: true,
+            autoClose: true,
+            closeOnClick: false,
+            offset: [0, -8],
+            maxWidth: 330,
+            className: "range-disclaimer-popup"
+        })
+            .setLatLng(position)
+            .setContent(`
+                <b>Range guide only</b><br>
+                Any radar and missile ranges shown on this map are extracted
+                reference values, not representative of exact in-game
+                performance. Actual
+                detection and engagement depend on terrain, altitude, target
+                aspect, vehicle configuration, and game/AI logic.
+            `)
+            .openOn(map);
+    }
+
     function toggleSelectedUnitRanges(selectionKey, position, unit, site, specs) {
         if (selectedRangeLayers.has(selectionKey)) {
             selectedRangeGroup.removeLayer(selectedRangeLayers.get(selectionKey));
             selectedRangeLayers.delete(selectionKey);
-            return;
+            return "removed";
         }
-        if (!specs) return;
+        if (!specs) return "unavailable";
 
         const color = teamColor(site.team);
         const unitRanges = L.layerGroup();
@@ -2181,7 +2220,7 @@
             }).addTo(unitRanges);
         });
 
-        if (!unitRanges.getLayers().length) return;
+        if (!unitRanges.getLayers().length) return "unavailable";
         L.circleMarker(position, {
             radius: 17,
             color: "#ffffff",
@@ -2193,6 +2232,7 @@
         }).addTo(unitRanges);
         unitRanges.addTo(selectedRangeGroup);
         selectedRangeLayers.set(selectionKey, unitRanges);
+        return "shown";
     }
 
     function natoIconPath(team, iconType) {
@@ -2618,13 +2658,24 @@
                 x.toFixed(2),
                 z.toFixed(2)
             ].join(":");
-            toggleSelectedUnitRanges(
+            const rangeSelection = toggleSelectedUnitRanges(
                 selectionKey,
                 unitLatLng,
                 unit,
                 site,
                 specs
             );
+            if (isGroundUnit(unit, site)) {
+                const closesDisclaimer = rangeSelection === "removed" || (
+                    rangeSelection === "unavailable" &&
+                    rangeDisclaimerSelectionKey === selectionKey
+                );
+                if (closesDisclaimer) {
+                    clearRangeDisclaimer();
+                } else {
+                    showRangeDisclaimer(unitLatLng, selectionKey);
+                }
+            }
             marker.openTooltip();
         });
 
