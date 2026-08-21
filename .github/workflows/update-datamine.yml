@@ -46,4 +46,5 @@ jobs:
           add-paths: |
             map_data.json
             mission_logic.json
+            unit_specs.json
             datamine-lock.json

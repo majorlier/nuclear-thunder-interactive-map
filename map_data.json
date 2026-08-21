@@ -32920,29 +32920,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            20884.1,
-            334.229,
-            -41742.3
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_ai_mlrs_9a52_2_smerch",
@@ -33038,29 +33016,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            15172.2,
-            236.36,
-            -33377.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_ai_mlrs_9a52_2_smerch",
@@ -33156,29 +33112,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            8942.89,
-            426.488,
-            -27615.6
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_ai_mlrs_9a52_2_smerch",
@@ -33274,29 +33208,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            596.312,
-            448.141,
-            -19592.5
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_ai_mlrs_9a52_2_smerch",
@@ -33392,29 +33304,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -6328.63,
-            703.49,
-            -13500.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_ai_mlrs_9a52_2_smerch",
@@ -33510,29 +33400,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            46126.5,
-            439.049,
-            -26115.5
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "us_ai_mlrs_m270",
@@ -33628,29 +33496,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            38063.2,
-            443.18,
-            -18142.5
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "us_ai_mlrs_m270",
@@ -33746,29 +33592,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            30582.7,
-            129.378,
-            -9317.93
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "us_ai_mlrs_m270",
@@ -33864,29 +33688,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            20410.3,
-            210.22,
-            -822.018
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "us_ai_mlrs_m270",
@@ -33982,29 +33784,7 @@
       "2018": []
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            10496.1,
-            408.109,
-            7576.25
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "us_ai_mlrs_m270",

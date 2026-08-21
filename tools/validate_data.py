@@ -65,9 +65,9 @@ def main() -> int:
             for unit in units:
                 if not valid_position(unit.get("world_pos")):
                     errors.append(f"{name or index}/{era} contains an invalid unit position")
-                unit_class = unit.get("unit_class")
-                if unit_class:
-                    unit_set.add(unit_class.lower())
+                unit_name = unit.get("name") or unit.get("unit_class")
+                if unit_name:
+                    unit_set.add(unit_name.lower())
 
     ui_eras = set(
         re.findall(r'<input[^>]+name="era"[^>]+value="([^"]+)"', html)
