@@ -80,9 +80,9 @@ def collect_unit_names(map_data_path: Path) -> list[str]:
     for site in load_json(map_data_path):
         for units in site.get("units_by_era", {}).values():
             for unit in units:
-                unit_class = unit.get("unit_class")
-                if unit_class:
-                    names.add(unit_class)
+                unit_name = unit.get("name") or unit.get("unit_class")
+                if unit_name:
+                    names.add(unit_name)
     return sorted(names)
 
 
@@ -184,24 +184,26 @@ def main() -> int:
             ]
         )
 
+        collector = generated / "unit_manifest.json"
+        write_json(
+            collector,
+            {"foundUnits": collect_unit_names(generated / "map_data.json")},
+        )
+        unit_spec_command = [
+            sys.executable,
+            str(TOOLS / "extract_unit_specs.py"),
+            "--manifest",
+            str(collector),
+            "--output",
+            str(generated / "unit_specs.json"),
+        ]
         if args.aces_root:
-            collector = generated / "unit_manifest.json"
-            write_json(
-                collector,
-                {"foundUnits": collect_unit_names(generated / "map_data.json")},
+            unit_spec_command.extend(["--input", str(args.aces_root)])
+        else:
+            unit_spec_command.extend(
+                ["--repository", repository, "--commit", commit]
             )
-            run(
-                [
-                    sys.executable,
-                    str(TOOLS / "extract_unit_specs.py"),
-                    "--input",
-                    str(args.aces_root),
-                    "--manifest",
-                    str(collector),
-                    "--output",
-                    str(generated / "unit_specs.json"),
-                ]
-            )
+        run(unit_spec_command)
 
         lock = {
             "repository": repository,
@@ -212,9 +214,10 @@ def main() -> int:
         generated_lock = generated / "datamine-lock.json"
         write_json(generated_lock, lock)
 
-        candidates = list(GENERATED_OUTPUTS) + ["datamine-lock.json"]
-        if args.aces_root:
-            candidates.append("unit_specs.json")
+        candidates = list(GENERATED_OUTPUTS) + [
+            "unit_specs.json",
+            "datamine-lock.json",
+        ]
         changed_files = [
             name for name in candidates if not same_json(ROOT / name, generated / name)
         ]

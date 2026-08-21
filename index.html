@@ -65,6 +65,24 @@
 
         .era-selector input { margin: 0; }
 
+        .team-swap {
+            margin-top: 7px;
+            padding: 5px 9px;
+            border: 1px solid #4a5568;
+            border-radius: 5px;
+            color: #e2e8f0;
+            background: #202734;
+            cursor: pointer;
+            font: 700 11px/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .team-swap:hover {
+            border-color: #f6e05e;
+            color: #fffaf0;
+        }
+
         .legend {
             display: flex;
             flex-wrap: wrap;
@@ -355,6 +373,33 @@
         .guide-start:disabled {
             opacity: 0.45;
             cursor: wait;
+        }
+
+        .guide-under-construction {
+            margin-top: 11px;
+            padding: 4px;
+            border-radius: 6px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #f6e05e 0 10px,
+                #1a202c 10px 20px
+            );
+        }
+
+        .guide-under-construction::before {
+            display: block;
+            padding: 3px 7px;
+            color: #171923;
+            background: #f6e05e;
+            content: "⚠ UNDER CONSTRUCTION ⚠";
+            font: 800 10px/1 Inter, ui-sans-serif, system-ui, sans-serif;
+            letter-spacing: 0.12em;
+            text-align: center;
+        }
+
+        .guide-under-construction .guide-start {
+            margin-top: 4px;
+            border-color: #171923;
         }
 
         .guide-layer {
@@ -1072,16 +1117,22 @@
         </label>
     </div>
 
+    <button id="team-swap" class="team-swap" type="button" aria-pressed="false">
+        ⇄ Swap REDFOR and BLUFOR
+    </button>
+
     <div class="legend">
-        <span class="legend-item"><i class="dot" style="background:#fc8181"></i>Team 1 / REDFOR</span>
-        <span class="legend-item"><i class="dot" style="background:#90cdf4"></i>Team 2 / BLUFOR</span>
+        <span id="legend-redfor" class="legend-item"><i class="dot" style="background:#fc8181"></i>REDFOR / Team 1</span>
+        <span id="legend-blufor" class="legend-item"><i class="dot" style="background:#90cdf4"></i>BLUFOR / Team 2</span>
         <span class="legend-item">NATO symbols identify unit roles</span>
         <span class="legend-item">Click units to toggle their ranges · click the map to clear all</span>
     </div>
 
-    <button id="guide-start" class="guide-start" type="button" disabled>
-        ▶ Guide preview
-    </button>
+    <div class="guide-under-construction">
+        <button id="guide-start" class="guide-start" type="button" disabled>
+            ▶ Guide preview
+        </button>
+    </div>
 </div>
 
 <div id="map"></div>
@@ -1408,6 +1459,30 @@
     const selectedDepotGroup = L.layerGroup().addTo(map);
     let selectedRouteKeys = new Set();
     let selectedDepotName = null;
+    const teamSwapStorageKey = "nuclear-thunder-teams-swapped";
+    let teamsSwapped = sessionStorage.getItem(teamSwapStorageKey) === "true";
+
+    function displayTeam(team) {
+        return teamsSwapped && (team === 1 || team === 2) ? 3 - team : team;
+    }
+
+    function displayTeamRecord(record) {
+        return { ...record, team: displayTeam(record.team) };
+    }
+
+    function updateTeamSwapUi() {
+        const swapButton = document.getElementById("team-swap");
+        swapButton.setAttribute("aria-pressed", String(teamsSwapped));
+        swapButton.textContent = teamsSwapped
+            ? "⇄ Restore REDFOR and BLUFOR"
+            : "⇄ Swap REDFOR and BLUFOR";
+        document.getElementById("legend-redfor").innerHTML =
+            '<i class="dot" style="background:#fc8181"></i>' +
+            `REDFOR / Team ${teamsSwapped ? 2 : 1}`;
+        document.getElementById("legend-blufor").innerHTML =
+            '<i class="dot" style="background:#90cdf4"></i>' +
+            `BLUFOR / Team ${teamsSwapped ? 1 : 2}`;
+    }
 
     function operationalCategory(site) {
         const siteName = String(site.name || "").toLowerCase();
@@ -2174,6 +2249,15 @@
     }
 
     function drawMissionLogic(logic) {
+        logic = {
+            ...logic,
+            sites: logic.sites.map(displayTeamRecord),
+            mobile_fire_units: logic.mobile_fire_units.map(displayTeamRecord),
+            likely_convoy_links: logic.likely_convoy_links.map(displayTeamRecord),
+            likely_armored_links: (logic.likely_armored_links || []).map(displayTeamRecord),
+            mlrs_tbm_targets: logic.mlrs_tbm_targets.map(displayTeamRecord),
+            bomber_spawns: (logic.bomber_spawns || []).map(displayTeamRecord)
+        };
         logic.sites.forEach(drawLogicSite);
         logic.mobile_fire_units.forEach(drawMobileFireUnit);
 
@@ -2449,7 +2533,8 @@
             depotBuildings: 0
         };
 
-        globalSiteData.forEach(site => {
+        globalSiteData.forEach(sourceSite => {
+            const site = displayTeamRecord(sourceSite);
             counts.sites += 1;
             (site.runways || []).forEach(runway => {
                 counts.runways += 1;
@@ -2501,6 +2586,13 @@
         input.addEventListener("change", event => renderMapData(event.target.value));
     });
 
+    document.getElementById("team-swap").addEventListener("click", () => {
+        teamsSwapped = !teamsSwapped;
+        sessionStorage.setItem(teamSwapStorageKey, String(teamsSwapped));
+        updateTeamSwapUi();
+        window.location.reload();
+    });
+
     function formatDistance(meters) {
         const value = Number(meters);
         if (!Number.isFinite(value)) return "unknown";
@@ -2534,6 +2626,7 @@
             globalSiteData = siteData;
             globalUnitSpecs = unitSpecs;
             globalMissionLogic = logicData;
+            updateTeamSwapUi();
             drawRoadNetwork(roadData);
             const roadGraph = buildRoadGraph(roadData);
             globalRoadGraph = roadGraph;

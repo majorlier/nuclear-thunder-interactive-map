@@ -588,7 +588,11 @@ def main():
                 for era in ERAS:
                     if source_group in {"tankModels", "ships"}:
                         output_site["buildings_by_era"][era] = []
-                        output_site["units_by_era"][era] = [direct_unit(site)]
+                        output_site["units_by_era"][era] = (
+                            []
+                            if era == "1970" and "_mlrs_" in site.get("name", "")
+                            else [direct_unit(site)]
+                        )
                         continue
 
                     template_names, configs = active_templates(site, era)
