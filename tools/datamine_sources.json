@@ -1,0 +1,49 @@
+{
+  "repository": "gszabi99/War-Thunder-Datamine",
+  "ref": "master",
+  "generator_files": [
+    {
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
+      "name": "nuclear_escalation_tdm.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
+      "name": "common.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/airfields.blkx",
+      "name": "airfields.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/strongpoints.blkx",
+      "name": "strongpoints.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/single_units.blkx",
+      "name": "single_units.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_tank.blkx",
+      "name": "factory_tank.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_equip.blkx",
+      "name": "factory_equip.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_air_defence_presets.blkx",
+      "name": "factory_air_defence_presets.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/sam_sites.blkx",
+      "name": "sam_sites.blkx"
+    }
+  ],
+  "watch_files": [
+    "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
+    "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
+    "aces.vromfs.bin_u/levels/avg_nuclear_incident.blkx",
+    "game.vromfs.bin_u/game/es/nuclear_escalation.das",
+    "gui.vromfs.bin_u/reactivegui/hud/scoreboard/nuclearescalation.ui.nut"
+  ]
+}
