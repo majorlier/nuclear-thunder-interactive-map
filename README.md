@@ -5,7 +5,8 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
 ## Use the map
 
 - Choose the 1970, 1980, or 2018 scenario.
-- Use **Swap REDFOR and BLUFOR** when the event assigns the factions to opposite sides of the map.
+- Use **Swap REDFOR / BLUFOR locations** to move each faction's units to the
+  matching opposing-side location used by the alternate event placement.
 - Open folders in the map controls to show forces, airfields, depots, routes, and range overlays.
 - Click a unit to show its available sensor and weapon information.
 

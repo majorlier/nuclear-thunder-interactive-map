@@ -1118,7 +1118,7 @@
     </div>
 
     <button id="team-swap" class="team-swap" type="button" aria-pressed="false">
-        ⇄ Swap REDFOR and BLUFOR
+        ⇄ Swap REDFOR / BLUFOR locations
     </button>
 
     <div class="legend">
@@ -1339,10 +1339,21 @@
 
     const selectedRangeGroup = L.layerGroup().addTo(map);
     const selectedRangeLayers = new Map();
+    let rangeDisclaimerPopup = null;
+    let rangeDisclaimerSelectionKey = null;
 
     function clearSelectedRanges() {
         selectedRangeGroup.clearLayers();
         selectedRangeLayers.clear();
+        clearRangeDisclaimer();
+    }
+
+    function clearRangeDisclaimer() {
+        if (rangeDisclaimerPopup) {
+            map.closePopup(rangeDisclaimerPopup);
+            rangeDisclaimerPopup = null;
+        }
+        rangeDisclaimerSelectionKey = null;
     }
 
     map.on("click", () => {
@@ -1455,33 +1466,143 @@
     let globalConvoyRoutes = new Map();
     let globalArmoredRoutes = new Map();
     let globalRoadGraph = null;
+    let globalSiteLocations = new Map();
+    let globalMissionSiteLocations = new Map();
+    let globalMobileFireLocations = new Map();
+    let globalBomberSpawnLocations = new Map();
+    let globalStrategicTargetLocations = new Map();
+    let globalConvoyLinkLocations = new Map();
+    let globalArmoredLinkLocations = new Map();
     const routeVisuals = new Map();
     const selectedDepotGroup = L.layerGroup().addTo(map);
     let selectedRouteKeys = new Set();
     let selectedDepotName = null;
-    const teamSwapStorageKey = "nuclear-thunder-teams-swapped";
+    const teamSwapStorageKey = "nuclear-thunder-locations-swapped";
     let teamsSwapped = sessionStorage.getItem(teamSwapStorageKey) === "true";
 
-    function displayTeam(team) {
-        return teamsSwapped && (team === 1 || team === 2) ? 3 - team : team;
+    function opposingLocationName(name) {
+        const value = String(name || "");
+        if (value.startsWith("t1_")) return `t2_${value.slice(3)}`;
+        if (value.startsWith("t2_")) return `t1_${value.slice(3)}`;
+        return value;
     }
 
-    function displayTeamRecord(record) {
-        return { ...record, team: displayTeam(record.team) };
+    function locationsByName(records) {
+        return new Map(records.map(record => [record.name, record]));
+    }
+
+    function linkLocationKey(link) {
+        return [
+            link.factory || "",
+            link.assembly || "",
+            link.target || "",
+            link.resource || ""
+        ].join("\u0001");
+    }
+
+    function locationsByLink(records) {
+        return new Map(records.map(record => [linkLocationKey(record), record]));
+    }
+
+    function oppositeLinkLocationKey(link) {
+        return linkLocationKey({
+            ...link,
+            factory: opposingLocationName(link.factory),
+            assembly: opposingLocationName(link.assembly),
+            target: opposingLocationName(link.target)
+        });
+    }
+
+    function moveItemsToLocation(items = [], targetItems = []) {
+        return items.map((item, index) => {
+            const target = targetItems[index];
+            return target?.world_pos
+                ? { ...item, world_pos: target.world_pos }
+                : item;
+        });
+    }
+
+    function moveEraItemsToLocation(itemsByEra = {}, targetItemsByEra = {}) {
+        return Object.fromEntries(Object.entries(itemsByEra).map(([era, items]) => [
+            era,
+            moveItemsToLocation(items, targetItemsByEra[era] || [])
+        ]));
+    }
+
+    // Every t1_ location in the extracted mission has a matching t2_ location.
+    // Keep each faction's own unit set, but move it onto the matching opposing
+    // location. This mirrors the in-game team-location flip rather than merely
+    // recolouring the original markers.
+    function moveMapSiteToOpposingLocation(site) {
+        if (!teamsSwapped) return site;
+        const target = globalSiteLocations.get(opposingLocationName(site.name));
+        if (!target) return site;
+        return {
+            ...site,
+            world_pos: target.world_pos,
+            editor_world_pos: target.editor_world_pos,
+            tm: target.tm,
+            runways: target.runways,
+            route: target.route,
+            units_by_era: moveEraItemsToLocation(
+                site.units_by_era,
+                target.units_by_era
+            ),
+            buildings_by_era: moveEraItemsToLocation(
+                site.buildings_by_era,
+                target.buildings_by_era
+            )
+        };
+    }
+
+    function moveWorldRecordToOpposingLocation(record, locations) {
+        if (!teamsSwapped) return record;
+        const target = locations.get(opposingLocationName(record.name));
+        return target?.world_pos
+            ? { ...record, world_pos: target.world_pos, locationSwapped: true }
+            : record;
+    }
+
+    function moveMobileFireUnitToOpposingLocation(unit) {
+        if (!teamsSwapped) return unit;
+        const target = globalMobileFireLocations.get(
+            opposingLocationName(unit.name)
+        );
+        if (!target) return unit;
+        return {
+            ...unit,
+            spawn_area: target.spawn_area,
+            move_areas: target.move_areas,
+            locationSwapped: true
+        };
+    }
+
+    function moveLinkToOpposingLocation(link, locations) {
+        if (!teamsSwapped) return link;
+        const target = locations.get(oppositeLinkLocationKey(link));
+        return target
+            ? {
+                ...link,
+                from: target.from,
+                to: target.to,
+                distance: target.distance,
+                locationSwapped: true
+            }
+            : link;
     }
 
     function updateTeamSwapUi() {
         const swapButton = document.getElementById("team-swap");
         swapButton.setAttribute("aria-pressed", String(teamsSwapped));
         swapButton.textContent = teamsSwapped
-            ? "⇄ Restore REDFOR and BLUFOR"
-            : "⇄ Swap REDFOR and BLUFOR";
+            ? "⇄ Restore original locations"
+            : "⇄ Swap REDFOR / BLUFOR locations";
         document.getElementById("legend-redfor").innerHTML =
             '<i class="dot" style="background:#fc8181"></i>' +
-            `REDFOR / Team ${teamsSwapped ? 2 : 1}`;
+            "REDFOR units";
         document.getElementById("legend-blufor").innerHTML =
             '<i class="dot" style="background:#90cdf4"></i>' +
-            `BLUFOR / Team ${teamsSwapped ? 1 : 2}`;
+            "BLUFOR units";
     }
 
     function operationalCategory(site) {
@@ -1834,6 +1955,14 @@
     }
 
     function convoyRoute(link) {
+        if (link.locationSwapped && globalRoadGraph) {
+            const swappedRoadRoute = findRoadPath(
+                globalRoadGraph,
+                link.from,
+                link.to
+            );
+            if (swappedRoadRoute) return swappedRoadRoute;
+        }
         return globalConvoyRoutes.get(convoyRouteKey(link)) || {
             worldPoints: [link.from, link.to],
             distance: worldPathDistance([link.from, link.to]),
@@ -1843,6 +1972,14 @@
     }
 
     function armoredRoute(link) {
+        if (link.locationSwapped && globalRoadGraph) {
+            const swappedRoadRoute = findRoadPath(
+                globalRoadGraph,
+                link.from,
+                link.to
+            );
+            if (swappedRoadRoute) return swappedRoadRoute;
+        }
         const extractedRoute = globalArmoredRoutes.get(
             armoredRouteKey(link)
         );
@@ -1999,13 +2136,41 @@
         return team === 1 ? "#e53e3e" : team === 2 ? "#4299e1" : "#a0aec0";
     }
 
+    function isGroundUnit(unit, site) {
+        return site.source_group !== "ships" &&
+            String(unit.role || "").toLowerCase() !== "ship";
+    }
+
+    function showRangeDisclaimer(position, selectionKey) {
+        if (rangeDisclaimerPopup) map.closePopup(rangeDisclaimerPopup);
+        rangeDisclaimerSelectionKey = selectionKey;
+        rangeDisclaimerPopup = L.popup({
+            closeButton: true,
+            autoClose: true,
+            closeOnClick: false,
+            offset: [0, -8],
+            maxWidth: 330,
+            className: "range-disclaimer-popup"
+        })
+            .setLatLng(position)
+            .setContent(`
+                <b>Range guide only</b><br>
+                Any radar and missile ranges shown on this map are extracted
+                reference values, not representative of exact in-game
+                performance. Actual
+                detection and engagement depend on terrain, altitude, target
+                aspect, vehicle configuration, and game/AI logic.
+            `)
+            .openOn(map);
+    }
+
     function toggleSelectedUnitRanges(selectionKey, position, unit, site, specs) {
         if (selectedRangeLayers.has(selectionKey)) {
             selectedRangeGroup.removeLayer(selectedRangeLayers.get(selectionKey));
             selectedRangeLayers.delete(selectionKey);
-            return;
+            return "removed";
         }
-        if (!specs) return;
+        if (!specs) return "unavailable";
 
         const color = teamColor(site.team);
         const unitRanges = L.layerGroup();
@@ -2055,7 +2220,7 @@
             }).addTo(unitRanges);
         });
 
-        if (!unitRanges.getLayers().length) return;
+        if (!unitRanges.getLayers().length) return "unavailable";
         L.circleMarker(position, {
             radius: 17,
             color: "#ffffff",
@@ -2067,6 +2232,7 @@
         }).addTo(unitRanges);
         unitRanges.addTo(selectedRangeGroup);
         selectedRangeLayers.set(selectionKey, unitRanges);
+        return "shown";
     }
 
     function natoIconPath(team, iconType) {
@@ -2251,12 +2417,30 @@
     function drawMissionLogic(logic) {
         logic = {
             ...logic,
-            sites: logic.sites.map(displayTeamRecord),
-            mobile_fire_units: logic.mobile_fire_units.map(displayTeamRecord),
-            likely_convoy_links: logic.likely_convoy_links.map(displayTeamRecord),
-            likely_armored_links: (logic.likely_armored_links || []).map(displayTeamRecord),
-            mlrs_tbm_targets: logic.mlrs_tbm_targets.map(displayTeamRecord),
-            bomber_spawns: (logic.bomber_spawns || []).map(displayTeamRecord)
+            sites: logic.sites.map(site =>
+                moveWorldRecordToOpposingLocation(site, globalMissionSiteLocations)
+            ),
+            mobile_fire_units: logic.mobile_fire_units.map(
+                moveMobileFireUnitToOpposingLocation
+            ),
+            likely_convoy_links: logic.likely_convoy_links.map(link =>
+                moveLinkToOpposingLocation(link, globalConvoyLinkLocations)
+            ),
+            likely_armored_links: (logic.likely_armored_links || []).map(link =>
+                moveLinkToOpposingLocation(link, globalArmoredLinkLocations)
+            ),
+            mlrs_tbm_targets: logic.mlrs_tbm_targets.map(target =>
+                moveWorldRecordToOpposingLocation(
+                    target,
+                    globalStrategicTargetLocations
+                )
+            ),
+            bomber_spawns: (logic.bomber_spawns || []).map(spawn =>
+                moveWorldRecordToOpposingLocation(
+                    spawn,
+                    globalBomberSpawnLocations
+                )
+            )
         };
         logic.sites.forEach(drawLogicSite);
         logic.mobile_fire_units.forEach(drawMobileFireUnit);
@@ -2474,13 +2658,24 @@
                 x.toFixed(2),
                 z.toFixed(2)
             ].join(":");
-            toggleSelectedUnitRanges(
+            const rangeSelection = toggleSelectedUnitRanges(
                 selectionKey,
                 unitLatLng,
                 unit,
                 site,
                 specs
             );
+            if (isGroundUnit(unit, site)) {
+                const closesDisclaimer = rangeSelection === "removed" || (
+                    rangeSelection === "unavailable" &&
+                    rangeDisclaimerSelectionKey === selectionKey
+                );
+                if (closesDisclaimer) {
+                    clearRangeDisclaimer();
+                } else {
+                    showRangeDisclaimer(unitLatLng, selectionKey);
+                }
+            }
             marker.openTooltip();
         });
 
@@ -2534,7 +2729,7 @@
         };
 
         globalSiteData.forEach(sourceSite => {
-            const site = displayTeamRecord(sourceSite);
+            const site = moveMapSiteToOpposingLocation(sourceSite);
             counts.sites += 1;
             (site.runways || []).forEach(runway => {
                 counts.runways += 1;
@@ -2626,6 +2821,23 @@
             globalSiteData = siteData;
             globalUnitSpecs = unitSpecs;
             globalMissionLogic = logicData;
+            globalSiteLocations = locationsByName(siteData);
+            globalMissionSiteLocations = locationsByName(logicData.sites);
+            globalMobileFireLocations = locationsByName(
+                logicData.mobile_fire_units
+            );
+            globalBomberSpawnLocations = locationsByName(
+                logicData.bomber_spawns || []
+            );
+            globalStrategicTargetLocations = locationsByName(
+                logicData.mlrs_tbm_targets
+            );
+            globalConvoyLinkLocations = locationsByLink(
+                logicData.likely_convoy_links
+            );
+            globalArmoredLinkLocations = locationsByLink(
+                logicData.likely_armored_links || []
+            );
             updateTeamSwapUi();
             drawRoadNetwork(roadData);
             const roadGraph = buildRoadGraph(roadData);
