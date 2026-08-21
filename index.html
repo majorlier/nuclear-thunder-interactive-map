@@ -1059,7 +1059,11 @@
     <div class="era-selector">
         <span>Scenario:</span>
         <label>
-            <input type="radio" name="era" value="1980" checked>
+            <input type="radio" name="era" value="1970" checked>
+            1970
+        </label>
+        <label>
+            <input type="radio" name="era" value="1980">
             1980
         </label>
         <label>
@@ -3638,7 +3642,7 @@
                 chains: teamChains(team => {
                     const era = document.querySelector(
                         'input[name="era"]:checked'
-                    )?.value || "1980";
+                    )?.value || "1970";
                     const ships = teamSites(
                         mapSites,
                         team,
@@ -4142,7 +4146,7 @@
         const destination = positions.at(-1);
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1980";
+        )?.value || "1970";
         const factoryMapSite = guideMapSite(factory.name);
 
         map.fitBounds(L.latLngBounds(positions), {
@@ -4829,7 +4833,7 @@
         const site = guideMapSite(siteName);
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1980";
+        )?.value || "1970";
         return (site?.units_by_era?.[era] || []).map((unit, index) => {
             const [x, , z] = unit.world_pos;
             const marker = L.marker(worldToLatLng(x, z), {
@@ -5048,7 +5052,7 @@
 
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1980";
+        )?.value || "1970";
         (mapTarget.units_by_era?.[era] || []).forEach((unit, index) => {
             const [unitX, , unitZ] = unit.world_pos;
             L.marker(worldToLatLng(unitX, unitZ), {
@@ -6267,7 +6271,7 @@
         if (!origin || !target || !shortSite) return;
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1980";
+        )?.value || "1970";
         const protectedSites = (globalSiteData || []).filter(site =>
             site.team === 1 &&
             (
@@ -6434,7 +6438,7 @@
     function showFleetScene() {
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1980";
+        )?.value || "1970";
         const ships = (globalSiteData || [])
             .filter(site =>
                 site.source_group === "ships" &&

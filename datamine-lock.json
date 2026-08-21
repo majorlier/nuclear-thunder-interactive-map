@@ -1,0 +1,77 @@
+{
+  "repository": "gszabi99/War-Thunder-Datamine",
+  "ref": "master",
+  "accepted_commit": "9927e2042e1319b0a28697fa87369a0d6b49bf3d",
+  "sources": [
+    {
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
+      "sha": "f01e0defc8aa9ff70eb5f16643f17b05d25aad89",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
+      "sha": "d8ea5a029d9af77f57226d006ec86782e953b702",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/airfields.blkx",
+      "sha": "2aa6f8a355168be18f088bd10a8304f40cf5c3cb",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/strongpoints.blkx",
+      "sha": "c932ba6702447a33e6e2c8ae9c0dc8fe28c9daa7",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/single_units.blkx",
+      "sha": "164c8c6a3624274f9e3c3713718af37bb089be71",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_tank.blkx",
+      "sha": "8aac3767cf073eca3afe15a76ae0a6a9fb0cf0c1",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_equip.blkx",
+      "sha": "9597ff209c0e85344d9cfaa7869813014824ef2e",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_air_defence_presets.blkx",
+      "sha": "706de7563ac4f9d18b49aacbf03a5e561b1d65c1",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/sam_sites.blkx",
+      "sha": "aadcae0dd2e0bbeed1858b905214fc59d07fa11b",
+      "used_for_generation": true
+    },
+    {
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
+      "sha": "18d53c80fc696f20d9b3223e7334a652bbb01126",
+      "used_for_generation": false
+    },
+    {
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
+      "sha": "007973d55ee3f743312ed58ea24c17bbdc6b905d",
+      "used_for_generation": false
+    },
+    {
+      "path": "aces.vromfs.bin_u/levels/avg_nuclear_incident.blkx",
+      "sha": "8612e1b910b5a5055a99e8081a05eb3b133cf554",
+      "used_for_generation": false
+    },
+    {
+      "path": "game.vromfs.bin_u/game/es/nuclear_escalation.das",
+      "sha": "b0edf7138638064cd3c0157633b47702f99eb09c",
+      "used_for_generation": false
+    },
+    {
+      "path": "gui.vromfs.bin_u/reactivegui/hud/scoreboard/nuclearescalation.ui.nut",
+      "sha": "a47507368f084e7f02245c8edcaadc7ef9b7fa89",
+      "used_for_generation": false
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+name: Check War Thunder datamine
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the map
+        uses: actions/checkout@v6
+
+      - name: Regenerate event data
+        id: datamine
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          python tools/update_from_datamine.py
+          --github-output "$GITHUB_OUTPUT"
+
+      - name: Validate the result
+        run: python tools/validate_data.py
+
+      - name: Open or refresh a draft update proposal
+        if: steps.datamine.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/datamine-update
+          delete-branch: true
+          draft: true
+          commit-message: "Update Nuclear Escalation data from datamine"
+          title: "Datamine update: Nuclear Escalation event data"
+          body: |
+            The public War Thunder datamine changed, so the map data was regenerated automatically.
+
+            - Upstream commit: `${{ steps.datamine.outputs.datamine_commit }}`
+            - Data validation passed before this proposal was opened.
+            - This is a draft: preview and review it before merging.
+          add-paths: |
+            map_data.json
+            mission_logic.json
+            datamine-lock.json
