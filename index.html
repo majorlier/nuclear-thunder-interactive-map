@@ -83,6 +83,41 @@
             color: #fffaf0;
         }
 
+        .range-disclaimer-control {
+            position: relative;
+            display: none;
+            width: min(330px, calc(100vw - 34px));
+            margin: 0 10px 12px 0;
+            padding: 10px 34px 10px 12px;
+            border: 1px solid #d69e2e;
+            border-radius: 7px;
+            color: #fefcbf;
+            background: rgba(45, 35, 10, 0.94);
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.55);
+            font: 12px/1.4 Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .range-disclaimer-control.is-visible { display: block; }
+
+        .range-disclaimer-control strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #f6e05e;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .range-disclaimer-close {
+            position: absolute;
+            top: 5px;
+            right: 7px;
+            border: 0;
+            color: #fefcbf;
+            background: transparent;
+            cursor: pointer;
+            font: 21px/1 sans-serif;
+        }
+
         .legend {
             display: flex;
             flex-wrap: wrap;
@@ -1339,7 +1374,7 @@
 
     const selectedRangeGroup = L.layerGroup().addTo(map);
     const selectedRangeLayers = new Map();
-    let rangeDisclaimerPopup = null;
+    let rangeDisclaimerElement = null;
     let rangeDisclaimerSelectionKey = null;
 
     function clearSelectedRanges() {
@@ -1349,12 +1384,31 @@
     }
 
     function clearRangeDisclaimer() {
-        if (rangeDisclaimerPopup) {
-            map.closePopup(rangeDisclaimerPopup);
-            rangeDisclaimerPopup = null;
-        }
+        rangeDisclaimerElement?.classList.remove("is-visible");
         rangeDisclaimerSelectionKey = null;
     }
+
+    const rangeDisclaimerControl = L.control({ position: "bottomright" });
+    rangeDisclaimerControl.onAdd = () => {
+        const element = L.DomUtil.create("aside", "range-disclaimer-control");
+        element.innerHTML = `
+            <button class="range-disclaimer-close" type="button" aria-label="Close range notice">×</button>
+            <strong>Range guide only</strong>
+            Any radar and missile ranges shown on this map are extracted
+            reference values, not representative of exact in-game performance.
+            Actual detection and engagement depend on terrain, altitude, target
+            aspect, vehicle configuration, and game/AI logic.
+        `;
+        L.DomEvent.disableClickPropagation(element);
+        L.DomEvent.disableScrollPropagation(element);
+        element.querySelector("button").addEventListener("click", event => {
+            L.DomEvent.stop(event);
+            clearRangeDisclaimer();
+        });
+        rangeDisclaimerElement = element;
+        return element;
+    };
+    rangeDisclaimerControl.addTo(map);
 
     map.on("click", () => {
         clearSelectedRanges();
@@ -1513,26 +1567,74 @@
         });
     }
 
-    function moveItemsToLocation(items = [], targetItems = []) {
+    function transformedLocalPosition(localPos, targetTransform) {
+        if (
+            !Array.isArray(localPos) || localPos.length < 3 ||
+            !Array.isArray(targetTransform) || targetTransform.length < 4
+        ) return null;
+        const [x, y, z] = localPos.map(Number);
+        if (![x, y, z].every(Number.isFinite)) return null;
+        const rows = targetTransform.map(row => row.map(Number));
+        if (!rows.slice(0, 4).every(row =>
+            row.length >= 3 && row.slice(0, 3).every(Number.isFinite)
+        )) return null;
+        return [
+            x * rows[0][0] + y * rows[1][0] + z * rows[2][0] + rows[3][0],
+            x * rows[0][1] + y * rows[1][1] + z * rows[2][1] + rows[3][1],
+            x * rows[0][2] + y * rows[1][2] + z * rows[2][2] + rows[3][2]
+        ];
+    }
+
+    function translatedWorldPosition(position, sourceWorldPos, targetWorldPos) {
+        if (
+            !Array.isArray(position) || !Array.isArray(sourceWorldPos) ||
+            !Array.isArray(targetWorldPos)
+        ) return null;
+        const values = [...position, ...sourceWorldPos, ...targetWorldPos].map(Number);
+        if (!values.every(Number.isFinite)) return null;
+        return [
+            position[0] - sourceWorldPos[0] + targetWorldPos[0],
+            position[1] - sourceWorldPos[1] + targetWorldPos[1],
+            position[2] - sourceWorldPos[2] + targetWorldPos[2]
+        ];
+    }
+
+    function moveItemsToLocation(items = [], targetItems = [], sourceSite, targetSite) {
         return items.map((item, index) => {
             const target = targetItems[index];
-            return target?.world_pos
-                ? { ...item, world_pos: target.world_pos }
-                : item;
+            const worldPos = transformedLocalPosition(
+                item.local_pos,
+                targetSite?.tm
+            ) || target?.world_pos || translatedWorldPosition(
+                item.world_pos,
+                sourceSite?.world_pos,
+                targetSite?.world_pos
+            );
+            return worldPos ? { ...item, world_pos: worldPos } : item;
         });
     }
 
-    function moveEraItemsToLocation(itemsByEra = {}, targetItemsByEra = {}) {
+    function moveEraItemsToLocation(
+        itemsByEra = {},
+        targetItemsByEra = {},
+        sourceSite,
+        targetSite
+    ) {
         return Object.fromEntries(Object.entries(itemsByEra).map(([era, items]) => [
             era,
-            moveItemsToLocation(items, targetItemsByEra[era] || [])
+            moveItemsToLocation(
+                items,
+                targetItemsByEra[era] || [],
+                sourceSite,
+                targetSite
+            )
         ]));
     }
 
     // Every t1_ location in the extracted mission has a matching t2_ location.
-    // Keep each faction's own unit set, but move it onto the matching opposing
-    // location. This mirrors the in-game team-location flip rather than merely
-    // recolouring the original markers.
+    // Keep each faction's own unit set, but move every unit to its matching
+    // opposing location. The two factions can use different-sized batteries,
+    // so source-local coordinates prevent extra units from being left behind.
     function moveMapSiteToOpposingLocation(site) {
         if (!teamsSwapped) return site;
         const target = globalSiteLocations.get(opposingLocationName(site.name));
@@ -1546,11 +1648,15 @@
             route: target.route,
             units_by_era: moveEraItemsToLocation(
                 site.units_by_era,
-                target.units_by_era
+                target.units_by_era,
+                site,
+                target
             ),
             buildings_by_era: moveEraItemsToLocation(
                 site.buildings_by_era,
-                target.buildings_by_era
+                target.buildings_by_era,
+                site,
+                target
             )
         };
     }
@@ -2141,27 +2247,9 @@
             String(unit.role || "").toLowerCase() !== "ship";
     }
 
-    function showRangeDisclaimer(position, selectionKey) {
-        if (rangeDisclaimerPopup) map.closePopup(rangeDisclaimerPopup);
+    function showRangeDisclaimer(selectionKey) {
         rangeDisclaimerSelectionKey = selectionKey;
-        rangeDisclaimerPopup = L.popup({
-            closeButton: true,
-            autoClose: true,
-            closeOnClick: false,
-            offset: [0, -8],
-            maxWidth: 330,
-            className: "range-disclaimer-popup"
-        })
-            .setLatLng(position)
-            .setContent(`
-                <b>Range guide only</b><br>
-                Any radar and missile ranges shown on this map are extracted
-                reference values, not representative of exact in-game
-                performance. Actual
-                detection and engagement depend on terrain, altitude, target
-                aspect, vehicle configuration, and game/AI logic.
-            `)
-            .openOn(map);
+        rangeDisclaimerElement?.classList.add("is-visible");
     }
 
     function toggleSelectedUnitRanges(selectionKey, position, unit, site, specs) {
@@ -2673,7 +2761,7 @@
                 if (closesDisclaimer) {
                     clearRangeDisclaimer();
                 } else {
-                    showRangeDisclaimer(unitLatLng, selectionKey);
+                    showRangeDisclaimer(selectionKey);
                 }
             }
             marker.openTooltip();
