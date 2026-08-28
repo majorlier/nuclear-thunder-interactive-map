@@ -38,26 +38,17 @@
         #status { display: block; margin-top: 4px; color: #f6ad55; }
 
         .era-selector {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
+            display: block;
             margin-top: 10px;
             padding-top: 10px;
             border-top: 1px solid #3b4252;
         }
 
-        .scenario-heading {
-            flex: 0 0 auto;
-            margin-top: 5px;
-            font-weight: 700;
-        }
-
         #scenario-options {
             display: flex;
-            flex: 1 1 auto;
             flex-direction: column;
             gap: 4px;
-            min-width: 0;
+            width: 100%;
         }
 
         .era-selector label {
@@ -1177,7 +1168,6 @@
     <span id="status">Loading map data…</span>
 
     <div class="era-selector" id="scenario-selector">
-        <span class="scenario-heading">Scenario:</span>
         <span id="scenario-options">Loading scenarios…</span>
     </div>
 
@@ -1188,7 +1178,6 @@
     <div class="legend">
         <span id="legend-redfor" class="legend-item"><i class="dot" style="background:#fc8181"></i>REDFOR / Team 1</span>
         <span id="legend-blufor" class="legend-item"><i class="dot" style="background:#90cdf4"></i>BLUFOR / Team 2</span>
-        <span class="legend-item">NATO symbols identify unit roles</span>
         <span class="legend-item">Click units to toggle their ranges · click the map to clear all</span>
     </div>
 
@@ -1290,7 +1279,8 @@
         crs: L.CRS.Simple,
         minZoom: -3,
         maxZoom: 6,
-        zoomSnap: 0.25
+        zoomSnap: 0.25,
+        zoomControl: false
     });
 
     const standardMapLayer = L.imageOverlay(MAP_IMAGE, bounds).addTo(map);
@@ -3078,7 +3068,7 @@
         return {
             title,
             team,
-            open: true,
+            open: false,
             force: true,
             glyph: "●",
             children: [
@@ -3195,12 +3185,13 @@
     function makeMapCategory() {
         return {
             title: "MAP & TERRAIN",
-            open: false,
+            open: true,
             force: true,
             glyph: "⌖",
             children: [
                 {
                     title: "Terrain",
+                    open: true,
                     glyph: "⌁",
                     options: [
                         layerOption(
