@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "9927e2042e1319b0a28697fa87369a0d6b49bf3d",
+  "accepted_commit": "2a037b3a20184f5eaf50ed72d348ced485cb132c",
   "sources": [
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
@@ -15,7 +15,7 @@
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/airfields.blkx",
-      "sha": "2aa6f8a355168be18f088bd10a8304f40cf5c3cb",
+      "sha": "f677f70ae574094c1f2f7d7ce493467702bea063",
       "used_for_generation": true
     },
     {
@@ -25,22 +25,22 @@
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/single_units.blkx",
-      "sha": "164c8c6a3624274f9e3c3713718af37bb089be71",
+      "sha": "6b64f6cb12fc272b58bd16bd4f1eb3b2235118f5",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_tank.blkx",
-      "sha": "8aac3767cf073eca3afe15a76ae0a6a9fb0cf0c1",
+      "sha": "95d0b14d833380c21f6221c4e35c9988b9afe2d3",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_equip.blkx",
-      "sha": "9597ff209c0e85344d9cfaa7869813014824ef2e",
+      "sha": "a53fc0ba0a01a634694b754604f08223d823b917",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_air_defence_presets.blkx",
-      "sha": "706de7563ac4f9d18b49aacbf03a5e561b1d65c1",
+      "sha": "a160b2ba200d882b959fed6e8891f29efd65e7e9",
       "used_for_generation": true
     },
     {
@@ -50,12 +50,12 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
-      "sha": "18d53c80fc696f20d9b3223e7334a652bbb01126",
+      "sha": "5ad4a2c1f47415870711f41a9ff769de30f02bab",
       "used_for_generation": false
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "007973d55ee3f743312ed58ea24c17bbdc6b905d",
+      "sha": "82a8cd60080398f21420e65e2a313004aea3b7bb",
       "used_for_generation": false
     },
     {
