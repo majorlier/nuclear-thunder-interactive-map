@@ -77,6 +77,7 @@ def main() -> int:
     warnings: list[str] = []
 
     presets_document = load_json(root / "presets.json")
+    brackets_document = load_json(root / "br_brackets.json")
     map_data = load_json(root / "map_data.json")
     map_data_mirror = load_json(root / "map_data_mirror.json")
     mission_logic = load_json(root / "mission_logic.json")
@@ -91,6 +92,23 @@ def main() -> int:
     }
     if not preset_ids or len(preset_ids) != len(presets):
         errors.append("presets.json must contain uniquely identified scenario presets")
+
+    bracket_presets = (
+        brackets_document.get("presets", {})
+        if isinstance(brackets_document, dict)
+        else {}
+    )
+    if not isinstance(bracket_presets, dict):
+        errors.append("br_brackets.json must contain a presets object")
+        bracket_presets = {}
+    for preset in presets:
+        bracket_values = bracket_presets.get(preset.get("id"))
+        if not isinstance(bracket_values, list) or not any(
+            isinstance(value, str) and value.strip() for value in bracket_values
+        ):
+            warnings.append(
+                f"{preset.get('label', preset.get('id', 'unknown scenario'))} has no confirmed BR bracket"
+            )
 
     standard_sites, standard_units = validate_variant(
         "standard", map_data, preset_ids, errors
@@ -137,6 +155,7 @@ def main() -> int:
         'fetch("map_data_mirror.json")',
         'fetch("mission_logic_mirror.json")',
         'fetch("presets.json")',
+        'fetch("br_brackets.json")',
     ):
         if required_fetch not in html:
             errors.append(f"index.html does not load {required_fetch}")

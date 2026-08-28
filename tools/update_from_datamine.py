@@ -20,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 DEFAULT_MANIFEST = TOOLS / "datamine_sources.json"
+BRACKET_CONFIG = ROOT / "br_brackets.json"
 GENERATED_OUTPUTS = (
     "map_data.json",
     "map_data_mirror.json",
@@ -163,6 +164,22 @@ def markdown_names(names: list[str], limit: int = 18) -> str:
     return f"{shown} (+{remainder} more)" if remainder > 0 else shown
 
 
+def unconfigured_brackets(presets: list[dict], bracket_config: dict) -> list[dict]:
+    """Return generated scenarios without a human-confirmed BR bracket."""
+    configured = bracket_config.get("presets", {})
+    if not isinstance(configured, dict):
+        return presets
+    return [
+        preset
+        for preset in presets
+        if not isinstance(configured.get(preset.get("id")), list)
+        or not any(
+            isinstance(value, str) and value.strip()
+            for value in configured.get(preset.get("id"), [])
+        )
+    ]
+
+
 def write_update_report(
     path: Path,
     repository: str,
@@ -171,6 +188,7 @@ def write_update_report(
     mission_variants: list[dict],
     missing_object_groups: list[str],
     summaries: dict[str, dict],
+    missing_brackets: list[dict],
 ) -> None:
     """Write a short, ignored report for the Action summary and PR review."""
     lines = [
@@ -192,6 +210,21 @@ def write_update_report(
             f"- **{preset.get('label', preset['id'])}** — "
             f"rank indices {rank_text} "
             f"(`{preset['id']}`)"
+        )
+
+    lines.extend(["", "## BR brackets to review", ""])
+    if missing_brackets:
+        lines.append(
+            "- Add or confirm the manual BR brackets in `br_brackets.json` for: "
+            + ", ".join(
+                f"**{preset.get('label', preset['id'])}** (`{preset['id']}`)"
+                for preset in missing_brackets
+            )
+            + "."
+        )
+    else:
+        lines.append(
+            "- Every detected scenario has a manual BR-bracket label. The datamine does not provide BR values, so confirm them before merging."
         )
 
     lines.extend(["", "## Mission-location variants", ""])
@@ -427,6 +460,10 @@ def main() -> int:
                 ],
             },
         )
+        bracket_config = load_json(BRACKET_CONFIG) if BRACKET_CONFIG.exists() else {}
+        missing_brackets = unconfigured_brackets(
+            generated_presets or [], bracket_config
+        )
 
         collector = generated / "unit_manifest.json"
         write_json(
@@ -481,6 +518,7 @@ def main() -> int:
             mission_variants,
             missing_object_groups,
             summaries,
+            missing_brackets,
         )
         changed = bool(changed_files)
 
