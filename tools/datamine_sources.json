@@ -1,11 +1,21 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "generator_files": [
+  "mission_variants": [
     {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
-      "name": "nuclear_escalation_tdm.blkx"
+      "id": "standard",
+      "label": "Standard locations",
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
+      "name": "air_archipelago_nuclear_escalation_tdm.blkx"
     },
+    {
+      "id": "mirror",
+      "label": "Swapped locations",
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
+      "name": "air_archipelago_mirror_nuclear_escalation_tdm.blkx"
+    }
+  ],
+  "generator_files": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
       "name": "common.blkx"
@@ -40,8 +50,7 @@
     }
   ],
   "watch_files": [
-    "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
-    "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
+    "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
     "aces.vromfs.bin_u/levels/avg_nuclear_incident.blkx",
     "game.vromfs.bin_u/game/es/nuclear_escalation.das",
     "gui.vromfs.bin_u/reactivegui/hud/scoreboard/nuclearescalation.ui.nut"

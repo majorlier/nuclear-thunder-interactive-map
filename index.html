@@ -1136,20 +1136,9 @@
     <div class="title">War Thunder Map Visualizer</div>
     <span id="status">Loading map data…</span>
 
-    <div class="era-selector">
+    <div class="era-selector" id="scenario-selector">
         <span>Scenario:</span>
-        <label>
-            <input type="radio" name="era" value="1970" checked>
-            1970
-        </label>
-        <label>
-            <input type="radio" name="era" value="1980">
-            1980
-        </label>
-        <label>
-            <input type="radio" name="era" value="2018">
-            2018
-        </label>
+        <span id="scenario-options">Loading scenarios…</span>
     </div>
 
     <button id="team-swap" class="team-swap" type="button" aria-pressed="false">
@@ -1515,6 +1504,9 @@
     ];
 
     let globalSiteData = [];
+    let globalMapVariants = {};
+    let globalMissionLogicVariants = {};
+    let globalPresetData = { presets: [], variants: [] };
     let globalUnitSpecs = {};
     let globalMissionLogic = null;
     let globalConvoyRoutes = new Map();
@@ -1531,8 +1523,8 @@
     const selectedDepotGroup = L.layerGroup().addTo(map);
     let selectedRouteKeys = new Set();
     let selectedDepotName = null;
-    const teamSwapStorageKey = "nuclear-thunder-locations-swapped";
-    let teamsSwapped = sessionStorage.getItem(teamSwapStorageKey) === "true";
+    const mapVariantStorageKey = "nuclear-thunder-map-variant";
+    let currentMapVariant = sessionStorage.getItem(mapVariantStorageKey) || "standard";
 
     function opposingLocationName(name) {
         const value = String(name || "");
@@ -1636,72 +1628,29 @@
     // opposing location. The two factions can use different-sized batteries,
     // so source-local coordinates prevent extra units from being left behind.
     function moveMapSiteToOpposingLocation(site) {
-        if (!teamsSwapped) return site;
-        const target = globalSiteLocations.get(opposingLocationName(site.name));
-        if (!target) return site;
-        return {
-            ...site,
-            world_pos: target.world_pos,
-            editor_world_pos: target.editor_world_pos,
-            tm: target.tm,
-            runways: target.runways,
-            route: target.route,
-            units_by_era: moveEraItemsToLocation(
-                site.units_by_era,
-                target.units_by_era,
-                site,
-                target
-            ),
-            buildings_by_era: moveEraItemsToLocation(
-                site.buildings_by_era,
-                target.buildings_by_era,
-                site,
-                target
-            )
-        };
+        // Standard and mirror missions have authored coordinates for every
+        // object. The selected dataset is already in the correct location.
+        return site;
     }
 
     function moveWorldRecordToOpposingLocation(record, locations) {
-        if (!teamsSwapped) return record;
-        const target = locations.get(opposingLocationName(record.name));
-        return target?.world_pos
-            ? { ...record, world_pos: target.world_pos, locationSwapped: true }
-            : record;
+        return record;
     }
 
     function moveMobileFireUnitToOpposingLocation(unit) {
-        if (!teamsSwapped) return unit;
-        const target = globalMobileFireLocations.get(
-            opposingLocationName(unit.name)
-        );
-        if (!target) return unit;
-        return {
-            ...unit,
-            spawn_area: target.spawn_area,
-            move_areas: target.move_areas,
-            locationSwapped: true
-        };
+        return unit;
     }
 
     function moveLinkToOpposingLocation(link, locations) {
-        if (!teamsSwapped) return link;
-        const target = locations.get(oppositeLinkLocationKey(link));
-        return target
-            ? {
-                ...link,
-                from: target.from,
-                to: target.to,
-                distance: target.distance,
-                locationSwapped: true
-            }
-            : link;
+        return link;
     }
 
     function updateTeamSwapUi() {
         const swapButton = document.getElementById("team-swap");
-        swapButton.setAttribute("aria-pressed", String(teamsSwapped));
-        swapButton.textContent = teamsSwapped
-            ? "⇄ Restore original locations"
+        const mirrored = currentMapVariant === "mirror";
+        swapButton.setAttribute("aria-pressed", String(mirrored));
+        swapButton.textContent = mirrored
+            ? "⇄ Restore standard locations"
             : "⇄ Swap REDFOR / BLUFOR locations";
         document.getElementById("legend-redfor").innerHTML =
             '<i class="dot" style="background:#fc8181"></i>' +
@@ -1709,6 +1658,89 @@
         document.getElementById("legend-blufor").innerHTML =
             '<i class="dot" style="background:#90cdf4"></i>' +
             "BLUFOR units";
+    }
+
+    function selectedPresetId() {
+        return document.querySelector('input[name="era"]:checked')?.value ||
+            globalPresetData.presets?.[0]?.id || "";
+    }
+
+    function presetDisplayName(presetId) {
+        return globalPresetData.presets?.find(preset => preset.id === presetId)
+            ?.label || presetId;
+    }
+
+    function populateScenarioSelector() {
+        const options = document.getElementById("scenario-options");
+        options.replaceChildren();
+        (globalPresetData.presets || []).forEach((preset, index) => {
+            const label = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "era";
+            input.value = preset.id;
+            input.checked = index === 0;
+            input.addEventListener("change", event => {
+                renderMapData(event.target.value);
+            });
+            label.append(input, ` ${preset.label}`);
+            options.append(label);
+        });
+    }
+
+    function clearVariantLayers() {
+        clearSelectedRanges();
+        renderedGroups.forEach(group => group.clearLayers());
+        Object.values(missionGroups).forEach(groups => {
+            Object.values(groups).forEach(category => {
+                Object.values(category).forEach(group => group.clearLayers());
+            });
+        });
+        selectedDepotGroup.clearLayers();
+        routeVisuals.clear();
+        selectedRouteKeys.clear();
+        selectedDepotName = null;
+    }
+
+    function activateMapVariant(variantId) {
+        if (!globalMapVariants[variantId] || !globalMissionLogicVariants[variantId]) {
+            variantId = "standard";
+        }
+        currentMapVariant = variantId;
+        sessionStorage.setItem(mapVariantStorageKey, currentMapVariant);
+        globalSiteData = globalMapVariants[currentMapVariant];
+        globalMissionLogic = globalMissionLogicVariants[currentMapVariant];
+        globalSiteLocations = locationsByName(globalSiteData);
+        globalMissionSiteLocations = locationsByName(globalMissionLogic.sites || []);
+        globalMobileFireLocations = locationsByName(
+            globalMissionLogic.mobile_fire_units || []
+        );
+        globalBomberSpawnLocations = locationsByName(
+            globalMissionLogic.bomber_spawns || []
+        );
+        globalStrategicTargetLocations = locationsByName(
+            globalMissionLogic.mlrs_tbm_targets || []
+        );
+        globalConvoyLinkLocations = locationsByLink(
+            globalMissionLogic.likely_convoy_links || []
+        );
+        globalArmoredLinkLocations = locationsByLink(
+            globalMissionLogic.likely_armored_links || []
+        );
+        clearVariantLayers();
+        globalConvoyRoutes = buildRoadRoutes(
+            globalRoadGraph,
+            globalMissionLogic.likely_convoy_links || [],
+            convoyRouteKey
+        );
+        globalArmoredRoutes = buildRoadRoutes(
+            globalRoadGraph,
+            globalMissionLogic.likely_armored_links || [],
+            armoredRouteKey
+        );
+        updateTeamSwapUi();
+        drawMissionLogic(globalMissionLogic);
+        renderMapData(selectedPresetId());
     }
 
     function operationalCategory(site) {
@@ -2856,7 +2888,7 @@
         const status = document.getElementById("status");
         status.style.color = "#68d391";
         status.innerHTML = `
-            <b>${selectedEra}</b>:
+            <b>${escapeHtml(presetDisplayName(selectedEra))}</b>:
             ${counts.launchers} launcher/SPAA ·
             ${counts.radars} radar ·
             ${counts.vehicles} strongpoint/other units ·
@@ -2865,15 +2897,10 @@
         `;
     }
 
-    document.querySelectorAll('input[name="era"]').forEach(input => {
-        input.addEventListener("change", event => renderMapData(event.target.value));
-    });
-
     document.getElementById("team-swap").addEventListener("click", () => {
-        teamsSwapped = !teamsSwapped;
-        sessionStorage.setItem(teamSwapStorageKey, String(teamsSwapped));
-        updateTeamSwapUi();
-        window.location.reload();
+        activateMapVariant(
+            currentMapVariant === "mirror" ? "standard" : "mirror"
+        );
     });
 
     function formatDistance(meters) {
@@ -2892,6 +2919,10 @@
             if (!response.ok) throw new Error(`map_data.json: HTTP ${response.status}`);
             return response.json();
         }),
+        fetch("map_data_mirror.json").then(response => {
+            if (!response.ok) throw new Error(`map_data_mirror.json: HTTP ${response.status}`);
+            return response.json();
+        }),
         fetch("road_network.json").then(response => {
             if (!response.ok) throw new Error(`road_network.json: HTTP ${response.status}`);
             return response.json();
@@ -2900,48 +2931,42 @@
             if (!response.ok) throw new Error(`mission_logic.json: HTTP ${response.status}`);
             return response.json();
         }),
+        fetch("mission_logic_mirror.json").then(response => {
+            if (!response.ok) throw new Error(`mission_logic_mirror.json: HTTP ${response.status}`);
+            return response.json();
+        }),
+        fetch("presets.json").then(response => {
+            if (!response.ok) throw new Error(`presets.json: HTTP ${response.status}`);
+            return response.json();
+        }),
         fetch("unit_specs.json").then(response => {
             if (!response.ok) throw new Error(`unit_specs.json: HTTP ${response.status}`);
             return response.json();
         })
     ])
-        .then(([siteData, roadData, logicData, unitSpecs]) => {
-            globalSiteData = siteData;
+        .then(([
+            standardSiteData,
+            mirrorSiteData,
+            roadData,
+            standardLogicData,
+            mirrorLogicData,
+            presetData,
+            unitSpecs
+        ]) => {
+            globalMapVariants = {
+                standard: standardSiteData,
+                mirror: mirrorSiteData
+            };
+            globalMissionLogicVariants = {
+                standard: standardLogicData,
+                mirror: mirrorLogicData
+            };
+            globalPresetData = presetData;
             globalUnitSpecs = unitSpecs;
-            globalMissionLogic = logicData;
-            globalSiteLocations = locationsByName(siteData);
-            globalMissionSiteLocations = locationsByName(logicData.sites);
-            globalMobileFireLocations = locationsByName(
-                logicData.mobile_fire_units
-            );
-            globalBomberSpawnLocations = locationsByName(
-                logicData.bomber_spawns || []
-            );
-            globalStrategicTargetLocations = locationsByName(
-                logicData.mlrs_tbm_targets
-            );
-            globalConvoyLinkLocations = locationsByLink(
-                logicData.likely_convoy_links
-            );
-            globalArmoredLinkLocations = locationsByLink(
-                logicData.likely_armored_links || []
-            );
-            updateTeamSwapUi();
+            populateScenarioSelector();
             drawRoadNetwork(roadData);
-            const roadGraph = buildRoadGraph(roadData);
-            globalRoadGraph = roadGraph;
-            globalConvoyRoutes = buildRoadRoutes(
-                roadGraph,
-                logicData.likely_convoy_links,
-                convoyRouteKey
-            );
-            globalArmoredRoutes = buildRoadRoutes(
-                roadGraph,
-                logicData.likely_armored_links || [],
-                armoredRouteKey
-            );
-            drawMissionLogic(logicData);
-            renderMapData(document.querySelector('input[name="era"]:checked').value);
+            globalRoadGraph = buildRoadGraph(roadData);
+            activateMapVariant(currentMapVariant);
             document.getElementById("guide-start").disabled = false;
         })
         .catch(error => {
@@ -4035,7 +4060,7 @@
                 chains: teamChains(team => {
                     const era = document.querySelector(
                         'input[name="era"]:checked'
-                    )?.value || "1970";
+                    )?.value || selectedPresetId();
                     const ships = teamSites(
                         mapSites,
                         team,
@@ -4539,7 +4564,7 @@
         const destination = positions.at(-1);
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1970";
+        )?.value || selectedPresetId();
         const factoryMapSite = guideMapSite(factory.name);
 
         map.fitBounds(L.latLngBounds(positions), {
@@ -5226,7 +5251,7 @@
         const site = guideMapSite(siteName);
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1970";
+        )?.value || selectedPresetId();
         return (site?.units_by_era?.[era] || []).map((unit, index) => {
             const [x, , z] = unit.world_pos;
             const marker = L.marker(worldToLatLng(x, z), {
@@ -5445,7 +5470,7 @@
 
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1970";
+        )?.value || selectedPresetId();
         (mapTarget.units_by_era?.[era] || []).forEach((unit, index) => {
             const [unitX, , unitZ] = unit.world_pos;
             L.marker(worldToLatLng(unitX, unitZ), {
@@ -6664,7 +6689,7 @@
         if (!origin || !target || !shortSite) return;
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1970";
+        )?.value || selectedPresetId();
         const protectedSites = (globalSiteData || []).filter(site =>
             site.team === 1 &&
             (
@@ -6831,7 +6856,7 @@
     function showFleetScene() {
         const era = document.querySelector(
             'input[name="era"]:checked'
-        )?.value || "1970";
+        )?.value || selectedPresetId();
         const ships = (globalSiteData || [])
             .filter(site =>
                 site.source_group === "ships" &&

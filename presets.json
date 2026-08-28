@@ -1,0 +1,50 @@
+{
+  "presets": [
+    {
+      "id": "rank-0-26",
+      "label": "1970 Early",
+      "rank": 0,
+      "rank_range": [
+        0,
+        26
+      ]
+    },
+    {
+      "id": "rank-27-30",
+      "label": "1970 Late",
+      "rank": 27,
+      "rank_range": [
+        27,
+        30
+      ]
+    },
+    {
+      "id": "rank-31-36",
+      "label": "1980",
+      "rank": 31,
+      "rank_range": [
+        31,
+        36
+      ]
+    },
+    {
+      "id": "rank-37-50",
+      "label": "2018",
+      "rank": 37,
+      "rank_range": [
+        37,
+        50
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "standard",
+      "label": "Standard locations"
+    },
+    {
+      "id": "mirror",
+      "label": "Swapped locations"
+    }
+  ]
+}
