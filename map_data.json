@@ -62,7 +62,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "ussr_9a33bm3",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -77,13 +77,13 @@
             -1180.77
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12500.0,
+          "count": 3,
+          "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -97,14 +97,14 @@
             0.0,
             -1090.91
           ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 2,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -118,14 +118,14 @@
             0.0,
             576.206
           ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -140,13 +140,13 @@
             161.86
           ],
           "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -161,13 +161,13 @@
             -1190.35
           ],
           "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_57_2",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -181,10 +181,10 @@
             0.0,
             1206.1
           ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -509,7 +509,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "uk_ai_sam_rapier",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -524,13 +524,13 @@
             -913.047
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "count": 3,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -544,14 +544,14 @@
             0.0,
             -770.245
           ],
-          "number": 1,
-          "count": 2,
+          "number": 2,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -565,14 +565,14 @@
             0.0,
             576.206
           ],
-          "number": 2,
-          "count": 2,
+          "number": 3,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -588,12 +588,12 @@
           ],
           "number": 1,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -609,12 +609,12 @@
           ],
           "number": 2,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -630,8 +630,8 @@
           ],
           "number": 3,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -956,7 +956,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "ussr_9a33bm3",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -971,13 +971,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12500.0,
+          "count": 3,
+          "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -991,14 +991,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 2,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1012,14 +1012,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1034,13 +1034,13 @@
             113.0
           ],
           "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1055,13 +1055,13 @@
             137.0
           ],
           "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_57_2",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1075,10 +1075,10 @@
             0.0,
             143.0
           ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -1403,7 +1403,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "uk_ai_sam_rapier",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1418,13 +1418,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "count": 3,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1438,14 +1438,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
+          "number": 2,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1459,14 +1459,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
+          "number": 3,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1482,12 +1482,12 @@
           ],
           "number": 1,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1503,12 +1503,12 @@
           ],
           "number": 2,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1524,8 +1524,8 @@
           ],
           "number": 3,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -1850,7 +1850,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "ussr_9a33bm3",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1865,13 +1865,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12500.0,
+          "count": 3,
+          "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1885,14 +1885,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 2,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1906,14 +1906,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1928,13 +1928,13 @@
             113.0
           ],
           "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1949,13 +1949,13 @@
             137.0
           ],
           "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_57_2",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -1969,10 +1969,10 @@
             0.0,
             143.0
           ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -2297,7 +2297,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "uk_ai_sam_rapier",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2312,13 +2312,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "count": 3,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2332,14 +2332,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
+          "number": 2,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2353,14 +2353,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
+          "number": 3,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2376,12 +2376,12 @@
           ],
           "number": 1,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2397,12 +2397,12 @@
           ],
           "number": 2,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2418,8 +2418,8 @@
           ],
           "number": 3,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -2744,7 +2744,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "ussr_9a33bm3",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2759,13 +2759,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12500.0,
+          "count": 3,
+          "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2779,14 +2779,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 2,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2800,14 +2800,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2822,13 +2822,13 @@
             113.0
           ],
           "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2843,13 +2843,13 @@
             137.0
           ],
           "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_57_2",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -2863,10 +2863,10 @@
             0.0,
             143.0
           ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -3191,7 +3191,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "uk_ai_sam_rapier",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -3206,13 +3206,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "count": 3,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -3226,14 +3226,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
+          "number": 2,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -3247,14 +3247,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
+          "number": 3,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -3270,12 +3270,12 @@
           ],
           "number": 1,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -3291,12 +3291,12 @@
           ],
           "number": 2,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -3312,8 +3312,8 @@
           ],
           "number": 3,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -3667,71 +3667,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -16912.168701000002,
-            642.044,
-            -5520.783854
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            -55.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -16794.481294,
-            642.044,
-            -5549.343711
-          ],
-          "local_pos": [
-            13.0,
-            0.0,
-            -60.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -16893.595536,
-            642.044,
-            -5427.617164
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            40.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -3956,71 +3892,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -2206.99205,
-            487.381,
-            -20711.094146
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            -55.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -2107.95297,
-            487.381,
-            -20780.788293999998
-          ],
-          "local_pos": [
-            13.0,
-            0.0,
-            -60.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -2155.57444,
-            487.381,
-            -20631.211496
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            40.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -4245,71 +4117,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            15972.22012865,
-            293.642,
-            -38420.73011604
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            -55.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            16093.239093799999,
-            293.642,
-            -38425.24769381
-          ],
-          "local_pos": [
-            13.0,
-            0.0,
-            -60.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            15971.8413988,
-            293.642,
-            -38325.730876040005
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            40.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -4534,71 +4342,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            46397.474976000005,
-            431.7,
-            -23510.707387999995
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            -55.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            46298.451604,
-            431.7,
-            -23580.423551999997
-          ],
-          "local_pos": [
-            13.0,
-            0.0,
-            -60.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            46455.324656000004,
-            431.7,
-            -23586.062528
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            40.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -4823,71 +4567,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            29980.290168,
-            125.8,
-            -6971.149405
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            -55.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            29859.658127,
-            125.8,
-            -6981.82208
-          ],
-          "local_pos": [
-            13.0,
-            0.0,
-            -60.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            29992.562267999998,
-            125.8,
-            -7065.353400000001
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            40.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -5112,71 +4792,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            12326.975409,
-            429.6,
-            10125.056429999999
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            -55.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            12442.457326,
-            429.6,
-            10088.588314999999
-          ],
-          "local_pos": [
-            13.0,
-            0.0,
-            -60.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            12351.818384,
-            429.6,
-            10216.750619999999
-          ],
-          "local_pos": [
-            -108.0,
-            0.0,
-            40.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -5401,71 +5017,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -7516.910501,
-            684.132,
-            -14947.129883000001
-          ],
-          "local_pos": [
-            75.0,
-            0.0,
-            111.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -7444.374873,
-            684.132,
-            -14808.971934000001
-          ],
-          "local_pos": [
-            -80.0,
-            0.0,
-            93.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -7628.2743949999995,
-            684.132,
-            -14734.26568
-          ],
-          "local_pos": [
-            -38.0,
-            0.0,
-            -101.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -5690,71 +5242,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            7325.216040000001,
-            385.266,
-            -29719.031699999996
-          ],
-          "local_pos": [
-            75.0,
-            0.0,
-            111.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            7445.73177,
-            385.266,
-            -29619.910649999998
-          ],
-          "local_pos": [
-            -80.0,
-            0.0,
-            93.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            7305.306210000001,
-            385.266,
-            -29479.622729999995
-          ],
-          "local_pos": [
-            -38.0,
-            0.0,
-            -101.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -5979,71 +5467,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            24091.480353,
-            349.862,
-            -45603.377347
-          ],
-          "local_pos": [
-            75.0,
-            0.0,
-            111.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            23941.632024,
-            349.862,
-            -45559.851920999994
-          ],
-          "local_pos": [
-            -80.0,
-            0.0,
-            93.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            23905.101878,
-            349.862,
-            -45754.955798999996
-          ],
-          "local_pos": [
-            -38.0,
-            0.0,
-            -101.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -6268,71 +5692,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            37733.299789,
-            429.5,
-            -15203.673019
-          ],
-          "local_pos": [
-            75.0,
-            0.0,
-            111.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            37869.31170199999,
-            429.5,
-            -15280.157027
-          ],
-          "local_pos": [
-            -80.0,
-            0.0,
-            93.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            37949.282628,
-            429.5,
-            -15098.485009
-          ],
-          "local_pos": [
-            -38.0,
-            0.0,
-            -101.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -6557,71 +5917,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            21096.513029,
-            193.0,
-            1890.1932550000001
-          ],
-          "local_pos": [
-            75.0,
-            0.0,
-            111.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            21227.763327000004,
-            193.0,
-            1805.79896
-          ],
-          "local_pos": [
-            -80.0,
-            0.0,
-            93.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            21318.338921000002,
-            193.0,
-            1982.423202
-          ],
-          "local_pos": [
-            -38.0,
-            0.0,
-            -101.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -6846,71 +6142,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            4783.232752999999,
-            801.4,
-            17381.261259
-          ],
-          "local_pos": [
-            75.0,
-            0.0,
-            111.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            4899.642819,
-            801.4,
-            17485.173232
-          ],
-          "local_pos": [
-            -80.0,
-            0.0,
-            93.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            4753.6608049999995,
-            801.4,
-            17619.669530000003
-          ],
-          "local_pos": [
-            -38.0,
-            0.0,
-            -101.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -7085,50 +6317,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -16800.1,
-            513.66,
-            5611.89
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -16798.592383,
-            513.66,
-            5395.291908
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -16751.77492125,
-            513.66,
-            5723.0466069
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -7219,71 +6408,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -16508.934770999997,
-            513.66,
-            5546.339855
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -16871.764269,
-            513.66,
-            5307.662707
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -17067.674315,
-            513.66,
-            5619.238175
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -7458,50 +6583,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -8241.3,
-            636.001,
-            -3198.74
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -8037.3473429999995,
-            636.001,
-            -3271.680434
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -8329.11183305,
-            636.001,
-            -3115.1925144
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -7592,71 +6674,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -8079.778689,
-            636.001,
-            -2947.7721669999996
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -7980.162834999999,
-            636.001,
-            -3370.487975
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -8340.057784999999,
-            636.001,
-            -3447.5308549999995
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -7831,50 +6849,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            392.426,
-            541.178,
-            -11488.5
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            238.00381399999998,
-            541.178,
-            -11640.390915
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            505.8599266,
-            541.178,
-            -11445.79325485
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -7965,71 +6940,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            548.101719,
-            541.178,
-            -11743.135401
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            124.15775899999998,
-            541.178,
-            -11648.881667
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            211.398935,
-            541.178,
-            -11291.321665
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -8204,50 +7115,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            8318.37,
-            363.548,
-            -20076.7
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            8531.947028999999,
-            363.548,
-            -20040.619984
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            8200.92247175,
-            363.548,
-            -20046.7474717
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -8338,71 +7206,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            8336.578253000001,
-            363.548,
-            -19778.803545000002
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            8630.137307,
-            363.548,
-            -20098.857821
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            8353.849045,
-            363.548,
-            -20342.013225
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -8577,50 +7381,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            17509.8,
-            374.745,
-            -29243.3
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            17709.257565,
-            374.745,
-            -29327.761118
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            17426.899323550002,
-            374.745,
-            -29154.8772622
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -8711,71 +7472,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            17685.380783,
-            374.745,
-            -29001.959183
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            17760.709940999997,
-            374.745,
-            -29429.671143
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            17397.004695,
-            374.745,
-            -29486.049294999997
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -8950,50 +7647,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            25659.8,
-            364.118,
-            -37451.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            25607.80862,
-            364.118,
-            -37661.471052999994
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            25734.0618253,
-            364.118,
-            -37355.40704695
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -9084,71 +7738,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            25925.783322999996,
-            364.118,
-            -37586.576913
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            25515.274590999998,
-            364.118,
-            -37728.332543
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            25402.314795,
-            364.118,
-            -37378.046745
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -9323,50 +7913,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            33578.4,
-            405.268,
-            -44221.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            33385.164090000006,
-            405.268,
-            -44319.761545
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            33699.444752999996,
-            405.268,
-            -44215.63342775
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -9457,71 +8004,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "ussr_zsu_57_2",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            33649.454285,
-            405.268,
-            -44511.771154999995
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            33274.110805000004,
-            405.268,
-            -44293.300865000005
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        },
-        {
-          "name": "ussr_zsu_23_4",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            33465.752525,
-            405.268,
-            -43979.082075000006
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "ussr_9a33bm3",
@@ -9696,50 +8179,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -5753.52,
-            373.9,
-            17324.8
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -5964.244044000001,
-            373.9,
-            17274.675955
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -5634.3487351,
-            373.9,
-            17302.679297849998
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -9830,71 +8270,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -5751.989789,
-            373.9,
-            17026.351110999996
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -6066.0705689999995,
-            373.9,
-            17326.293497
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            -5806.465485000001,
-            373.9,
-            17587.186814999997
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -10069,50 +8445,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            2794.28,
-            477.7,
-            8867.88
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            2882.5889810000003,
-            477.7,
-            9065.664044999998
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            2704.2679746500003,
-            477.7,
-            8786.707718849999
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -10203,71 +8536,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            2556.385646,
-            477.7,
-            9048.102875999999
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            2985.4765760000005,
-            477.7,
-            9115.132661999998
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            3034.7987900000003,
-            477.7,
-            8750.40354
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -10442,50 +8711,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            11375.4,
-            318.1,
-            161.06
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            11478.777912,
-            318.1,
-            -29.281701999999996
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            11365.655139,
-            318.1,
-            281.8744299
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -10576,71 +8802,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            11663.107834,
-            318.1,
-            240.42068999999998
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            11455.521745999999,
-            318.1,
-            -141.049938
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            11135.922009999998,
-            318.1,
-            41.47645
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -10815,50 +8977,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            20364.7,
-            303.9,
-            -8565.44
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            20402.406028,
-            303.9,
-            -8778.736271
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            20393.756996300002,
-            303.9,
-            -8447.76754285
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -10949,71 +9068,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            20662.726929,
-            303.9,
-            -8581.378403
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            20344.917805,
-            303.9,
-            -8877.367485
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            20099.664385,
-            303.9,
-            -8602.939195
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -11188,50 +9243,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            28535.4,
-            342.6,
-            -16668.3
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            28320.887556,
-            342.6,
-            -16698.323667
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            28651.9533051,
-            342.6,
-            -16701.56307945
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -11322,71 +9334,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            28508.771733,
-            342.6,
-            -16965.562431
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            28224.383985,
-            342.6,
-            -16637.331345
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            28507.440645000002,
-            342.6,
-            -16402.089014999998
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -11561,50 +9509,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            37250.5,
-            410.6,
-            -25667.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            37039.740754000006,
-            410.6,
-            -25617.424536000002
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            37346.9996687,
-            410.6,
-            -25740.741111000003
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -11695,71 +9600,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            37117.67633,
-            410.6,
-            -25934.667442
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            36971.996246,
-            410.6,
-            -25525.535018
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            37321.18425,
-            410.6,
-            -25409.226130000003
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -11934,50 +9775,7 @@
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "1970": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            45108.0,
-            443.3,
-            -33473.5
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            44963.705838,
-            443.3,
-            -33635.043127000004
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            45218.440147400004,
-            443.3,
-            -33423.55931225
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "nt_assembly_area_tank_factory",
@@ -12068,71 +9866,7 @@
       ]
     },
     "units_by_era": {
-      "1970": [
-        {
-          "name": "us_m42_duster",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            45279.789595,
-            443.3,
-            -33717.553909
-          ],
-          "local_pos": [
-            -215.0,
-            0.0,
-            207.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            44850.645507,
-            443.3,
-            -33650.865831
-          ],
-          "local_pos": [
-            219.0,
-            0.0,
-            223.0
-          ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        },
-        {
-          "name": "us_m163_vulcan",
-          "role": "spaa",
-          "slot_type": "spaa",
-          "preset": "factory_air_defence_preset_1970",
-          "world_pos": [
-            44914.621275,
-            443.3,
-            -33288.419885
-          ],
-          "local_pos": [
-            225.0,
-            0.0,
-            -145.0
-          ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
-          "unplaced": false
-        }
-      ],
+      "1970": [],
       "1980": [
         {
           "name": "germ_flarakpz_1",
@@ -21959,7 +19693,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "ussr_9a33bm3",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -21974,13 +19708,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12500.0,
+          "count": 3,
+          "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -21994,14 +19728,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 2,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22015,14 +19749,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22037,13 +19771,13 @@
             113.0
           ],
           "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22058,13 +19792,13 @@
             137.0
           ],
           "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_57_2",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22078,10 +19812,10 @@
             0.0,
             143.0
           ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -22406,7 +20140,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "ussr_9a33bm3",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22421,13 +20155,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12500.0,
+          "count": 3,
+          "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22441,14 +20175,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 2,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "cn_type_65_aa",
+          "name": "ussr_zsu_23_4",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22462,14 +20196,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22484,13 +20218,13 @@
             113.0
           ],
           "number": 1,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_23_4",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22505,13 +20239,13 @@
             137.0
           ],
           "number": 2,
-          "count": 2,
-          "threat_range": 5000.0,
+          "count": 3,
+          "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "ussr_zsu_57_2",
+          "name": "ussr_9a33bm3",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22525,10 +20259,10 @@
             0.0,
             143.0
           ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "number": 3,
+          "count": 3,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -22853,7 +20587,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "uk_ai_sam_rapier",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22868,13 +20602,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "count": 3,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22888,14 +20622,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
+          "number": 2,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22909,14 +20643,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
+          "number": 3,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22932,12 +20666,12 @@
           ],
           "number": 1,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22953,12 +20687,12 @@
           ],
           "number": 2,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -22974,8 +20708,8 @@
           ],
           "number": 3,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -23300,7 +21034,7 @@
     "units_by_era": {
       "1970": [
         {
-          "name": "uk_ai_sam_rapier",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -23315,13 +21049,13 @@
             -360.0
           ],
           "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "count": 3,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -23335,14 +21069,14 @@
             0.0,
             -360.0
           ],
-          "number": 1,
-          "count": 2,
+          "number": 2,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m42_duster",
+          "name": "us_m163_vulcan",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -23356,14 +21090,14 @@
             0.0,
             -360.0
           ],
-          "number": 2,
-          "count": 2,
+          "number": 3,
+          "count": 3,
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -23379,12 +21113,12 @@
           ],
           "number": 1,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -23400,12 +21134,12 @@
           ],
           "number": 2,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flarakpz_1",
           "role": "spaa",
           "slot_type": "air_def",
           "preset": "airfield_aa_1970",
@@ -23421,8 +21155,8 @@
           ],
           "number": 3,
           "count": 3,
-          "threat_range": null,
-          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
           "unplaced": false
         }
       ],
@@ -27492,29 +25226,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            24759.5,
-            341.966,
-            5750.07
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",
@@ -27610,29 +25322,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            40831.0,
-            454.044,
-            -13352.3
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",
@@ -27728,29 +25418,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            11209.0,
-            620.972,
-            14446.7
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",
@@ -27846,29 +25514,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            53407.2,
-            451.166,
-            -27835.8
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",
@@ -27964,29 +25610,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            61551.3,
-            471.244,
-            6980.25
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",
@@ -28082,29 +25706,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            39088.4,
-            720.412,
-            28787.0
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",
@@ -28200,29 +25802,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            45889.1,
-            549.839,
-            11448.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",
@@ -31999,29 +29579,7 @@
           "unplaced": false
         }
       ],
-      "1980": [
-        {
-          "name": "germ_flarakpz_1",
-          "role": "spaa",
-          "slot_type": "origin",
-          "preset": "aa_cover_germ_flarakpz_1",
-          "world_pos": [
-            -320.012,
-            603.424,
-            22304.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": 12000.0,
-          "template": "tank+nuclear_escalation_spaa_radar_on",
-          "unplaced": false
-        }
-      ],
+      "1980": [],
       "2018": [
         {
           "name": "sw_crotale_ng",

@@ -26,15 +26,6 @@
     "engagement_range": 30000.0,
     "ai_gun_range": null
   },
-  "cn_type_65_aa": {
-    "unit_class": "cn_type_65_aa",
-    "maximum_speed_kph": 75.0,
-    "target_channels": null,
-    "sensors": {},
-    "weapons": [],
-    "engagement_range": null,
-    "ai_gun_range": null
-  },
   "germ_flakpz_1a2_gepard": {
     "unit_class": "germ_flakpz_1a2_Gepard",
     "maximum_speed_kph": 75.0,
@@ -254,49 +245,6 @@
       }
     ],
     "engagement_range": 12000.0,
-    "ai_gun_range": null
-  },
-  "uk_ai_sam_rapier": {
-    "unit_class": "uk_ai_sam_rapier",
-    "maximum_speed_kph": 0.0,
-    "target_channels": null,
-    "sensors": {
-      "detection": {
-        "kind": "detection",
-        "nominal": 11500.0,
-        "maximum": 16000.0,
-        "band": 5,
-        "ai": false,
-        "sensor": "uk_rapier_sr"
-      },
-      "tracking": {
-        "kind": "tracking",
-        "nominal": 12000.0,
-        "maximum": 15000.0,
-        "band": 9,
-        "ai": false,
-        "sensor": "uk_rapier_fr"
-      },
-      "irst": {
-        "kind": "irst",
-        "nominal": 10000.0,
-        "maximum": 12000.0,
-        "band": -1,
-        "ai": false,
-        "sensor": "uk_rapier_fr"
-      }
-    },
-    "weapons": [
-      {
-        "name": "130mm_rapier_launcher_user_cannon",
-        "ammo": 4,
-        "minimum": 30.0,
-        "effective_maximum": 7000.0,
-        "physical_maximum": 7000.0,
-        "guidance": "saclos"
-      }
-    ],
-    "engagement_range": 7000.0,
     "ai_gun_range": null
   },
   "us_ai_aew_radar_tps_59": {
@@ -573,15 +521,6 @@
         "sensor": "su_bmp_auto_target_tracker"
       }
     },
-    "weapons": [],
-    "engagement_range": null,
-    "ai_gun_range": null
-  },
-  "us_m42_duster": {
-    "unit_class": "us_m42_duster",
-    "maximum_speed_kph": 75.0,
-    "target_channels": null,
-    "sensors": {},
     "weapons": [],
     "engagement_range": null,
     "ai_gun_range": null
@@ -868,8 +807,8 @@
     "maximum_speed_kph": 0.0,
     "target_channels": null,
     "sensors": {
-      "detection": {
-        "kind": "detection",
+      "tracking": {
+        "kind": "tracking",
         "nominal": 70000.0,
         "maximum": 120000.0,
         "band": 6,
@@ -1173,15 +1112,6 @@
       }
     ],
     "engagement_range": 5200.0,
-    "ai_gun_range": null
-  },
-  "ussr_zsu_57_2": {
-    "unit_class": "ussr_zsu_57_2",
-    "maximum_speed_kph": 60.0,
-    "target_channels": null,
-    "sensors": {},
-    "weapons": [],
-    "engagement_range": null,
     "ai_gun_range": null
   }
 }
