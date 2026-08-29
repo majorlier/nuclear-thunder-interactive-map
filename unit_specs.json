@@ -525,6 +525,15 @@
     "engagement_range": null,
     "ai_gun_range": null
   },
+  "us_m42_duster": {
+    "unit_class": "us_m42_duster",
+    "maximum_speed_kph": 75.0,
+    "target_channels": null,
+    "sensors": {},
+    "weapons": [],
+    "engagement_range": null,
+    "ai_gun_range": null
+  },
   "us_m48a1_patton_iii": {
     "unit_class": "us_m48a1_patton_III",
     "maximum_speed_kph": 75.0,
@@ -1112,6 +1121,15 @@
       }
     ],
     "engagement_range": 5200.0,
+    "ai_gun_range": null
+  },
+  "ussr_zsu_57_2": {
+    "unit_class": "ussr_zsu_57_2",
+    "maximum_speed_kph": 60.0,
+    "target_channels": null,
+    "sensors": {},
+    "weapons": [],
+    "engagement_range": null,
     "ai_gun_range": null
   }
 }

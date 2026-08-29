@@ -4,11 +4,6 @@
   "accepted_commit": "2a037b3a20184f5eaf50ed72d348ced485cb132c",
   "sources": [
     {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
-      "sha": "f01e0defc8aa9ff70eb5f16643f17b05d25aad89",
-      "used_for_generation": true
-    },
-    {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
       "sha": "d8ea5a029d9af77f57226d006ec86782e953b702",
       "used_for_generation": true
@@ -51,11 +46,16 @@
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
       "sha": "5ad4a2c1f47415870711f41a9ff769de30f02bab",
-      "used_for_generation": false
+      "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
       "sha": "82a8cd60080398f21420e65e2a313004aea3b7bb",
+      "used_for_generation": true
+    },
+    {
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
+      "sha": "f01e0defc8aa9ff70eb5f16643f17b05d25aad89",
       "used_for_generation": false
     },
     {
@@ -72,6 +72,52 @@
       "path": "gui.vromfs.bin_u/reactivegui/hud/scoreboard/nuclearescalation.ui.nut",
       "sha": "a47507368f084e7f02245c8edcaadc7ef9b7fa89",
       "used_for_generation": false
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/dyn_foundation_7m.blkx",
+      "sha": "da43e1324f62944810ea0c16611ef34f1f168c58",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/dyn_sam_site_wide_arragement.blkx",
+      "sha": "1be81ede8b50c693d80267b7abf3b033b521dbbd",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/dynaf_archipelago_a.blkx",
+      "sha": "805ce166da1235dd130aec5f1454d579adb82dad",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/dynaf_archipelago_b.blkx",
+      "sha": "76e9c9d85aeca3b67b8abc424c9095a399f7bb7a",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/dynaf_pg_1line_2000_universal.blkx",
+      "sha": "62ae94222c8384b3921a03a6c1f5de48f95f4ace",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_ammo_factory_foundation.blkx",
+      "sha": "299ccd9f7f5005f640d9929625bc62757b31827e",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_assembly_area_foundation.blkx",
+      "sha": "698c2d9d0d6f86ec3fdcf2b4c5d8e891460f13d7",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_fuel_factory_foundation.blkx",
+      "sha": "4a83d254f53b71a6f6d055550e85b7008648317b",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_stronghold.blkx",
+      "sha": "c1778ab4feb556772302d33487d6e0a3749eea27",
+      "used_for_generation": true
     }
-  ]
+  ],
+  "missing_object_groups": []
 }

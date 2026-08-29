@@ -5,12 +5,6 @@ import os
 from collections import Counter
 
 
-ERAS = {
-    "1970": 0,
-    "1980": 31,
-    "2018": 37,
-}
-
 BUILDING_SLOT_TYPES = {"ammo_storage", "fuel_storage"}
 
 
@@ -193,17 +187,16 @@ class TemplateRegistry:
         return values
 
 
-def config_is_active(config, era_rank):
+def config_is_active(config, rank):
     if not isinstance(config, dict):
         return True
     rank_range = config.get("rankRange")
     if not isinstance(rank_range, list) or len(rank_range) < 2:
         return True
-    return rank_range[0] <= era_rank <= rank_range[1]
+    return rank_range[0] <= rank <= rank_range[1]
 
 
-def active_templates(site, era):
-    era_rank = ERAS[era]
+def active_templates(site, rank):
     active = []
     configs = []
     additional = site.get("additionalEcsTemplates", {})
@@ -213,10 +206,83 @@ def active_templates(site, era):
     for template_name, value in additional.items():
         variants = value if isinstance(value, list) else [value]
         for variant in variants:
-            if config_is_active(variant, era_rank):
+            if config_is_active(variant, rank):
                 active.append(template_name)
                 configs.append(variant if isinstance(variant, dict) else {})
     return active, configs
+
+
+def mission_object_groups(mission):
+    units = mission.get("units", {})
+    if not isinstance(units, dict):
+        return []
+    return [
+        unit
+        for unit in units.get("objectGroups", [])
+        if isinstance(unit, dict)
+    ]
+
+
+def discover_presets(mission):
+    """Create non-overlapping scenario presets from the mission's rank ranges.
+
+    This deliberately does not assume that an event has 1970/1980/2018
+    presets. New boundaries in a future mission become new UI choices without
+    requiring a hand edit here.
+    """
+    ranges = []
+    for site in mission_object_groups(mission):
+        additional = site.get("additionalEcsTemplates", {})
+        if not isinstance(additional, dict):
+            continue
+        for value in additional.values():
+            variants = value if isinstance(value, list) else [value]
+            for variant in variants:
+                rank_range = (
+                    variant.get("rankRange")
+                    if isinstance(variant, dict)
+                    else None
+                )
+                if (
+                    isinstance(rank_range, list)
+                    and len(rank_range) >= 2
+                    and all(isinstance(value, int) for value in rank_range[:2])
+                ):
+                    ranges.append((rank_range[0], rank_range[1]))
+
+    if not ranges:
+        return [{"id": "rank-0-50", "label": "Rank 0–50", "rank": 0, "rank_range": [0, 50]}]
+
+    boundaries = sorted({point for start, end in ranges for point in (start, end + 1)})
+    presets = []
+    for start, next_start in zip(boundaries, boundaries[1:]):
+        end = next_start - 1
+        if not any(range_start <= start <= range_end for range_start, range_end in ranges):
+            continue
+        active_names = []
+        for site in mission_object_groups(mission):
+            names, _ = active_templates(site, start)
+            active_names.extend(names)
+        names_text = " ".join(active_names).lower()
+        year = next(
+            (value for value in ("1970", "1980", "2018") if value in names_text),
+            None,
+        )
+        phase = ""
+        if "early" in names_text:
+            phase = " Early"
+        elif "late" in names_text:
+            phase = " Late"
+        label = f"{year}{phase}" if year else f"Rank {start}–{end}"
+        presets.append(
+            {
+                "id": f"rank-{start}-{end}",
+                "label": label,
+                "rank": start,
+                "rank_range": [start, end],
+            }
+        )
+    return presets
 
 
 def role_for_unit(setting, slot_type):
@@ -425,6 +491,15 @@ def main():
     parser.add_argument("--input", default=".", help="Directory containing BLKX files")
     parser.add_argument("--output", default="map_data.json", help="Output JSON path")
     parser.add_argument(
+        "--mission",
+        required=True,
+        help="Mission BLKX to turn into map data. Template and layout files still come from --input.",
+    )
+    parser.add_argument(
+        "--presets-output",
+        help="Optional JSON file for the dynamically discovered scenario presets.",
+    )
+    parser.add_argument(
         "--layout-cache",
         help="Optional JSON file containing pre-extracted static template layouts",
     )
@@ -458,6 +533,10 @@ def main():
             layouts[filename] = layout
 
     registry = TemplateRegistry(definitions)
+    mission_data = load_json(args.mission)
+    if not isinstance(mission_data, dict):
+        raise SystemExit(f"Invalid mission file: {args.mission}")
+    presets = discover_presets(mission_data)
     sites = []
     source_counts = Counter()
 
@@ -465,57 +544,53 @@ def main():
     # trigger assigns each squad member to one of the named foundation objects.
     all_mission_units = {}
     squad_members = {}
-    for data in documents.values():
-        units_root = data.get("units")
-        if not isinstance(units_root, dict):
+    units_root = mission_data.get("units", {})
+    if not isinstance(units_root, dict):
+        units_root = {}
+    for group_units in units_root.values():
+        if not isinstance(group_units, list):
             continue
-        for group_units in units_root.values():
-            if not isinstance(group_units, list):
+        for unit in group_units:
+            if not isinstance(unit, dict) or not unit.get("name"):
                 continue
-            for unit in group_units:
-                if not isinstance(unit, dict) or not unit.get("name"):
-                    continue
-                all_mission_units[unit["name"]] = unit
-                members = unit.get("props", {}).get("squad_members")
-                if isinstance(members, list):
-                    squad_members[unit["name"]] = members
+            all_mission_units[unit["name"]] = unit
+            members = unit.get("props", {}).get("squad_members")
+            if isinstance(members, list):
+                squad_members[unit["name"]] = members
 
     runtime_positions = {}
-    for data in documents.values():
-        triggers = data.get("triggers")
-        if not isinstance(triggers, dict):
+    triggers = mission_data.get("triggers", {})
+    if not isinstance(triggers, dict):
+        triggers = {}
+    for trigger in triggers.values():
+        if not isinstance(trigger, dict):
             continue
-        for trigger in triggers.values():
-            if not isinstance(trigger, dict):
+        actions = trigger.get("actions", {})
+        if not isinstance(actions, dict):
+            continue
+        spawn_actions = actions.get("unitSpawnOnObjectGroup", [])
+        if isinstance(spawn_actions, dict):
+            spawn_actions = [spawn_actions]
+        if not isinstance(spawn_actions, list):
+            continue
+        for action in spawn_actions:
+            if not isinstance(action, dict):
                 continue
-            actions = trigger.get("actions", {})
-            if not isinstance(actions, dict):
-                continue
-            spawn_actions = actions.get("unitSpawnOnObjectGroup", [])
-            if isinstance(spawn_actions, dict):
-                spawn_actions = [spawn_actions]
-            if not isinstance(spawn_actions, list):
-                continue
-            for action in spawn_actions:
-                if not isinstance(action, dict):
-                    continue
-                members = squad_members.get(action.get("object"), [])
-                targets = action.get("target", [])
-                if isinstance(targets, str):
-                    targets = [targets]
-                for member_name, target_name in zip(members, targets):
-                    target = all_mission_units.get(target_name)
-                    if target and is_matrix(target.get("tm")):
-                        runtime_positions[member_name] = target["tm"][3][:3]
+            members = squad_members.get(action.get("object"), [])
+            targets = action.get("target", [])
+            if isinstance(targets, str):
+                targets = [targets]
+            for member_name, target_name in zip(members, targets):
+                target = all_mission_units.get(target_name)
+                if target and is_matrix(target.get("tm")):
+                    runtime_positions[member_name] = target["tm"][3][:3]
 
     # MLRS/TBM editor transforms are off-map holding positions. The mission
     # respawns each vehicle randomly inside its named 600 m sphere; use the
     # sphere centre as the honest representative marker position.
-    all_areas = {}
-    for data in documents.values():
-        areas = data.get("areas")
-        if isinstance(areas, dict):
-            all_areas.update(areas)
+    all_areas = mission_data.get("areas", {})
+    if not isinstance(all_areas, dict):
+        all_areas = {}
     for unit_name in all_mission_units:
         if "_mlrs_" in unit_name:
             spawn_area_name = unit_name.replace("_mlrs_", "_mlrs_spawn_area_")
@@ -529,14 +604,10 @@ def main():
         if isinstance(area, dict) and is_matrix(area.get("tm")):
             runtime_positions[unit_name] = area["tm"][3][:3]
 
-    for document_name, data in documents.items():
-        units_root = data.get("units")
-        if not isinstance(units_root, dict):
+    for source_group, group_units in units_root.items():
+        if not isinstance(group_units, list):
             continue
-        for source_group, group_units in units_root.items():
-            if not isinstance(group_units, list):
-                continue
-            for raw_site in group_units:
+        for raw_site in group_units:
                 if (
                     not isinstance(raw_site, dict)
                     or not raw_site.get("unit_class")
@@ -585,25 +656,27 @@ def main():
                         }
                     )
 
-                for era in ERAS:
+                for preset in presets:
+                    preset_id = preset["id"]
+                    preset_rank = preset["rank"]
                     if source_group in {"tankModels", "ships"}:
-                        output_site["buildings_by_era"][era] = []
-                        output_site["units_by_era"][era] = (
+                        output_site["buildings_by_era"][preset_id] = []
+                        output_site["units_by_era"][preset_id] = (
                             []
-                            if era == "1970" and "_mlrs_" in site.get("name", "")
+                            if preset_rank <= 30 and "_mlrs_" in site.get("name", "")
                             else [direct_unit(site)]
                         )
                         continue
 
-                    template_names, configs = active_templates(site, era)
+                    template_names, configs = active_templates(site, preset_rank)
                     buildings, building_slot_ids = create_buildings(
                         site, layout, template_names, configs, registry
                     )
                     settings = registry.unit_settings(
                         template_names, output_site["team"]
                     )
-                    output_site["buildings_by_era"][era] = buildings
-                    output_site["units_by_era"][era] = place_spawned_units(
+                    output_site["buildings_by_era"][preset_id] = buildings
+                    output_site["units_by_era"][preset_id] = place_spawned_units(
                         site, layout, settings, building_slot_ids
                     )
 
@@ -615,18 +688,23 @@ def main():
     with open(output_path, "w", encoding="utf-8") as destination:
         json.dump(sites, destination, indent=2)
 
+    if args.presets_output:
+        with open(args.presets_output, "w", encoding="utf-8") as destination:
+            json.dump(presets, destination, indent=2)
+
     print(f"Loaded {len(documents)} BLK/BLKX files and {len(layouts)} layouts.")
     print(f"Extracted {len(sites)} mission objects: {dict(source_counts)}")
-    for era in ERAS:
-        unit_count = sum(len(site["units_by_era"][era]) for site in sites)
-        building_count = sum(len(site["buildings_by_era"][era]) for site in sites)
+    for preset in presets:
+        preset_id = preset["id"]
+        unit_count = sum(len(site["units_by_era"][preset_id]) for site in sites)
+        building_count = sum(len(site["buildings_by_era"][preset_id]) for site in sites)
         unplaced_count = sum(
             unit.get("unplaced", False)
             for site in sites
-            for unit in site["units_by_era"][era]
+            for unit in site["units_by_era"][preset_id]
         )
         print(
-            f"{era}: {unit_count} actual units, {building_count} buildings, "
+            f"{preset['label']} ({preset_id}): {unit_count} actual units, {building_count} buildings, "
             f"{unplaced_count} overflow placements"
         )
     print(f"Saved {output_path}")

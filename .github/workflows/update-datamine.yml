@@ -27,6 +27,9 @@ jobs:
       - name: Validate the result
         run: python tools/validate_data.py
 
+      - name: Summarize detected changes
+        run: cat datamine-update-report.md >> "$GITHUB_STEP_SUMMARY"
+
       - name: Open or refresh a draft update proposal
         if: steps.datamine.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8.1.1
@@ -36,15 +39,19 @@ jobs:
           delete-branch: true
           draft: true
           commit-message: "Update Nuclear Escalation data from datamine"
-          title: "Datamine update: Nuclear Escalation event data"
+          title: "Datamine update: Nuclear Escalation map data"
           body: |
             The public War Thunder datamine changed, so the map data was regenerated automatically.
 
             - Upstream commit: `${{ steps.datamine.outputs.datamine_commit }}`
             - Data validation passed before this proposal was opened.
+            - The workflow summary lists detected scenario, placement, and loadout changes.
             - This is a draft: preview and review it before merging.
           add-paths: |
             map_data.json
+            map_data_mirror.json
             mission_logic.json
+            mission_logic_mirror.json
+            presets.json
             unit_specs.json
             datamine-lock.json
