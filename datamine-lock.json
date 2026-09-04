@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "2a037b3a20184f5eaf50ed72d348ced485cb132c",
+  "accepted_commit": "fe43b1bea2e9432c6ca62e6917d4ae67478db5fa",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
