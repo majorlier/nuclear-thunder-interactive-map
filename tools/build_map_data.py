@@ -212,6 +212,90 @@ def active_templates(site, rank):
     return active, configs
 
 
+def import_document_name(import_record):
+    """Translate a mission import path into the downloaded input filename."""
+    path = import_record.get("file", "") if isinstance(import_record, dict) else ""
+    return os.path.splitext(os.path.basename(path))[0]
+
+
+def imported_mission_units(document, documents, rank):
+    """Resolve rank-selected mission imports that contribute concrete units.
+
+    Nuclear Escalation now keeps the era-specific ship definitions in imported
+    files.  The mission still owns each ship's patrol waypoints, so imports are
+    resolved here instead of treating their zero-coordinate editor placeholders
+    as real positions.
+    """
+    imported = []
+    visited = set()
+
+    def visit(current, include_units=False):
+        if not isinstance(current, dict):
+            return
+        marker = id(current)
+        if marker in visited:
+            return
+        visited.add(marker)
+
+        if include_units:
+            units = current.get("units", {})
+            if isinstance(units, dict):
+                for source_group, group_units in units.items():
+                    if not isinstance(group_units, list):
+                        continue
+                    for unit in group_units:
+                        if isinstance(unit, dict) and unit.get("unit_class"):
+                            imported.append((source_group, dict(unit)))
+
+        imports = current.get("imports", {})
+        records = imports.get("import_record", []) if isinstance(imports, dict) else []
+        if isinstance(records, dict):
+            records = [records]
+        if not isinstance(records, list):
+            return
+        for record in records:
+            if not isinstance(record, dict) or not config_is_active(record, rank):
+                continue
+            child = documents.get(import_document_name(record))
+            if child is None:
+                continue
+            visit(child, include_units or bool(record.get("importUnits")))
+
+    visit(document)
+    return imported
+
+
+def ship_with_mission_route(site, mission):
+    """Attach the mission-owned route and a real initial location to a ship."""
+    if site.get("_source_group") != "ships" or site.get("way"):
+        return site
+    name = site.get("name", "")
+    waypoints = mission.get("wayPoints", {})
+    route = waypoints.get(f"{name}_waypoints") if isinstance(waypoints, dict) else None
+    if not isinstance(route, dict):
+        # Imported fleet templates deliberately use a zero transform.  A ship
+        # without its matching mission waypoint is a formation member whose
+        # actual placement is resolved in-game, so it must not become a marker
+        # at the centre of the web map.
+        return None
+    way = route.get("way", {})
+    if not isinstance(way, dict) or not way:
+        return None
+    first_waypoint = next(
+        (item for item in way.values() if isinstance(item, dict) and is_matrix(item.get("tm"))),
+        None,
+    )
+    if not first_waypoint:
+        return None
+    resolved = dict(site)
+    resolved["tm"] = first_waypoint["tm"]
+    resolved["way"] = way
+    resolved["closed_waypoints"] = bool(route.get("closed_waypoints"))
+    resolved["isShipSpline"] = bool(route.get("isShipSpline"))
+    resolved["shipTurnRadius"] = route.get("shipTurnRadius")
+    return resolved
+
+
 def mission_object_groups(mission):
     units = mission.get("units", {})
     if not isinstance(units, dict):
@@ -282,6 +366,17 @@ def discover_presets(mission):
                 "rank_range": [start, end],
             }
         )
+
+    # A later internal split can retain the same year name (for example the
+    # two current 2018 selections).  Keep the UI choices unambiguous without
+    # presenting the internal rank numbers as if they were BRs.
+    label_counts = Counter(preset["label"] for preset in presets)
+    label_indices = Counter()
+    for preset in presets:
+        label = preset["label"]
+        if label_counts[label] > 1:
+            label_indices[label] += 1
+            preset["label"] = f"{label} {label_indices[label]}"
     return presets
 
 
@@ -604,7 +699,18 @@ def main():
         if isinstance(area, dict) and is_matrix(area.get("tm")):
             runtime_positions[unit_name] = area["tm"][3][:3]
 
-    for source_group, group_units in units_root.items():
+    direct_groups = [
+        (source_group, group_units)
+        for source_group, group_units in units_root.items()
+    ]
+    imported_by_group = {}
+    for preset in presets:
+        for source_group, unit in imported_mission_units(
+            mission_data, documents, preset["rank"]
+        ):
+            imported_by_group.setdefault(source_group, {})[unit.get("name", "")] = unit
+
+    for source_group, group_units in direct_groups:
         if not isinstance(group_units, list):
             continue
         for raw_site in group_units:
@@ -681,6 +787,57 @@ def main():
                     )
 
                 sites.append(output_site)
+
+    # Imported ships are selected by rank, so create one site per ship name and
+    # populate its per-era unit list with the selected 1970 or 1980 definition.
+    for source_group, named_units in imported_by_group.items():
+        if source_group != "ships":
+            continue
+        for site_name in sorted(named_units):
+            output_site = None
+            for preset in presets:
+                matching = {
+                    unit.get("name"): unit
+                    for group, unit in imported_mission_units(
+                        mission_data, documents, preset["rank"]
+                    )
+                    if group == source_group and unit.get("name") == site_name
+                }
+                raw_site = matching.get(site_name)
+                if raw_site is None:
+                    continue
+                site = ship_with_mission_route(
+                    {**raw_site, "_source_group": source_group}, mission_data
+                )
+                if site is None or not is_matrix(site.get("tm")):
+                    continue
+                # A few imported formation definitions expose a syntactically
+                # valid, but zeroed, matrix even though no mission route was
+                # resolved for them.  The game places those escorts relative
+                # to their formation at runtime; displaying them at world
+                # origin is demonstrably wrong.
+                if not any(float(value) for value in site["tm"][3][:3]):
+                    continue
+                if output_site is None:
+                    source_counts[source_group] += 1
+                    output_site = {
+                        "name": site_name,
+                        "unit_class": site["unit_class"],
+                        "team": site.get("props", {}).get("army"),
+                        "source_group": source_group,
+                        "world_pos": site["tm"][3][:3],
+                        "editor_world_pos": site["tm"][3][:3],
+                        "runtime_relocated": True,
+                        "runtime_position_kind": "ship_route_start",
+                        "tm": site["tm"],
+                        "runways": [],
+                        "route": extract_route(site),
+                        "buildings_by_era": {},
+                        "units_by_era": {},
+                    }
+                    sites.append(output_site)
+                output_site["buildings_by_era"][preset["id"]] = []
+                output_site["units_by_era"][preset["id"]] = [direct_unit(site)]
 
     output_path = args.output
     if not os.path.isabs(output_path):

@@ -32,7 +32,208 @@
             font-size: 13px;
             line-height: 1.45;
             backdrop-filter: blur(5px);
+            transition: transform 180ms ease;
         }
+
+        .info-panel.is-collapsed {
+            transform: translateX(calc(-100% - 8px));
+        }
+
+        .drawer-toggle {
+            position: absolute;
+            top: 10px;
+            right: -34px;
+            width: 30px;
+            height: 34px;
+            padding: 0;
+            border: 1px solid #4a5568;
+            border-radius: 0 6px 6px 0;
+            color: #e2e8f0;
+            background: rgba(15, 17, 26, 0.96);
+            cursor: pointer;
+            font: 18px/1 sans-serif;
+        }
+
+        .composition-window {
+            position: absolute;
+            left: 10px;
+            z-index: 1000;
+            width: min(360px, calc(100vw - 70px));
+            padding: 10px 12px;
+            border: 1px solid #3b4252;
+            border-radius: 8px;
+            background: rgba(15, 17, 26, 0.94);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+            transition: transform 180ms ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .composition-window.is-collapsed {
+            transform: translateX(calc(-100% - 8px));
+        }
+
+        .composition-panel {
+            width: 100%;
+            max-height: 48vh;
+            overflow-y: auto;
+            padding: 8px 2px 2px;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .composition-drawer {
+            margin: 0;
+        }
+
+        .composition-drawer > summary {
+            cursor: pointer;
+            color: #e2e8f0;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .composition-panel h2 {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .composition-panel > p {
+            margin: 3px 0 10px;
+            color: #a0aec0;
+        }
+
+        .composition-section + .composition-section { margin-top: 9px; }
+
+        .composition-section-title {
+            margin: 0 0 4px;
+            color: #a0aec0;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .composition-site {
+            margin: 4px 0;
+            border: 1px solid #3b4252;
+            border-radius: 5px;
+            background: #171c27;
+        }
+
+        .composition-site summary {
+            padding: 6px 7px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .composition-site summary::marker { color: #90cdf4; }
+        .composition-site.team-1 summary { color: #fc8181; }
+        .composition-site.team-2 summary { color: #90cdf4; }
+
+        .composition-site-description {
+            margin: 0;
+            padding: 0 7px 6px;
+            color: #cbd5e0;
+        }
+
+        .vehicle-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+            gap: 6px;
+            padding: 0 7px 8px;
+        }
+
+        .vehicle-card {
+            overflow: hidden;
+            border: 1px solid #4a5568;
+            border-top: 3px solid #90cdf4;
+            border-radius: 5px;
+            color: #edf2f7;
+            background: linear-gradient(145deg, #2a3140, #151a23);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+        }
+
+        .vehicle-card.team-1 { border-top-color: #fc8181; }
+        .vehicle-card-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 7px 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .vehicle-card-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .vehicle-card-count {
+            margin-left: auto;
+            color: #f6e05e;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .vehicle-card-role {
+            padding: 0 7px 5px;
+            color: #a0aec0;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .vehicle-card-stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1px;
+            border-top: 1px solid #3b4252;
+            background: #11151d;
+        }
+
+        .vehicle-card-stat {
+            min-width: 0;
+            padding: 5px 6px;
+            color: #cbd5e0;
+            font-size: 10px;
+        }
+
+        .vehicle-card-stat b {
+            display: block;
+            overflow: hidden;
+            color: #f7fafc;
+            font-size: 11px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .vehicle-card-weapons {
+            margin: 0;
+            padding: 6px 7px 7px;
+            border-top: 1px solid #3b4252;
+            color: #cbd5e0;
+            font-size: 10px;
+        }
+
+        .vehicle-card-weapons strong { color: #f6e05e; }
+
+        .leaflet-popup-content-wrapper {
+            max-width: min(350px, calc(100vw - 35px));
+            padding: 0;
+            border: 1px solid #4a5568;
+            border-radius: 6px;
+            color: #edf2f7;
+            background: #151a23;
+        }
+
+        .leaflet-popup-content { margin: 0; min-width: 240px; }
+        .leaflet-popup-tip { background: #151a23; }
+        .leaflet-popup-content .vehicle-card { border: 0; border-top: 3px solid #90cdf4; border-radius: 5px; }
+        .leaflet-popup-content .vehicle-card.team-1 { border-top-color: #fc8181; }
 
         .title { font-size: 15px; font-weight: 700; }
         #status { display: block; margin-top: 4px; color: #f6ad55; }
@@ -44,30 +245,62 @@
             border-top: 1px solid #3b4252;
         }
 
-        #scenario-options {
+        .map-selector {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .selector-heading {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #a0aec0;
+        }
+
+        #map-options {
             display: flex;
-            flex-direction: column;
             gap: 4px;
             width: 100%;
         }
 
-        .era-selector label {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 4px 8px;
+        .map-selector label {
+            flex: 1 1 0;
+            padding: 4px 7px;
             border: 1px solid #4a5568;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: 700;
+            text-align: center;
         }
 
-        .scenario-name {
-            display: inline-flex;
+        .map-selector label:has(input:checked) {
+            color: #0f111a;
+            border-color: #63b3ed;
+            background: #63b3ed;
+        }
+
+        .map-selector input { margin: 0 4px 0 0; }
+
+        .scenario-select-row {
+            display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 7px;
+            width: 100%;
+        }
+
+        #scenario-options {
             min-width: 0;
-            font-weight: 700;
+            flex: 1 1 auto;
+            padding: 4px 8px;
+            border: 1px solid #4a5568;
+            border-radius: 5px;
+            color: #edf2f7;
+            background: #202734;
+            cursor: pointer;
+            font: 700 13px/1.3 Inter, ui-sans-serif, system-ui, sans-serif;
         }
 
         .scenario-brackets {
@@ -83,18 +316,6 @@
             color: #f6ad55;
             font-style: italic;
         }
-
-        .era-selector label:has(input:checked) {
-            color: #0f111a;
-            border-color: #63b3ed;
-            background: #63b3ed;
-        }
-
-        .era-selector label:has(input:checked) .scenario-brackets {
-            color: #0f111a;
-        }
-
-        .era-selector input { margin: 0; }
 
         .team-swap {
             margin-top: 7px;
@@ -112,6 +333,12 @@
         .team-swap:hover {
             border-color: #f6e05e;
             color: #fffaf0;
+        }
+
+        .team-swap:disabled {
+            border-color: #3b4252;
+            color: #718096;
+            cursor: not-allowed;
         }
 
         .range-disclaimer-control {
@@ -196,6 +423,30 @@
             background: rgba(15, 17, 26, 0.96);
             box-shadow: 0 3px 14px rgba(0, 0, 0, 0.55);
             font: 12px/1.35 Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .layers-drawer {
+            position: relative;
+            transition: transform 180ms ease;
+        }
+
+        .layers-drawer.is-collapsed {
+            transform: translateX(calc(100% - 29px));
+        }
+
+        .layers-drawer-toggle {
+            position: absolute;
+            top: 10px;
+            left: -29px;
+            width: 30px;
+            height: 34px;
+            padding: 0;
+            border: 1px solid #4a5568;
+            border-radius: 6px 0 0 6px;
+            color: #e2e8f0;
+            background: rgba(15, 17, 26, 0.96);
+            cursor: pointer;
+            font: 18px/1 sans-serif;
         }
 
         .grouped-layers details + details {
@@ -377,6 +628,107 @@
         .terrain-readout {
             min-width: 220px;
         }
+
+        .map-tools-control {
+            width: 250px;
+            padding: 8px;
+            border: 1px solid #4a5568;
+            border-radius: 6px;
+            color: #edf2f7;
+            background: rgba(15, 17, 26, 0.94);
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.48);
+            font: 11px/1.35 Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .leaflet-bottom.leaflet-left .map-tools-control {
+            margin-left: 370px;
+        }
+
+        .map-tools-control strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 11px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .map-tools-actions { display: flex; gap: 5px; }
+
+        .map-tools-actions button {
+            flex: 1 1 auto;
+            padding: 5px 6px;
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            color: #e2e8f0;
+            background: #202734;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+        }
+
+        .map-tools-actions button[aria-pressed="true"] {
+            border-color: #90cdf4;
+            color: #0f111a;
+            background: #90cdf4;
+        }
+
+        .map-tools-status {
+            min-height: 16px;
+            margin-top: 5px;
+            color: #a0aec0;
+        }
+
+        .brush-options {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 5px 8px;
+            margin-top: 7px;
+            padding-top: 7px;
+            border-top: 1px solid #3b4252;
+        }
+
+        .brush-options[hidden] { display: none; }
+
+        .brush-options label {
+            display: contents;
+        }
+
+        .brush-options span {
+            color: #a0aec0;
+            font-weight: 700;
+        }
+
+        .brush-options select,
+        .brush-options input[type="range"] {
+            width: 100%;
+            accent-color: #90cdf4;
+        }
+
+        .brush-options select {
+            padding: 3px 5px;
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            color: #edf2f7;
+            background: #202734;
+            font: inherit;
+        }
+
+        .ruler-waypoint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 23px;
+            height: 23px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            color: #0f111a;
+            background: #90cdf4;
+            box-shadow: 0 1px 3px rgba(0,0,0,.75);
+            font: 800 11px/1 Inter, sans-serif;
+        }
+
+        .ruler-waypoint { background: #f6e05e; }
 
         .terrain-legend {
             display: none;
@@ -1120,6 +1472,10 @@
         }
 
         @media (max-width: 620px) {
+            .leaflet-bottom.leaflet-left .map-tools-control {
+                margin-left: 10px;
+            }
+
             .guide-ticket-board {
                 top: 8px;
                 width: calc(100vw - 18px);
@@ -1167,8 +1523,19 @@
     <div class="title">War Thunder Map Visualizer</div>
     <span id="status">Loading map data…</span>
 
+    <div class="map-selector" id="map-selector">
+        <span class="selector-heading">Map</span>
+        <span id="map-options">Loading maps…</span>
+    </div>
+
     <div class="era-selector" id="scenario-selector">
-        <span id="scenario-options">Loading scenarios…</span>
+        <span class="selector-heading">Scenario</span>
+        <div class="scenario-select-row">
+            <select id="scenario-options" aria-label="Scenario" disabled>
+                <option>Loading scenarios…</option>
+            </select>
+            <span id="scenario-brackets" class="scenario-brackets"></span>
+        </div>
     </div>
 
     <button id="team-swap" class="team-swap" type="button" aria-pressed="false">
@@ -1187,6 +1554,18 @@
         </button>
     </div>
 </div>
+
+<aside id="composition-window" class="composition-window">
+    <button id="composition-window-toggle" class="drawer-toggle" type="button"
+        aria-label="Collapse composition" aria-expanded="true">‹</button>
+    <details class="composition-drawer" open>
+        <summary>Scenario composition and vehicle cards</summary>
+        <section id="composition-panel" class="composition-panel" aria-live="polite">
+            <h2>Scenario composition</h2>
+            <p>Loading unit layouts…</p>
+        </section>
+    </details>
+</aside>
 
 <div id="map"></div>
 
@@ -1243,21 +1622,62 @@
     const MAP_IMAGE = "map_4k.png";
     const TOPOGRAPHIC_IMAGE = "topographic_map.webp";
     const TERRAIN_HEIGHT_IMAGE = "terrain_height_8bit.png";
-    const MAP_SPAN = 262144;
-    const HALF_SPAN = MAP_SPAN / 2;
     const IMG_SIZE = 4096;
-    const WORLD_METERS_PER_MAP_UNIT = MAP_SPAN / IMG_SIZE;
     const TERRAIN_ENCODED_MIN = -149;
     const TERRAIN_ENCODED_RANGE = 5120;
+    const CITY_MAP_IMAGE = "air_south_eastern_city_map.png";
+    const MAP_DEFINITIONS = {
+        archipelago: {
+            id: "archipelago",
+            label: "Air Archipelago",
+            image: MAP_IMAGE,
+            variants: ["standard", "mirror"],
+            defaultVariant: "standard",
+            supportsTeamSwap: true,
+            supportsTerrain: true,
+            supportsRoads: true,
+            guideAvailable: true,
+            mapCoord0: [-131072, -131072],
+            mapCoord1: [131072, 131072]
+        },
+        city: {
+            id: "city",
+            label: "South Eastern City",
+            image: CITY_MAP_IMAGE,
+            variants: ["city"],
+            defaultVariant: "city",
+            supportsTeamSwap: false,
+            supportsTerrain: false,
+            supportsRoads: false,
+            guideAvailable: false,
+            // From air_south_eastern_city.blkx: this map is half the width
+            // of Air Archipelago, not a 262 km square.
+            mapCoord0: [-65536, -65536],
+            mapCoord1: [65536, 65536]
+        }
+    };
+    const mapSelectionStorageKey = "nuclear-thunder-map-selection";
+    let currentMapId = sessionStorage.getItem(mapSelectionStorageKey) || "archipelago";
+    if (!MAP_DEFINITIONS[currentMapId]) currentMapId = "archipelago";
+
+    function activeMapDefinition() {
+        return MAP_DEFINITIONS[currentMapId] || MAP_DEFINITIONS.archipelago;
+    }
 
     function worldToLatLng(x, z) {
-        const px = (x + HALF_SPAN) / MAP_SPAN * IMG_SIZE;
-        const py = (HALF_SPAN + z) / MAP_SPAN * IMG_SIZE;
+        const definition = activeMapDefinition();
+        const [minX, minZ] = definition.mapCoord0;
+        const [maxX, maxZ] = definition.mapCoord1;
+        const px = (x - minX) / (maxX - minX) * IMG_SIZE;
+        const py = (z - minZ) / (maxZ - minZ) * IMG_SIZE;
         return [py, px];
     }
 
     function worldRadiusToMapRadius(radiusMeters) {
-        return radiusMeters / WORLD_METERS_PER_MAP_UNIT;
+        const definition = activeMapDefinition();
+        return radiusMeters / (
+            (definition.mapCoord1[0] - definition.mapCoord0[0]) / IMG_SIZE
+        );
     }
 
     function escapeHtml(value) {
@@ -1283,7 +1703,44 @@
         zoomControl: false
     });
 
-    const standardMapLayer = L.imageOverlay(MAP_IMAGE, bounds).addTo(map);
+    const infoPanel = document.querySelector(".info-panel");
+    const infoDrawerToggle = document.createElement("button");
+    infoDrawerToggle.type = "button";
+    infoDrawerToggle.className = "drawer-toggle";
+    infoDrawerToggle.setAttribute("aria-label", "Collapse left controls");
+    infoDrawerToggle.setAttribute("aria-expanded", "true");
+    infoDrawerToggle.textContent = "‹";
+    infoDrawerToggle.addEventListener("click", () => {
+        const collapsed = infoPanel.classList.toggle("is-collapsed");
+        infoDrawerToggle.textContent = collapsed ? "›" : "‹";
+        infoDrawerToggle.setAttribute("aria-expanded", String(!collapsed));
+        infoDrawerToggle.setAttribute(
+            "aria-label",
+            collapsed ? "Expand left controls" : "Collapse left controls"
+        );
+    });
+    infoPanel.appendChild(infoDrawerToggle);
+
+    const compositionWindow = document.getElementById("composition-window");
+    const compositionWindowToggle = document.getElementById("composition-window-toggle");
+    function positionCompositionWindow() {
+        if (!compositionWindow) return;
+        compositionWindow.style.top = `${infoPanel.offsetTop + infoPanel.offsetHeight + 10}px`;
+    }
+    compositionWindowToggle.addEventListener("click", () => {
+        const collapsed = compositionWindow.classList.toggle("is-collapsed");
+        compositionWindowToggle.textContent = collapsed ? "›" : "‹";
+        compositionWindowToggle.setAttribute("aria-expanded", String(!collapsed));
+        compositionWindowToggle.setAttribute(
+            "aria-label",
+            collapsed ? "Expand composition" : "Collapse composition"
+        );
+    });
+    new ResizeObserver(positionCompositionWindow).observe(infoPanel);
+    window.addEventListener("resize", positionCompositionWindow);
+    positionCompositionWindow();
+
+    const standardMapLayer = L.imageOverlay(activeMapDefinition().image, bounds).addTo(map);
     const topographicMapLayer = L.imageOverlay(
         TOPOGRAPHIC_IMAGE,
         bounds
@@ -1339,7 +1796,7 @@
     function refreshTerrainLegend() {
         terrainLegendElement?.classList.toggle(
             "visible",
-            map.hasLayer(topographicMapLayer)
+            activeMapDefinition().supportsTerrain && map.hasLayer(topographicMapLayer)
         );
     }
 
@@ -1358,8 +1815,16 @@
             terrainReadoutElement.textContent = "Outside terrain grid";
             return;
         }
-        const worldX = mapX * WORLD_METERS_PER_MAP_UNIT - HALF_SPAN;
-        const worldZ = mapY * WORLD_METERS_PER_MAP_UNIT - HALF_SPAN;
+        const definition = activeMapDefinition();
+        const [minX, minZ] = definition.mapCoord0;
+        const [maxX, maxZ] = definition.mapCoord1;
+        const worldX = minX + mapX / IMG_SIZE * (maxX - minX);
+        const worldZ = minZ + mapY / IMG_SIZE * (maxZ - minZ);
+        if (!activeMapDefinition().supportsTerrain) {
+            terrainReadoutElement.textContent =
+                `Terrain data is not extracted for this map · X ${worldX.toFixed(0)} m · Z ${worldZ.toFixed(0)} m`;
+            return;
+        }
         if (!terrainReadoutReady) {
             terrainReadoutElement.textContent =
                 `X ${worldX.toFixed(0)} m · Z ${worldZ.toFixed(0)} m`;
@@ -1429,10 +1894,229 @@
     };
     rangeDisclaimerControl.addTo(map);
 
-    map.on("click", () => {
+    const planningLayers = {
+        ruler: L.layerGroup().addTo(map),
+        flight: L.layerGroup().addTo(map)
+    };
+    const planningPoints = { ruler: [] };
+    const flightStrokes = [];
+    let flightCurrentStroke = null;
+    let flightBrushColor = "#90cdf4";
+    let flightBrushSize = 5;
+    let activeMapTool = null;
+    let mapToolsStatus;
+    let rulerToolButton;
+    let flightToolButton;
+    let flightBrushOptions;
+
+    function mapLatLngToWorld(latlng) {
+        const definition = activeMapDefinition();
+        const [minX, minZ] = definition.mapCoord0;
+        const [maxX, maxZ] = definition.mapCoord1;
+        return [
+            minX + latlng.lng / IMG_SIZE * (maxX - minX),
+            minZ + latlng.lat / IMG_SIZE * (maxZ - minZ)
+        ];
+    }
+
+    function planningDistance(points) {
+        return points.slice(1).reduce((total, point, index) => {
+            const [startX, startZ] = mapLatLngToWorld(points[index]);
+            const [endX, endZ] = mapLatLngToWorld(point);
+            return total + Math.hypot(endX - startX, endZ - startZ);
+        }, 0);
+    }
+
+    function planningMarker(number) {
+        return L.divIcon({
+            className: "",
+            html: `<span class="ruler-waypoint">${number}</span>`,
+            iconSize: [23, 23],
+            iconAnchor: [11.5, 11.5]
+        });
+    }
+
+    function renderRuler() {
+        const points = planningPoints.ruler;
+        const layer = planningLayers.ruler;
+        layer.clearLayers();
+        if (points.length > 1) {
+            L.polyline(points, {
+                color: "#f6e05e",
+                weight: 3,
+                opacity: 0.95,
+                dashArray: "6, 5"
+            }).addTo(layer);
+        }
+        points.forEach((point, index) => {
+            L.marker(point, {
+                icon: planningMarker(index + 1),
+                interactive: false,
+                keyboard: false
+            }).addTo(layer);
+        });
+    }
+
+    function renderFlightBrush() {
+        const strokes = flightCurrentStroke
+            ? [...flightStrokes, flightCurrentStroke]
+            : flightStrokes;
+        planningLayers.flight.clearLayers();
+        strokes.forEach(stroke => {
+            if (stroke.points.length < 2) return;
+            L.polyline(stroke.points, {
+                color: stroke.color,
+                weight: stroke.size,
+                opacity: 0.9,
+                lineCap: "round",
+                lineJoin: "round",
+                smoothFactor: 1.2,
+                interactive: false
+            }).addTo(planningLayers.flight);
+        });
+    }
+
+    function updateMapToolsUi() {
+        rulerToolButton?.setAttribute(
+            "aria-pressed", String(activeMapTool === "ruler")
+        );
+        flightToolButton?.setAttribute(
+            "aria-pressed", String(activeMapTool === "flight")
+        );
+        if (!mapToolsStatus) return;
+        if (activeMapTool === "ruler") {
+            const points = planningPoints.ruler;
+            mapToolsStatus.textContent = points.length
+                ? `Ruler: ${points.length} points · ${formatDistance(planningDistance(points))}. Click map to add.`
+                : "Ruler active — click the map to add points.";
+        } else if (activeMapTool === "flight") {
+            mapToolsStatus.textContent = flightStrokes.length
+                ? `Flight brush: ${flightStrokes.length} stroke${flightStrokes.length === 1 ? "" : "s"}. Drag on the map to add.`
+                : "Flight brush active — drag on the map to draw a route.";
+        } else {
+            mapToolsStatus.textContent = "Choose a tool, then click on the map.";
+        }
+        if (flightBrushOptions) {
+            flightBrushOptions.hidden = activeMapTool !== "flight";
+        }
+    }
+
+    function setActiveMapTool(tool) {
+        activeMapTool = activeMapTool === tool ? null : tool;
+        if (activeMapTool) {
+            map.doubleClickZoom.disable();
+        } else {
+            map.doubleClickZoom.enable();
+        }
+        map.getContainer().style.cursor = activeMapTool === "flight" ? "crosshair" : "";
+        updateMapToolsUi();
+    }
+
+    function clearPlanningTools() {
+        planningPoints.ruler = [];
+        flightStrokes.length = 0;
+        flightCurrentStroke = null;
+        planningLayers.ruler.clearLayers();
+        planningLayers.flight.clearLayers();
+        updateMapToolsUi();
+    }
+
+    function addPlanningPoint(latlng) {
+        if (activeMapTool !== "ruler") return false;
+        planningPoints.ruler.push(latlng);
+        renderRuler();
+        updateMapToolsUi();
+        return true;
+    }
+
+    function finishFlightStroke() {
+        if (!flightCurrentStroke) return;
+        if (flightCurrentStroke.points.length > 1) {
+            flightStrokes.push(flightCurrentStroke);
+        }
+        flightCurrentStroke = null;
+        map.dragging.enable();
+        renderFlightBrush();
+        updateMapToolsUi();
+    }
+
+    const mapToolsControl = L.control({ position: "bottomleft" });
+    mapToolsControl.onAdd = () => {
+        const element = L.DomUtil.create("section", "map-tools-control");
+        element.innerHTML = `
+            <strong>Map tools</strong>
+            <div class="map-tools-actions">
+                <button type="button" data-tool="ruler" aria-pressed="false">Measure</button>
+                <button type="button" data-tool="flight" aria-pressed="false">Flight brush</button>
+                <button type="button" data-tool="clear">Clear</button>
+            </div>
+            <div class="brush-options" hidden>
+                <label><span>Colour</span><select data-tool="flight-colour" aria-label="Flight brush colour">
+                    <option value="#90cdf4">Blue</option>
+                    <option value="#f6e05e">Yellow</option>
+                    <option value="#fc8181">Red</option>
+                    <option value="#68d391">Green</option>
+                    <option value="#e2e8f0">White</option>
+                </select></label>
+                <label><span>Size</span><input data-tool="flight-size" type="range" min="2" max="18" step="1" value="5" aria-label="Flight brush size"></label>
+            </div>
+            <div class="map-tools-status" aria-live="polite"></div>
+        `;
+        L.DomEvent.disableClickPropagation(element);
+        L.DomEvent.disableScrollPropagation(element);
+        rulerToolButton = element.querySelector('[data-tool="ruler"]');
+        flightToolButton = element.querySelector('[data-tool="flight"]');
+        rulerToolButton.addEventListener("click", () => setActiveMapTool("ruler"));
+        flightToolButton.addEventListener("click", () => setActiveMapTool("flight"));
+        element.querySelector('[data-tool="clear"]').addEventListener("click", clearPlanningTools);
+        flightBrushOptions = element.querySelector(".brush-options");
+        element.querySelector('[data-tool="flight-colour"]').addEventListener("change", event => {
+            flightBrushColor = event.target.value;
+        });
+        element.querySelector('[data-tool="flight-size"]').addEventListener("input", event => {
+            flightBrushSize = Number(event.target.value);
+        });
+        mapToolsStatus = element.querySelector(".map-tools-status");
+        updateMapToolsUi();
+        return element;
+    };
+    mapToolsControl.addTo(map);
+
+    map.on("click", event => {
+        if (activeMapTool === "flight") return;
+        if (addPlanningPoint(event.latlng)) return;
         clearSelectedRanges();
         clearRouteSelection();
     });
+
+    map.on("dblclick", event => {
+        if (activeMapTool !== "ruler") return;
+        event.originalEvent?.preventDefault();
+        setActiveMapTool("ruler");
+    });
+
+    map.on("mousedown", event => {
+        if (activeMapTool !== "flight" || event.originalEvent?.button !== 0) return;
+        flightCurrentStroke = {
+            points: [event.latlng],
+            color: flightBrushColor,
+            size: flightBrushSize
+        };
+        map.dragging.disable();
+        event.originalEvent?.preventDefault();
+    });
+
+    map.on("mousemove", event => {
+        if (!flightCurrentStroke) return;
+        const points = flightCurrentStroke.points;
+        const previous = points[points.length - 1];
+        if (Math.hypot(previous.lat - event.latlng.lat, previous.lng - event.latlng.lng) < 0.5) return;
+        points.push(event.latlng);
+        renderFlightBrush();
+    });
+
+    map.on("mouseup", finishFlightStroke);
+    map.getContainer().addEventListener("mouseleave", finishFlightStroke);
 
     function makeVisibleLayerGroup() {
         return L.layerGroup().addTo(map);
@@ -1543,6 +2227,7 @@
     let globalConvoyRoutes = new Map();
     let globalArmoredRoutes = new Map();
     let globalRoadGraph = null;
+    let globalRoadData = [];
     let globalSiteLocations = new Map();
     let globalMissionSiteLocations = new Map();
     let globalMobileFireLocations = new Map();
@@ -1676,8 +2361,61 @@
         return link;
     }
 
+    function populateMapSelector() {
+        const options = document.getElementById("map-options");
+        options.replaceChildren();
+        Object.values(MAP_DEFINITIONS).forEach(definition => {
+            const label = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "map";
+            input.value = definition.id;
+            input.checked = definition.id === currentMapId;
+            input.addEventListener("change", event => {
+                currentMapId = event.target.value;
+                sessionStorage.setItem(mapSelectionStorageKey, currentMapId);
+                refreshMapArtwork();
+                rebuildGroupedLayerControl();
+                activateMapVariant(activeMapDefinition().defaultVariant);
+            });
+            label.append(input, definition.label);
+            options.append(label);
+        });
+    }
+
+    function refreshMapArtwork() {
+        const definition = activeMapDefinition();
+        standardMapLayer.setUrl(definition.image);
+        if (!definition.supportsTerrain && map.hasLayer(topographicMapLayer)) {
+            map.removeLayer(topographicMapLayer);
+        }
+        if (!definition.supportsRoads) {
+            asphaltRoadGroup.clearLayers();
+            gravelRoadGroup.clearLayers();
+        }
+        if (!definition.supportsTerrain && terrainReadoutElement) {
+            terrainReadoutElement.textContent =
+                "Terrain data is not extracted for South Eastern City";
+        }
+        refreshTerrainLegend();
+        map.fitBounds(bounds, { animate: false });
+        const guideButton = document.getElementById("guide-start");
+        guideButton.disabled = !definition.guideAvailable;
+        guideButton.textContent = definition.guideAvailable
+            ? "▶ Guide preview"
+            : "Guide preview (Archipelago only)";
+    }
+
     function updateTeamSwapUi() {
         const swapButton = document.getElementById("team-swap");
+        const definition = activeMapDefinition();
+        if (!definition.supportsTeamSwap) {
+            swapButton.disabled = true;
+            swapButton.setAttribute("aria-pressed", "false");
+            swapButton.textContent = "⇄ No mirrored City layout available";
+            return;
+        }
+        swapButton.disabled = false;
         const mirrored = currentMapVariant === "mirror";
         swapButton.setAttribute("aria-pressed", String(mirrored));
         swapButton.textContent = mirrored
@@ -1692,7 +2430,7 @@
     }
 
     function selectedPresetId() {
-        return document.querySelector('input[name="era"]:checked')?.value ||
+        return document.getElementById("scenario-options")?.value ||
             globalPresetData.presets?.[0]?.id || "";
     }
 
@@ -1710,35 +2448,36 @@
 
     function populateScenarioSelector() {
         const options = document.getElementById("scenario-options");
+        const bracketLabel = document.getElementById("scenario-brackets");
+        const previouslySelected = options.value;
         options.replaceChildren();
-        (globalPresetData.presets || []).forEach((preset, index) => {
-            const label = document.createElement("label");
-            const name = document.createElement("span");
-            name.className = "scenario-name";
-            const input = document.createElement("input");
-            input.type = "radio";
-            input.name = "era";
-            input.value = preset.id;
-            input.checked = index === 0;
-            input.addEventListener("change", event => {
-                renderMapData(event.target.value);
-            });
-            name.append(input, ` ${preset.label}`);
-            const bracketLabel = document.createElement("span");
-            bracketLabel.className = "scenario-brackets";
-            const brackets = bracketsForPreset(preset);
-            if (brackets.length) {
-                bracketLabel.textContent = brackets
-                    .map(bracket => `[${bracket}]`)
-                    .join(" ");
-            } else {
-                bracketLabel.classList.add("is-unset");
-                bracketLabel.textContent = "[BR not set]";
-                bracketLabel.title = "Set this scenario's BR brackets in br_brackets.json before merging.";
-            }
-            label.append(name, bracketLabel);
-            options.append(label);
+        const presets = globalPresetData.presets || [];
+        presets.forEach(preset => {
+            const option = document.createElement("option");
+            option.value = preset.id;
+            option.textContent = preset.label;
+            options.append(option);
         });
+        options.disabled = !presets.length;
+        options.value = presets.some(preset => preset.id === previouslySelected)
+            ? previouslySelected
+            : presets[0]?.id || "";
+        const updateBrackets = () => {
+            const preset = presets.find(item => item.id === options.value);
+            const brackets = preset ? bracketsForPreset(preset) : [];
+            bracketLabel.classList.toggle("is-unset", !brackets.length);
+            bracketLabel.textContent = brackets.length
+                ? brackets.map(bracket => `[${bracket}]`).join(" ")
+                : "[BR not set]";
+            bracketLabel.title = brackets.length
+                ? ""
+                : "Set this scenario's BR brackets in br_brackets.json before merging.";
+        };
+        options.onchange = event => {
+            updateBrackets();
+            renderMapData(event.target.value);
+        };
+        updateBrackets();
     }
 
     function clearVariantLayers() {
@@ -1756,8 +2495,13 @@
     }
 
     function activateMapVariant(variantId) {
-        if (!globalMapVariants[variantId] || !globalMissionLogicVariants[variantId]) {
-            variantId = "standard";
+        const definition = activeMapDefinition();
+        if (
+            !definition.variants.includes(variantId) ||
+            !globalMapVariants[variantId] ||
+            !globalMissionLogicVariants[variantId]
+        ) {
+            variantId = definition.defaultVariant;
         }
         currentMapVariant = variantId;
         sessionStorage.setItem(mapVariantStorageKey, currentMapVariant);
@@ -1781,16 +2525,21 @@
             globalMissionLogic.likely_armored_links || []
         );
         clearVariantLayers();
-        globalConvoyRoutes = buildRoadRoutes(
+        const roads = definition.supportsRoads ? globalRoadData : [];
+        drawRoadNetwork(roads);
+        globalRoadGraph = definition.supportsRoads
+            ? buildRoadGraph(roads)
+            : null;
+        globalConvoyRoutes = definition.supportsRoads ? buildRoadRoutes(
             globalRoadGraph,
             globalMissionLogic.likely_convoy_links || [],
             convoyRouteKey
-        );
-        globalArmoredRoutes = buildRoadRoutes(
+        ) : new Map();
+        globalArmoredRoutes = definition.supportsRoads ? buildRoadRoutes(
             globalRoadGraph,
             globalMissionLogic.likely_armored_links || [],
             armoredRouteKey
-        );
+        ) : new Map();
         updateTeamSwapUi();
         drawMissionLogic(globalMissionLogic);
         renderMapData(selectedPresetId());
@@ -2713,6 +3462,217 @@
         });
     }
 
+    function unitCardHtml(unit, site, count = 1) {
+        const name = String(unit.name || "unit");
+        const role = String(unit.role || "vehicle");
+        const specs = globalUnitSpecs[name.toLowerCase()];
+        const icon = natoIconPath(site.team, unitIconType(unit, site));
+        const sensor = specs?.sensors || {};
+        const statEntries = [];
+        function addSensorStat(label, sensorData) {
+            if (sensorData?.nominal) {
+                statEntries.push([label, formatDistance(sensorData.nominal)]);
+            }
+            if (Number.isFinite(Number(sensorData?.band)) && Number(sensorData.band) >= 0) {
+                statEntries.push([`${label} band`, `Band ${sensorData.band}`]);
+            }
+        }
+        addSensorStat("Detection", sensor.detection);
+        addSensorStat("Tracking", sensor.tracking);
+        addSensorStat("IRST", sensor.irst);
+        if (specs?.engagement_range) {
+            statEntries.push(["Engagement", formatDistance(specs.engagement_range)]);
+        } else if (unit.threat_range) {
+            statEntries.push(["Threat range", formatDistance(unit.threat_range)]);
+        }
+        if (specs?.target_channels) {
+            statEntries.push(["Channels", specs.target_channels]);
+        }
+        if (specs?.maximum_speed_kph) {
+            statEntries.push(["Road speed", `${specs.maximum_speed_kph} km/h`]);
+        }
+        const statHtml = statEntries.length
+            ? `<div class="vehicle-card-stats">${statEntries.map(([label, value]) => `
+                <span class="vehicle-card-stat">${escapeHtml(label)}<b>${escapeHtml(value)}</b></span>
+            `).join("")}</div>`
+            : "";
+        const weaponLines = (specs?.weapons || []).slice(0, 2).map(weapon => {
+            const range = Number(weapon.effective_maximum || 0);
+            const reload = weapon.reload_seconds
+                ? ` · reload ${formatSeconds(weapon.reload_seconds)}`
+                : "";
+            return `<strong>${escapeHtml(displayName(weapon.name))}</strong>` +
+                (range ? ` ${formatDistance(range)}` : "") + reload;
+        });
+        const weaponHtml = weaponLines.length
+            ? `<p class="vehicle-card-weapons">${weaponLines.join("<br>")}</p>`
+            : "";
+        return `
+            <article class="vehicle-card team-${escapeHtml(site.team)}">
+                <div class="vehicle-card-header">
+                    <img class="vehicle-card-icon" src="${escapeHtml(icon)}" alt="">
+                    <span>${escapeHtml(displayName(name))}</span>
+                    ${count > 1 ? `<span class="vehicle-card-count">×${count}</span>` : ""}
+                </div>
+                <div class="vehicle-card-role">${escapeHtml(displayName(role))} · ${escapeHtml(site.name)}</div>
+                ${statHtml}
+                ${weaponHtml}
+            </article>
+        `;
+    }
+
+    function compositionCategoryLabel(category) {
+        return {
+            shortSams: "Close SAM sites",
+            longSams: "Long-range SAM sites",
+            ewRadars: "Early-warning radars",
+            airfields: "Airfield defences",
+            strategic: "Strategic launch systems",
+            fleet: "Fleet patrol groups",
+            vehicleDepots: "Vehicle depots",
+            fuelAmmoDepots: "Fuel and ammunition depots",
+            strongpoints: "Strongpoints and other ground forces"
+        }[category] || "Other forces";
+    }
+
+    function compositionSiteLabel(site, siteCount = 1) {
+        const category = operationalCategory(site);
+        const prefix = site.team === 1 ? "REDFOR" : "BLUFOR";
+        const number = String(site.name || "").match(/_(\d+)$/)?.[1];
+        const type = {
+            shortSams: "close SAM site",
+            longSams: "long-range SAM site",
+            ewRadars: "early-warning radar",
+            airfields: "airfield",
+            strategic: "strategic launch unit",
+            fleet: "fleet patrol group",
+            vehicleDepots: "vehicle depot",
+            fuelAmmoDepots: "fuel/ammunition depot",
+            strongpoints: "strongpoint"
+        }[category] || "ground site";
+        if (siteCount > 1) return `${prefix} ${type} ×${siteCount}`;
+        return `${prefix} ${type}${number ? ` ${number}` : ""}`;
+    }
+
+    function renderCompositionPanel(presetId) {
+        const panel = document.getElementById("composition-panel");
+        if (!panel || !globalSiteData?.length) return;
+        const records = [];
+        globalSiteData.forEach(sourceSite => {
+            const site = moveMapSiteToOpposingLocation(sourceSite);
+            const units = site.units_by_era?.[presetId] || [];
+            if (units.length) records.push({ site, units: [...units] });
+        });
+
+        // A SAM position is built from a central site BLK plus nearby SAM and
+        // SPAA cover foundations.  The three are separate mission records but
+        // represent one physical battery, so present their combined order of
+        // battle rather than three misleading mini-sites.
+        const mainAirDefenceSites = records.filter(({ site }) =>
+            /_(short|long)_sam_site_\d+$/.test(String(site.name || ""))
+        );
+        const absorbedCoverSites = new Set();
+        records.forEach(record => {
+            const name = String(record.site.name || "");
+            if (!/_(sam|spaa)_cover_foundation_\d+$/.test(name)) return;
+            const [x, , z] = record.site.world_pos;
+            let nearest = null;
+            let nearestDistance = Infinity;
+            mainAirDefenceSites.forEach(candidate => {
+                if (candidate.site.team !== record.site.team) return;
+                const [candidateX, , candidateZ] = candidate.site.world_pos;
+                const distance = Math.hypot(x - candidateX, z - candidateZ);
+                if (distance < nearestDistance) {
+                    nearest = candidate;
+                    nearestDistance = distance;
+                }
+            });
+            if (nearest && nearestDistance <= 2000) {
+                nearest.units.push(...record.units);
+                absorbedCoverSites.add(record);
+            }
+        });
+        // Merge only sites with the same team, operational role, and per-site
+        // unit composition. This makes repeated batteries, airfield layouts,
+        // depots, and strongpoints compact without hiding genuine variations.
+        const grouped = new Map();
+        records.forEach(record => {
+            const { site, units } = record;
+            if (absorbedCoverSites.has(record)) return;
+            const category = operationalCategory(site);
+            if (!grouped.has(category)) grouped.set(category, []);
+            const unitsByType = new Map();
+            units.forEach(unit => {
+                const key = [unit.name, unit.role, unit.preset].join("|");
+                const entry = unitsByType.get(key) || { unit, count: 0 };
+                entry.count += 1;
+                unitsByType.set(key, entry);
+            });
+            const compactUnits = [...unitsByType.values()].sort((a, b) =>
+                [a.unit.name, a.unit.role, a.unit.preset].join("|").localeCompare(
+                    [b.unit.name, b.unit.role, b.unit.preset].join("|")
+                )
+            );
+            const compositionKey = compactUnits.map(({ unit, count }) =>
+                [unit.name, unit.role, unit.preset, count].join("|")
+            ).join(";");
+            const matchingEntry = grouped.get(category).find(entry =>
+                entry.site.team === site.team && entry.compositionKey === compositionKey
+            );
+            if (matchingEntry) {
+                matchingEntry.siteCount += 1;
+                matchingEntry.siteNames.push(site.name);
+            } else {
+                grouped.get(category).push({
+                    site,
+                    units: compactUnits,
+                    compositionKey,
+                    siteCount: 1,
+                    siteNames: [site.name]
+                });
+            }
+        });
+
+        const order = [
+            "shortSams", "longSams", "ewRadars", "airfields", "strategic",
+            "fleet", "vehicleDepots", "fuelAmmoDepots", "strongpoints"
+        ];
+        const sections = order.filter(category => grouped.has(category)).map(category => {
+            const sites = grouped.get(category).sort((a, b) =>
+                a.site.team - b.site.team || a.site.name.localeCompare(b.site.name)
+            );
+            const entries = sites.map(({ site, units, siteCount }, index) => {
+                const composition = units.map(({ unit, count }) =>
+                    `${count} ${displayName(unit.name)}`
+                ).join(" · ");
+                const open = (category === "shortSams" || category === "longSams" || category === "airfields") && index < 4;
+                const matchingSites = siteCount > 1
+                    ? `${siteCount} matching sites · each: `
+                    : "";
+                return `
+                    <details class="composition-site team-${site.team}" ${open ? "open" : ""}>
+                        <summary>${escapeHtml(compositionSiteLabel(site, siteCount))}</summary>
+                        <p class="composition-site-description">${escapeHtml(matchingSites + composition)}</p>
+                        <div class="vehicle-card-grid">
+                            ${units.map(({ unit, count }) => unitCardHtml(unit, site, count)).join("")}
+                        </div>
+                    </details>
+                `;
+            }).join("");
+            return `
+                <section class="composition-section">
+                    <h3 class="composition-section-title">${escapeHtml(compositionCategoryLabel(category))}</h3>
+                    ${entries}
+                </section>
+            `;
+        }).join("");
+        panel.innerHTML = `
+            <h2>${escapeHtml(presetDisplayName(presetId))} composition</h2>
+            <p>Datamined unit layouts. Open a site to inspect its vehicle cards.</p>
+            ${sections || "<p>No unit layout is defined for this scenario.</p>"}
+        `;
+    }
+
     function drawUnit(unit, site) {
         const [x, , z] = unit.world_pos;
         const unitLatLng = worldToLatLng(x, z);
@@ -2722,54 +3682,9 @@
         const categoryKey = operationalCategory(site);
         const targetGroup = teamGroups[categoryKey];
         const specs = globalUnitSpecs[name.toLowerCase()];
-        const threatRange = unit.threat_range && !specs
-            ? `<br>Threat range: ${Number(unit.threat_range).toLocaleString()} m`
-            : "";
-        const preset = unit.preset
-            ? `<br>Preset: ${escapeHtml(unit.preset)}`
-            : "";
-
-        let specificationDetails = "";
         if (specs) {
-            const details = [];
             const detection = specs.sensors?.detection;
             const tracking = specs.sensors?.tracking;
-            const irst = specs.sensors?.irst;
-            if (detection?.nominal) {
-                details.push(`AI detection: ${formatDistance(detection.nominal)}`);
-            }
-            if (tracking?.nominal) {
-                details.push(`AI tracking: ${formatDistance(tracking.nominal)}`);
-            }
-            if (irst?.nominal) {
-                details.push(`IRST: ${formatDistance(irst.nominal)}`);
-            }
-            if (specs.engagement_range) {
-                details.push(`Engagement: ${formatDistance(specs.engagement_range)}`);
-            }
-            if (specs.target_channels) {
-                details.push(`Target channels: ${escapeHtml(specs.target_channels)}`);
-            }
-            if (specs.maximum_speed_kph) {
-                details.push(`Maximum speed: ${escapeHtml(specs.maximum_speed_kph)} km/h`);
-            }
-            (specs.weapons || []).slice(0, 3).forEach(weapon => {
-                const minimum = Number(weapon.minimum || 0);
-                const maximum = Number(weapon.effective_maximum || 0);
-                const ammo = weapon.ammo == null ? "" : ` · ${weapon.ammo} rounds`;
-                const guidance = weapon.guidance
-                    ? ` · ${escapeHtml(displayName(weapon.guidance))}`
-                    : "";
-                details.push(
-                    `${escapeHtml(displayName(weapon.name))}: ` +
-                    `${formatDistance(minimum)}–${formatDistance(maximum)}` +
-                    `${guidance}${ammo}`
-                );
-            });
-            if (details.length) {
-                specificationDetails = `<br>${details.join("<br>")}`;
-            }
-
             const teamCoverage = coverageGroups[site.team] || coverageGroups[1];
             const coverageCategory = teamCoverage[categoryKey];
 
@@ -2815,11 +3730,9 @@
         }).bindTooltip(`
             <b>${escapeHtml(displayName(name))}</b><br>
             Role: ${escapeHtml(displayName(role))}<br>
-            Site: ${escapeHtml(site.name)}
-            ${preset}${threatRange}<br>
-            Position: [${x.toFixed(1)}, ${z.toFixed(1)}]
-            ${specificationDetails}
-        `).addTo(targetGroup);
+            Site: ${escapeHtml(site.name)}<br>
+            Click for vehicle card and range overlays
+        `).bindPopup(unitCardHtml(unit, site)).addTo(targetGroup);
         marker.on("click", event => {
             if (event.originalEvent) {
                 L.DomEvent.stopPropagation(event.originalEvent);
@@ -2849,7 +3762,7 @@
                     showRangeDisclaimer(selectionKey);
                 }
             }
-            marker.openTooltip();
+            marker.openPopup();
         });
 
     }
@@ -2948,6 +3861,7 @@
             ${counts.depotBuildings} depot storage buildings ·
             ${counts.ships} ships
         `;
+        renderCompositionPanel(selectedEra);
     }
 
     document.getElementById("team-swap").addEventListener("click", () => {
@@ -2965,6 +3879,14 @@
             })} km`;
         }
         return `${value.toLocaleString()} m`;
+    }
+
+    function formatSeconds(seconds) {
+        const value = Number(seconds);
+        if (!Number.isFinite(value) || value <= 0) return "";
+        return `${value.toLocaleString(undefined, {
+            maximumFractionDigits: 2
+        })} s`;
     }
 
     Promise.all([
@@ -2988,6 +3910,14 @@
             if (!response.ok) throw new Error(`mission_logic_mirror.json: HTTP ${response.status}`);
             return response.json();
         }),
+        fetch("map_data_city.json").then(response => {
+            if (!response.ok) throw new Error(`map_data_city.json: HTTP ${response.status}`);
+            return response.json();
+        }),
+        fetch("mission_logic_city.json").then(response => {
+            if (!response.ok) throw new Error(`mission_logic_city.json: HTTP ${response.status}`);
+            return response.json();
+        }),
         fetch("presets.json").then(response => {
             if (!response.ok) throw new Error(`presets.json: HTTP ${response.status}`);
             return response.json();
@@ -3007,26 +3937,30 @@
             roadData,
             standardLogicData,
             mirrorLogicData,
+            citySiteData,
+            cityLogicData,
             presetData,
             bracketData,
             unitSpecs
         ]) => {
             globalMapVariants = {
                 standard: standardSiteData,
-                mirror: mirrorSiteData
+                mirror: mirrorSiteData,
+                city: citySiteData
             };
             globalMissionLogicVariants = {
                 standard: standardLogicData,
-                mirror: mirrorLogicData
+                mirror: mirrorLogicData,
+                city: cityLogicData
             };
             globalPresetData = presetData;
             globalBrackets = bracketData;
             globalUnitSpecs = unitSpecs;
+            globalRoadData = roadData;
+            populateMapSelector();
             populateScenarioSelector();
-            drawRoadNetwork(roadData);
-            globalRoadGraph = buildRoadGraph(roadData);
+            refreshMapArtwork();
             activateMapVariant(currentMapVariant);
-            document.getElementById("guide-start").disabled = false;
         })
         .catch(error => {
             const status = document.getElementById("status");
@@ -3183,44 +4117,58 @@
     }
 
     function makeMapCategory() {
+        const definition = activeMapDefinition();
+        const children = [];
+        if (definition.supportsTerrain) {
+            children.push({
+                title: "Terrain",
+                open: true,
+                glyph: "⌁",
+                options: [
+                    layerOption("True topographic terrain", topographicMapLayer)
+                ]
+            });
+        }
+        if (definition.supportsRoads) {
+            children.push({
+                title: "Road network",
+                glyph: "╫",
+                options: [
+                    layerOption("Asphalt roads", asphaltRoadGroup),
+                    layerOption("Gravel/sand roads", gravelRoadGroup)
+                ]
+            });
+        }
         return {
-            title: "MAP & TERRAIN",
+            title: definition.supportsTerrain ? "MAP & TERRAIN" : "MAP",
             open: true,
             force: true,
             glyph: "⌖",
-            children: [
-                {
-                    title: "Terrain",
-                    open: true,
-                    glyph: "⌁",
-                    options: [
-                        layerOption(
-                            "True topographic terrain",
-                            topographicMapLayer
-                        )
-                    ]
-                },
-                {
-                    title: "Road network",
-                    glyph: "╫",
-                    options: [
-                        layerOption("Asphalt roads", asphaltRoadGroup),
-                        layerOption(
-                            "Gravel/sand roads",
-                            gravelRoadGroup
-                        )
-                    ]
-                }
-            ]
+            children
         };
     }
 
     function addGroupedLayerControl(forces) {
         const control = L.control({ position: "topright" });
         control.onAdd = () => {
-            const container = L.DomUtil.create("div", "grouped-layers");
-            L.DomEvent.disableClickPropagation(container);
-            L.DomEvent.disableScrollPropagation(container);
+            const drawer = L.DomUtil.create("div", "layers-drawer");
+            const container = L.DomUtil.create("div", "grouped-layers", drawer);
+            const toggle = L.DomUtil.create("button", "layers-drawer-toggle", drawer);
+            toggle.type = "button";
+            toggle.textContent = "›";
+            toggle.setAttribute("aria-label", "Collapse layer controls");
+            toggle.setAttribute("aria-expanded", "true");
+            toggle.addEventListener("click", () => {
+                const collapsed = drawer.classList.toggle("is-collapsed");
+                toggle.textContent = collapsed ? "‹" : "›";
+                toggle.setAttribute("aria-expanded", String(!collapsed));
+                toggle.setAttribute(
+                    "aria-label",
+                    collapsed ? "Expand layer controls" : "Collapse layer controls"
+                );
+            });
+            L.DomEvent.disableClickPropagation(drawer);
+            L.DomEvent.disableScrollPropagation(drawer);
 
             function descendantOptions(node) {
                 return [
@@ -3374,16 +4322,24 @@
                 container.appendChild(renderNode(force, true));
             });
             refreshAllFolderEyes();
-            return container;
+            return drawer;
         };
         control.addTo(map);
+        return control;
     }
 
-    addGroupedLayerControl([
-        makeMapCategory(),
-        makeForceCategory(1, "REDFOR"),
-        makeForceCategory(2, "BLUFOR")
-    ]);
+    let groupedLayerControl = null;
+
+    function rebuildGroupedLayerControl() {
+        groupedLayerControl?.remove();
+        groupedLayerControl = addGroupedLayerControl([
+            makeMapCategory(),
+            makeForceCategory(1, "REDFOR"),
+            makeForceCategory(2, "BLUFOR")
+        ]);
+    }
+
+    rebuildGroupedLayerControl();
 
     const guideSteps = [
         {

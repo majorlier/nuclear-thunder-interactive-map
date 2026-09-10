@@ -28,11 +28,20 @@
       ]
     },
     {
-      "id": "rank-37-50",
-      "label": "2018",
+      "id": "rank-37-39",
+      "label": "2018 1",
       "rank": 37,
       "rank_range": [
         37,
+        39
+      ]
+    },
+    {
+      "id": "rank-40-50",
+      "label": "2018 2",
+      "rank": 40,
+      "rank_range": [
+        40,
         50
       ]
     }
@@ -45,6 +54,10 @@
     {
       "id": "mirror",
       "label": "Swapped locations"
+    },
+    {
+      "id": "city",
+      "label": "South Eastern City"
     }
   ]
 }

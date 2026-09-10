@@ -4,6 +4,9 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
 
 ## Use the map
 
+- Choose **Air Archipelago** or **South Eastern City** first. South Eastern
+  City currently has no datamined mirrored mission, terrain-height overlay, or
+  extracted road network, so those Archipelago-only controls are disabled.
 - Choose a scenario and check its displayed BR bracket(s).
 - Use **Swap REDFOR / BLUFOR locations** to move each faction's units to the
   matching opposing-side location used by the alternate event placement.
@@ -13,6 +16,10 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
 ## Data updates
 
 The map checks the public [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine) for Nuclear Escalation changes. Updates are prepared for review before they reach the public map.
+
+The updater follows the mission's imported ship-set files as well as the
+mission itself. This keeps the 1970 fleets separate from the 1980/2018 fleets
+and places each ship at its mission-defined patrol route.
 
 Terrain and roads are maintained separately from the event data because they come from the compiled game level.
 

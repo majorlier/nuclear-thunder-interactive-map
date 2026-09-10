@@ -220,15 +220,35 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
         path = source.reference(reference)
         if not path:
             continue
-        rocket = first_rocket(source.load(path))
+        weapon_data = source.load(path)
+        reload_seconds = weapon.get("reloadTime")
+        if not isinstance(reload_seconds, (int, float)) or reload_seconds <= 0:
+            reload_seconds = weapon_data.get("reloadTime")
+        if not isinstance(reload_seconds, (int, float)) or reload_seconds <= 0:
+            reload_seconds = None
+        rocket = first_rocket(weapon_data)
         if not rocket:
             attack_range = weapon.get("AttackMaxRadius")
-            if (
+            if not isinstance(attack_range, (int, float)):
+                attack_range = weapon.get("AttackShellMaxRadius")
+            is_ai_gun = (
                 allow_air_gun_range
                 and isinstance(attack_range, (int, float))
                 and weapon.get("accuracyAir", 0) > 0
-            ):
+            )
+            if is_ai_gun:
                 ai_gun_ranges.append(attack_range)
+                results.append(
+                    {
+                        "name": Path(path).stem,
+                        "ammo": None,
+                        "minimum": 0,
+                        "effective_maximum": attack_range,
+                        "physical_maximum": attack_range,
+                        "guidance": None,
+                        "reload_seconds": reload_seconds,
+                    }
+                )
             continue
 
         bullet_type = str(rocket.get("bulletType", "")).lower()
@@ -264,6 +284,7 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
                 "effective_maximum": effective_max,
                 "physical_maximum": physical_max,
                 "guidance": guidance,
+                "reload_seconds": reload_seconds,
             }
         )
 

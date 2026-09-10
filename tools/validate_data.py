@@ -80,8 +80,10 @@ def main() -> int:
     brackets_document = load_json(root / "br_brackets.json")
     map_data = load_json(root / "map_data.json")
     map_data_mirror = load_json(root / "map_data_mirror.json")
+    map_data_city = load_json(root / "map_data_city.json")
     mission_logic = load_json(root / "mission_logic.json")
     mission_logic_mirror = load_json(root / "mission_logic_mirror.json")
+    mission_logic_city = load_json(root / "mission_logic_city.json")
     road_network = load_json(root / "road_network.json")
     unit_specs = load_json(root / "unit_specs.json")
     html = (root / "index.html").read_text(encoding="utf-8")
@@ -116,6 +118,9 @@ def main() -> int:
     mirror_sites, mirror_units = validate_variant(
         "mirror", map_data_mirror, preset_ids, errors
     )
+    city_sites, city_units = validate_variant(
+        "city", map_data_city, preset_ids, errors
+    )
     if set(standard_sites) != set(mirror_sites):
         errors.append("standard and mirror maps contain different site names")
     for site_name, site in standard_sites.items():
@@ -129,7 +134,11 @@ def main() -> int:
         ):
             errors.append(f"mirror position does not match opposite side: {site_name}")
 
-    for variant_name, logic in (("standard", mission_logic), ("mirror", mission_logic_mirror)):
+    for variant_name, logic in (
+        ("standard", mission_logic),
+        ("mirror", mission_logic_mirror),
+        ("city", mission_logic_city),
+    ):
         for site in logic.get("sites", []):
             if not valid_position(site.get("world_pos")):
                 errors.append(f"{variant_name} mission site {site.get('name', '?')} has invalid position")
@@ -144,7 +153,7 @@ def main() -> int:
         errors.append("road_network.json contains no roads")
 
     known_specs = {name.lower() for name in unit_specs}
-    missing = sorted((standard_units | mirror_units) - known_specs)
+    missing = sorted((standard_units | mirror_units | city_units) - known_specs)
     if missing:
         warnings.append(
             f"{len(missing)} unit classes have no optional detail card: "
@@ -154,6 +163,8 @@ def main() -> int:
     for required_fetch in (
         'fetch("map_data_mirror.json")',
         'fetch("mission_logic_mirror.json")',
+        'fetch("map_data_city.json")',
+        'fetch("mission_logic_city.json")',
         'fetch("presets.json")',
         'fetch("br_brackets.json")',
     ):
@@ -165,7 +176,7 @@ def main() -> int:
     for error in errors:
         print("ERROR:", error)
     print(
-        f"Checked {len(map_data)} standard and {len(map_data_mirror)} mirrored map objects, "
+        f"Checked {len(map_data)} standard, {len(map_data_mirror)} mirrored, and {len(map_data_city)} City map objects, "
         f"{len(roads) if isinstance(roads, list) else 0} roads, and {len(unit_specs)} unit specs."
     )
     if errors:

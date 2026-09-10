@@ -21,15 +21,6 @@ ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 DEFAULT_MANIFEST = TOOLS / "datamine_sources.json"
 BRACKET_CONFIG = ROOT / "br_brackets.json"
-GENERATED_OUTPUTS = (
-    "map_data.json",
-    "map_data_mirror.json",
-    "mission_logic.json",
-    "mission_logic_mirror.json",
-    "presets.json",
-)
-
-
 def load_json(path: Path):
     with path.open("r", encoding="utf-8") as source:
         return json.load(source)
@@ -83,14 +74,15 @@ def run(command: list[str]) -> None:
     subprocess.run(command, cwd=ROOT, check=True)
 
 
-def collect_unit_names(map_data_path: Path) -> list[str]:
+def collect_unit_names(map_data_paths: list[Path]) -> list[str]:
     names: set[str] = set()
-    for site in load_json(map_data_path):
-        for units in site.get("units_by_era", {}).values():
-            for unit in units:
-                unit_name = unit.get("name") or unit.get("unit_class")
-                if unit_name:
-                    names.add(unit_name)
+    for map_data_path in map_data_paths:
+        for site in load_json(map_data_path):
+            for units in site.get("units_by_era", {}).values():
+                for unit in units:
+                    unit_name = unit.get("name") or unit.get("unit_class")
+                    if unit_name:
+                        names.add(unit_name)
     return sorted(names)
 
 
@@ -357,7 +349,20 @@ def main() -> int:
             raw_url = (
                 f"https://raw.githubusercontent.com/{repository}/{commit}/{encoded_path}"
             )
-            content = download_bytes(raw_url)
+            try:
+                content = download_bytes(raw_url)
+            except urllib.error.HTTPError as exc:
+                # Watch files are useful change indicators but are not inputs
+                # to the generator.  Gaijin can remove or relocate them; that
+                # must not prevent a valid mission update from being prepared.
+                if (
+                    exc.code == 404
+                    and source_path not in generator_by_path
+                    and source_path not in mission_by_path
+                ):
+                    print(f"WARNING: Optional watch file is absent: {source_path}")
+                    continue
+                raise
             record = {
                 "path": source_path,
                 "sha": git_blob_sha(content),
@@ -468,7 +473,18 @@ def main() -> int:
         collector = generated / "unit_manifest.json"
         write_json(
             collector,
-            {"foundUnits": collect_unit_names(generated / "map_data.json")},
+            {
+                "foundUnits": collect_unit_names(
+                    [
+                        generated / (
+                            "map_data.json"
+                            if item["id"] == "standard"
+                            else f"map_data_{item['id']}.json"
+                        )
+                        for item in mission_variants
+                    ]
+                )
+            },
         )
         unit_spec_command = [
             sys.executable,
@@ -496,7 +512,20 @@ def main() -> int:
         generated_lock = generated / "datamine-lock.json"
         write_json(generated_lock, lock)
 
-        candidates = list(GENERATED_OUTPUTS) + [
+        generated_outputs = ["presets.json"]
+        for variant in mission_variants:
+            variant_id = variant["id"]
+            generated_outputs.extend(
+                [
+                    "map_data.json"
+                    if variant_id == "standard"
+                    else f"map_data_{variant_id}.json",
+                    "mission_logic.json"
+                    if variant_id == "standard"
+                    else f"mission_logic_{variant_id}.json",
+                ]
+            )
+        candidates = generated_outputs + [
             "unit_specs.json",
             "datamine-lock.json",
         ]
