@@ -361,9 +361,15 @@
     "sensors": {
       "detection": {
         "kind": "detection",
-        "nominal": 2.0,
-        "maximum": 2.0,
+        "nominal": null,
+        "maximum": null,
         "band": 5,
+        "scope_ranges": [
+          40000.0,
+          80000.0,
+          120000.0
+        ],
+        "designation_range": 180000.0,
         "ai": false,
         "sensor": "us_tps_59"
       }
@@ -918,9 +924,15 @@
     "sensors": {
       "detection": {
         "kind": "detection",
-        "nominal": 2.0,
-        "maximum": 2.0,
+        "nominal": null,
+        "maximum": null,
         "band": 5,
+        "scope_ranges": [
+          40000.0,
+          80000.0,
+          120000.0
+        ],
+        "designation_range": 180000.0,
         "ai": false,
         "sensor": "su_55zh6"
       }

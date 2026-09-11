@@ -56,7 +56,8 @@
 
         .composition-window {
             position: absolute;
-            left: 10px;
+            bottom: 12px;
+            right: 10px;
             z-index: 1000;
             width: min(360px, calc(100vw - 70px));
             padding: 10px 12px;
@@ -69,12 +70,18 @@
         }
 
         .composition-window.is-collapsed {
-            transform: translateX(calc(-100% - 8px));
+            transform: translateX(calc(100% + 8px));
+        }
+
+        .composition-window .drawer-toggle {
+            right: auto;
+            left: -34px;
+            border-radius: 6px 0 0 6px;
         }
 
         .composition-panel {
             width: 100%;
-            max-height: 48vh;
+            max-height: 52vh;
             overflow-y: auto;
             padding: 8px 2px 2px;
             font-size: 12px;
@@ -85,13 +92,140 @@
             margin: 0;
         }
 
-        .composition-drawer > summary {
-            cursor: pointer;
+        .legend-heading {
+            margin: 0;
             color: #e2e8f0;
             font-size: 12px;
             font-weight: 800;
             letter-spacing: .04em;
             text-transform: uppercase;
+        }
+
+        .site-legend-items {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 5px 9px;
+            margin-top: 8px;
+        }
+
+        .site-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #cbd5e0;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        button.site-legend-item {
+            width: 100%;
+            padding: 3px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            text-align: left;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        button.site-legend-item:hover,
+        button.site-legend-item.is-selected {
+            border-color: #63b3ed;
+            background: rgba(99, 179, 237, .12);
+        }
+
+        .legend-team-switch {
+            display: flex;
+            gap: 5px;
+            margin: 7px 0 2px;
+        }
+
+        .legend-team-switch button {
+            flex: 1 1 0;
+            padding: 4px;
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            color: #cbd5e0;
+            background: #202734;
+            cursor: pointer;
+            font: 800 10px/1 Inter, sans-serif;
+        }
+
+        .legend-team-switch button[data-legend-team="1"].is-selected { border-color: #fc8181; color: #fc8181; }
+        .legend-team-switch button[data-legend-team="2"].is-selected { border-color: #90cdf4; color: #90cdf4; }
+
+        .legend-composition {
+            margin-top: 8px;
+            overflow: visible;
+            border-top: 1px solid #3b4252;
+        }
+
+        .site-legend-item .site-overview-icon {
+            flex: 0 0 auto;
+            transform: scale(.7);
+            transform-origin: left center;
+            margin-right: -8px;
+        }
+
+        .site-overview-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 0;
+            color: #90cdf4;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .site-overview-icon.team-1 { color: #fc8181; }
+        .site-overview-icon.team-2 { color: #90cdf4; }
+        .site-overview-icon.team-2 img {
+            width: 24px;
+            height: 24px;
+        }
+        .site-overview-icon img {
+            width: 29px;
+            height: 29px;
+            filter:
+                drop-shadow(-1px -1px 0 #fff)
+                drop-shadow(1px -1px 0 #fff)
+                drop-shadow(-1px 1px 0 #fff)
+                drop-shadow(1px 1px 0 #fff)
+                drop-shadow(0 1px 2px #000);
+        }
+
+        .site-overview-icon.long-range img {
+            filter:
+                drop-shadow(-1px -1px 0 #f6e05e)
+                drop-shadow(1px -1px 0 #f6e05e)
+                drop-shadow(-1px 1px 0 #f6e05e)
+                drop-shadow(1px 1px 0 #f6e05e)
+                drop-shadow(0 1px 2px #000);
+        }
+
+        .leaflet-marker-icon.legend-highlighted .site-overview-icon img {
+            filter:
+                drop-shadow(-2px -2px 0 #fff7ae)
+                drop-shadow(2px -2px 0 #fff7ae)
+                drop-shadow(-2px 2px 0 #fff7ae)
+                drop-shadow(2px 2px 0 #fff7ae)
+                drop-shadow(0 0 8px #f6e05e);
+        }
+
+        .leaflet-interactive:focus {
+            outline: none;
+        }
+
+        .site-popup .leaflet-popup-content { min-width: min(320px, calc(100vw - 38px)); }
+        .site-popup-title { margin: 0; padding: 10px 11px 3px; font-size: 14px; }
+        .site-popup-description { margin: 0; padding: 0 11px 8px; color: #a0aec0; font-size: 11px; }
+        .site-popup .vehicle-card-grid {
+            grid-template-columns: 1fr;
+            max-height: 42vh;
+            overflow-y: auto;
         }
 
         .composition-panel h2 {
@@ -171,11 +305,45 @@
             object-fit: contain;
         }
 
+        .vehicle-card-icon.objective-symbol {
+            display: grid;
+            place-items: center;
+            color: #f6e05e;
+            font: 900 20px/1 sans-serif;
+        }
+
+        .vehicle-card-art {
+            display: block;
+            width: 100%;
+            height: 116px;
+            margin: 0;
+            object-fit: contain;
+            background: linear-gradient(180deg, rgba(8, 12, 18, .34), rgba(8, 12, 18, .72));
+            filter: drop-shadow(0 1px 2px #000);
+        }
+
+        .vehicle-card-art-wrap {
+            position: relative;
+        }
+
         .vehicle-card-count {
-            margin-left: auto;
+            position: absolute;
+            right: 6px;
+            bottom: 5px;
+            z-index: 1;
+            padding: 2px 5px;
+            border: 1px solid rgba(246, 224, 94, .7);
+            border-radius: 4px;
             color: #f6e05e;
             font-size: 11px;
+            font-weight: 800;
+            background: rgba(15, 17, 26, .9);
             white-space: nowrap;
+        }
+
+        .vehicle-card-header .vehicle-card-count {
+            position: static;
+            margin-left: auto;
         }
 
         .vehicle-card-role {
@@ -353,6 +521,10 @@
             background: rgba(45, 35, 10, 0.94);
             box-shadow: 0 3px 14px rgba(0, 0, 0, 0.55);
             font: 12px/1.4 Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .leaflet-bottom.leaflet-left .range-disclaimer-control {
+            margin: 0 10px 8px;
         }
 
         .range-disclaimer-control.is-visible { display: block; }
@@ -641,7 +813,8 @@
         }
 
         .leaflet-bottom.leaflet-left .map-tools-control {
-            margin-left: 370px;
+            margin-bottom: 42px;
+            margin-left: 10px;
         }
 
         .map-tools-control strong {
@@ -1472,10 +1645,6 @@
         }
 
         @media (max-width: 620px) {
-            .leaflet-bottom.leaflet-left .map-tools-control {
-                margin-left: 10px;
-            }
-
             .guide-ticket-board {
                 top: 8px;
                 width: calc(100vw - 18px);
@@ -1534,7 +1703,6 @@
             <select id="scenario-options" aria-label="Scenario" disabled>
                 <option>Loading scenarios…</option>
             </select>
-            <span id="scenario-brackets" class="scenario-brackets"></span>
         </div>
     </div>
 
@@ -1545,7 +1713,7 @@
     <div class="legend">
         <span id="legend-redfor" class="legend-item"><i class="dot" style="background:#fc8181"></i>REDFOR / Team 1</span>
         <span id="legend-blufor" class="legend-item"><i class="dot" style="background:#90cdf4"></i>BLUFOR / Team 2</span>
-        <span class="legend-item">Click units to toggle their ranges · click the map to clear all</span>
+        <span class="legend-item">Click units to toggle their ranges · click the map to clear ranges</span>
     </div>
 
     <div class="guide-under-construction">
@@ -1557,14 +1725,13 @@
 
 <aside id="composition-window" class="composition-window">
     <button id="composition-window-toggle" class="drawer-toggle" type="button"
-        aria-label="Collapse composition" aria-expanded="true">‹</button>
-    <details class="composition-drawer" open>
-        <summary>Scenario composition and vehicle cards</summary>
+        aria-label="Collapse map legend" aria-expanded="true">‹</button>
+    <section class="composition-drawer">
+        <h2 class="legend-heading">Map legend</h2>
         <section id="composition-panel" class="composition-panel" aria-live="polite">
-            <h2>Scenario composition</h2>
-            <p>Loading unit layouts…</p>
+            <p>Loading map legend…</p>
         </section>
-    </details>
+    </section>
 </aside>
 
 <div id="map"></div>
@@ -1723,22 +1890,15 @@
 
     const compositionWindow = document.getElementById("composition-window");
     const compositionWindowToggle = document.getElementById("composition-window-toggle");
-    function positionCompositionWindow() {
-        if (!compositionWindow) return;
-        compositionWindow.style.top = `${infoPanel.offsetTop + infoPanel.offsetHeight + 10}px`;
-    }
     compositionWindowToggle.addEventListener("click", () => {
         const collapsed = compositionWindow.classList.toggle("is-collapsed");
         compositionWindowToggle.textContent = collapsed ? "›" : "‹";
         compositionWindowToggle.setAttribute("aria-expanded", String(!collapsed));
         compositionWindowToggle.setAttribute(
             "aria-label",
-            collapsed ? "Expand composition" : "Collapse composition"
+            collapsed ? "Expand map legend" : "Collapse map legend"
         );
     });
-    new ResizeObserver(positionCompositionWindow).observe(infoPanel);
-    window.addEventListener("resize", positionCompositionWindow);
-    positionCompositionWindow();
 
     const standardMapLayer = L.imageOverlay(activeMapDefinition().image, bounds).addTo(map);
     const topographicMapLayer = L.imageOverlay(
@@ -1872,7 +2032,7 @@
         rangeDisclaimerSelectionKey = null;
     }
 
-    const rangeDisclaimerControl = L.control({ position: "bottomright" });
+    const rangeDisclaimerControl = L.control({ position: "bottomleft" });
     rangeDisclaimerControl.onAdd = () => {
         const element = L.DomUtil.create("aside", "range-disclaimer-control");
         element.innerHTML = `
@@ -1892,8 +2052,6 @@
         rangeDisclaimerElement = element;
         return element;
     };
-    rangeDisclaimerControl.addTo(map);
-
     const planningLayers = {
         ruler: L.layerGroup().addTo(map),
         flight: L.layerGroup().addTo(map)
@@ -2081,12 +2239,18 @@
         return element;
     };
     mapToolsControl.addTo(map);
+    rangeDisclaimerControl.addTo(map);
 
     map.on("click", event => {
         if (activeMapTool === "flight") return;
         if (addPlanningPoint(event.latlng)) return;
         clearSelectedRanges();
         clearRouteSelection();
+        if (legendCategory) {
+            legendCategory = null;
+            renderSiteLegend();
+            applyLegendHighlights();
+        }
     });
 
     map.on("dblclick", event => {
@@ -2145,6 +2309,21 @@
         2: makeOperationalUnitGroups()
     };
 
+    const siteGroups = {
+        1: makeOperationalUnitGroups(),
+        2: makeOperationalUnitGroups()
+    };
+    const focusedDetailGroup = L.layerGroup().addTo(map);
+    const detailLayersBySite = new Map();
+    const overviewMarkers = [];
+    const runwayLayersBySite = new Map();
+    const DETAIL_ZOOM = 1.5;
+    let focusedOverviewSite = null;
+    let focusedOverviewMarker = null;
+    let latestOverviewEntries = [];
+    let legendTeam = 1;
+    let legendCategory = null;
+
     const asphaltRoadGroup = L.layerGroup();
     const gravelRoadGroup = L.layerGroup();
 
@@ -2155,12 +2334,12 @@
                 capture: L.layerGroup()
             },
             vehicleDepots: {
-                objectives: L.layerGroup().addTo(map),
+                objectives: L.layerGroup(),
                 capture: L.layerGroup(),
                 armored: L.layerGroup()
             },
             fuelAmmoDepots: {
-                objectives: L.layerGroup().addTo(map),
+                objectives: L.layerGroup(),
                 capture: L.layerGroup(),
                 convoy: L.layerGroup()
             },
@@ -2208,6 +2387,7 @@
 
     const renderedGroups = [
         ...Object.values(unitGroups).flatMap(groups => Object.values(groups)),
+        ...Object.values(siteGroups).flatMap(groups => Object.values(groups)),
         ...Object.values(missionGroups).flatMap(groups => [
             groups.airfields.runways,
             groups.fleet.routes
@@ -2237,7 +2417,9 @@
     let globalArmoredLinkLocations = new Map();
     const routeVisuals = new Map();
     const selectedDepotGroup = L.layerGroup().addTo(map);
+    const autoRouteGroups = new Set();
     let selectedRouteKeys = new Set();
+    let routeVisibilityKeys = null;
     let selectedDepotName = null;
     const mapVariantStorageKey = "nuclear-thunder-map-variant";
     let currentMapVariant = sessionStorage.getItem(mapVariantStorageKey) || "standard";
@@ -2448,36 +2630,25 @@
 
     function populateScenarioSelector() {
         const options = document.getElementById("scenario-options");
-        const bracketLabel = document.getElementById("scenario-brackets");
         const previouslySelected = options.value;
         options.replaceChildren();
         const presets = globalPresetData.presets || [];
         presets.forEach(preset => {
             const option = document.createElement("option");
             option.value = preset.id;
-            option.textContent = preset.label;
+            const brackets = bracketsForPreset(preset);
+            option.textContent = brackets.length
+                ? `${preset.label} — ${brackets.map(bracket => `[${bracket}]`).join(" ")}`
+                : `${preset.label} — [BR not set]`;
             options.append(option);
         });
         options.disabled = !presets.length;
         options.value = presets.some(preset => preset.id === previouslySelected)
             ? previouslySelected
             : presets[0]?.id || "";
-        const updateBrackets = () => {
-            const preset = presets.find(item => item.id === options.value);
-            const brackets = preset ? bracketsForPreset(preset) : [];
-            bracketLabel.classList.toggle("is-unset", !brackets.length);
-            bracketLabel.textContent = brackets.length
-                ? brackets.map(bracket => `[${bracket}]`).join(" ")
-                : "[BR not set]";
-            bracketLabel.title = brackets.length
-                ? ""
-                : "Set this scenario's BR brackets in br_brackets.json before merging.";
-        };
         options.onchange = event => {
-            updateBrackets();
             renderMapData(event.target.value);
         };
-        updateBrackets();
     }
 
     function clearVariantLayers() {
@@ -2489,6 +2660,7 @@
             });
         });
         selectedDepotGroup.clearLayers();
+        autoRouteGroups.clear();
         routeVisuals.clear();
         selectedRouteKeys.clear();
         selectedDepotName = null;
@@ -2573,7 +2745,8 @@
         return "strongpoints";
     }
 
-    function drawRunway(runway, team) {
+    function drawRunway(runway, site) {
+        const team = site.team;
         const [startX, , startZ] = runway.start;
         const [endX, , endZ] = runway.end;
         const width = runway.width || 80;
@@ -2592,22 +2765,31 @@
             worldToLatLng(endX + normalX * halfWidth, endZ + normalZ * halfWidth)
         ];
 
-        L.polygon(corners, {
-            color: "#e2e8f0",
+        const runwayGroup = (missionGroups[team] || missionGroups[1]).airfields.runways;
+        const surface = L.polygon(corners, {
+            color: teamColor(team),
             fillColor: "#2d3748",
             fillOpacity: 0.85,
             weight: 2
         }).bindTooltip(`<b>Landing strip</b><br>Width: ${width} m`)
-            .addTo((missionGroups[team] || missionGroups[1]).airfields.runways);
+            .bindPopup(airfieldCardHtml(site), { maxWidth: 360 })
+            .addTo(runwayGroup);
+        surface.on("click", event => {
+            L.DomEvent.stopPropagation(event);
+            highlightAirfieldRunway(site.name);
+        });
 
-        L.polyline([
+        const centreLine = L.polyline([
             worldToLatLng(startX, startZ),
             worldToLatLng(endX, endZ)
         ], {
             color: "#f6e05e",
             weight: 2,
             dashArray: "8, 8"
-        }).addTo((missionGroups[team] || missionGroups[1]).airfields.runways);
+        }).addTo(runwayGroup);
+        const layers = runwayLayersBySite.get(site.name) || [];
+        layers.push(surface, centreLine);
+        runwayLayersBySite.set(site.name, layers);
     }
 
     function drawShipRoute(route, site) {
@@ -2942,15 +3124,18 @@
     }
 
     function applyRouteStyle(routeVisual, hovered = false) {
+        const visible = routeVisibilityKeys === null ||
+            routeVisibilityKeys.has(routeVisual.key);
         const selected = selectedRouteKeys.has(routeVisual.key);
         routeVisual.line.setStyle({
             weight: selected ? 3.7 : hovered ? 3 : routeVisual.baseWeight,
-            opacity: selected ? 1 : hovered ? 0.95 : routeVisual.baseOpacity
+            opacity: visible ? (selected ? 1 : hovered ? 0.95 : routeVisual.baseOpacity) : 0
         });
         routeVisual.halo.setStyle({
-            opacity: selected ? 0.72 : hovered ? 0.34 : 0,
+            opacity: visible ? (selected ? 0.72 : hovered ? 0.34 : 0) : 0,
             weight: selected ? 7 : 6
         });
+        routeVisual.hitLine.setStyle({ opacity: visible ? 0.001 : 0 });
     }
 
     function refreshRouteHighlights() {
@@ -2958,6 +3143,46 @@
     }
 
     function clearRouteSelection() {
+        selectedRouteKeys = new Set();
+        selectedDepotName = null;
+        selectedDepotGroup.clearLayers();
+        // A blank-map click is the explicit way to dismiss route context.
+        // Keep the route context through zoom changes, but remove any
+        // route layers that were added automatically for an overview site.
+        autoRouteGroups.forEach(group => map.removeLayer(group));
+        autoRouteGroups.clear();
+        routeVisibilityKeys = null;
+        refreshRouteHighlights();
+    }
+
+    function showRoutesForOverviewSite(entry) {
+        const category = operationalCategory(entry.site);
+        const mission = missionGroups[entry.site.team] || missionGroups[1];
+        const routeGroup = category === "fuelAmmoDepots"
+            ? mission.fuelAmmoDepots.convoy
+            : category === "vehicleDepots"
+                ? mission.vehicleDepots.armored
+                : null;
+        if (!routeGroup) return;
+
+        if (!map.hasLayer(routeGroup)) {
+            routeGroup.addTo(map);
+            autoRouteGroups.add(routeGroup);
+        }
+        const siteNames = new Set(entry.siteNames);
+        routeVisibilityKeys = new Set(
+            [...routeVisuals.values()]
+                .filter(route => route.endpoints.some(name => siteNames.has(name)))
+                .map(route => route.key)
+        );
+        selectedRouteKeys = new Set(routeVisibilityKeys);
+        refreshRouteHighlights();
+    }
+
+    function clearAutoRouteGroups() {
+        autoRouteGroups.forEach(group => map.removeLayer(group));
+        autoRouteGroups.clear();
+        routeVisibilityKeys = null;
         selectedRouteKeys = new Set();
         selectedDepotName = null;
         selectedDepotGroup.clearLayers();
@@ -2980,14 +3205,14 @@
         refreshRouteHighlights();
     }
 
-    function selectDepotRoutes(site, position, event) {
+    function selectDepotRoutes(site, position, event, force = false) {
         stopLeafletClick(event);
         const wasSelected = selectedDepotName === site.name;
         selectedDepotGroup.clearLayers();
-        selectedDepotName = wasSelected ? null : site.name;
+        selectedDepotName = !force && wasSelected ? null : site.name;
         selectedRouteKeys = new Set();
 
-        if (!wasSelected) {
+        if (!wasSelected || force) {
             routeVisuals.forEach(routeVisual => {
                 if (routeVisual.endpoints.includes(site.name)) {
                     selectedRouteKeys.add(routeVisual.key);
@@ -3098,7 +3323,8 @@
         const unitRanges = L.layerGroup();
         const ranges = [
             {
-                value: specs.sensors?.detection?.nominal,
+                value: specs.sensors?.detection?.nominal ||
+                    Math.max(...(specs.sensors?.detection?.scope_ranges || []), 0),
                 label: "Radar detection",
                 style: {
                     color,
@@ -3215,6 +3441,56 @@
         return "tank";
     }
 
+    const NATO_RADAR_BANDS = [
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
+    ];
+    const WIKI_IMAGE_BASE = "https://static.encyclopedia.warthunder.com/images/";
+    const LOCAL_VEHICLE_IMAGES = {
+        us_ai_tbm_m752_lance: "icons/av_us_m_752_launcher_001.png",
+        us_ai_mlrs_m270: "icons/av_us_m_270_mlrs_char_001.png",
+        us_ai_sam_launcher_m192: "icons/av_mim_23_hawk_launcher_m192_001.png",
+        us_ai_sam_launcher_m192_early: "icons/av_mim_23_hawk_launcher_m192_001.png",
+        us_ai_sam_launcher_m901: "icons/av_mim_104_patriot_launcher_m901_001.png",
+        us_ai_sam_radar_an_mpq_34_cwar: "icons/av_mim_23_hawk_radar_an_mpq50_001.png",
+        us_ai_sam_radar_an_mpq_46: "icons/av_mim_23_hawk_radar_an_mpq_46_001.png",
+        us_ai_sam_radar_an_mpq_53: "icons/av_mim_104_patriot_radar_an_mpq53_001.png",
+        us_ai_sam_radar_cwar: "icons/av_mim_23_hawk_radar_cwar_001.png",
+        us_aircraftcarrier_forrestal_ai: "icons/av_aircraftcarrier_forrestal_001.png",
+        us_cruiser_rckt_california: "icons/av_cruiser_rckt_california_001.png",
+        ussr_ai_mlrs_9a52_2_smerch: "icons/av_rszo_smerch_char_001.png",
+        ussr_ai_sam_launcher_5p85se: "icons/av_s300ps_launcher_5p85se_001.png",
+        ussr_ai_sam_launcher_9a310: "icons/av_ussr_buk_m1_001.png",
+        ussr_ai_sam_launcher_9a310m1: "icons/av_ussr_buk_m1_001.png",
+        ussr_ai_sam_launcher_s_75: "icons/av_s75m_launcher_sm90_001.png",
+        ussr_ai_sam_radar_5n63s: "icons/av_s300ps_command_post_5n63s_001.png",
+        ussr_ai_sam_radar_5n64s: "icons/av_s300ps_5n64s_001.png",
+        ussr_ai_sam_radar_9s18m1: "icons/av_9s18_m3_001.png",
+        ussr_ai_sam_radar_p_12: "icons/av_s75m_radar_p12ma_001.png",
+        ussr_ai_sam_radar_snr_75: "icons/av_snr_75_001.png",
+        ussr_ai_tbm_9k79_tochka: "icons/av_9k79_tochka_001.png",
+        ussr_aircraftcarrier_admiral_kuznetsov_ai: "icons/av_aircraftcarrier_admiral_kuznetsov_001.png",
+        ussr_aircraftcarrier_baku_ai: "icons/av_aircraftcarrier_baku_001.png",
+        ussr_destroyer_rckt_pr956: "icons/av_destroyer_rckt_pr956_001.png",
+        ussr_buk_m3_fcs: "icons/av_9s18_m3_001.png",
+        ussr_buk_m3_launcher: "icons/av_9a317m_001.png"
+    };
+
+    function natoRadarBand(band) {
+        const index = Number(band);
+        return Number.isInteger(index) && NATO_RADAR_BANDS[index]
+            ? `${NATO_RADAR_BANDS[index]}-band`
+            : "Band unknown";
+    }
+
+    function vehicleImageUrl(name) {
+        const value = String(name || "").toLowerCase();
+        // Prefer the local art set. Wiki art remains a fallback for real
+        // vehicle names not yet supplied as a project asset.
+        return LOCAL_VEHICLE_IMAGES[value] || (value && !value.includes("_ai_")
+            ? `${WIKI_IMAGE_BASE}${encodeURIComponent(value)}.png`
+            : null);
+    }
+
     function drawLogicSite(site) {
         const [x, , z] = site.world_pos;
         const position = worldToLatLng(x, z);
@@ -3260,9 +3536,24 @@
             }).bindTooltip(
                 `${tooltip}<br><i>Click to highlight this depot's routes</i>`
             ).addTo(categoryGroup.objectives);
+            const sourceSite = globalSiteLocations.get(site.name);
+            const mainBuilding = sourceSite?.buildings_by_era?.[selectedPresetId()]?.[0];
+            if (mainBuilding && BUILDING_CARD_DATA[String(mainBuilding.name || "").toLowerCase()]) {
+                marker.bindPopup(
+                    buildingCardHtml(mainBuilding, { ...sourceSite, team: site.team }),
+                    { maxWidth: 360 }
+                );
+            }
             marker.on("click", event =>
                 selectDepotRoutes(site, position, event)
             );
+            // Keep the objective marker usable at detail zoom: when a depot
+            // building card is available, open it explicitly alongside the
+            // route selection instead of relying on Leaflet's default marker
+            // click handler (which can be intercepted by the route logic).
+            marker.on("click", () => {
+                if (marker.getPopup()) marker.openPopup();
+            });
         }
 
         if (categoryGroup?.capture) {
@@ -3467,6 +3758,11 @@
         const role = String(unit.role || "vehicle");
         const specs = globalUnitSpecs[name.toLowerCase()];
         const icon = natoIconPath(site.team, unitIconType(unit, site));
+        const vehicleImage = vehicleImageUrl(name);
+        const cardWeapons = (specs?.weapons || []).slice(0, 2);
+        const weaponRanges = new Set(cardWeapons
+            .map(weapon => Number(weapon.effective_maximum || 0))
+            .filter(range => range > 0));
         const sensor = specs?.sensors || {};
         const statEntries = [];
         function addSensorStat(label, sensorData) {
@@ -3474,13 +3770,25 @@
                 statEntries.push([label, formatDistance(sensorData.nominal)]);
             }
             if (Number.isFinite(Number(sensorData?.band)) && Number(sensorData.band) >= 0) {
-                statEntries.push([`${label} band`, `Band ${sensorData.band}`]);
+                statEntries.push([`${label} band`, natoRadarBand(sensorData.band)]);
             }
         }
         addSensorStat("Detection", sensor.detection);
         addSensorStat("Tracking", sensor.tracking);
         addSensorStat("IRST", sensor.irst);
-        if (specs?.engagement_range) {
+        if (Array.isArray(specs?.sensors?.detection?.scope_ranges) && specs.sensors.detection.scope_ranges.length) {
+            statEntries.push([
+                "Scope scales",
+                specs.sensors.detection.scope_ranges.map(formatDistance).join(" / ")
+            ]);
+        }
+        if (specs?.sensors?.detection?.designation_range) {
+            statEntries.push([
+                "Designation",
+                formatDistance(specs.sensors.detection.designation_range)
+            ]);
+        }
+        if (specs?.engagement_range && !weaponRanges.has(Number(specs.engagement_range))) {
             statEntries.push(["Engagement", formatDistance(specs.engagement_range)]);
         } else if (unit.threat_range) {
             statEntries.push(["Threat range", formatDistance(unit.threat_range)]);
@@ -3488,7 +3796,9 @@
         if (specs?.target_channels) {
             statEntries.push(["Channels", specs.target_channels]);
         }
-        if (specs?.maximum_speed_kph) {
+        const staticGroundPosition = site.source_group !== "ships" &&
+            operationalCategory(site) !== "strategic";
+        if (specs?.maximum_speed_kph && !staticGroundPosition) {
             statEntries.push(["Road speed", `${specs.maximum_speed_kph} km/h`]);
         }
         const statHtml = statEntries.length
@@ -3496,27 +3806,125 @@
                 <span class="vehicle-card-stat">${escapeHtml(label)}<b>${escapeHtml(value)}</b></span>
             `).join("")}</div>`
             : "";
-        const weaponLines = (specs?.weapons || []).slice(0, 2).map(weapon => {
+        const weaponLines = cardWeapons.map(weapon => {
             const range = Number(weapon.effective_maximum || 0);
+            const ammoValue = Number(weapon.ammo);
+            const ammo = weapon.ammo !== null && weapon.ammo !== undefined &&
+                Number.isFinite(ammoValue) && ammoValue >= 0
+                ? ` · ammo ${ammoValue}`
+                : "";
             const reload = weapon.reload_seconds
                 ? ` · reload ${formatSeconds(weapon.reload_seconds)}`
                 : "";
             return `<strong>${escapeHtml(displayName(weapon.name))}</strong>` +
-                (range ? ` ${formatDistance(range)}` : "") + reload;
+                (range ? ` ${formatDistance(range)}` : "") + ammo + reload;
         });
         const weaponHtml = weaponLines.length
             ? `<p class="vehicle-card-weapons">${weaponLines.join("<br>")}</p>`
+            : "";
+        const artHtml = vehicleImage
+            ? `<div class="vehicle-card-art-wrap">
+                <img class="vehicle-card-art" src="${escapeHtml(vehicleImage)}" alt="" onerror="this.closest('.vehicle-card-art-wrap').remove()">
+                ${count > 1 ? `<span class="vehicle-card-count">×${count}</span>` : ""}
+            </div>`
+            : "";
+        const headerCount = !vehicleImage && count > 1
+            ? `<span class="vehicle-card-count">×${count}</span>`
             : "";
         return `
             <article class="vehicle-card team-${escapeHtml(site.team)}">
                 <div class="vehicle-card-header">
                     <img class="vehicle-card-icon" src="${escapeHtml(icon)}" alt="">
                     <span>${escapeHtml(displayName(name))}</span>
-                    ${count > 1 ? `<span class="vehicle-card-count">×${count}</span>` : ""}
+                    ${headerCount}
                 </div>
-                <div class="vehicle-card-role">${escapeHtml(displayName(role))} · ${escapeHtml(site.name)}</div>
+                ${artHtml}
+                <div class="vehicle-card-role">${escapeHtml(displayName(role))}</div>
                 ${statHtml}
                 ${weaponHtml}
+            </article>
+        `;
+    }
+
+    const BUILDING_CARD_DATA = {
+        nt_fuel_factory: {
+            label: "Fuel factory",
+            hp: 4000,
+            icon: "fuel_storage",
+            art: "icons/av_bombtarget_oil_storage_07_a_001.png"
+        },
+        nt_ammo_factory: {
+            label: "Ammunition factory",
+            hp: 5000,
+            icon: "ammo_storage",
+            art: "icons/av_assembly_area_ammo_storage_a_001.png"
+        },
+        nt_assembly_area_fuel_storage: {
+            label: "Assembly fuel storage",
+            hp: 4000,
+            icon: "fuel_storage",
+            art: "icons/av_bombtarget_oil_storage_08_a_001.png"
+        },
+        nt_assembly_area_ammo_storage: {
+            label: "Assembly ammunition storage",
+            hp: 5000,
+            icon: "ammo_storage",
+            art: "icons/av_assembly_area_ammo_storage_a_001.png"
+        },
+        nt_assembly_area_tank_factory: {
+            label: "Assembly tank factory",
+            hp: 6000,
+            icon: "tank_storage",
+            art: "icons/av_bombtarget_tank_garage_building_01_a_001.png"
+        }
+    };
+
+    function compactSiteBuildings(buildings) {
+        const grouped = new Map();
+        buildings.forEach(building => {
+            const key = String(building.name || "building");
+            const entry = grouped.get(key) || { building, count: 0 };
+            entry.count += 1;
+            grouped.set(key, entry);
+        });
+        return [...grouped.values()].sort((a, b) =>
+            displayName(a.building.name).localeCompare(displayName(b.building.name))
+        );
+    }
+
+    function buildingCardHtml(building, site, count = 1) {
+        const key = String(building.name || "").toLowerCase();
+        const data = BUILDING_CARD_DATA[key];
+        if (!data) return "";
+        return `
+            <article class="vehicle-card team-${escapeHtml(site.team)} building-card">
+                <div class="vehicle-card-header">
+                    <img class="vehicle-card-icon" src="${escapeHtml(natoIconPath(site.team, data.icon))}" alt="">
+                    <span>${escapeHtml(data.label)}</span>
+                    ${count > 1 ? `<span class="vehicle-card-count">×${count}</span>` : ""}
+                </div>
+                <img class="vehicle-card-art" src="${escapeHtml(data.art)}" alt="" onerror="this.remove()">
+                <div class="vehicle-card-role">Structure · ${escapeHtml(site.name)}</div>
+                <div class="vehicle-card-stats">
+                    <span class="vehicle-card-stat">Integrity<b>${data.hp.toLocaleString()} HP</b></span>
+                </div>
+            </article>
+        `;
+    }
+
+    function airfieldCardHtml(site) {
+        const isMain = /_airfield_main$/.test(String(site.name || ""));
+        const hp = isMain ? 20000000 : 500000;
+        return `
+            <article class="vehicle-card team-${escapeHtml(site.team)} airfield-card">
+                <div class="vehicle-card-header">
+                    <span class="vehicle-card-icon objective-symbol" aria-hidden="true">✈</span>
+                    <span>${isMain ? "Main airfield" : "Front airfield"}</span>
+                </div>
+                <div class="vehicle-card-role">Bombing zone · ${escapeHtml(site.name)}</div>
+                <div class="vehicle-card-stats">
+                    <span class="vehicle-card-stat">Integrity<b>${hp.toLocaleString()} HP</b></span>
+                </div>
             </article>
         `;
     }
@@ -3673,6 +4081,469 @@
         `;
     }
 
+    function compactSiteUnits(units) {
+        const grouped = new Map();
+        units.forEach(unit => {
+            const key = [unit.name, unit.role, unit.preset].join("|");
+            const entry = grouped.get(key) || { unit, count: 0 };
+            entry.count += 1;
+            grouped.set(key, entry);
+        });
+        return [...grouped.values()].sort((a, b) =>
+            displayName(a.unit.name).localeCompare(displayName(b.unit.name))
+        );
+    }
+
+    function siteOverviewIcon(team, category) {
+        const type = {
+            strongpoints: "tank",
+            vehicleDepots: "tank_storage",
+            fuelAmmoDepots: "fuel_storage",
+            shortSams: "sam",
+            longSams: "sam",
+            ewRadars: "radar_station",
+            strategic: "tbm"
+        }[category] || "tank";
+        const classes = ["site-overview-icon", `team-${team}`];
+        if (category === "longSams") classes.push("long-range");
+        const content = `<img src="${escapeHtml(natoIconPath(team, type))}" alt="">`;
+        return L.divIcon({
+            className: "",
+            html: `<span class="${classes.join(" ")}">${content}</span>`,
+            iconSize: [36, 36],
+            iconAnchor: [18, 18],
+            tooltipAnchor: [0, -20]
+        });
+    }
+
+    function siteLegendIcon(team, category) {
+        return siteOverviewIcon(team, category).options.html;
+    }
+
+    function overviewSiteLabel(entry) {
+        const category = operationalCategory(entry.site);
+        const prefix = entry.site.team === 1 ? "REDFOR" : "BLUFOR";
+        const type = {
+            shortSams: "close SAM site",
+            longSams: "long-range SAM site",
+            ewRadars: "early-warning radar",
+            airfields: "airfield",
+            strategic: "strategic launch unit",
+            vehicleDepots: "vehicle depot",
+            fuelAmmoDepots: "fuel/ammunition depot",
+            strongpoints: "strongpoint"
+        }[category] || "ground site";
+        return `${prefix} ${type}${entry.siteCount > 1 ? ` ×${entry.siteCount}` : ""}`;
+    }
+
+    function overviewSiteRecords(selectedEra) {
+        const records = globalSiteData.map(sourceSite => {
+            const site = moveMapSiteToOpposingLocation(sourceSite);
+            return {
+                site,
+                units: [...(site.units_by_era?.[selectedEra] || [])],
+                buildings: [...(site.buildings_by_era?.[selectedEra] || [])],
+                siteNames: [site.name],
+                relatedSites: [site],
+                siteCount: 1
+            };
+        }).filter(record =>
+            record.units.length || record.buildings.length ||
+            ["airfields", "vehicleDepots", "fuelAmmoDepots"].includes(
+                operationalCategory(record.site)
+            )
+        );
+
+        const centralSites = records.filter(record =>
+            /_(short|long)_sam_site_\d+$/.test(String(record.site.name || ""))
+        );
+        const absorbed = new Set();
+        records.forEach(record => {
+            if (!/_(sam|spaa)_cover_foundation_\d+$/.test(String(record.site.name || ""))) return;
+            const [x, , z] = record.site.world_pos;
+            let closest = null;
+            let closestDistance = Infinity;
+            centralSites.forEach(candidate => {
+                if (candidate.site.team !== record.site.team) return;
+                const [candidateX, , candidateZ] = candidate.site.world_pos;
+                const distance = Math.hypot(x - candidateX, z - candidateZ);
+                if (distance < closestDistance) {
+                    closest = candidate;
+                    closestDistance = distance;
+                }
+            });
+            if (closest && closestDistance <= 2000) {
+                closest.units.push(...record.units);
+                closest.buildings.push(...record.buildings);
+                closest.siteNames.push(record.site.name);
+                closest.relatedSites.push(record.site);
+                absorbed.add(record);
+            }
+        });
+        return records.filter(record =>
+            !absorbed.has(record) && operationalCategory(record.site) !== "fleet"
+        );
+    }
+
+    function overviewUnitSummary(entry) {
+        const units = compactSiteUnits(entry.units);
+        const unitText = units.map(({ unit, count }) =>
+            `${count}× ${displayName(unit.name)}`
+        );
+        const buildingText = compactSiteBuildings(entry.buildings).map(({ building, count }) =>
+            `${count}× ${displayName(building.name)}`
+        );
+        return [...unitText, ...buildingText].slice(0, 8);
+    }
+
+    function siteCardHtml(entry) {
+        const unitCards = compactSiteUnits(entry.units).map(({ unit, count }) =>
+            unitCardHtml(unit, entry.site, count)
+        );
+        const buildingCards = compactSiteBuildings(entry.buildings).map(({ building, count }) =>
+            buildingCardHtml(building, entry.site, count)
+        );
+        const objectiveCards = operationalCategory(entry.site) === "airfields"
+            ? [airfieldCardHtml(entry.site)]
+            : [];
+        return [...unitCards, ...buildingCards, ...objectiveCards].join("");
+    }
+
+    function sitePopupHtml(entry) {
+        const summary = overviewUnitSummary(entry).join(" · ") || "No individual vehicle layout is extracted.";
+        return `
+            <h2 class="site-popup-title">${escapeHtml(overviewSiteLabel(entry))}</h2>
+            <p class="site-popup-description">${escapeHtml(summary)}</p>
+            <div class="vehicle-card-grid">
+                ${siteCardHtml(entry)}
+            </div>
+        `;
+    }
+
+    function clearFocusedSite({ keepRoutes = false } = {}) {
+        if (focusedOverviewMarker && focusedOverviewSite) {
+            const category = operationalCategory(focusedOverviewSite.site);
+            focusedDetailGroup.removeLayer(focusedOverviewMarker);
+            (siteGroups[focusedOverviewSite.site.team] || siteGroups[1])[category]
+                .addLayer(focusedOverviewMarker);
+        }
+        focusedOverviewMarker = null;
+        focusedOverviewSite = null;
+        focusedDetailGroup.clearLayers();
+        if (!keepRoutes) clearAutoRouteGroups();
+        map.closePopup();
+        refreshAirfieldRunwayStyles();
+    }
+
+    function highlightAirfieldRunway(siteName) {
+        latestOverviewEntries
+            .filter(entry => entry.site.name === siteName && operationalCategory(entry.site) === "airfields")
+            .forEach(entry => {
+                focusedOverviewSite = entry;
+                refreshAirfieldRunwayStyles();
+            });
+    }
+
+    function refreshAirfieldRunwayStyles() {
+        latestOverviewEntries
+            .filter(entry => operationalCategory(entry.site) === "airfields")
+            .forEach(entry => {
+                const focused = focusedOverviewSite?.site.name === entry.site.name;
+                const highlighted = focused || (
+                    legendCategory === "airfields" && entry.site.team === legendTeam
+                );
+                (runwayLayersBySite.get(entry.site.name) || []).forEach((layer, index) => {
+                    layer.setStyle(index % 2 === 0
+                        ? {
+                            color: highlighted ? "#f6e05e" : teamColor(entry.site.team),
+                            fillOpacity: highlighted ? 1 : 0.85,
+                            weight: highlighted ? 4 : 2
+                        }
+                        : {
+                            color: highlighted ? "#fff7ae" : "#f6e05e",
+                            weight: highlighted ? 4 : 2
+                        }
+                    );
+                });
+            });
+    }
+
+    function applyLegendHighlights() {
+        overviewMarkers.forEach(({ marker, entry }) => {
+            const highlighted = Boolean(
+                legendCategory &&
+                entry.site.team === legendTeam &&
+                operationalCategory(entry.site) === legendCategory
+            );
+            marker.setZIndexOffset(highlighted ? 1100 : 500);
+            marker.getElement()?.classList.toggle("legend-highlighted", highlighted);
+        });
+        refreshAirfieldRunwayStyles();
+    }
+
+    function registerDetailLayer(siteName, layer) {
+        if (!detailLayersBySite.has(siteName)) detailLayersBySite.set(siteName, []);
+        detailLayersBySite.get(siteName).push(layer);
+    }
+
+    function syncDetailVisibility() {
+        const showAllDetails = map.getZoom() >= DETAIL_ZOOM;
+        if (!showAllDetails && focusedOverviewMarker) {
+            // Zooming out should restore the overview marker without
+            // discarding the selected depot routes. They remain until the
+            // user clicks empty map space, which calls clearRouteSelection().
+            clearFocusedSite({ keepRoutes: true });
+        }
+        [1, 2].forEach(team => {
+            operationalKeys.forEach(category => {
+                const group = unitGroups[team][category];
+                const siteGroup = siteGroups[team][category];
+                if (showAllDetails || category === "fleet") {
+                    if (!map.hasLayer(group)) map.addLayer(group);
+                } else if (map.hasLayer(group)) {
+                    map.removeLayer(group);
+                }
+                if (category !== "fleet") {
+                    if (!showAllDetails) {
+                        if (!map.hasLayer(siteGroup)) map.addLayer(siteGroup);
+                    } else if (map.hasLayer(siteGroup)) {
+                        map.removeLayer(siteGroup);
+                    }
+                }
+            });
+            const mission = missionGroups[team];
+            [
+                mission.vehicleDepots.objectives,
+                mission.fuelAmmoDepots.objectives,
+            ].forEach(group => {
+                if (showAllDetails) {
+                    if (!map.hasLayer(group)) map.addLayer(group);
+                } else if (map.hasLayer(group)) {
+                    map.removeLayer(group);
+                }
+            });
+        });
+        applyLegendHighlights();
+    }
+
+    map.on("zoomend", syncDetailVisibility);
+
+    function focusOverviewSite(entry, marker) {
+        if (focusedOverviewMarker === marker) {
+            clearFocusedSite();
+            return;
+        }
+        clearFocusedSite();
+        focusedOverviewSite = entry;
+        focusedOverviewMarker = marker;
+        const category = operationalCategory(entry.site);
+        (siteGroups[entry.site.team] || siteGroups[1])[category].removeLayer(marker);
+        showRoutesForOverviewSite(entry);
+        entry.siteNames.forEach(siteName => {
+            (detailLayersBySite.get(siteName) || []).forEach(layer =>
+                focusedDetailGroup.addLayer(layer)
+            );
+        });
+        const bounds = L.latLngBounds(entry.relatedSites.map(site => {
+            const [x, , z] = site.world_pos;
+            return worldToLatLng(x, z);
+        }));
+        if (bounds.isValid()) map.fitBounds(bounds.pad(0.45), { maxZoom: 2 });
+        const [siteX, , siteZ] = entry.site.world_pos;
+        L.popup({ className: "site-popup", maxWidth: 360, autoPan: false })
+            .setLatLng(worldToLatLng(siteX, siteZ))
+            .setContent(sitePopupHtml(entry))
+            .openOn(map);
+    }
+
+    function pinSiteDetails(siteName) {
+        const entry = latestOverviewEntries.find(candidate =>
+            candidate.siteNames.includes(siteName)
+        );
+        (entry?.siteNames || [siteName]).forEach(name => {
+            (detailLayersBySite.get(name) || []).forEach(layer =>
+                focusedDetailGroup.addLayer(layer)
+            );
+        });
+    }
+
+    function drawOverviewMarker(entry, targetGroups) {
+        const category = operationalCategory(entry.site);
+        const [x, , z] = entry.displayWorldPos || entry.site.world_pos;
+        const marker = L.marker(worldToLatLng(x, z), {
+            icon: siteOverviewIcon(entry.site.team, category, entry.siteCount),
+            zIndexOffset: 500
+        }).bindTooltip(`
+            <b>${escapeHtml(overviewSiteLabel(entry))}</b><br>
+            ${(overviewUnitSummary(entry).length
+                ? overviewUnitSummary(entry).map(escapeHtml).join("<br>")
+                : "Click to inspect site")}
+        `, { direction: "top", opacity: 0.95 })
+            .addTo((targetGroups[entry.site.team] || targetGroups[1])[category]);
+        marker.on("click", event => {
+            L.DomEvent.stopPropagation(event);
+            focusOverviewSite(entry, marker);
+        });
+        overviewMarkers.push({ marker, entry });
+    }
+
+    function makeCategoryClusters(entries) {
+        const clusters = new Map();
+        entries.forEach(entry => {
+            const category = operationalCategory(entry.site);
+            const key = `${entry.site.team}:${category}`;
+            const existing = clusters.get(key);
+            if (!existing) {
+                clusters.set(key, {
+                    ...entry,
+                    units: [...entry.units],
+                    buildings: [...entry.buildings],
+                    siteNames: [...entry.siteNames],
+                    relatedSites: [...entry.relatedSites],
+                    siteCount: entry.siteCount
+                });
+                return;
+            }
+            const previousCount = existing.siteCount;
+            existing.siteCount += entry.siteCount;
+            existing.units.push(...entry.units);
+            existing.buildings.push(...entry.buildings);
+            existing.siteNames.push(...entry.siteNames);
+            existing.relatedSites.push(...entry.relatedSites);
+            const [oldX, oldY, oldZ] = existing.site.world_pos;
+            const [newX, newY, newZ] = entry.site.world_pos;
+            existing.site = {
+                ...existing.site,
+                world_pos: [
+                    (oldX * previousCount + newX * entry.siteCount) / existing.siteCount,
+                    (oldY * previousCount + newY * entry.siteCount) / existing.siteCount,
+                    (oldZ * previousCount + newZ * entry.siteCount) / existing.siteCount
+                ]
+            };
+        });
+        const order = [
+            "strongpoints", "vehicleDepots", "fuelAmmoDepots", "shortSams",
+            "longSams", "ewRadars", "airfields", "strategic"
+        ];
+        return [...clusters.values()].map(entry => {
+            const index = Math.max(0, order.indexOf(operationalCategory(entry.site)));
+            const angle = (Math.PI * 2 * index) / order.length;
+            const radius = 9000;
+            const [x, y, z] = entry.site.world_pos;
+            return {
+                ...entry,
+                displayWorldPos: [
+                    x + Math.cos(angle) * radius,
+                    y,
+                    z + Math.sin(angle) * radius
+                ]
+            };
+        });
+    }
+
+    function drawOverviewSites(selectedEra) {
+        const entries = overviewSiteRecords(selectedEra);
+        latestOverviewEntries = entries;
+        entries.forEach(entry => {
+            const category = operationalCategory(entry.site);
+            if (category !== "fleet" && category !== "airfields") {
+                drawOverviewMarker(entry, siteGroups);
+            }
+        });
+    }
+
+    function renderSiteLegend() {
+        const panel = document.getElementById("composition-panel");
+        if (!panel) return;
+        const items = [
+            ["strongpoints", "Strongpoint"],
+            ["vehicleDepots", "Vehicle depot"],
+            ["fuelAmmoDepots", "Fuel/ammo depot"],
+            ["shortSams", "Close SAM"],
+            ["longSams", "Long-range SAM"],
+            ["ewRadars", "EW radar"],
+            ["airfields", "Airfield"],
+            ["strategic", "TBM / MLRS"]
+        ];
+        const selectedEntries = legendCategory
+            ? latestOverviewEntries.filter(entry =>
+                entry.site.team === legendTeam &&
+                operationalCategory(entry.site) === legendCategory
+            )
+            : [];
+        const groupedCompositions = [...selectedEntries.reduce((groups, entry) => {
+            const units = compactSiteUnits(entry.units);
+            const buildings = compactSiteBuildings(entry.buildings);
+            const unitKey = units.map(({ unit, count }) =>
+                [unit.name, unit.role, unit.preset, count].join("|")
+            ).join(";");
+            const buildingKey = buildings.map(({ building, count }) =>
+                [building.name, count].join("|")
+            ).join(";");
+            const objectiveKey = operationalCategory(entry.site) === "airfields"
+                ? (/_airfield_main$/.test(String(entry.site.name || "")) ? "main" : "front")
+                : "";
+            const key = `${unitKey}||${buildingKey}||${objectiveKey}`;
+            const group = groups.get(key) || { entry, entries: [] };
+            group.entries.push(entry);
+            groups.set(key, group);
+            return groups;
+        }, new Map()).values()];
+        const selectedLabel = items.find(([category]) => category === legendCategory)?.[1];
+        panel.innerHTML = `
+            <p>Click a legend type to highlight every matching site. Click a map site to zoom in and inspect its layout.</p>
+            <div class="legend-team-switch" aria-label="Legend composition team">
+                <button type="button" data-legend-team="1" class="${legendTeam === 1 ? "is-selected" : ""}">REDFOR</button>
+                <button type="button" data-legend-team="2" class="${legendTeam === 2 ? "is-selected" : ""}">BLUFOR</button>
+            </div>
+            <div class="site-legend-items">
+                ${items.map(([category, label]) => `
+                    <button type="button" class="site-legend-item ${legendCategory === category ? "is-selected" : ""}" data-legend-category="${category}">
+                        ${siteLegendIcon(legendTeam, category)}${escapeHtml(label)}
+                    </button>
+                `).join("")}
+            </div>
+            ${legendCategory ? `
+                <section class="legend-composition">
+                    <h3 class="composition-section-title">${escapeHtml(legendTeam === 1 ? "REDFOR" : "BLUFOR")} ${escapeHtml(selectedLabel || "site")} composition</h3>
+                    ${groupedCompositions.length ? groupedCompositions.map(group => {
+                        const { entry, entries } = group;
+                        const count = entries.length;
+                        const locations = entries.map(candidate => candidate.site.name).join(" · ");
+                        return `
+                        <details class="composition-site team-${entry.site.team}" open>
+                            <summary>${escapeHtml(compositionSiteLabel(entry.site, count))}</summary>
+                            <p class="composition-site-description">${escapeHtml(
+                                `${count > 1 ? `${count} matching locations: ${locations}. ` : ""}` +
+                                (overviewUnitSummary(entry).join(" · ") || "No individual vehicle layout is extracted.")
+                            )}</p>
+                            <div class="vehicle-card-grid">
+                                ${siteCardHtml(entry)}
+                            </div>
+                        </details>
+                        `;
+                    }).join("") : "<p>No matching sites in this scenario.</p>"}
+                </section>
+            ` : ""}
+        `;
+        panel.querySelectorAll("[data-legend-team]").forEach(button => {
+            button.addEventListener("click", () => {
+                legendTeam = Number(button.dataset.legendTeam);
+                renderSiteLegend();
+                applyLegendHighlights();
+            });
+        });
+        panel.querySelectorAll("[data-legend-category]").forEach(button => {
+            button.addEventListener("click", () => {
+                legendCategory = legendCategory === button.dataset.legendCategory
+                    ? null
+                    : button.dataset.legendCategory;
+                renderSiteLegend();
+                applyLegendHighlights();
+            });
+        });
+    }
+
     function drawUnit(unit, site) {
         const [x, , z] = unit.world_pos;
         const unitLatLng = worldToLatLng(x, z);
@@ -3687,14 +4558,24 @@
             const tracking = specs.sensors?.tracking;
             const teamCoverage = coverageGroups[site.team] || coverageGroups[1];
             const coverageCategory = teamCoverage[categoryKey];
+            const scopeReference = Math.max(
+                ...(detection?.scope_ranges || []),
+                0
+            );
 
-            if (detection?.nominal) {
+            // EW radar files expose the search display scales (40/80/120 km)
+            // rather than a conventional nominal detection radius. Use the
+            // largest search scale as the map's reference envelope; the card
+            // still lists all scales so this is not mistaken for a hard
+            // in-game detection guarantee.
+            const detectionReference = detection?.nominal || scopeReference;
+            if (detectionReference) {
                 L.circle(unitLatLng, {
-                    radius: worldRadiusToMapRadius(detection.nominal),
+                    radius: worldRadiusToMapRadius(detectionReference),
                     color: teamColor(site.team),
                     fill: false,
                     weight: 1.5,
-                    opacity: 0.75,
+                    opacity: detection?.nominal ? 0.75 : 0.58,
                     dashArray: "8, 6",
                     interactive: false
                 }).addTo(coverageCategory.detection);
@@ -3733,10 +4614,12 @@
             Site: ${escapeHtml(site.name)}<br>
             Click for vehicle card and range overlays
         `).bindPopup(unitCardHtml(unit, site)).addTo(targetGroup);
+        registerDetailLayer(site.name, marker);
         marker.on("click", event => {
             if (event.originalEvent) {
                 L.DomEvent.stopPropagation(event.originalEvent);
             }
+            pinSiteDetails(site.name);
             const selectionKey = [
                 site.team,
                 site.name,
@@ -3762,46 +4645,53 @@
                     showRangeDisclaimer(selectionKey);
                 }
             }
+            if (categoryKey === "vehicleDepots" || categoryKey === "fuelAmmoDepots") {
+                selectDepotRoutes(site, unitLatLng, event, true);
+            }
             marker.openPopup();
         });
 
     }
 
     function drawVehicleDepotBuilding(building, site) {
-        if (operationalCategory(site) !== "vehicleDepots") return false;
         const name = String(building.name || "").toLowerCase();
-        let iconType = null;
-        let buildingLabel = null;
-        if (name.includes("ammo_storage")) {
-            iconType = "ammo_storage";
-            buildingLabel = "Internal ammunition storage";
-        } else if (name.includes("fuel_storage")) {
-            iconType = "fuel_storage";
-            buildingLabel = "Internal fuel storage";
-        }
-        // The tank factory occupies the site origin, where the normal assembly
-        // depot marker is already drawn. Avoid placing a duplicate marker there.
-        if (!iconType) return false;
+        const data = BUILDING_CARD_DATA[name];
+        if (!data) return false;
 
         const [x, , z] = building.world_pos;
         const targetGroup =
-            (unitGroups[site.team] || unitGroups[1]).vehicleDepots;
-        L.marker(worldToLatLng(x, z), {
-            icon: natoIcon(site.team, iconType, 26),
+            (unitGroups[site.team] || unitGroups[1])[operationalCategory(site)];
+        const marker = L.marker(worldToLatLng(x, z), {
+            icon: natoIcon(site.team, data.icon, 26),
+            pane: "depotMarkers",
+            zIndexOffset: 1200,
+            riseOnHover: true,
             guideSiteName: site.name,
             guideUnitRole: "building"
         }).bindTooltip(`
-            <b>${escapeHtml(buildingLabel)}</b><br>
-            Assembly depot: ${escapeHtml(site.name)}<br>
+            <b>${escapeHtml(data.label)}</b><br>
+            ${data.hp.toLocaleString()} HP<br>
+            Site: ${escapeHtml(site.name)}<br>
             Structure: ${escapeHtml(displayName(building.name))}<br>
             Position: [${x.toFixed(1)}, ${z.toFixed(1)}]
-        `).addTo(targetGroup);
+        `).bindPopup(buildingCardHtml(building, site), { maxWidth: 360 })
+            .addTo(targetGroup);
+        marker.on("click", event => {
+            selectDepotRoutes(site, worldToLatLng(x, z), event, true);
+            pinSiteDetails(site.name);
+            marker.openPopup();
+        });
+        registerDetailLayer(site.name, marker);
         return true;
     }
 
     function renderMapData(selectedEra) {
         clearSelectedRanges();
+        clearFocusedSite();
         renderedGroups.forEach(group => group.clearLayers());
+        detailLayersBySite.clear();
+        overviewMarkers.length = 0;
+        runwayLayersBySite.clear();
 
         const counts = {
             sites: 0,
@@ -3819,7 +4709,7 @@
             counts.sites += 1;
             (site.runways || []).forEach(runway => {
                 counts.runways += 1;
-                drawRunway(runway, site.team);
+                drawRunway(runway, site);
             });
 
             if (site.route?.points?.length) {
@@ -3861,7 +4751,9 @@
             ${counts.depotBuildings} depot storage buildings ·
             ${counts.ships} ships
         `;
-        renderCompositionPanel(selectedEra);
+        drawOverviewSites(selectedEra);
+        renderSiteLegend();
+        syncDetailVisibility();
     }
 
     document.getElementById("team-swap").addEventListener("click", () => {
@@ -3974,9 +4866,22 @@
 
     function folderOptions(team, key, additionalOptions = []) {
         const coverage = coverageGroups[team][key];
+        if (key === "fleet") {
+            return [
+                layerOption("Ships", unitGroups[team][key]),
+                ...additionalOptions,
+                layerOption("Radar detection", coverage.detection),
+                layerOption("Radar tracking", coverage.tracking),
+                layerOption("Weapon engagement", coverage.engagement)
+            ];
+        }
         return [
             layerOption(
-                key === "fleet" ? "Ships" : "Units",
+                "Site markers",
+                siteGroups[team][key]
+            ),
+            layerOption(
+                "Individual units",
                 unitGroups[team][key]
             ),
             ...additionalOptions,

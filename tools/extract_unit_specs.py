@@ -150,7 +150,7 @@ def first_rocket(value):
     return None
 
 
-def sensor_specs(unit, source):
+def sensor_specs(unit, source, unit_name=""):
     sensor_root = unit.get("sensors", {}).get("sensor")
     readings = []
     for sensor in as_list(sensor_root):
@@ -160,6 +160,27 @@ def sensor_specs(unit, source):
         if not path:
             continue
         data = source.load(path)
+        scope_search = data.get("scopeRangeSets", {}).get("search", {})
+        scope_ranges = sorted({
+            value for value in scope_search.values()
+            if isinstance(value, (int, float)) and value > 0
+        })
+        designation_range = None
+        designation = (
+            data.get("fsms", {})
+                .get("main", {})
+                .get("actionsTemplates", {})
+                .get("init", {})
+                .get("setTargetDesignationRange", {})
+                .get("distanceRange")
+        )
+        if isinstance(designation, list):
+            numeric_designation = [
+                value for value in designation
+                if isinstance(value, (int, float)) and value > 0
+            ]
+            if numeric_designation:
+                designation_range = max(numeric_designation)
         ai_variant = (
             sensor.get("human") is False
             or sensor.get("ai") is True
@@ -190,6 +211,8 @@ def sensor_specs(unit, source):
                     "nominal": nominal,
                     "maximum": maximum if isinstance(maximum, (int, float)) else nominal,
                     "band": receiver.get("band"),
+                    "scope_ranges": scope_ranges,
+                    "designation_range": designation_range,
                     "ai": ai_variant,
                     "sensor": Path(path).stem,
                 }
@@ -203,6 +226,14 @@ def sensor_specs(unit, source):
             candidates = ai_candidates
         if candidates:
             result[kind] = max(candidates, key=lambda reading: reading["nominal"])
+    # AEW mission radars currently expose an internal `range: 2` value in
+    # their sensor BLKX. It is not a two-metre detection radius. Keep the
+    # radar band, but suppress the bogus distance so the map cannot draw it.
+    if "aew_radar" in str(unit_name).lower():
+        for reading in result.values():
+            if isinstance(reading.get("nominal"), (int, float)) and reading["nominal"] < 1000:
+                reading["nominal"] = None
+                reading["maximum"] = None
     return result
 
 
@@ -312,7 +343,7 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
 
 def build_spec(unit_name, path, source):
     unit = source.load(path)
-    sensors = sensor_specs(unit, source)
+    sensors = sensor_specs(unit, source, unit_name)
     allow_air_gun_range = (
         str(unit.get("onRadarAs", "")).lower() == "sam"
         or str(unit.get("expClass", "")).lower() == "exp_spaa"
