@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "3b66fbcd874ca3789c130be28628e87ce69ccb8f",
+  "accepted_commit": "829400da4e23a5d975b1ca278987b203bd441703",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
@@ -60,17 +60,17 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
-      "sha": "319c44f7acf78cd8120989cd2b587fa7d4d54879",
+      "sha": "3e6280f7897b45c0fc310914328ac475043fac6c",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "43e40eacec21e10b181446e9bc6bb81bdcf1a8fd",
+      "sha": "6bce0621f0d10884b5e59e27eefa2246c6b2b61e",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm.blkx",
-      "sha": "78f4eac30303ba9a5996f8d148a8069a05c9a979",
+      "sha": "ae69f3e0c7d836ab97b2752c5f55fef21aebeb78",
       "used_for_generation": true
     },
     {
@@ -80,7 +80,7 @@
     },
     {
       "path": "game.vromfs.bin_u/game/es/nuclear_escalation.das",
-      "sha": "116f1ec31453d7cd45163796a38db1ef8050b0ef",
+      "sha": "83a0c839d417f20b72ea4a82a814ff82b322da34",
       "used_for_generation": false
     },
     {
@@ -90,7 +90,7 @@
     },
     {
       "path": "aces.vromfs.bin_u/gamedata/objectgroups/dyn_foundation_7m.blkx",
-      "sha": "da43e1324f62944810ea0c16611ef34f1f168c58",
+      "sha": "ae7840eb35edff34db9e0a9536a5644b625f690f",
       "used_for_generation": true
     },
     {
