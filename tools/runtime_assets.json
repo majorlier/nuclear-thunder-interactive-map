@@ -1,0 +1,21 @@
+{
+  "required": [
+    "map_4k.png",
+    "topographic_map.webp",
+    "terrain_height_8bit.png",
+    "air_south_eastern_city_map.png",
+    "generated/southeastern_city_heightmap/southeastern_city_topography.webp",
+    "generated/southeastern_city_heightmap/southeastern_city_height_8bit.png",
+    "road_network.json",
+    "road_network_city.json",
+    "navmesh_city.json",
+    "icon_templates.json",
+    "images/icons/basezone_big_nuclear_escalate.svg",
+    "images/icons/respawnbase_timer_ui.svg",
+    "images/icons/aircraft/b_52h_ico.svg",
+    "images/icons/aircraft/tu_95m_ico.svg",
+    "images/portraits/nebo_55j6.png",
+    "images/portraits/tps_59_radar.png",
+    "images/portraits/us_an_tps_43_radar.png"
+  ]
+}

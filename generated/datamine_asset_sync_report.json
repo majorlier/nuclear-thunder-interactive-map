@@ -1,0 +1,1282 @@
+[
+  {
+    "unit_class": "cn_hq_11",
+    "model": "hq_11",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/cn_hq_11.png",
+      "path": "images/slots/cn_hq_11.png",
+      "model_path": "images/slots/hq_11.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/cn_hq_11.png",
+      "path": "images/portraits/hq_11.png"
+    }
+  },
+  {
+    "unit_class": "germ_destroyer_lutjens_class_lutjens",
+    "model": "destroyer_lutjens_class_lutjens",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/germ_destroyer_lutjens_class_lutjens.png",
+      "path": "images/slots/germ_destroyer_lutjens_class_lutjens.png",
+      "model_path": "images/slots/destroyer_lutjens_class_lutjens.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/ships/germ_destroyer_lutjens_class_lutjens.png",
+      "path": "images/portraits/destroyer_lutjens_class_lutjens.png"
+    }
+  },
+  {
+    "unit_class": "germ_flakpz_1a2_Gepard",
+    "model": "flakpz_1a2_gepard",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/germ_flakpz_1a2_gepard.png",
+      "path": "images/slots/germ_flakpz_1a2_gepard.png",
+      "model_path": "images/slots/flakpz_1a2_gepard.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/germ_flakpz_1a2_gepard.png",
+      "path": "images/portraits/flakpz_1a2_gepard.png"
+    }
+  },
+  {
+    "unit_class": "germ_flarakpz_1",
+    "model": "flarakpz_1",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/germ_flarakpz_1.png",
+      "path": "images/slots/germ_flarakpz_1.png",
+      "model_path": "images/slots/flarakpz_1.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/germ_flarakpz_1.png",
+      "path": "images/portraits/flarakpz_1.png"
+    }
+  },
+  {
+    "unit_class": "germ_pzh_2000",
+    "model": "pzh_2000_germ",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/germ_pzh_2000.png",
+      "path": "images/slots/germ_pzh_2000.png",
+      "model_path": "images/slots/pzh_2000_germ.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/germ_pzh_2000.png",
+      "path": "images/portraits/pzh_2000_germ.png"
+    }
+  },
+  {
+    "unit_class": "il_spyder_aio",
+    "model": "spyder_aio",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/il_spyder_aio.png",
+      "path": "images/slots/il_spyder_aio.png",
+      "model_path": "images/slots/spyder_aio.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/il_spyder_aio.png",
+      "path": "images/portraits/spyder_aio.png"
+    }
+  },
+  {
+    "unit_class": "it_otomatic",
+    "model": "otomatic",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/it_otomatic.png",
+      "path": "images/slots/it_otomatic.png",
+      "model_path": "images/slots/otomatic.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/it_otomatic.png",
+      "path": "images/portraits/otomatic.png"
+    }
+  },
+  {
+    "unit_class": "it_samp_t_fcs",
+    "model": "samp_t_fcs",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/it_samp_t_fcs.png",
+      "path": "images/slots/it_samp_t_fcs.png",
+      "model_path": "images/slots/samp_t_fcs.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/it_samp_t_fcs.png",
+      "path": "images/portraits/samp_t_fcs.png"
+    }
+  },
+  {
+    "unit_class": "it_samp_t_launcher",
+    "model": "samp_t_launcher",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/it_samp_t_launcher.png",
+      "path": "images/slots/it_samp_t_launcher.png",
+      "model_path": "images/slots/samp_t_launcher.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/it_samp_t_launcher.png",
+      "path": "images/portraits/samp_t_launcher.png"
+    }
+  },
+  {
+    "unit_class": "jp_type_03_chusam_fcs",
+    "model": "type_03_chusam_fcs",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/jp_type_03_chusam_fcs.png",
+      "path": "images/slots/jp_type_03_chusam_fcs.png",
+      "model_path": "images/slots/type_03_chusam_fcs.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/jp_type_03_chusam_fcs.png",
+      "path": "images/portraits/type_03_chusam_fcs.png"
+    }
+  },
+  {
+    "unit_class": "jp_type_03_chusam_launcher",
+    "model": "type_03_chusam_launcher",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/jp_type_03_chusam_launcher.png",
+      "path": "images/slots/jp_type_03_chusam_launcher.png",
+      "model_path": "images/slots/type_03_chusam_launcher.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/jp_type_03_chusam_launcher.png",
+      "path": "images/portraits/type_03_chusam_launcher.png"
+    }
+  },
+  {
+    "unit_class": "sw_crotale_ng",
+    "model": "crotale_ng",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/sw_crotale_ng.png",
+      "path": "images/slots/sw_crotale_ng.png",
+      "model_path": "images/slots/crotale_ng.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/sw_crotale_ng.png",
+      "path": "images/portraits/crotale_ng.png"
+    }
+  },
+  {
+    "unit_class": "us_ai_aew_radar_tps_59",
+    "model": "tps_59_radar",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_mlrs_m270",
+    "model": "us_m_270_mlrs",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_launcher_m192",
+    "model": "mim_23_hawk_launcher_m192",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_launcher_m192_early",
+    "model": "mim_23_hawk_launcher_m192",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_launcher_m901",
+    "model": "mim_104_patriot_launcher_m901",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_radar_an_mpq_33",
+    "model": "mim_23_hawk_radar_an_mpq46",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_radar_an_mpq_34_cwar",
+    "model": "mim_23_hawk_radar_cwar",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_radar_an_mpq_46",
+    "model": "mim_23_hawk_radar_an_mpq46",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_radar_an_mpq_53",
+    "model": "mim_104_patriot_radar_an_mpq53",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_sam_radar_cwar",
+    "model": "mim_23_hawk_radar_cwar",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ai_tbm_m752_lance",
+    "model": "us_m_752_launcher",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_aircraftcarrier_forrestal_ai",
+    "model": "aircraftcarrier_forrestal",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_ashville_class_douglas",
+    "model": "ashville_class_douglas",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_ashville_class_douglas.png",
+      "path": "images/slots/us_ashville_class_douglas.png",
+      "model_path": "images/slots/ashville_class_douglas.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/ships/us_ashville_class_douglas.png",
+      "path": "images/portraits/ashville_class_douglas.png"
+    }
+  },
+  {
+    "unit_class": "us_cruiser_rckt_california",
+    "model": "cruiser_rckt_california",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "us_destroyer_cf_adams_class_cf_adams_ec",
+    "model": "destroyer_cf_adams_class_cf_adams",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_destroyer_cf_adams_class_cf_adams.png",
+      "path": "images/slots/us_destroyer_cf_adams_class_cf_adams_ec.png",
+      "model_path": "images/slots/destroyer_cf_adams_class_cf_adams.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/ships/us_destroyer_cf_adams_class_cf_adams.png",
+      "path": "images/portraits/destroyer_cf_adams_class_cf_adams.png"
+    }
+  },
+  {
+    "unit_class": "us_m109a1",
+    "model": "m109a1",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m109a1.png",
+      "path": "images/slots/us_m109a1.png",
+      "model_path": "images/slots/m109a1.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m109a1.png",
+      "path": "images/portraits/m109a1.png"
+    }
+  },
+  {
+    "unit_class": "us_m163_vulcan",
+    "model": "m163_vulcan",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m163_vulcan.png",
+      "path": "images/slots/us_m163_vulcan.png",
+      "model_path": "images/slots/m163_vulcan.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m163_vulcan.png",
+      "path": "images/portraits/m163_vulcan.png"
+    }
+  },
+  {
+    "unit_class": "us_m1a1_abrams",
+    "model": "m1a1_abrams",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m1a1_abrams.png",
+      "path": "images/slots/us_m1a1_abrams.png",
+      "model_path": "images/slots/m1a1_abrams.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m1a1_abrams.png",
+      "path": "images/portraits/m1a1_abrams.png"
+    }
+  },
+  {
+    "unit_class": "us_m1a2_sep2_abrams",
+    "model": "m1a2_sep2",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m1a2_sep2_abrams.png",
+      "path": "images/slots/us_m1a2_sep2_abrams.png",
+      "model_path": "images/slots/m1a2_sep2.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m1a2_sep2_abrams.png",
+      "path": "images/portraits/m1a2_sep2.png"
+    }
+  },
+  {
+    "unit_class": "us_m3_bradley",
+    "model": "m3_bradley",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m3_bradley.png",
+      "path": "images/slots/us_m3_bradley.png",
+      "model_path": "images/slots/m3_bradley.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m3_bradley.png",
+      "path": "images/portraits/m3_bradley.png"
+    }
+  },
+  {
+    "unit_class": "us_m3a3_bradley",
+    "model": "m3a3_bradley",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m3a3_bradley.png",
+      "path": "images/slots/us_m3a3_bradley.png",
+      "model_path": "images/slots/m3a3_bradley.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m3a3_bradley.png",
+      "path": "images/portraits/m3a3_bradley.png"
+    }
+  },
+  {
+    "unit_class": "us_m42_duster",
+    "model": "m42_duster",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m42_duster.png",
+      "path": "images/slots/us_m42_duster.png",
+      "model_path": "images/slots/m42_duster.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m42_duster.png",
+      "path": "images/portraits/m42_duster.png"
+    }
+  },
+  {
+    "unit_class": "us_m48a1_patton_III",
+    "model": "m48a1_patton_III",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m48a1_patton_iii.png",
+      "path": "images/slots/us_m48a1_patton_iii.png",
+      "model_path": "images/slots/m48a1_patton_iii.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m48a1_patton_iii.png",
+      "path": "images/portraits/m48a1_patton_iii.png"
+    }
+  },
+  {
+    "unit_class": "us_m551",
+    "model": "m551",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/us_m551.png",
+      "path": "images/slots/us_m551.png",
+      "model_path": "images/slots/m551.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/us_m551.png",
+      "path": "images/portraits/m551.png"
+    }
+  },
+  {
+    "unit_class": "ussr_2s19_m1",
+    "model": "2s19m1",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_2s19_m1.png",
+      "path": "images/slots/ussr_2s19_m1.png",
+      "model_path": "images/slots/2s19m1.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_2s19_m1.png",
+      "path": "images/portraits/2s19m1.png"
+    }
+  },
+  {
+    "unit_class": "ussr_2s38",
+    "model": "2s38",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_2s38.png",
+      "path": "images/slots/ussr_2s38.png",
+      "model_path": "images/slots/2s38.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_2s38.png",
+      "path": "images/portraits/2s38.png"
+    }
+  },
+  {
+    "unit_class": "ussr_2s3m",
+    "model": "2s3m",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_2s3m.png",
+      "path": "images/slots/ussr_2s3m.png",
+      "model_path": "images/slots/2s3m.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_2s3m.png",
+      "path": "images/portraits/2s3m.png"
+    }
+  },
+  {
+    "unit_class": "ussr_9a33bm3",
+    "model": "9a33bm3",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_9a33bm3.png",
+      "path": "images/slots/ussr_9a33bm3.png",
+      "model_path": "images/slots/9a33bm3.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_9a33bm3.png",
+      "path": "images/portraits/9a33bm3.png"
+    }
+  },
+  {
+    "unit_class": "ussr_9a35_m2",
+    "model": "9a35m2",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_9a35_m2.png",
+      "path": "images/slots/ussr_9a35_m2.png",
+      "model_path": "images/slots/9a35m2.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_9a35_m2.png",
+      "path": "images/portraits/9a35m2.png"
+    }
+  },
+  {
+    "unit_class": "ussr_ai_aew_radar_55j6",
+    "model": "nebo_55j6",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_mlrs_9a52_2_smerch",
+    "model": "rszo_smerch",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_launcher_5p85se",
+    "model": "s300ps_launcher_5p85se",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_launcher_9a310",
+    "model": "ussr_buk_m1",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_launcher_9a310m1",
+    "model": "ussr_buk_m1",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_launcher_s_75",
+    "model": "s75m_launcher_sm90",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_radar_5n63s",
+    "model": "s300ps_command_post_5n63s",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_radar_5n64s",
+    "model": "s300ps_5n64s",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_radar_9s18",
+    "model": "9s18_m3",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_radar_9s18m1",
+    "model": "9s18_m3",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_radar_p_12",
+    "model": "s75m_radar_p12ma",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_sam_radar_snr_75",
+    "model": "snr_75",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_ai_tbm_9k79_tochka",
+    "model": "9k79_tochka",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_aircraftcarrier_admiral_kuznetsov_ai",
+    "model": "aircraftcarrier_admiral_kuznetsov",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_aircraftcarrier_baku_ai",
+    "model": "aircraftcarrier_baku",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_bmp_1",
+    "model": "bmp_1",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_bmp_1.png",
+      "path": "images/slots/ussr_bmp_1.png",
+      "model_path": "images/slots/bmp_1.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_bmp_1.png",
+      "path": "images/portraits/bmp_1.png"
+    }
+  },
+  {
+    "unit_class": "ussr_bmp_2",
+    "model": "bmp_2",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_bmp_2.png",
+      "path": "images/slots/ussr_bmp_2.png",
+      "model_path": "images/slots/bmp_2.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_bmp_2.png",
+      "path": "images/portraits/bmp_2.png"
+    }
+  },
+  {
+    "unit_class": "ussr_bmp_3",
+    "model": "bmp_3",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_bmp_3.png",
+      "path": "images/slots/ussr_bmp_3.png",
+      "model_path": "images/slots/bmp_3.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_bmp_3.png",
+      "path": "images/portraits/bmp_3.png"
+    }
+  },
+  {
+    "unit_class": "ussr_buk_m3_fcs",
+    "model": "9s18_m3",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_buk_m3_fcs.png",
+      "path": "images/slots/ussr_buk_m3_fcs.png",
+      "model_path": "images/slots/9s18_m3.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_buk_m3_fcs.png",
+      "path": "images/portraits/9s18_m3.png"
+    }
+  },
+  {
+    "unit_class": "ussr_buk_m3_launcher",
+    "model": "9a317m",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_buk_m3_launcher.png",
+      "path": "images/slots/ussr_buk_m3_launcher.png",
+      "model_path": "images/slots/9a317m.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_buk_m3_launcher.png",
+      "path": "images/portraits/9a317m.png"
+    }
+  },
+  {
+    "unit_class": "ussr_destroyer_pr56_bravy_ec",
+    "model": "destroyer_pr56_bravy",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_destroyer_pr56_bravy.png",
+      "path": "images/slots/ussr_destroyer_pr56_bravy_ec.png",
+      "model_path": "images/slots/destroyer_pr56_bravy.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/ships/ussr_destroyer_pr56_bravy.png",
+      "path": "images/portraits/destroyer_pr56_bravy.png"
+    }
+  },
+  {
+    "unit_class": "ussr_destroyer_rckt_pr956",
+    "model": "destroyer_rckt_pr956",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "ussr_mpk_pr_1124_ec",
+    "model": "mpk_pr_1124",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_mpk_pr_1124.png",
+      "path": "images/slots/ussr_mpk_pr_1124_ec.png",
+      "model_path": "images/slots/mpk_pr_1124.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/ships/ussr_mpk_pr_1124.png",
+      "path": "images/portraits/mpk_pr_1124.png"
+    }
+  },
+  {
+    "unit_class": "ussr_pantsyr_s1",
+    "model": "pantsyr_s1",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_pantsyr_s1.png",
+      "path": "images/slots/ussr_pantsyr_s1.png",
+      "model_path": "images/slots/pantsyr_s1.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_pantsyr_s1.png",
+      "path": "images/portraits/pantsyr_s1.png"
+    }
+  },
+  {
+    "unit_class": "ussr_t_54_1951",
+    "model": "t_54_1951",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_t_54_1951.png",
+      "path": "images/slots/ussr_t_54_1951.png",
+      "model_path": "images/slots/t_54_1951.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_t_54_1951.png",
+      "path": "images/portraits/t_54_1951.png"
+    }
+  },
+  {
+    "unit_class": "ussr_t_80b",
+    "model": "t_80b",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_t_80b.png",
+      "path": "images/slots/ussr_t_80b.png",
+      "model_path": "images/slots/t_80b.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_t_80b.png",
+      "path": "images/portraits/t_80b.png"
+    }
+  },
+  {
+    "unit_class": "ussr_t_80bvm",
+    "model": "t_80bvm",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_t_80bvm.png",
+      "path": "images/slots/ussr_t_80bvm.png",
+      "model_path": "images/slots/t_80bvm.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_t_80bvm.png",
+      "path": "images/portraits/t_80bvm.png"
+    }
+  },
+  {
+    "unit_class": "ussr_zprk_2s6",
+    "model": "2s6",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_zprk_2s6.png",
+      "path": "images/slots/ussr_zprk_2s6.png",
+      "model_path": "images/slots/2s6.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_zprk_2s6.png",
+      "path": "images/portraits/2s6.png"
+    }
+  },
+  {
+    "unit_class": "ussr_zsu_23_4",
+    "model": "zsu_23_4",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_zsu_23_4.png",
+      "path": "images/slots/ussr_zsu_23_4.png",
+      "model_path": "images/slots/zsu_23_4.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_zsu_23_4.png",
+      "path": "images/portraits/zsu_23_4.png"
+    }
+  },
+  {
+    "unit_class": "ussr_zsu_23_4m4",
+    "model": "zsu_23_4m4",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_zsu_23_4m4.png",
+      "path": "images/slots/ussr_zsu_23_4m4.png",
+      "model_path": "images/slots/zsu_23_4m4.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_zsu_23_4m4.png",
+      "path": "images/portraits/zsu_23_4m4.png"
+    }
+  },
+  {
+    "unit_class": "ussr_zsu_57_2",
+    "model": "zsu_57_2",
+    "slot": {
+      "status": "existing",
+      "source": "atlases.vromfs.bin_u/units/ussr_zsu_57_2.png",
+      "path": "images/slots/ussr_zsu_57_2.png",
+      "model_path": "images/slots/zsu_57_2.png",
+      "model_status": "existing"
+    },
+    "portrait": {
+      "status": "existing",
+      "source": "tex.vromfs.bin_u/tanks/ussr_zsu_57_2.png",
+      "path": "images/portraits/zsu_57_2.png"
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/us_m35a2_awning_ammo_carrier",
+    "model": "studebaker_us6_a",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/us_m35a2_fuel_carrier",
+    "model": "truck_m978",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/us_m939_awning_ammo_carrier",
+    "model": "us_m939_awning",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/us_m978_fuel_carrier",
+    "model": "truck_m978",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/ussr_kamaz_4310_awning_ammo_carrier",
+    "model": "ussr_kamaz_4310_awning",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/ussr_kamaz_4310_fuel_carrier",
+    "model": "ussr_kamaz_4310_fuel_carrier",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "not_applicable"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/ussr_zil_131_awning_ammo_carrier",
+    "model": "zis5_tent_a",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  },
+  {
+    "unit_class": "wheeled_vehicles/ussr_zil_131_fuel_carrier",
+    "model": "zis6_fuel_a",
+    "slot": {
+      "status": "missing",
+      "source": null,
+      "path": null,
+      "model_path": null,
+      "model_status": "missing"
+    },
+    "portrait": {
+      "status": "missing",
+      "source": null,
+      "path": null
+    }
+  }
+]

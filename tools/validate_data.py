@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -65,7 +66,77 @@ def validate_variant(name, map_data, preset_ids, errors):
                 unit_name = unit.get("name") or unit.get("unit_class")
                 if unit_name:
                     unit_set.add(unit_name.lower())
+                lifecycle = unit.get("lifecycle")
+                if unit.get("template") and not isinstance(lifecycle, dict):
+                    errors.append(
+                        f"{name}/{site_name}/{preset_id}/{unit_name or '?'} has no generated lifecycle"
+                    )
+                if isinstance(lifecycle, dict) and lifecycle.get("kind") not in {
+                    "none", "restore", "repair_with_site", "mission_rule"
+                }:
+                    errors.append(
+                        f"{name}/{site_name}/{preset_id}/{unit_name or '?'} has invalid lifecycle kind"
+                    )
     return names, set().union(*units_by_preset.values()) if units_by_preset else set()
+
+
+def git_tracked(root: Path, relative_path: str) -> bool:
+    result = subprocess.run(
+        ["git", "ls-files", "--error-unmatch", "--", relative_path],
+        cwd=root,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.returncode == 0
+
+
+def validate_runtime_assets(root: Path, errors: list[str]) -> None:
+    manifest_path = root / "tools" / "runtime_assets.json"
+    if not manifest_path.exists():
+        errors.append("tools/runtime_assets.json is missing")
+        return
+    required = load_json(manifest_path).get("required", [])
+    if not isinstance(required, list):
+        errors.append("tools/runtime_assets.json must contain a required list")
+        return
+    for relative_path in required:
+        if not isinstance(relative_path, str) or not relative_path:
+            errors.append("tools/runtime_assets.json contains an invalid path")
+            continue
+        path = root / relative_path
+        if not path.is_file():
+            errors.append(f"required runtime asset is missing: {relative_path}")
+        elif not git_tracked(root, relative_path):
+            errors.append(
+                f"required runtime asset is not tracked by Git: {relative_path}"
+            )
+
+
+def validate_sensor_ranges(unit_specs, errors: list[str]) -> None:
+    for unit_name, specs in unit_specs.items():
+        sensors = specs.get("sensors", {}) if isinstance(specs, dict) else {}
+        for kind, sensor in sensors.items():
+            if not isinstance(sensor, dict):
+                continue
+            nominal = sensor.get("nominal")
+            scopes = sensor.get("scope_ranges", [])
+            contextual_max = max(
+                [value for value in scopes if isinstance(value, (int, float))] + [
+                    value for value in [sensor.get("maximum"), sensor.get("designation_range")]
+                    if isinstance(value, (int, float))
+                ],
+                default=0,
+            )
+            if (
+                isinstance(nominal, (int, float))
+                and 0 < nominal < 1000
+                and contextual_max >= max(10000, nominal * 20)
+                and sensor.get("range_status") != "unresolved_internal"
+            ):
+                errors.append(
+                    f"{unit_name}/{kind} exposes an implausible internal sensor range"
+                )
 
 
 def main() -> int:
@@ -77,7 +148,6 @@ def main() -> int:
     warnings: list[str] = []
 
     presets_document = load_json(root / "presets.json")
-    brackets_document = load_json(root / "br_brackets.json")
     map_data = load_json(root / "map_data.json")
     map_data_mirror = load_json(root / "map_data_mirror.json")
     map_data_city = load_json(root / "map_data_city.json")
@@ -88,29 +158,15 @@ def main() -> int:
     unit_specs = load_json(root / "unit_specs.json")
     html = (root / "index.html").read_text(encoding="utf-8")
 
+    validate_runtime_assets(root, errors)
+    validate_sensor_ranges(unit_specs, errors)
+
     presets = presets_document.get("presets", []) if isinstance(presets_document, dict) else []
     preset_ids = {
         preset.get("id") for preset in presets if isinstance(preset, dict) and preset.get("id")
     }
     if not preset_ids or len(preset_ids) != len(presets):
         errors.append("presets.json must contain uniquely identified scenario presets")
-
-    bracket_presets = (
-        brackets_document.get("presets", {})
-        if isinstance(brackets_document, dict)
-        else {}
-    )
-    if not isinstance(bracket_presets, dict):
-        errors.append("br_brackets.json must contain a presets object")
-        bracket_presets = {}
-    for preset in presets:
-        bracket_values = bracket_presets.get(preset.get("id"))
-        if not isinstance(bracket_values, list) or not any(
-            isinstance(value, str) and value.strip() for value in bracket_values
-        ):
-            warnings.append(
-                f"{preset.get('label', preset.get('id', 'unknown scenario'))} has no confirmed BR bracket"
-            )
 
     standard_sites, standard_units = validate_variant(
         "standard", map_data, preset_ids, errors
@@ -159,6 +215,15 @@ def main() -> int:
             f"{len(missing)} unit classes have no optional detail card: "
             + ", ".join(missing)
         )
+    missing_models = sorted(
+        name for name, specs in unit_specs.items()
+        if not isinstance(specs, dict) or not str(specs.get("model") or "").strip()
+    )
+    if missing_models:
+        errors.append(
+            f"{len(missing_models)} unit classes have no extracted model name: "
+            + ", ".join(missing_models)
+        )
 
     for required_fetch in (
         'fetch("map_data_mirror.json")',
@@ -166,7 +231,6 @@ def main() -> int:
         'fetch("map_data_city.json")',
         'fetch("mission_logic_city.json")',
         'fetch("presets.json")',
-        'fetch("br_brackets.json")',
     ):
         if required_fetch not in html:
             errors.append(f"index.html does not load {required_fetch}")

@@ -215,7 +215,7 @@ def active_templates(site, rank):
 def import_document_name(import_record):
     """Translate a mission import path into the downloaded input filename."""
     path = import_record.get("file", "") if isinstance(import_record, dict) else ""
-    return os.path.splitext(os.path.basename(path))[0]
+    return os.path.splitext(os.path.basename(path))[0].lower()
 
 
 def imported_mission_units(document, documents, rank):
@@ -256,10 +256,21 @@ def imported_mission_units(document, documents, rank):
         for record in records:
             if not isinstance(record, dict) or not config_is_active(record, rank):
                 continue
-            child = documents.get(import_document_name(record))
+            child_name = import_document_name(record)
+            child = documents.get(child_name)
             if child is None:
                 continue
-            visit(child, include_units or bool(record.get("importUnits")))
+            # Event-specific fleet files may omit the legacy importUnits flag
+            # even though their units are the authoritative mission entries
+            # (the 2.59.0.7 carrier split is one example). Treat Nuclear
+            # Escalation imports as unit-bearing by path, while retaining the
+            # old flag for unrelated reusable mission libraries.
+            visit(
+                child,
+                include_units
+                or bool(record.get("importUnits"))
+                or "nuclear_escalation" in child_name.lower(),
+            )
 
     visit(document)
     return imported
@@ -413,6 +424,30 @@ def expand_settings(settings):
     return expanded
 
 
+def lifecycle_for_unit(template_name, site, registry):
+    """Return the template-derived lifecycle for one placed mission unit.
+
+    This deliberately records only behavior inherited by the selected mission
+    template. Explicit mission triggers (MLRS, TBM, long-range radar squads)
+    remain in mission_logic.json and are joined by their exact object id in the
+    browser. That keeps gameplay facts source-backed and avoids name guesses.
+    """
+    components = {
+        name for name, _ in registry.closure([str(template_name or "")])
+    }
+    if "restore_unit_by_timer" not in components:
+        return {"kind": "none", "source": "template"}
+
+    depot_classes = {
+        "nt_fuel_factory_foundation",
+        "nt_ammo_factory_foundation",
+        "nt_assembly_area_foundation",
+    }
+    if site.get("unit_class") in depot_classes:
+        return {"kind": "repair_with_site", "source": "template"}
+    return {"kind": "restore", "source": "template"}
+
+
 def create_buildings(site, layout, template_names, inline_configs, registry):
     buildings = []
     used_slot_ids = set()
@@ -469,7 +504,7 @@ def create_buildings(site, layout, template_names, inline_configs, registry):
     return buildings, used_slot_ids
 
 
-def place_spawned_units(site, layout, settings, used_slot_ids):
+def place_spawned_units(site, layout, settings, used_slot_ids, registry):
     slots = layout.get("slots", [])
     available = [
         (index, slot)
@@ -516,6 +551,9 @@ def place_spawned_units(site, layout, settings, used_slot_ids):
                 "count": setting.get("_count", 1),
                 "threat_range": setting.get("threatSearchRad"),
                 "template": setting.get("templateName", ""),
+                "lifecycle": lifecycle_for_unit(
+                    setting.get("templateName", ""), site, registry
+                ),
                 "unplaced": bool(available) and slot is None,
             }
         )
@@ -535,6 +573,7 @@ def direct_unit(site):
     else:
         role = "vehicle"
     return {
+        "id": site.get("name", unit_class),
         "name": unit_class,
         "role": role,
         "slot_type": "origin",
@@ -545,6 +584,10 @@ def direct_unit(site):
         "count": 1,
         "threat_range": site.get("threatSearchRad"),
         "template": "",
+        # Explicit mission respawn rules are joined by this unit's id in the
+        # browser. In their absence, a direct mission unit has no fixed
+        # lifecycle rather than an invented generic timer.
+        "lifecycle": {"kind": "none", "source": "mission"},
         "unplaced": False,
     }
 
@@ -783,7 +826,7 @@ def main():
                     )
                     output_site["buildings_by_era"][preset_id] = buildings
                     output_site["units_by_era"][preset_id] = place_spawned_units(
-                        site, layout, settings, building_slot_ids
+                        site, layout, settings, building_slot_ids, registry
                     )
 
                 sites.append(output_site)

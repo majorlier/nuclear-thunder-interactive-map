@@ -20,7 +20,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 DEFAULT_MANIFEST = TOOLS / "datamine_sources.json"
-BRACKET_CONFIG = ROOT / "br_brackets.json"
 def load_json(path: Path):
     with path.open("r", encoding="utf-8") as source:
         return json.load(source)
@@ -74,7 +73,9 @@ def run(command: list[str]) -> None:
     subprocess.run(command, cwd=ROOT, check=True)
 
 
-def collect_unit_names(map_data_paths: list[Path]) -> list[str]:
+def collect_unit_names(
+    map_data_paths: list[Path], mission_logic_paths: list[Path] | None = None
+) -> list[str]:
     names: set[str] = set()
     for map_data_path in map_data_paths:
         for site in load_json(map_data_path):
@@ -83,6 +84,23 @@ def collect_unit_names(map_data_paths: list[Path]) -> list[str]:
                     unit_name = unit.get("name") or unit.get("unit_class")
                     if unit_name:
                         names.add(unit_name)
+    # Convoys are generated from mission logic rather than represented as
+    # ordinary map-data sites. Include every convoy entry so their unit files
+    # receive the same model/sensor/weapon extraction as static units.
+    def collect_convoy_names(value):
+        if isinstance(value, dict):
+            name = value.get("name")
+            if isinstance(name, str) and name.strip():
+                names.add(name.strip())
+            for child in value.values():
+                collect_convoy_names(child)
+        elif isinstance(value, list):
+            for child in value:
+                collect_convoy_names(child)
+
+    for mission_logic_path in mission_logic_paths or []:
+        logic = load_json(mission_logic_path)
+        collect_convoy_names(logic.get("convoys", {}))
     return sorted(names)
 
 
@@ -94,6 +112,49 @@ def rounded_position(position) -> tuple[float, ...] | None:
     if not isinstance(position, list):
         return None
     return tuple(round(float(value), 3) for value in position)
+
+
+def canonical_mission_import_path(value: str) -> str | None:
+    """Convert a mission import record into a datamine repository path."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+    path = value.replace("\\", "/").lstrip("/")
+    lower = path.lower()
+    if lower.startswith("gamedata/"):
+        path = "mis.vromfs.bin_u/" + path
+    elif not lower.startswith("mis.vromfs.bin_u/"):
+        return None
+    if path.lower().endswith(".blk"):
+        path = path[:-4] + ".blkx"
+    # Mission records historically used mixed-case `gameData` and `Tdm`,
+    # while repository paths are lowercase and case-sensitive.
+    return path.lower()
+
+
+def mission_import_paths(document: dict) -> list[str]:
+    """Return event mission imports, including nested imports."""
+    result: list[str] = []
+    seen: set[str] = set()
+    queue = [document]
+    while queue:
+        current = queue.pop()
+        if not isinstance(current, dict):
+            continue
+        imports = current.get("imports", {})
+        records = imports.get("import_record", []) if isinstance(imports, dict) else []
+        if isinstance(records, dict):
+            records = [records]
+        if not isinstance(records, list):
+            continue
+        for record in records:
+            if not isinstance(record, dict):
+                continue
+            path = canonical_mission_import_path(record.get("file", ""))
+            if not path or path in seen or "nuclear_escalation" not in path:
+                continue
+            seen.add(path)
+            result.append(path)
+    return result
 
 
 def unit_loadout(site: dict) -> dict[str, tuple[tuple, ...]]:
@@ -156,22 +217,6 @@ def markdown_names(names: list[str], limit: int = 18) -> str:
     return f"{shown} (+{remainder} more)" if remainder > 0 else shown
 
 
-def unconfigured_brackets(presets: list[dict], bracket_config: dict) -> list[dict]:
-    """Return generated scenarios without a human-confirmed BR bracket."""
-    configured = bracket_config.get("presets", {})
-    if not isinstance(configured, dict):
-        return presets
-    return [
-        preset
-        for preset in presets
-        if not isinstance(configured.get(preset.get("id")), list)
-        or not any(
-            isinstance(value, str) and value.strip()
-            for value in configured.get(preset.get("id"), [])
-        )
-    ]
-
-
 def write_update_report(
     path: Path,
     repository: str,
@@ -180,7 +225,6 @@ def write_update_report(
     mission_variants: list[dict],
     missing_object_groups: list[str],
     summaries: dict[str, dict],
-    missing_brackets: list[dict],
 ) -> None:
     """Write a short, ignored report for the Action summary and PR review."""
     lines = [
@@ -202,21 +246,6 @@ def write_update_report(
             f"- **{preset.get('label', preset['id'])}** — "
             f"rank indices {rank_text} "
             f"(`{preset['id']}`)"
-        )
-
-    lines.extend(["", "## BR brackets to review", ""])
-    if missing_brackets:
-        lines.append(
-            "- Add or confirm the manual BR brackets in `br_brackets.json` for: "
-            + ", ".join(
-                f"**{preset.get('label', preset['id'])}** (`{preset['id']}`)"
-                for preset in missing_brackets
-            )
-            + "."
-        )
-    else:
-        lines.append(
-            "- Every detected scenario has a manual BR-bracket label. The datamine does not provide BR values, so confirm them before merging."
         )
 
     lines.extend(["", "## Mission-location variants", ""])
@@ -321,18 +350,26 @@ def main() -> int:
     generator_by_path = {
         item["path"]: item for item in manifest.get("generator_files", [])
     }
+    runtime_by_path = {
+        item["path"]: item for item in manifest.get("runtime_files", [])
+    }
     mission_variants = manifest.get("mission_variants", [])
     if not mission_variants:
         raise RuntimeError("The manifest must define at least one mission variant.")
     mission_by_path = {item["path"]: item for item in mission_variants}
     all_paths = list(generator_by_path)
     all_paths.extend(
+        path for path in runtime_by_path if path not in generator_by_path
+    )
+    all_paths.extend(
         path for path in mission_by_path if path not in generator_by_path
     )
     all_paths.extend(
         path
         for path in manifest.get("watch_files", [])
-        if path not in generator_by_path and path not in mission_by_path
+        if path not in generator_by_path
+        and path not in runtime_by_path
+        and path not in mission_by_path
     )
 
     with tempfile.TemporaryDirectory(prefix="nuclear-thunder-update-") as temp_name:
@@ -343,6 +380,7 @@ def main() -> int:
         generated.mkdir()
         missions: dict[str, Path] = {}
         mission_documents: dict[str, dict] = {}
+        localization_file: Path | None = None
 
         for source_path in all_paths:
             encoded_path = urllib.parse.quote(source_path, safe="/")
@@ -367,12 +405,17 @@ def main() -> int:
                 "path": source_path,
                 "sha": git_blob_sha(content),
                 "used_for_generation": (
-                    source_path in generator_by_path or source_path in mission_by_path
+                    source_path in generator_by_path
+                    or source_path in runtime_by_path
+                    or source_path in mission_by_path
                 ),
             }
             source_records.append(record)
             if source_path in generator_by_path:
                 destination = inputs / generator_by_path[source_path]["name"]
+                destination.write_bytes(content)
+            if source_path in runtime_by_path:
+                destination = inputs / runtime_by_path[source_path]["name"]
                 destination.write_bytes(content)
             if source_path in mission_by_path:
                 variant = mission_by_path[source_path]
@@ -381,6 +424,75 @@ def main() -> int:
                 missions[variant["id"]] = destination
                 mission_documents[variant["id"]] = json.loads(content)
             print(f"Downloaded {source_path}")
+
+        # Mission imports are part of the mission definition, not a stable
+        # global manifest. Resolve them recursively so newly split resources
+        # (such as today's map-specific carrier files) cannot silently vanish
+        # from the generated map.
+        pending_imports = []
+        queued_imports: set[str] = set()
+        for document in mission_documents.values():
+            for path in mission_import_paths(document):
+                if path not in queued_imports:
+                    queued_imports.add(path)
+                    pending_imports.append(path)
+        while pending_imports:
+            source_path = pending_imports.pop(0)
+            encoded_path = urllib.parse.quote(source_path, safe="/")
+            raw_url = f"https://raw.githubusercontent.com/{repository}/{commit}/{encoded_path}"
+            try:
+                content = download_bytes(raw_url)
+            except urllib.error.HTTPError as exc:
+                if exc.code == 404:
+                    raise RuntimeError(
+                        f"Mission import is missing from the datamine: {source_path}"
+                    ) from exc
+                raise
+            source_records.append(
+                {
+                    "path": source_path,
+                    "sha": git_blob_sha(content),
+                    "used_for_generation": True,
+                }
+            )
+            destination = inputs / Path(source_path).name
+            destination.write_bytes(content)
+            try:
+                document = json.loads(content)
+            except json.JSONDecodeError as exc:
+                raise RuntimeError(
+                    f"Mission import is not valid converted BLKX JSON: {source_path}"
+                ) from exc
+            for child_path in mission_import_paths(document):
+                if child_path not in queued_imports:
+                    queued_imports.add(child_path)
+                    pending_imports.append(child_path)
+            print(f"Downloaded mission import {source_path}")
+
+        # The client-facing unit labels live in the localization table rather
+        # than in vehicle BLKs. Download it at the same upstream commit so the
+        # generated map can use the game's readable names without hardcoding.
+        localization_path = "lang.vromfs.bin_u/lang/units.csv"
+        encoded_path = urllib.parse.quote(localization_path, safe="/")
+        localization_url = f"https://raw.githubusercontent.com/{repository}/{commit}/{encoded_path}"
+        try:
+            localization_content = download_bytes(localization_url)
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                print(f"WARNING: Unit localization table is absent: {localization_path}")
+            else:
+                raise
+        else:
+            localization_file = inputs / "units.csv"
+            localization_file.write_bytes(localization_content)
+            source_records.append(
+                {
+                    "path": localization_path,
+                    "sha": git_blob_sha(localization_content),
+                    "used_for_generation": True,
+                }
+            )
+            print(f"Downloaded {localization_path}")
 
         # Each mission object references a reusable object-group BLKX by
         # unit_class. Those blocks contain the exact local launcher/radar/etc.
@@ -443,6 +555,8 @@ def main() -> int:
                     sys.executable,
                     str(TOOLS / "extract_mission_logic.py"),
                     str(missions[variant_id]),
+                    "--templates-dir",
+                    str(inputs),
                     "--output",
                     str(generated / logic_name),
                 ]
@@ -465,25 +579,27 @@ def main() -> int:
                 ],
             },
         )
-        bracket_config = load_json(BRACKET_CONFIG) if BRACKET_CONFIG.exists() else {}
-        missing_brackets = unconfigured_brackets(
-            generated_presets or [], bracket_config
-        )
-
         collector = generated / "unit_manifest.json"
+        map_data_paths = [
+            generated / (
+                "map_data.json"
+                if item["id"] == "standard"
+                else f"map_data_{item['id']}.json"
+            )
+            for item in mission_variants
+        ]
+        mission_logic_paths = [
+            generated / (
+                "mission_logic.json"
+                if item["id"] == "standard"
+                else f"mission_logic_{item['id']}.json"
+            )
+            for item in mission_variants
+        ]
         write_json(
             collector,
             {
-                "foundUnits": collect_unit_names(
-                    [
-                        generated / (
-                            "map_data.json"
-                            if item["id"] == "standard"
-                            else f"map_data_{item['id']}.json"
-                        )
-                        for item in mission_variants
-                    ]
-                )
+                "foundUnits": collect_unit_names(map_data_paths, mission_logic_paths)
             },
         )
         unit_spec_command = [
@@ -501,6 +617,52 @@ def main() -> int:
                 ["--repository", repository, "--commit", commit]
             )
         run(unit_spec_command)
+        generated_specs = load_json(generated / "unit_specs.json")
+        if not generated_specs:
+            if args.aces_root and (ROOT / "unit_specs.json").exists():
+                # A normal local VROMFS dump contains native `.blk` files;
+                # the card extractor consumes the datamine's converted JSON
+                # `.blkx` files. Never replace a valid checked-in card set
+                # with `{}` just because that optional local shortcut cannot
+                # read the source format.
+                print(
+                    "WARNING: local unit source produced no JSON BLKX specs; "
+                    "preserving the checked-in unit_specs.json"
+                )
+                shutil.copyfile(ROOT / "unit_specs.json", generated / "unit_specs.json")
+            else:
+                raise RuntimeError(
+                    "Unit specification extraction produced no data. "
+                    "Refusing to overwrite unit_specs.json."
+                )
+        missing_models = sorted(
+            name for name, spec in generated_specs.items()
+            if not isinstance(spec, dict) or not str(spec.get("model") or "").strip()
+        )
+        if missing_models:
+            raise RuntimeError(
+                "Unit specification extraction produced entries without model names: "
+                + ", ".join(missing_models)
+            )
+
+        generated_names = generated / "unit_display_names.json"
+        if localization_file:
+            run(
+                [
+                    sys.executable,
+                    str(TOOLS / "extract_display_names.py"),
+                    "--units-csv",
+                    str(localization_file),
+                    "--specs",
+                    str(generated / "unit_specs.json"),
+                    "--output",
+                    str(generated_names),
+                ]
+            )
+        elif (ROOT / "unit_display_names.json").exists():
+            shutil.copyfile(ROOT / "unit_display_names.json", generated_names)
+        else:
+            write_json(generated_names, {})
 
         lock = {
             "repository": repository,
@@ -527,6 +689,7 @@ def main() -> int:
             )
         candidates = generated_outputs + [
             "unit_specs.json",
+            "unit_display_names.json",
             "datamine-lock.json",
         ]
         changed_files = [
@@ -547,7 +710,6 @@ def main() -> int:
             mission_variants,
             missing_object_groups,
             summaries,
-            missing_brackets,
         )
         changed = bool(changed_files)
 

@@ -50,8 +50,11 @@ jobs:
           add-paths: |
             map_data.json
             map_data_mirror.json
+            map_data_city.json
             mission_logic.json
             mission_logic_mirror.json
+            mission_logic_city.json
             presets.json
             unit_specs.json
+            unit_display_names.json
             datamine-lock.json

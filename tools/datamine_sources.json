@@ -67,10 +67,39 @@
       "name": "nuclear_escalation_ships_1980.blkx"
     }
   ],
+  "runtime_files": [
+    {
+      "path": "game.vromfs.bin_u/game/es/nuclear_escalation.das",
+      "name": "nuclear_escalation.das"
+    },
+    {
+      "path": "game.vromfs.bin_u/game/es/mission_custom_logic.das",
+      "name": "mission_custom_logic.das"
+    },
+    {
+      "path": "game.vromfs.bin_u/game/es/unit_spawn_and_route.das",
+      "name": "unit_spawn_and_route.das"
+    },
+    {
+      "path": "game.vromfs.bin_u/game/es/sam_sites.das",
+      "name": "sam_sites.das"
+    },
+    {
+      "path": "game.vromfs.bin_u/game/es/airfields.das",
+      "name": "airfields.das"
+    },
+    {
+      "path": "game.vromfs.bin_u/gamecommon/mission.das",
+      "name": "mission.das"
+    },
+    {
+      "path": "aces.vromfs.bin_u/wtlibs/templates/units.blkx",
+      "name": "units.blkx"
+    }
+  ],
   "watch_files": [
     "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
     "aces.vromfs.bin_u/levels/avg_nuclear_incident.blkx",
-    "game.vromfs.bin_u/game/es/nuclear_escalation.das",
     "gui.vromfs.bin_u/reactivegui/hud/scoreboard/nuclearescalation.ui.nut"
   ]
 }

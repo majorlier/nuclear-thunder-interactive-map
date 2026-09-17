@@ -9,6 +9,8 @@ ROAD_PREFIXES = (
     "decal_asphalt_road_highway_",
     "decal_road_gravel_sand_",
 )
+LOCAL_ASPHALT_PREFIX = "decal_asphalt_road_"
+DBLD_MAGIC = b"DBLD3x64"
 
 
 def align4(value):
@@ -78,7 +80,45 @@ def parse_hspl_at(data, magic_offset):
     return splines
 
 
-def find_hspl_section(data):
+def iter_dbld_blocks(data):
+    """Yield (tag, payload, tag_offset) from a packed Dagor level."""
+    if not data.startswith(DBLD_MAGIC) or len(data) < 48:
+        return
+
+    metadata_size = struct.unpack_from("<I", data, 12)[0]
+    position = metadata_size + 0x10
+    if position < 0 or position + 8 > len(data):
+        return
+
+    while position + 8 <= len(data):
+        stored_size = struct.unpack_from("<I", data, position)[0]
+        if stored_size < 4:
+            break
+        end = position + stored_size + 4
+        if end > len(data):
+            break
+        tag_offset = position + 4
+        tag = data[tag_offset : tag_offset + 4].rstrip(b"\0")
+        payload = data[position + 8 : end]
+        yield tag.decode("ascii", errors="replace"), payload, tag_offset
+        position = end
+
+
+def find_hspl_section(data, include_local_roads=False):
+    prefixes = ROAD_PREFIXES + ((LOCAL_ASPHALT_PREFIX,) if include_local_roads else ())
+    # Packed compiled levels keep hspl inside the DBLD block table.  The
+    # payload begins with the spline count; the tag itself is outside it.
+    for tag, payload, _ in iter_dbld_blocks(data) or ():
+        if tag != "hspl":
+            continue
+        splines = parse_hspl_at(HSPL_MAGIC + payload, 0)
+        if splines and any(
+            spline["name"].startswith(prefixes) for spline in splines
+        ):
+            return splines
+
+    # Preserve support for reconstructed/raw blobs where hspl is an inline
+    # four-byte marker rather than a DBLD block.
     offset = 0
     while True:
         offset = data.find(HSPL_MAGIC, offset)
@@ -86,7 +126,7 @@ def find_hspl_section(data):
             break
         splines = parse_hspl_at(data, offset)
         if splines and any(
-            spline["name"].startswith(ROAD_PREFIXES) for spline in splines
+            spline["name"].startswith(prefixes) for spline in splines
         ):
             return splines
         offset += len(HSPL_MAGIC)
@@ -128,6 +168,11 @@ def main():
         default=6,
         help="Curve samples per pair of spline nodes (default: 6)",
     )
+    parser.add_argument(
+        "--include-local-roads",
+        action="store_true",
+        help="Include local asphalt road splines such as Southeastern City street segments",
+    )
     args = parser.parse_args()
 
     if args.subdivisions < 1:
@@ -136,11 +181,13 @@ def main():
     with open(args.level, "rb") as source:
         data = source.read()
 
-    splines = find_hspl_section(data)
+    splines = find_hspl_section(data, args.include_local_roads)
     roads = []
     for spline in splines:
         name = spline["name"]
-        if name.startswith("decal_asphalt_road_highway_"):
+        if name.startswith("decal_asphalt_road_highway_") or (
+            args.include_local_roads and name.startswith(LOCAL_ASPHALT_PREFIX)
+        ):
             surface = "asphalt"
         elif name.startswith("decal_road_gravel_sand_"):
             surface = "gravel_sand"
