@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "d7154f07554b90ba5dd590272d53ddecaa92360e",
+  "accepted_commit": "60345f1697efeb0fa54256b2f0aab3d83d7e708e",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
@@ -50,12 +50,12 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1970.blkx",
-      "sha": "856bb67ea4abaec79c6ce1acd0d334cef224e63f",
+      "sha": "cbc2d031ec953e85d4abd4fa570005046440a537",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1980.blkx",
-      "sha": "eb93db302e6dfef17228c540369de8c45eba638d",
+      "sha": "b341085e8d5099344afe43fa878b657c1e1ba595",
       "used_for_generation": true
     },
     {
@@ -155,12 +155,17 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1970.blkx",
-      "sha": "856bb67ea4abaec79c6ce1acd0d334cef224e63f",
+      "sha": "cbc2d031ec953e85d4abd4fa570005046440a537",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1980.blkx",
-      "sha": "eb93db302e6dfef17228c540369de8c45eba638d",
+      "sha": "b341085e8d5099344afe43fa878b657c1e1ba595",
+      "used_for_generation": true
+    },
+    {
+      "path": "lang.vromfs.bin_u/lang/units.csv",
+      "sha": "7735c258e37f9fa6c0144d3e4e5b53823e0d574e",
       "used_for_generation": true
     },
     {
@@ -180,7 +185,7 @@
     },
     {
       "path": "aces.vromfs.bin_u/gamedata/objectgroups/dynaf_archipelago_b.blkx",
-      "sha": "76e9c9d85aeca3b67b8abc424c9095a399f7bb7a",
+      "sha": "8f18d91e6468f8c87c1980d1cf7e7d962a3af1c3",
       "used_for_generation": true
     },
     {
