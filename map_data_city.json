@@ -8021,22 +8021,22 @@
     "team": 2,
     "source_group": "objectGroups",
     "world_pos": [
-      6961.46,
-      31.2218,
-      3895.68
+      7226.53,
+      24.488,
+      4656.87
     ],
     "editor_world_pos": [
-      6961.46,
-      31.2218,
-      3895.68
+      7226.53,
+      24.488,
+      4656.87
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        0.950303,
+        -0.934267,
         0.0,
-        0.311332
+        -0.356581
       ],
       [
         0.0,
@@ -8044,14 +8044,14 @@
         0.0
       ],
       [
-        -0.311332,
+        0.356581,
         0.0,
-        0.950303
+        -0.934267
       ],
       [
-        6961.46,
-        31.2218,
-        3895.68
+        7226.53,
+        24.488,
+        4656.87
       ]
     ],
     "runways": [],
@@ -8062,9 +8062,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            6961.46,
-            31.2218,
-            3895.68
+            7226.53,
+            24.488,
+            4656.87
           ],
           "local_pos": [
             0.0,
@@ -8078,9 +8078,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            6961.46,
-            31.2218,
-            3895.68
+            7226.53,
+            24.488,
+            4656.87
           ],
           "local_pos": [
             0.0,
@@ -8094,9 +8094,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            6961.46,
-            31.2218,
-            3895.68
+            7226.53,
+            24.488,
+            4656.87
           ],
           "local_pos": [
             0.0,
@@ -8110,9 +8110,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            6961.46,
-            31.2218,
-            3895.68
+            7226.53,
+            24.488,
+            4656.87
           ],
           "local_pos": [
             0.0,
@@ -8126,9 +8126,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            6961.46,
-            31.2218,
-            3895.68
+            7226.53,
+            24.488,
+            4656.87
           ],
           "local_pos": [
             0.0,
@@ -8146,9 +8146,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            6998.174873,
-            31.2218,
-            4024.513533
+            7196.0404659999995,
+            24.488,
+            4526.422788
           ],
           "local_pos": [
             75.0,
@@ -8171,9 +8171,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            6856.481884000001,
-            31.2218,
-            3959.1516189999998
+            7334.433392999999,
+            24.488,
+            4598.5096490000005
           ],
           "local_pos": [
             -80.0,
@@ -8196,9 +8196,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            6956.793018,
-            31.2218,
-            3787.8687809999997
+            7226.017465,
+            24.488,
+            4764.781045
           ],
           "local_pos": [
             -38.0,
@@ -8223,9 +8223,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            6998.174873,
-            31.2218,
-            4024.513533
+            7196.0404659999995,
+            24.488,
+            4526.422788
           ],
           "local_pos": [
             75.0,
@@ -8248,9 +8248,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            6856.481884000001,
-            31.2218,
-            3959.1516189999998
+            7334.433392999999,
+            24.488,
+            4598.5096490000005
           ],
           "local_pos": [
             -80.0,
@@ -8273,9 +8273,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            6956.793018,
-            31.2218,
-            3787.8687809999997
+            7226.017465,
+            24.488,
+            4764.781045
           ],
           "local_pos": [
             -38.0,
@@ -8300,9 +8300,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            6998.174873,
-            31.2218,
-            4024.513533
+            7196.0404659999995,
+            24.488,
+            4526.422788
           ],
           "local_pos": [
             75.0,
@@ -8325,9 +8325,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            6856.481884000001,
-            31.2218,
-            3959.1516189999998
+            7334.433392999999,
+            24.488,
+            4598.5096490000005
           ],
           "local_pos": [
             -80.0,
@@ -8350,9 +8350,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            6956.793018,
-            31.2218,
-            3787.8687809999997
+            7226.017465,
+            24.488,
+            4764.781045
           ],
           "local_pos": [
             -38.0,
@@ -8377,9 +8377,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            6998.174873,
-            31.2218,
-            4024.513533
+            7196.0404659999995,
+            24.488,
+            4526.422788
           ],
           "local_pos": [
             75.0,
@@ -8402,9 +8402,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            6856.481884000001,
-            31.2218,
-            3959.1516189999998
+            7334.433392999999,
+            24.488,
+            4598.5096490000005
           ],
           "local_pos": [
             -80.0,
@@ -8427,9 +8427,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            6956.793018,
-            31.2218,
-            3787.8687809999997
+            7226.017465,
+            24.488,
+            4764.781045
           ],
           "local_pos": [
             -38.0,
@@ -8454,9 +8454,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            6998.174873,
-            31.2218,
-            4024.513533
+            7196.0404659999995,
+            24.488,
+            4526.422788
           ],
           "local_pos": [
             75.0,
@@ -8479,9 +8479,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            6856.481884000001,
-            31.2218,
-            3959.1516189999998
+            7334.433392999999,
+            24.488,
+            4598.5096490000005
           ],
           "local_pos": [
             -80.0,
@@ -8504,9 +8504,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            6956.793018,
-            31.2218,
-            3787.8687809999997
+            7226.017465,
+            24.488,
+            4764.781045
           ],
           "local_pos": [
             -38.0,
@@ -11643,26 +11643,26 @@
   },
   {
     "name": "t1_base_05",
-    "unit_class": "nt_assembly_area_foundation",
+    "unit_class": "nt_assembly_area_nomesh",
     "team": 1,
     "source_group": "objectGroups",
     "world_pos": [
-      -7606.54,
-      16.1291,
-      2129.62
+      -7614.77,
+      4.52051,
+      2282.95
     ],
     "editor_world_pos": [
-      -7606.54,
-      16.1291,
-      2129.62
+      -7614.77,
+      4.52051,
+      2282.95
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        -0.999146,
+        0.177085,
         0.0,
-        0.0413131
+        -0.984195
       ],
       [
         0.0,
@@ -11670,239 +11670,24 @@
         0.0
       ],
       [
-        -0.0413131,
+        0.984195,
         0.0,
-        -0.999146
+        0.177085
       ],
       [
-        -7606.54,
-        16.1291,
-        2129.62
+        -7614.77,
+        4.52051,
+        2282.95
       ]
     ],
     "runways": [],
     "route": null,
     "buildings_by_era": {
-      "rank-0-26": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -7606.54,
-            16.1291,
-            2129.62
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -7725.1294426,
-            16.1291,
-            1948.3645981
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -7504.7825863,
-            16.1291,
-            2195.4722887549997
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
-      "rank-27-30": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -7606.54,
-            16.1291,
-            2129.62
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -7725.1294426,
-            16.1291,
-            1948.3645981
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -7504.7825863,
-            16.1291,
-            2195.4722887549997
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
-      "rank-31-36": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -7606.54,
-            16.1291,
-            2129.62
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -7725.1294426,
-            16.1291,
-            1948.3645981
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -7504.7825863,
-            16.1291,
-            2195.4722887549997
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
-      "rank-37-39": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -7606.54,
-            16.1291,
-            2129.62
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -7725.1294426,
-            16.1291,
-            1948.3645981
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -7504.7825863,
-            16.1291,
-            2195.4722887549997
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ],
-      "rank-40-50": [
-        {
-          "name": "nt_assembly_area_tank_factory",
-          "role": "building",
-          "world_pos": [
-            -7606.54,
-            16.1291,
-            2129.62
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_ammo_storage",
-          "role": "building",
-          "world_pos": [
-            -7725.1294426,
-            16.1291,
-            1948.3645981
-          ],
-          "local_pos": [
-            111.0,
-            0.0,
-            186.0
-          ]
-        },
-        {
-          "name": "nt_assembly_area_fuel_storage",
-          "role": "building",
-          "world_pos": [
-            -7504.7825863,
-            16.1291,
-            2195.4722887549997
-          ],
-          "local_pos": [
-            -98.95,
-            0.0,
-            -70.0
-          ]
-        }
-      ]
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
     },
     "units_by_era": {
       "rank-0-26": [
@@ -11912,9 +11697,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -7400.2754217,
-            16.1291,
-            1913.9144615
+            -7449.11491,
+            4.52051,
+            2531.2085199999997
           ],
           "local_pos": [
             -215.0,
@@ -11926,7 +11711,7 @@
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -11937,9 +11722,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -7834.5657953,
-            16.1291,
-            1915.8580109
+            -7356.512900000001,
+            4.52051,
+            2106.90125
           ],
           "local_pos": [
             219.0,
@@ -11951,7 +11736,7 @@
           "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -11962,9 +11747,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -7825.3574505,
-            16.1291,
-            2283.7916175
+            -7717.634150000001,
+            4.52051,
+            2035.8287999999998
           ],
           "local_pos": [
             225.0,
@@ -11976,7 +11761,7 @@
           "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -11989,9 +11774,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -7400.2754217,
-            16.1291,
-            1913.9144615
+            -7449.11491,
+            4.52051,
+            2531.2085199999997
           ],
           "local_pos": [
             -215.0,
@@ -12003,7 +11788,7 @@
           "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12014,9 +11799,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -7834.5657953,
-            16.1291,
-            1915.8580109
+            -7356.512900000001,
+            4.52051,
+            2106.90125
           ],
           "local_pos": [
             219.0,
@@ -12028,7 +11813,7 @@
           "threat_range": 5000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12039,9 +11824,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -7825.3574505,
-            16.1291,
-            2283.7916175
+            -7717.634150000001,
+            4.52051,
+            2035.8287999999998
           ],
           "local_pos": [
             225.0,
@@ -12053,7 +11838,7 @@
           "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12066,9 +11851,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -7400.2754217,
-            16.1291,
-            1913.9144615
+            -7449.11491,
+            4.52051,
+            2531.2085199999997
           ],
           "local_pos": [
             -215.0,
@@ -12080,7 +11865,7 @@
           "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12091,9 +11876,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -7834.5657953,
-            16.1291,
-            1915.8580109
+            -7356.512900000001,
+            4.52051,
+            2106.90125
           ],
           "local_pos": [
             219.0,
@@ -12105,7 +11890,7 @@
           "threat_range": 12500.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12116,9 +11901,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -7825.3574505,
-            16.1291,
-            2283.7916175
+            -7717.634150000001,
+            4.52051,
+            2035.8287999999998
           ],
           "local_pos": [
             225.0,
@@ -12130,7 +11915,7 @@
           "threat_range": null,
           "template": "tank+nuclear_escalation_spaa_radar_off",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12143,9 +11928,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -7400.2754217,
-            16.1291,
-            1913.9144615
+            -7449.11491,
+            4.52051,
+            2531.2085199999997
           ],
           "local_pos": [
             -215.0,
@@ -12157,7 +11942,7 @@
           "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12168,9 +11953,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -7834.5657953,
-            16.1291,
-            1915.8580109
+            -7356.512900000001,
+            4.52051,
+            2106.90125
           ],
           "local_pos": [
             219.0,
@@ -12182,7 +11967,7 @@
           "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12193,9 +11978,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -7825.3574505,
-            16.1291,
-            2283.7916175
+            -7717.634150000001,
+            4.52051,
+            2035.8287999999998
           ],
           "local_pos": [
             225.0,
@@ -12207,7 +11992,7 @@
           "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12220,9 +12005,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -7400.2754217,
-            16.1291,
-            1913.9144615
+            -7449.11491,
+            4.52051,
+            2531.2085199999997
           ],
           "local_pos": [
             -215.0,
@@ -12234,7 +12019,7 @@
           "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12245,9 +12030,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -7834.5657953,
-            16.1291,
-            1915.8580109
+            -7356.512900000001,
+            4.52051,
+            2106.90125
           ],
           "local_pos": [
             219.0,
@@ -12259,7 +12044,7 @@
           "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -12270,9 +12055,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -7825.3574505,
-            16.1291,
-            2283.7916175
+            -7717.634150000001,
+            4.52051,
+            2035.8287999999998
           ],
           "local_pos": [
             225.0,
@@ -12284,7 +12069,7 @@
           "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_radar_on",
           "lifecycle": {
-            "kind": "repair_with_site",
+            "kind": "restore",
             "source": "template"
           },
           "unplaced": false
@@ -19969,14 +19754,14 @@
     "team": 2,
     "source_group": "objectGroups",
     "world_pos": [
-      18655.9,
-      129.562,
-      6659.26
+      18788.1,
+      160.564,
+      6555.66
     ],
     "editor_world_pos": [
-      18655.9,
-      129.562,
-      6659.26
+      18788.1,
+      160.564,
+      6555.66
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -19997,9 +19782,9 @@
         0.525398
       ],
       [
-        18655.9,
-        129.562,
-        6659.26
+        18788.1,
+        160.564,
+        6555.66
       ]
     ],
     "runways": [],
@@ -20019,9 +19804,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk_early",
           "world_pos": [
-            18552.8214196752,
-            129.562,
-            6564.6575013517
+            18685.0214196752,
+            160.564,
+            6461.0575013517
           ],
           "local_pos": [
             26.3359,
@@ -20044,9 +19829,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk_early",
           "world_pos": [
-            18737.546678333663,
-            129.562,
-            6541.42692383924
+            18869.74667833366,
+            160.564,
+            6437.8269238392395
           ],
           "local_pos": [
             143.156,
@@ -20069,9 +19854,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk_early",
           "world_pos": [
-            18792.5067820696,
-            129.562,
-            6666.538760883101
+            18924.706782069596,
+            160.564,
+            6562.9387608831
           ],
           "local_pos": [
             65.5797,
@@ -20094,9 +19879,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_hawk_early",
           "world_pos": [
-            18628.953402662,
-            129.562,
-            6572.800313462099
+            18761.153402661996,
+            160.564,
+            6469.200313462099
           ],
           "local_pos": [
             59.4071,
@@ -20119,9 +19904,9 @@
           "slot_type": "detector_radar",
           "preset": "sam_site_hawk_early",
           "world_pos": [
-            18587.0936972476,
-            129.562,
-            6680.1125562892
+            18719.293697247598,
+            160.564,
+            6576.5125562892
           ],
           "local_pos": [
             -53.8932,
@@ -20146,9 +19931,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk_1970",
           "world_pos": [
-            18552.8214196752,
-            129.562,
-            6564.6575013517
+            18685.0214196752,
+            160.564,
+            6461.0575013517
           ],
           "local_pos": [
             26.3359,
@@ -20171,9 +19956,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk_1970",
           "world_pos": [
-            18737.546678333663,
-            129.562,
-            6541.42692383924
+            18869.74667833366,
+            160.564,
+            6437.8269238392395
           ],
           "local_pos": [
             143.156,
@@ -20196,9 +19981,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk_1970",
           "world_pos": [
-            18792.5067820696,
-            129.562,
-            6666.538760883101
+            18924.706782069596,
+            160.564,
+            6562.9387608831
           ],
           "local_pos": [
             65.5797,
@@ -20221,9 +20006,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_hawk_1970",
           "world_pos": [
-            18628.953402662,
-            129.562,
-            6572.800313462099
+            18761.153402661996,
+            160.564,
+            6469.200313462099
           ],
           "local_pos": [
             59.4071,
@@ -20246,9 +20031,9 @@
           "slot_type": "detector_radar",
           "preset": "sam_site_hawk_1970",
           "world_pos": [
-            18587.0936972476,
-            129.562,
-            6680.1125562892
+            18719.293697247598,
+            160.564,
+            6576.5125562892
           ],
           "local_pos": [
             -53.8932,
@@ -20273,9 +20058,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18552.8214196752,
-            129.562,
-            6564.6575013517
+            18685.0214196752,
+            160.564,
+            6461.0575013517
           ],
           "local_pos": [
             26.3359,
@@ -20298,9 +20083,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18737.546678333663,
-            129.562,
-            6541.42692383924
+            18869.74667833366,
+            160.564,
+            6437.8269238392395
           ],
           "local_pos": [
             143.156,
@@ -20323,9 +20108,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18792.5067820696,
-            129.562,
-            6666.538760883101
+            18924.706782069596,
+            160.564,
+            6562.9387608831
           ],
           "local_pos": [
             65.5797,
@@ -20348,9 +20133,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18643.0022213966,
-            129.562,
-            6796.713906642401
+            18775.202221396597,
+            160.564,
+            6693.1139066424
           ],
           "local_pos": [
             -123.73,
@@ -20373,9 +20158,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18519.4624773042,
-            129.562,
-            6679.735426761201
+            18651.6624773042,
+            160.564,
+            6576.1354267612005
           ],
           "local_pos": [
             -89.1056,
@@ -20398,9 +20183,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18782.3317719667,
-            129.562,
-            6604.4516383048
+            18914.531771966696,
+            160.564,
+            6500.8516383048
           ],
           "local_pos": [
             113.061,
@@ -20423,9 +20208,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18628.953402662,
-            129.562,
-            6572.800313462099
+            18761.153402661996,
+            160.564,
+            6469.200313462099
           ],
           "local_pos": [
             59.4071,
@@ -20448,9 +20233,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18655.9,
-            129.562,
-            6659.26
+            18788.1,
+            160.564,
+            6555.66
           ],
           "local_pos": [
             0.0,
@@ -20473,9 +20258,9 @@
           "slot_type": "detector_radar",
           "preset": "sam_site_hawk",
           "world_pos": [
-            18587.0936972476,
-            129.562,
-            6680.1125562892
+            18719.293697247598,
+            160.564,
+            6576.5125562892
           ],
           "local_pos": [
             -53.8932,
@@ -20500,9 +20285,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18552.8214196752,
-            129.562,
-            6564.6575013517
+            18685.0214196752,
+            160.564,
+            6461.0575013517
           ],
           "local_pos": [
             26.3359,
@@ -20525,9 +20310,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18737.546678333663,
-            129.562,
-            6541.42692383924
+            18869.74667833366,
+            160.564,
+            6437.8269238392395
           ],
           "local_pos": [
             143.156,
@@ -20550,9 +20335,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18792.5067820696,
-            129.562,
-            6666.538760883101
+            18924.706782069596,
+            160.564,
+            6562.9387608831
           ],
           "local_pos": [
             65.5797,
@@ -20575,9 +20360,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18643.0022213966,
-            129.562,
-            6796.713906642401
+            18775.202221396597,
+            160.564,
+            6693.1139066424
           ],
           "local_pos": [
             -123.73,
@@ -20600,9 +20385,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18628.953402662,
-            129.562,
-            6572.800313462099
+            18761.153402661996,
+            160.564,
+            6469.200313462099
           ],
           "local_pos": [
             59.4071,
@@ -20625,9 +20410,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18655.9,
-            129.562,
-            6659.26
+            18788.1,
+            160.564,
+            6555.66
           ],
           "local_pos": [
             0.0,
@@ -20652,9 +20437,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18552.8214196752,
-            129.562,
-            6564.6575013517
+            18685.0214196752,
+            160.564,
+            6461.0575013517
           ],
           "local_pos": [
             26.3359,
@@ -20677,9 +20462,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18737.546678333663,
-            129.562,
-            6541.42692383924
+            18869.74667833366,
+            160.564,
+            6437.8269238392395
           ],
           "local_pos": [
             143.156,
@@ -20702,9 +20487,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18792.5067820696,
-            129.562,
-            6666.538760883101
+            18924.706782069596,
+            160.564,
+            6562.9387608831
           ],
           "local_pos": [
             65.5797,
@@ -20727,9 +20512,9 @@
           "slot_type": "launcher",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18643.0022213966,
-            129.562,
-            6796.713906642401
+            18775.202221396597,
+            160.564,
+            6693.1139066424
           ],
           "local_pos": [
             -123.73,
@@ -20752,9 +20537,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18628.953402662,
-            129.562,
-            6572.800313462099
+            18761.153402661996,
+            160.564,
+            6469.200313462099
           ],
           "local_pos": [
             59.4071,
@@ -20777,9 +20562,9 @@
           "slot_type": "tracker_radar",
           "preset": "sam_site_sampt",
           "world_pos": [
-            18655.9,
-            129.562,
-            6659.26
+            18788.1,
+            160.564,
+            6555.66
           ],
           "local_pos": [
             0.0,
@@ -23537,7 +23322,7 @@
       ],
       "rank-31-36": [
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -23562,7 +23347,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -23587,7 +23372,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -24348,7 +24133,7 @@
       ],
       "rank-31-36": [
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -24373,7 +24158,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -24398,7 +24183,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -25159,7 +24944,7 @@
       ],
       "rank-31-36": [
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -25184,7 +24969,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -25209,7 +24994,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -25621,22 +25406,22 @@
     "team": 1,
     "source_group": "objectGroups",
     "world_pos": [
-      -4856.89,
+      -4230.79,
       20.6483,
-      599.197
+      798.584
     ],
     "editor_world_pos": [
-      -4856.89,
+      -4230.79,
       20.6483,
-      599.197
+      798.584
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        0.36857,
+        -0.668758,
         0.0,
-        0.9296
+        0.74348
       ],
       [
         0.0,
@@ -25644,14 +25429,14 @@
         0.0
       ],
       [
-        -0.9296,
+        -0.74348,
         0.0,
-        0.36857
+        -0.668758
       ],
       [
-        -4856.89,
+        -4230.79,
         20.6483,
-        599.197
+        798.584
       ]
     ],
     "runways": [],
@@ -25671,9 +25456,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4920.025716885,
+            -4193.845661049,
             20.6483,
-            526.6081776330001
+            709.7562478497999
           ],
           "local_pos": [
             -90.7485,
@@ -25696,9 +25481,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4831.028856413501,
+            -4210.8827280871,
             20.6483,
-            589.809960749
+            817.5738815934
           ],
           "local_pos": [
             0.80545,
@@ -25721,9 +25506,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4762.7086922220005,
+            -4183.2568334052,
             20.6483,
-            592.883527037
+            880.1350556801999
           ],
           "local_pos": [
             28.8434,
@@ -25746,9 +25531,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4750.249562325001,
+            -4233.871660257,
             20.6483,
-            655.577200447
+            919.1717686382
           ],
           "local_pos": [
             91.7155,
@@ -25771,9 +25556,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4857.195923884,
+            -4286.5331159704,
             20.6483,
-            661.2791371
+            825.915107996
           ],
           "local_pos": [
             57.5988,
@@ -25796,9 +25581,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4829.325541673,
+            -4131.687699237799,
             20.6483,
-            502.23881067400004
+            780.1606054363999
           ],
           "local_pos": [
             -79.9729,
@@ -25823,9 +25608,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4920.025716885,
+            -4193.845661049,
             20.6483,
-            526.6081776330001
+            709.7562478497999
           ],
           "local_pos": [
             -90.7485,
@@ -25848,9 +25633,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4831.028856413501,
+            -4210.8827280871,
             20.6483,
-            589.809960749
+            817.5738815934
           ],
           "local_pos": [
             0.80545,
@@ -25873,9 +25658,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4762.7086922220005,
+            -4183.2568334052,
             20.6483,
-            592.883527037
+            880.1350556801999
           ],
           "local_pos": [
             28.8434,
@@ -25898,9 +25683,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4750.249562325001,
+            -4233.871660257,
             20.6483,
-            655.577200447
+            919.1717686382
           ],
           "local_pos": [
             91.7155,
@@ -25923,9 +25708,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4857.195923884,
+            -4286.5331159704,
             20.6483,
-            661.2791371
+            825.915107996
           ],
           "local_pos": [
             57.5988,
@@ -25948,9 +25733,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4829.325541673,
+            -4131.687699237799,
             20.6483,
-            502.23881067400004
+            780.1606054363999
           ],
           "local_pos": [
             -79.9729,
@@ -25970,14 +25755,14 @@
       ],
       "rank-31-36": [
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4920.025716885,
+            -4193.845661049,
             20.6483,
-            526.6081776330001
+            709.7562478497999
           ],
           "local_pos": [
             -90.7485,
@@ -25995,14 +25780,14 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4831.028856413501,
+            -4210.8827280871,
             20.6483,
-            589.809960749
+            817.5738815934
           ],
           "local_pos": [
             0.80545,
@@ -26020,14 +25805,14 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4762.7086922220005,
+            -4183.2568334052,
             20.6483,
-            592.883527037
+            880.1350556801999
           ],
           "local_pos": [
             28.8434,
@@ -26050,9 +25835,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4750.249562325001,
+            -4233.871660257,
             20.6483,
-            655.577200447
+            919.1717686382
           ],
           "local_pos": [
             91.7155,
@@ -26075,9 +25860,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4857.195923884,
+            -4286.5331159704,
             20.6483,
-            661.2791371
+            825.915107996
           ],
           "local_pos": [
             57.5988,
@@ -26100,9 +25885,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4829.325541673,
+            -4131.687699237799,
             20.6483,
-            502.23881067400004
+            780.1606054363999
           ],
           "local_pos": [
             -79.9729,
@@ -26127,9 +25912,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4920.025716885,
+            -4193.845661049,
             20.6483,
-            526.6081776330001
+            709.7562478497999
           ],
           "local_pos": [
             -90.7485,
@@ -26152,9 +25937,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4831.028856413501,
+            -4210.8827280871,
             20.6483,
-            589.809960749
+            817.5738815934
           ],
           "local_pos": [
             0.80545,
@@ -26177,9 +25962,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4762.7086922220005,
+            -4183.2568334052,
             20.6483,
-            592.883527037
+            880.1350556801999
           ],
           "local_pos": [
             28.8434,
@@ -26202,9 +25987,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4750.249562325001,
+            -4233.871660257,
             20.6483,
-            655.577200447
+            919.1717686382
           ],
           "local_pos": [
             91.7155,
@@ -26227,9 +26012,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4857.195923884,
+            -4286.5331159704,
             20.6483,
-            661.2791371
+            825.915107996
           ],
           "local_pos": [
             57.5988,
@@ -26252,9 +26037,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4829.325541673,
+            -4131.687699237799,
             20.6483,
-            502.23881067400004
+            780.1606054363999
           ],
           "local_pos": [
             -79.9729,
@@ -26279,9 +26064,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4920.025716885,
+            -4193.845661049,
             20.6483,
-            526.6081776330001
+            709.7562478497999
           ],
           "local_pos": [
             -90.7485,
@@ -26304,9 +26089,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4831.028856413501,
+            -4210.8827280871,
             20.6483,
-            589.809960749
+            817.5738815934
           ],
           "local_pos": [
             0.80545,
@@ -26329,9 +26114,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4762.7086922220005,
+            -4183.2568334052,
             20.6483,
-            592.883527037
+            880.1350556801999
           ],
           "local_pos": [
             28.8434,
@@ -26354,9 +26139,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4750.249562325001,
+            -4233.871660257,
             20.6483,
-            655.577200447
+            919.1717686382
           ],
           "local_pos": [
             91.7155,
@@ -26379,9 +26164,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4857.195923884,
+            -4286.5331159704,
             20.6483,
-            661.2791371
+            825.915107996
           ],
           "local_pos": [
             57.5988,
@@ -26404,9 +26189,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4829.325541673,
+            -4131.687699237799,
             20.6483,
-            502.23881067400004
+            780.1606054363999
           ],
           "local_pos": [
             -79.9729,
@@ -35926,14 +35711,14 @@
     "team": 1,
     "source_group": "objectGroups",
     "world_pos": [
-      -38095.8,
-      221.207,
-      7882.09
+      -39018.5,
+      289.806,
+      8694.86
     ],
     "editor_world_pos": [
-      -38095.8,
-      221.207,
-      7882.09
+      -39018.5,
+      289.806,
+      8694.86
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -35954,9 +35739,9 @@
         0.707107
       ],
       [
-        -38095.8,
-        221.207,
-        7882.09
+        -39018.5,
+        289.806,
+        8694.86
       ]
     ],
     "runways": [],
@@ -36038,14 +35823,14 @@
     "team": 2,
     "source_group": "objectGroups",
     "world_pos": [
-      32554.1,
-      483.156,
-      16585.7
+      32237.5,
+      384.569,
+      15718.1
     ],
     "editor_world_pos": [
-      32554.1,
-      483.156,
-      16585.7
+      32237.5,
+      384.569,
+      15718.1
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -36066,9 +35851,9 @@
         0.707107
       ],
       [
-        32554.1,
-        483.156,
-        16585.7
+        32237.5,
+        384.569,
+        15718.1
       ]
     ],
     "runways": [],
@@ -36094,14 +35879,14 @@
     "team": 2,
     "source_group": "objectGroups",
     "world_pos": [
-      25160.0,
-      329.088,
-      30340.1
+      24768.1,
+      334.064,
+      30308.0
     ],
     "editor_world_pos": [
-      25160.0,
-      329.088,
-      30340.1
+      24768.1,
+      334.064,
+      30308.0
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -36122,9 +35907,9 @@
         0.707107
       ],
       [
-        25160.0,
-        329.088,
-        30340.1
+        24768.1,
+        334.064,
+        30308.0
       ]
     ],
     "runways": [],
@@ -36151,12 +35936,12 @@
     "source_group": "objectGroups",
     "world_pos": [
       29217.1,
-      184.637,
+      180.164,
       48592.2
     ],
     "editor_world_pos": [
       29217.1,
-      184.637,
+      180.164,
       48592.2
     ],
     "runtime_relocated": false,
@@ -36179,7 +35964,7 @@
       ],
       [
         29217.1,
-        184.637,
+        180.164,
         48592.2
       ]
     ],
@@ -38810,14 +38595,14 @@
     "team": 2,
     "source_group": "objectGroups",
     "world_pos": [
-      10440.9,
-      55.2402,
-      24321.0
+      10400.7,
+      61.6387,
+      24311.1
     ],
     "editor_world_pos": [
-      10440.9,
-      55.2402,
-      24321.0
+      10400.7,
+      61.6387,
+      24311.1
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -38838,9 +38623,9 @@
         -0.977836
       ],
       [
-        10440.9,
-        55.2402,
-        24321.0
+        10400.7,
+        61.6387,
+        24311.1
       ]
     ],
     "runways": [],
@@ -38860,9 +38645,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_us_m163_vulcan",
           "world_pos": [
-            10440.9,
-            55.2402,
-            24321.0
+            10400.7,
+            61.6387,
+            24311.1
           ],
           "local_pos": [
             0.0,
@@ -38887,9 +38672,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_germ_flarakpz_1_roland_1",
           "world_pos": [
-            10440.9,
-            55.2402,
-            24321.0
+            10400.7,
+            61.6387,
+            24311.1
           ],
           "local_pos": [
             0.0,
@@ -38914,9 +38699,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_germ_flarakpz_1_roland_3",
           "world_pos": [
-            10440.9,
-            55.2402,
-            24321.0
+            10400.7,
+            61.6387,
+            24311.1
           ],
           "local_pos": [
             0.0,
@@ -38941,9 +38726,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_sw_crotale_ng",
           "world_pos": [
-            10440.9,
-            55.2402,
-            24321.0
+            10400.7,
+            61.6387,
+            24311.1
           ],
           "local_pos": [
             0.0,
@@ -38968,9 +38753,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_sw_crotale_ng",
           "world_pos": [
-            10440.9,
-            55.2402,
-            24321.0
+            10400.7,
+            61.6387,
+            24311.1
           ],
           "local_pos": [
             0.0,
@@ -38996,14 +38781,14 @@
     "team": 2,
     "source_group": "objectGroups",
     "world_pos": [
-      18409.4,
-      72.0273,
-      6323.2
+      19222.2,
+      161.488,
+      6267.22
     ],
     "editor_world_pos": [
-      18409.4,
-      72.0273,
-      6323.2
+      19222.2,
+      161.488,
+      6267.22
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -39024,9 +38809,9 @@
         -0.903406
       ],
       [
-        18409.4,
-        72.0273,
-        6323.2
+        19222.2,
+        161.488,
+        6267.22
       ]
     ],
     "runways": [],
@@ -39046,9 +38831,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_us_m163_vulcan",
           "world_pos": [
-            18409.4,
-            72.0273,
-            6323.2
+            19222.2,
+            161.488,
+            6267.22
           ],
           "local_pos": [
             0.0,
@@ -39073,9 +38858,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_germ_flarakpz_1_roland_1",
           "world_pos": [
-            18409.4,
-            72.0273,
-            6323.2
+            19222.2,
+            161.488,
+            6267.22
           ],
           "local_pos": [
             0.0,
@@ -39100,9 +38885,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_germ_flarakpz_1_roland_3",
           "world_pos": [
-            18409.4,
-            72.0273,
-            6323.2
+            19222.2,
+            161.488,
+            6267.22
           ],
           "local_pos": [
             0.0,
@@ -39127,9 +38912,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_sw_crotale_ng",
           "world_pos": [
-            18409.4,
-            72.0273,
-            6323.2
+            19222.2,
+            161.488,
+            6267.22
           ],
           "local_pos": [
             0.0,
@@ -39154,9 +38939,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_sw_crotale_ng",
           "world_pos": [
-            18409.4,
-            72.0273,
-            6323.2
+            19222.2,
+            161.488,
+            6267.22
           ],
           "local_pos": [
             0.0,
@@ -40298,14 +40083,14 @@
     "team": 2,
     "source_group": "objectGroups",
     "world_pos": [
-      18447.5,
-      92.4971,
-      7002.52
+      18770.0,
+      122.039,
+      6945.12
     ],
     "editor_world_pos": [
-      18447.5,
-      92.4971,
-      7002.52
+      18770.0,
+      122.039,
+      6945.12
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -40326,9 +40111,9 @@
         -0.903406
       ],
       [
-        18447.5,
-        92.4971,
-        7002.52
+        18770.0,
+        122.039,
+        6945.12
       ]
     ],
     "runways": [],
@@ -40348,9 +40133,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_us_m163_vulcan",
           "world_pos": [
-            18447.5,
-            92.4971,
-            7002.52
+            18770.0,
+            122.039,
+            6945.12
           ],
           "local_pos": [
             0.0,
@@ -40375,9 +40160,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_us_m163_vulcan",
           "world_pos": [
-            18447.5,
-            92.4971,
-            7002.52
+            18770.0,
+            122.039,
+            6945.12
           ],
           "local_pos": [
             0.0,
@@ -40402,9 +40187,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_germ_flakpz_1a2_Gepard",
           "world_pos": [
-            18447.5,
-            92.4971,
-            7002.52
+            18770.0,
+            122.039,
+            6945.12
           ],
           "local_pos": [
             0.0,
@@ -40429,9 +40214,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_sw_crotale_ng",
           "world_pos": [
-            18447.5,
-            92.4971,
-            7002.52
+            18770.0,
+            122.039,
+            6945.12
           ],
           "local_pos": [
             0.0,
@@ -40456,9 +40241,9 @@
           "slot_type": "unit",
           "preset": "aa_cover_sw_crotale_ng",
           "world_pos": [
-            18447.5,
-            92.4971,
-            7002.52
+            18770.0,
+            122.039,
+            6945.12
           ],
           "local_pos": [
             0.0,
@@ -41763,7 +41548,7 @@
       ],
       "rank-31-36": [
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -41788,7 +41573,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -41813,7 +41598,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -42574,7 +42359,7 @@
       ],
       "rank-31-36": [
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -42599,7 +42384,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -42624,7 +42409,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -48109,7 +47894,7 @@
       ],
       "rank-31-36": [
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -48134,7 +47919,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -48159,7 +47944,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_t_80b",
+          "name": "ussr_t_80u",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1980",
@@ -49908,9 +49693,9 @@
     "team": 1,
     "source_group": "tankModels",
     "world_pos": [
-      -38095.8,
-      221.207,
-      7882.09
+      -39018.5,
+      289.806,
+      8694.86
     ],
     "editor_world_pos": [
       -154668.0,
@@ -49959,9 +49744,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -38095.8,
-            221.207,
-            7882.09
+            -39018.5,
+            289.806,
+            8694.86
           ],
           "local_pos": [
             0.0,
@@ -49987,9 +49772,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -38095.8,
-            221.207,
-            7882.09
+            -39018.5,
+            289.806,
+            8694.86
           ],
           "local_pos": [
             0.0,
@@ -50015,9 +49800,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -38095.8,
-            221.207,
-            7882.09
+            -39018.5,
+            289.806,
+            8694.86
           ],
           "local_pos": [
             0.0,
@@ -50043,9 +49828,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -38095.8,
-            221.207,
-            7882.09
+            -39018.5,
+            289.806,
+            8694.86
           ],
           "local_pos": [
             0.0,
@@ -50071,9 +49856,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -38095.8,
-            221.207,
-            7882.09
+            -39018.5,
+            289.806,
+            8694.86
           ],
           "local_pos": [
             0.0,
@@ -50290,9 +50075,9 @@
     "team": 2,
     "source_group": "tankModels",
     "world_pos": [
-      32554.1,
-      483.156,
-      16585.7
+      32237.5,
+      384.569,
+      15718.1
     ],
     "editor_world_pos": [
       -154772.0,
@@ -50341,9 +50126,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32554.1,
-            483.156,
-            16585.7
+            32237.5,
+            384.569,
+            15718.1
           ],
           "local_pos": [
             0.0,
@@ -50369,9 +50154,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32554.1,
-            483.156,
-            16585.7
+            32237.5,
+            384.569,
+            15718.1
           ],
           "local_pos": [
             0.0,
@@ -50397,9 +50182,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32554.1,
-            483.156,
-            16585.7
+            32237.5,
+            384.569,
+            15718.1
           ],
           "local_pos": [
             0.0,
@@ -50425,9 +50210,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32554.1,
-            483.156,
-            16585.7
+            32237.5,
+            384.569,
+            15718.1
           ],
           "local_pos": [
             0.0,
@@ -50453,9 +50238,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32554.1,
-            483.156,
-            16585.7
+            32237.5,
+            384.569,
+            15718.1
           ],
           "local_pos": [
             0.0,
@@ -50481,9 +50266,9 @@
     "team": 2,
     "source_group": "tankModels",
     "world_pos": [
-      25160.0,
-      329.088,
-      30340.1
+      24768.1,
+      334.064,
+      30308.0
     ],
     "editor_world_pos": [
       -154774.0,
@@ -50532,9 +50317,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            25160.0,
-            329.088,
-            30340.1
+            24768.1,
+            334.064,
+            30308.0
           ],
           "local_pos": [
             0.0,
@@ -50560,9 +50345,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            25160.0,
-            329.088,
-            30340.1
+            24768.1,
+            334.064,
+            30308.0
           ],
           "local_pos": [
             0.0,
@@ -50588,9 +50373,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            25160.0,
-            329.088,
-            30340.1
+            24768.1,
+            334.064,
+            30308.0
           ],
           "local_pos": [
             0.0,
@@ -50616,9 +50401,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            25160.0,
-            329.088,
-            30340.1
+            24768.1,
+            334.064,
+            30308.0
           ],
           "local_pos": [
             0.0,
@@ -50644,9 +50429,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            25160.0,
-            329.088,
-            30340.1
+            24768.1,
+            334.064,
+            30308.0
           ],
           "local_pos": [
             0.0,
@@ -50673,7 +50458,7 @@
     "source_group": "tankModels",
     "world_pos": [
       29217.1,
-      184.637,
+      180.164,
       48592.2
     ],
     "editor_world_pos": [
@@ -50724,7 +50509,7 @@
           "preset": "mission unit",
           "world_pos": [
             29217.1,
-            184.637,
+            180.164,
             48592.2
           ],
           "local_pos": [
@@ -50752,7 +50537,7 @@
           "preset": "mission unit",
           "world_pos": [
             29217.1,
-            184.637,
+            180.164,
             48592.2
           ],
           "local_pos": [
@@ -50780,7 +50565,7 @@
           "preset": "mission unit",
           "world_pos": [
             29217.1,
-            184.637,
+            180.164,
             48592.2
           ],
           "local_pos": [
@@ -50808,7 +50593,7 @@
           "preset": "mission unit",
           "world_pos": [
             29217.1,
-            184.637,
+            180.164,
             48592.2
           ],
           "local_pos": [
@@ -50836,7 +50621,7 @@
           "preset": "mission unit",
           "world_pos": [
             29217.1,
-            184.637,
+            180.164,
             48592.2
           ],
           "local_pos": [
@@ -50863,14 +50648,14 @@
     "team": 1,
     "source_group": "ships",
     "world_pos": [
-      -50487.4,
-      -1.52589e-05,
-      -27136.0
+      -48762.5,
+      2.10093e-10,
+      5145.25
     ],
     "editor_world_pos": [
-      -50487.4,
-      -1.52589e-05,
-      -27136.0
+      -48762.5,
+      2.10093e-10,
+      5145.25
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -50891,9 +50676,9 @@
         1.0
       ],
       [
-        -50487.4,
-        -1.52589e-05,
-        -27136.0
+        -48762.5,
+        2.10093e-10,
+        5145.25
       ]
     ],
     "runways": [],
@@ -50902,9 +50687,9 @@
         {
           "name": "t1_aircraftcarrier_wp_01",
           "world_pos": [
-            -50487.4,
-            -1.52589e-05,
-            -27136.0
+            -48762.5,
+            2.10093e-10,
+            5145.25
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -50912,9 +50697,9 @@
         {
           "name": "t1_aircraftcarrier_wp_02",
           "world_pos": [
-            -50455.2,
-            -1.52587e-05,
-            -57695.9
+            -48784.4,
+            2.10093e-10,
+            -4564.65
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -50922,9 +50707,9 @@
         {
           "name": "t1_aircraftcarrier_wp_03",
           "world_pos": [
-            -51295.2,
-            -1.52587e-05,
-            -62262.6
+            -50916.2,
+            2.10093e-10,
+            -10547.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -50932,9 +50717,9 @@
         {
           "name": "t1_aircraftcarrier_wp_04",
           "world_pos": [
-            -54772.5,
-            -1.52587e-05,
-            -62335.6
+            -56417.0,
+            2.10093e-10,
+            -10538.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -50942,9 +50727,9 @@
         {
           "name": "t1_aircraftcarrier_wp_05",
           "world_pos": [
-            -55430.8,
-            -1.52587e-05,
-            -57500.8
+            -58608.4,
+            2.10093e-10,
+            -4909.15
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -50952,9 +50737,9 @@
         {
           "name": "t1_aircraftcarrier_wp_06",
           "world_pos": [
-            -55456.1,
-            -1.52589e-05,
-            -26929.6
+            -58574.6,
+            2.10093e-10,
+            4943.59
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -50962,9 +50747,9 @@
         {
           "name": "t1_aircraftcarrier_wp_07",
           "world_pos": [
-            -54673.7,
-            -1.52589e-05,
-            -22377.0
+            -56074.5,
+            2.10093e-10,
+            12606.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -50972,9 +50757,9 @@
         {
           "name": "t1_aircraftcarrier_wp_08",
           "world_pos": [
-            -51400.9,
-            -1.52589e-05,
-            -22330.9
+            -50945.2,
+            2.10093e-10,
+            12647.3
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51000,9 +50785,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -50487.4,
-            -1.52589e-05,
-            -27136.0
+            -48762.5,
+            2.10093e-10,
+            5145.25
           ],
           "local_pos": [
             0.0,
@@ -51028,9 +50813,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -50487.4,
-            -1.52589e-05,
-            -27136.0
+            -48762.5,
+            2.10093e-10,
+            5145.25
           ],
           "local_pos": [
             0.0,
@@ -51056,9 +50841,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -50487.4,
-            -1.52589e-05,
-            -27136.0
+            -48762.5,
+            2.10093e-10,
+            5145.25
           ],
           "local_pos": [
             0.0,
@@ -51084,9 +50869,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -50487.4,
-            -1.52589e-05,
-            -27136.0
+            -48762.5,
+            2.10093e-10,
+            5145.25
           ],
           "local_pos": [
             0.0,
@@ -51112,9 +50897,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -50487.4,
-            -1.52589e-05,
-            -27136.0
+            -48762.5,
+            2.10093e-10,
+            5145.25
           ],
           "local_pos": [
             0.0,
@@ -51140,14 +50925,14 @@
     "team": 1,
     "source_group": "ships",
     "world_pos": [
-      -56900.9,
-      -1.52589e-05,
-      -27265.4
+      -48309.0,
+      0.0,
+      33564.5
     ],
     "editor_world_pos": [
-      -56900.9,
-      -1.52589e-05,
-      -27265.4
+      -48309.0,
+      0.0,
+      33564.5
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -51168,9 +50953,9 @@
         1.0
       ],
       [
-        -56900.9,
-        -1.52589e-05,
-        -27265.4
+        -48309.0,
+        0.0,
+        33564.5
       ]
     ],
     "runways": [],
@@ -51179,9 +50964,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_01",
           "world_pos": [
-            -56900.9,
-            -1.52589e-05,
-            -27265.4
+            -48309.0,
+            0.0,
+            33564.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51189,9 +50974,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_02",
           "world_pos": [
-            -56868.2,
-            -1.52587e-05,
-            -57825.1
+            -48311.7,
+            0.0,
+            20502.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51199,9 +50984,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_03",
           "world_pos": [
-            -57708.4,
-            -1.52587e-05,
-            -62391.8
+            -50473.0,
+            0.0,
+            15473.3
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51209,9 +50994,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_04",
           "world_pos": [
-            -61185.6,
-            -1.52587e-05,
-            -62464.8
+            -56255.6,
+            0.0,
+            15396.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51219,9 +51004,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_05",
           "world_pos": [
-            -61844.0,
-            -1.52587e-05,
-            -57630.1
+            -58232.3,
+            0.0,
+            21193.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51229,9 +51014,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_06",
           "world_pos": [
-            -61869.5,
-            -1.52589e-05,
-            -27059.1
+            -58226.5,
+            0.0,
+            33635.9
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51239,9 +51024,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_07",
           "world_pos": [
-            -61087.2,
-            -1.52589e-05,
-            -22506.5
+            -55726.1,
+            0.0,
+            39003.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51249,9 +51034,9 @@
         {
           "name": "t1_aircraftcarrier_02_wp_08",
           "world_pos": [
-            -57814.2,
-            -1.52589e-05,
-            -22460.4
+            -51059.8,
+            0.0,
+            39094.9
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51277,9 +51062,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -56900.9,
-            -1.52589e-05,
-            -27265.4
+            -48309.0,
+            0.0,
+            33564.5
           ],
           "local_pos": [
             0.0,
@@ -51305,9 +51090,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -56900.9,
-            -1.52589e-05,
-            -27265.4
+            -48309.0,
+            0.0,
+            33564.5
           ],
           "local_pos": [
             0.0,
@@ -51333,9 +51118,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -56900.9,
-            -1.52589e-05,
-            -27265.4
+            -48309.0,
+            0.0,
+            33564.5
           ],
           "local_pos": [
             0.0,
@@ -51361,9 +51146,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -56900.9,
-            -1.52589e-05,
-            -27265.4
+            -48309.0,
+            0.0,
+            33564.5
           ],
           "local_pos": [
             0.0,
@@ -51389,9 +51174,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -56900.9,
-            -1.52589e-05,
-            -27265.4
+            -48309.0,
+            0.0,
+            33564.5
           ],
           "local_pos": [
             0.0,
@@ -51417,14 +51202,14 @@
     "team": 1,
     "source_group": "ships",
     "world_pos": [
-      -45267.6,
-      -1.52588e-05,
-      -36806.3
+      -47098.9,
+      0.0,
+      -33028.2
     ],
     "editor_world_pos": [
-      -45267.6,
-      -1.52588e-05,
-      -36806.3
+      -47098.9,
+      0.0,
+      -33028.2
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -51445,9 +51230,9 @@
         1.0
       ],
       [
-        -45267.6,
-        -1.52588e-05,
-        -36806.3
+        -47098.9,
+        0.0,
+        -33028.2
       ]
     ],
     "runways": [],
@@ -51456,9 +51241,9 @@
         {
           "name": "t1_destroyer_01_wp_01",
           "world_pos": [
-            -45267.6,
-            -1.52588e-05,
-            -36806.3
+            -47098.9,
+            0.0,
+            -33028.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51466,9 +51251,9 @@
         {
           "name": "t1_destroyer_01_wp_02",
           "world_pos": [
-            -46093.1,
-            -1.52588e-05,
-            -39406.1
+            -47924.4,
+            0.0,
+            -36369.9
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51476,9 +51261,9 @@
         {
           "name": "t1_destroyer_01_wp_03",
           "world_pos": [
-            -48123.4,
-            -1.52588e-05,
-            -39497.8
+            -49954.7,
+            0.0,
+            -36461.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51486,9 +51271,9 @@
         {
           "name": "t1_destroyer_01_wp_04",
           "world_pos": [
-            -48900.4,
-            -1.52588e-05,
-            -37167.0
+            -50731.7,
+            0.0,
+            -33388.9
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51496,9 +51281,9 @@
         {
           "name": "t1_destroyer_01_wp_05",
           "world_pos": [
-            -48860.4,
-            -1.52589e-05,
-            -24653.3
+            -50691.7,
+            -1.00044e-10,
+            -22381.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51506,9 +51291,9 @@
         {
           "name": "t1_destroyer_01_wp_06",
           "world_pos": [
-            -47922.5,
-            -1.52589e-05,
-            -22409.0
+            -49753.8,
+            -1.00044e-10,
+            -19372.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51516,9 +51301,9 @@
         {
           "name": "t1_destroyer_01_wp_07",
           "world_pos": [
-            -46053.7,
-            -1.52589e-05,
-            -22464.7
+            -47885.0,
+            -1.00044e-10,
+            -19428.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51526,9 +51311,9 @@
         {
           "name": "t1_destroyer_01_wp_08",
           "world_pos": [
-            -45224.4,
-            -1.52589e-05,
-            -24687.5
+            -47055.7,
+            -1.00044e-10,
+            -22415.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51554,9 +51339,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45267.6,
-            -1.52588e-05,
-            -36806.3
+            -47098.9,
+            0.0,
+            -33028.2
           ],
           "local_pos": [
             0.0,
@@ -51582,9 +51367,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45267.6,
-            -1.52588e-05,
-            -36806.3
+            -47098.9,
+            0.0,
+            -33028.2
           ],
           "local_pos": [
             0.0,
@@ -51610,9 +51395,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45267.6,
-            -1.52588e-05,
-            -36806.3
+            -47098.9,
+            0.0,
+            -33028.2
           ],
           "local_pos": [
             0.0,
@@ -51638,9 +51423,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45267.6,
-            -1.52588e-05,
-            -36806.3
+            -47098.9,
+            0.0,
+            -33028.2
           ],
           "local_pos": [
             0.0,
@@ -51666,9 +51451,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45267.6,
-            -1.52588e-05,
-            -36806.3
+            -47098.9,
+            0.0,
+            -33028.2
           ],
           "local_pos": [
             0.0,
@@ -51694,14 +51479,14 @@
     "team": 1,
     "source_group": "ships",
     "world_pos": [
-      -45237.7,
-      -1.52587e-05,
-      -59421.0
+      -21340.1,
+      0.0,
+      -22376.4
     ],
     "editor_world_pos": [
-      -45237.7,
-      -1.52587e-05,
-      -59421.0
+      -21340.1,
+      0.0,
+      -22376.4
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -51722,9 +51507,9 @@
         1.0
       ],
       [
-        -45237.7,
-        -1.52587e-05,
-        -59421.0
+        -21340.1,
+        0.0,
+        -22376.4
       ]
     ],
     "runways": [],
@@ -51733,9 +51518,9 @@
         {
           "name": "t1_destroyer_02_wp_01",
           "world_pos": [
-            -45237.7,
-            -1.52587e-05,
-            -59421.0
+            -21340.1,
+            0.0,
+            -22376.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51743,9 +51528,9 @@
         {
           "name": "t1_destroyer_02_wp_02",
           "world_pos": [
-            -46062.5,
-            -1.52587e-05,
-            -62020.1
+            -22164.9,
+            0.0,
+            -25920.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51753,9 +51538,9 @@
         {
           "name": "t1_destroyer_02_wp_03",
           "world_pos": [
-            -48093.1,
-            -1.52587e-05,
-            -62112.1
+            -24195.5,
+            0.0,
+            -26012.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51763,9 +51548,9 @@
         {
           "name": "t1_destroyer_02_wp_04",
           "world_pos": [
-            -48870.5,
-            -1.52587e-05,
-            -59781.7
+            -24972.9,
+            0.0,
+            -22328.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51773,9 +51558,9 @@
         {
           "name": "t1_destroyer_02_wp_05",
           "world_pos": [
-            -48881.9,
-            -1.52588e-05,
-            -45742.4
+            -24984.3,
+            -1.00044e-10,
+            -17103.9
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51783,9 +51568,9 @@
         {
           "name": "t1_destroyer_02_wp_06",
           "world_pos": [
-            -47944.0,
-            -1.52588e-05,
-            -43498.1
+            -24046.4,
+            -1.00044e-10,
+            -12989.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51793,9 +51578,9 @@
         {
           "name": "t1_destroyer_02_wp_07",
           "world_pos": [
-            -46075.2,
-            -1.52588e-05,
-            -43553.7
+            -22177.6,
+            -1.00044e-10,
+            -13044.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51803,9 +51588,9 @@
         {
           "name": "t1_destroyer_02_wp_08",
           "world_pos": [
-            -45245.9,
-            -1.52588e-05,
-            -45776.6
+            -21348.3,
+            -1.00044e-10,
+            -17024.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -51831,9 +51616,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45237.7,
-            -1.52587e-05,
-            -59421.0
+            -21340.1,
+            0.0,
+            -22376.4
           ],
           "local_pos": [
             0.0,
@@ -51859,9 +51644,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45237.7,
-            -1.52587e-05,
-            -59421.0
+            -21340.1,
+            0.0,
+            -22376.4
           ],
           "local_pos": [
             0.0,
@@ -51887,9 +51672,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45237.7,
-            -1.52587e-05,
-            -59421.0
+            -21340.1,
+            0.0,
+            -22376.4
           ],
           "local_pos": [
             0.0,
@@ -51915,9 +51700,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45237.7,
-            -1.52587e-05,
-            -59421.0
+            -21340.1,
+            0.0,
+            -22376.4
           ],
           "local_pos": [
             0.0,
@@ -51943,9 +51728,720 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -45237.7,
-            -1.52587e-05,
-            -59421.0
+            -21340.1,
+            0.0,
+            -22376.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t1_destroyer_03",
+    "unit_class": "ussr_destroyer_pr56_bravy_ec",
+    "team": 1,
+    "source_group": "ships",
+    "world_pos": [
+      -34918.2,
+      0.0,
+      -4990.99
+    ],
+    "editor_world_pos": [
+      -34918.2,
+      0.0,
+      -4990.99
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -34918.2,
+        0.0,
+        -4990.99
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t1_destroyer_03_wp_01",
+          "world_pos": [
+            -34918.2,
+            0.0,
+            -4990.99
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t1_destroyer_03_wp_02",
+          "world_pos": [
+            -34792.8,
+            0.0,
+            428.512
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t1_destroyer_03_wp_03",
+          "world_pos": [
+            -36154.2,
+            0.0,
+            4676.28
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t1_destroyer_03_wp_04",
+          "world_pos": [
+            -38751.6,
+            0.0,
+            4747.61
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t1_destroyer_03_wp_05",
+          "world_pos": [
+            -40636.3,
+            0.0,
+            461.455
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t1_destroyer_03_wp_06",
+          "world_pos": [
+            -40788.8,
+            0.0,
+            -5109.12
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t1_destroyer_03_wp_07",
+          "world_pos": [
+            -39176.2,
+            0.0,
+            -9609.78
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t1_destroyer_03_wp_08",
+          "world_pos": [
+            -36596.4,
+            0.0,
+            -9664.71
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        }
+      ],
+      "closed": true,
+      "spline": true,
+      "speed": 300.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t1_destroyer_03",
+          "name": "ussr_destroyer_pr56_bravy_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -34918.2,
+            0.0,
+            -4990.99
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t1_destroyer_03",
+          "name": "ussr_destroyer_pr56_bravy_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -34918.2,
+            0.0,
+            -4990.99
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t1_destroyer_03",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -34918.2,
+            0.0,
+            -4990.99
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t1_destroyer_03",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -34918.2,
+            0.0,
+            -4990.99
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t1_destroyer_03",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -34918.2,
+            0.0,
+            -4990.99
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t1_destroyer_04",
+    "unit_class": "ussr_destroyer_pr56_bravy_ec",
+    "team": 1,
+    "source_group": "ships",
+    "world_pos": [
+      -46455.5,
+      0.0,
+      6656.94
+    ],
+    "editor_world_pos": [
+      -46455.5,
+      0.0,
+      6656.94
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -46455.5,
+        0.0,
+        6656.94
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t1_destroyer_04_wp_01",
+          "world_pos": [
+            -46455.5,
+            0.0,
+            6656.94
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t1_destroyer_04_wp_02",
+          "world_pos": [
+            -46422.4,
+            0.0,
+            -7391.07
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t1_destroyer_04",
+          "name": "ussr_destroyer_pr56_bravy_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -46455.5,
+            0.0,
+            6656.94
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t1_destroyer_04",
+          "name": "ussr_destroyer_pr56_bravy_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -46455.5,
+            0.0,
+            6656.94
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t1_destroyer_04",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -46455.5,
+            0.0,
+            6656.94
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t1_destroyer_04",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -46455.5,
+            0.0,
+            6656.94
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t1_destroyer_04",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -46455.5,
+            0.0,
+            6656.94
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t1_destroyer_05",
+    "unit_class": "ussr_destroyer_pr56_bravy_ec",
+    "team": 1,
+    "source_group": "ships",
+    "world_pos": [
+      -45785.5,
+      0.0,
+      30840.4
+    ],
+    "editor_world_pos": [
+      -45785.5,
+      0.0,
+      30840.4
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -45785.5,
+        0.0,
+        30840.4
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t1_destroyer_05_wp_01",
+          "world_pos": [
+            -45785.5,
+            0.0,
+            30840.4
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t1_destroyer_05_wp_02",
+          "world_pos": [
+            -46146.9,
+            0.0,
+            15117.7
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t1_destroyer_05",
+          "name": "ussr_destroyer_pr56_bravy_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -45785.5,
+            0.0,
+            30840.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t1_destroyer_05",
+          "name": "ussr_destroyer_pr56_bravy_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -45785.5,
+            0.0,
+            30840.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t1_destroyer_05",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -45785.5,
+            0.0,
+            30840.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t1_destroyer_05",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -45785.5,
+            0.0,
+            30840.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t1_destroyer_05",
+          "name": "ussr_destroyer_rckt_pr956",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -45785.5,
+            0.0,
+            30840.4
           ],
           "local_pos": [
             0.0,
@@ -51971,14 +52467,14 @@
     "team": 1,
     "source_group": "ships",
     "world_pos": [
-      -33252.6,
-      -1.52589e-05,
-      -29506.4
+      -8462.01,
+      0.0,
+      -19353.6
     ],
     "editor_world_pos": [
-      -33252.6,
-      -1.52589e-05,
-      -29506.4
+      -8462.01,
+      0.0,
+      -19353.6
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -51999,9 +52495,9 @@
         1.0
       ],
       [
-        -33252.6,
-        -1.52589e-05,
-        -29506.4
+        -8462.01,
+        0.0,
+        -19353.6
       ]
     ],
     "runways": [],
@@ -52010,9 +52506,9 @@
         {
           "name": "t1_frigate_01_wp_01",
           "world_pos": [
-            -33252.6,
-            -1.52589e-05,
-            -29506.4
+            -8462.01,
+            0.0,
+            -19353.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52020,9 +52516,9 @@
         {
           "name": "t1_frigate_01_wp_02",
           "world_pos": [
-            -33729.2,
-            -1.52589e-05,
-            -31227.5
+            -8938.6,
+            0.0,
+            -21074.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52030,9 +52526,9 @@
         {
           "name": "t1_frigate_01_wp_03",
           "world_pos": [
-            -35119.1,
-            -1.52589e-05,
-            -31167.7
+            -10328.5,
+            0.0,
+            -21015.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52040,9 +52536,9 @@
         {
           "name": "t1_frigate_01_wp_04",
           "world_pos": [
-            -35557.7,
-            -1.52589e-05,
-            -29387.9
+            -10767.1,
+            0.0,
+            -19235.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52050,9 +52546,9 @@
         {
           "name": "t1_frigate_01_wp_05",
           "world_pos": [
-            -35612.9,
-            -1.52589e-05,
-            -23866.2
+            -10822.3,
+            0.0,
+            -13713.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52060,9 +52556,9 @@
         {
           "name": "t1_frigate_01_wp_06",
           "world_pos": [
-            -35148.1,
-            -1.52589e-05,
-            -22508.9
+            -10357.5,
+            0.0,
+            -12356.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52070,9 +52566,9 @@
         {
           "name": "t1_frigate_01_wp_07",
           "world_pos": [
-            -33746.8,
-            -1.52589e-05,
-            -22495.7
+            -8956.21,
+            0.0,
+            -12343.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52080,9 +52576,9 @@
         {
           "name": "t1_frigate_01_wp_08",
           "world_pos": [
-            -33300.9,
-            -1.52589e-05,
-            -24119.8
+            -8510.3,
+            0.0,
+            -13967.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52108,9 +52604,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33252.6,
-            -1.52589e-05,
-            -29506.4
+            -8462.01,
+            0.0,
+            -19353.6
           ],
           "local_pos": [
             0.0,
@@ -52136,9 +52632,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33252.6,
-            -1.52589e-05,
-            -29506.4
+            -8462.01,
+            0.0,
+            -19353.6
           ],
           "local_pos": [
             0.0,
@@ -52164,9 +52660,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33252.6,
-            -1.52589e-05,
-            -29506.4
+            -8462.01,
+            0.0,
+            -19353.6
           ],
           "local_pos": [
             0.0,
@@ -52192,9 +52688,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33252.6,
-            -1.52589e-05,
-            -29506.4
+            -8462.01,
+            0.0,
+            -19353.6
           ],
           "local_pos": [
             0.0,
@@ -52220,9 +52716,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33252.6,
-            -1.52589e-05,
-            -29506.4
+            -8462.01,
+            0.0,
+            -19353.6
           ],
           "local_pos": [
             0.0,
@@ -52248,14 +52744,14 @@
     "team": 1,
     "source_group": "ships",
     "world_pos": [
-      -33200.6,
-      -1.52588e-05,
-      -44535.9
+      -9621.11,
+      0.0,
+      -33153.1
     ],
     "editor_world_pos": [
-      -33200.6,
-      -1.52588e-05,
-      -44535.9
+      -9621.11,
+      0.0,
+      -33153.1
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -52276,9 +52772,9 @@
         1.0
       ],
       [
-        -33200.6,
-        -1.52588e-05,
-        -44535.9
+        -9621.11,
+        0.0,
+        -33153.1
       ]
     ],
     "runways": [],
@@ -52287,9 +52783,9 @@
         {
           "name": "t1_frigate_02_wp_01",
           "world_pos": [
-            -33200.6,
-            -1.52588e-05,
-            -44535.9
+            -9621.11,
+            0.0,
+            -33153.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52297,9 +52793,9 @@
         {
           "name": "t1_frigate_02_wp_02",
           "world_pos": [
-            -33677.2,
-            -1.52588e-05,
-            -46257.1
+            -10097.7,
+            0.0,
+            -34874.3
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52307,9 +52803,9 @@
         {
           "name": "t1_frigate_02_wp_03",
           "world_pos": [
-            -35067.0,
-            -1.52588e-05,
-            -46197.4
+            -11487.5,
+            0.0,
+            -34814.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52317,9 +52813,9 @@
         {
           "name": "t1_frigate_02_wp_04",
           "world_pos": [
-            -35505.8,
-            -1.52588e-05,
-            -44417.5
+            -11926.3,
+            0.0,
+            -33034.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52327,9 +52823,9 @@
         {
           "name": "t1_frigate_02_wp_05",
           "world_pos": [
-            -35560.8,
-            -1.52588e-05,
-            -38895.9
+            -11981.3,
+            0.0,
+            -27513.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52337,9 +52833,9 @@
         {
           "name": "t1_frigate_02_wp_06",
           "world_pos": [
-            -35096.1,
-            -1.52588e-05,
-            -37538.7
+            -11516.6,
+            0.0,
+            -26155.9
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52347,9 +52843,9 @@
         {
           "name": "t1_frigate_02_wp_07",
           "world_pos": [
-            -33694.8,
-            -1.52588e-05,
-            -37525.3
+            -10115.3,
+            0.0,
+            -26142.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52357,9 +52853,9 @@
         {
           "name": "t1_frigate_02_wp_08",
           "world_pos": [
-            -33248.9,
-            -1.52588e-05,
-            -39149.4
+            -9669.41,
+            0.0,
+            -27766.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52385,9 +52881,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33200.6,
-            -1.52588e-05,
-            -44535.9
+            -9621.11,
+            0.0,
+            -33153.1
           ],
           "local_pos": [
             0.0,
@@ -52413,9 +52909,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33200.6,
-            -1.52588e-05,
-            -44535.9
+            -9621.11,
+            0.0,
+            -33153.1
           ],
           "local_pos": [
             0.0,
@@ -52441,9 +52937,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33200.6,
-            -1.52588e-05,
-            -44535.9
+            -9621.11,
+            0.0,
+            -33153.1
           ],
           "local_pos": [
             0.0,
@@ -52469,9 +52965,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33200.6,
-            -1.52588e-05,
-            -44535.9
+            -9621.11,
+            0.0,
+            -33153.1
           ],
           "local_pos": [
             0.0,
@@ -52497,9 +52993,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33200.6,
-            -1.52588e-05,
-            -44535.9
+            -9621.11,
+            0.0,
+            -33153.1
           ],
           "local_pos": [
             0.0,
@@ -52525,14 +53021,14 @@
     "team": 1,
     "source_group": "ships",
     "world_pos": [
-      -33297.8,
-      -1.52587e-05,
-      -60402.5
+      -11310.1,
+      0.0,
+      -45881.2
     ],
     "editor_world_pos": [
-      -33297.8,
-      -1.52587e-05,
-      -60402.5
+      -11310.1,
+      0.0,
+      -45881.2
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -52553,9 +53049,9 @@
         1.0
       ],
       [
-        -33297.8,
-        -1.52587e-05,
-        -60402.5
+        -11310.1,
+        0.0,
+        -45881.2
       ]
     ],
     "runways": [],
@@ -52564,9 +53060,9 @@
         {
           "name": "t1_frigate_03_wp_01",
           "world_pos": [
-            -33297.8,
-            -1.52587e-05,
-            -60402.5
+            -11310.1,
+            0.0,
+            -45881.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52574,9 +53070,9 @@
         {
           "name": "t1_frigate_03_wp_02",
           "world_pos": [
-            -33774.6,
-            -1.52587e-05,
-            -62123.7
+            -11786.9,
+            0.0,
+            -47602.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52584,9 +53080,9 @@
         {
           "name": "t1_frigate_03_wp_03",
           "world_pos": [
-            -35164.4,
-            -1.52587e-05,
-            -62063.9
+            -13176.7,
+            0.0,
+            -47542.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52594,9 +53090,9 @@
         {
           "name": "t1_frigate_03_wp_04",
           "world_pos": [
-            -35603.2,
-            -1.52587e-05,
-            -60284.1
+            -13615.5,
+            0.0,
+            -45762.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52604,9 +53100,9 @@
         {
           "name": "t1_frigate_03_wp_05",
           "world_pos": [
-            -35658.1,
-            -1.52587e-05,
-            -54762.3
+            -13670.4,
+            0.0,
+            -40241.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52614,9 +53110,9 @@
         {
           "name": "t1_frigate_03_wp_06",
           "world_pos": [
-            -35193.5,
-            -1.52587e-05,
-            -53405.1
+            -13205.8,
+            0.0,
+            -38883.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52624,9 +53120,9 @@
         {
           "name": "t1_frigate_03_wp_07",
           "world_pos": [
-            -33792.3,
-            -1.52587e-05,
-            -53391.8
+            -11804.6,
+            0.0,
+            -38870.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52634,9 +53130,9 @@
         {
           "name": "t1_frigate_03_wp_08",
           "world_pos": [
-            -33346.3,
-            -1.52587e-05,
-            -55016.0
+            -11358.6,
+            0.0,
+            -40494.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52662,9 +53158,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33297.8,
-            -1.52587e-05,
-            -60402.5
+            -11310.1,
+            0.0,
+            -45881.2
           ],
           "local_pos": [
             0.0,
@@ -52690,9 +53186,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33297.8,
-            -1.52587e-05,
-            -60402.5
+            -11310.1,
+            0.0,
+            -45881.2
           ],
           "local_pos": [
             0.0,
@@ -52718,9 +53214,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33297.8,
-            -1.52587e-05,
-            -60402.5
+            -11310.1,
+            0.0,
+            -45881.2
           ],
           "local_pos": [
             0.0,
@@ -52746,9 +53242,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33297.8,
-            -1.52587e-05,
-            -60402.5
+            -11310.1,
+            0.0,
+            -45881.2
           ],
           "local_pos": [
             0.0,
@@ -52774,9 +53270,443 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -33297.8,
-            -1.52587e-05,
-            -60402.5
+            -11310.1,
+            0.0,
+            -45881.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t1_frigate_04",
+    "unit_class": "ussr_mpk_pr_1124_ec",
+    "team": 1,
+    "source_group": "ships",
+    "world_pos": [
+      -43374.2,
+      0.0,
+      6888.86
+    ],
+    "editor_world_pos": [
+      -43374.2,
+      0.0,
+      6888.86
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -43374.2,
+        0.0,
+        6888.86
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t1_frigate_04_wp_01",
+          "world_pos": [
+            -43374.2,
+            0.0,
+            6888.86
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t1_frigate_04_wp_02",
+          "world_pos": [
+            -43560.1,
+            0.0,
+            -7434.33
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t1_frigate_04",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43374.2,
+            0.0,
+            6888.86
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t1_frigate_04",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43374.2,
+            0.0,
+            6888.86
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t1_frigate_04",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43374.2,
+            0.0,
+            6888.86
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t1_frigate_04",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43374.2,
+            0.0,
+            6888.86
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t1_frigate_04",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43374.2,
+            0.0,
+            6888.86
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t1_frigate_05",
+    "unit_class": "ussr_mpk_pr_1124_ec",
+    "team": 1,
+    "source_group": "ships",
+    "world_pos": [
+      -43044.6,
+      0.0,
+      30991.0
+    ],
+    "editor_world_pos": [
+      -43044.6,
+      0.0,
+      30991.0
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -43044.6,
+        0.0,
+        30991.0
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t1_frigate_05_wp_01",
+          "world_pos": [
+            -43044.6,
+            0.0,
+            30991.0
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t1_frigate_05_wp_02",
+          "world_pos": [
+            -43285.5,
+            0.0,
+            15208.0
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t1_frigate_05",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43044.6,
+            0.0,
+            30991.0
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t1_frigate_05",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43044.6,
+            0.0,
+            30991.0
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t1_frigate_05",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43044.6,
+            0.0,
+            30991.0
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t1_frigate_05",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43044.6,
+            0.0,
+            30991.0
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t1_frigate_05",
+          "name": "ussr_mpk_pr_1124_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -43044.6,
+            0.0,
+            30991.0
           ],
           "local_pos": [
             0.0,
@@ -52802,14 +53732,14 @@
     "team": 2,
     "source_group": "ships",
     "world_pos": [
-      48765.5,
+      50037.3,
       0.0,
-      -7143.24
+      39409.2
     ],
     "editor_world_pos": [
-      48765.5,
+      50037.3,
       0.0,
-      -7143.24
+      39409.2
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -52830,9 +53760,9 @@
         1.0
       ],
       [
-        48765.5,
+        50037.3,
         0.0,
-        -7143.24
+        39409.2
       ]
     ],
     "runways": [],
@@ -52841,9 +53771,9 @@
         {
           "name": "t2_aircraftcarrier_wp_01",
           "world_pos": [
-            48765.5,
+            50037.3,
             0.0,
-            -7143.24
+            39409.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52851,9 +53781,9 @@
         {
           "name": "t2_aircraftcarrier_wp_02",
           "world_pos": [
-            48552.3,
+            49896.4,
             0.0,
-            -37092.5
+            21926.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52861,9 +53791,9 @@
         {
           "name": "t2_aircraftcarrier_wp_03",
           "world_pos": [
-            49272.2,
+            51329.1,
             0.0,
-            -42510.3
+            16508.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52871,9 +53801,9 @@
         {
           "name": "t2_aircraftcarrier_wp_04",
           "world_pos": [
-            52683.7,
+            57303.8,
             0.0,
-            -42529.7
+            16489.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52881,9 +53811,9 @@
         {
           "name": "t2_aircraftcarrier_wp_05",
           "world_pos": [
-            53558.7,
+            59602.0,
             0.0,
-            -37487.0
+            21531.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52891,9 +53821,9 @@
         {
           "name": "t2_aircraftcarrier_wp_06",
           "world_pos": [
-            53763.3,
+            59699.1,
             0.0,
-            -6879.24
+            39551.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52901,9 +53831,9 @@
         {
           "name": "t2_aircraftcarrier_wp_07",
           "world_pos": [
-            52876.8,
+            57603.9,
             0.0,
-            -2497.14
+            45115.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52911,9 +53841,9 @@
         {
           "name": "t2_aircraftcarrier_wp_08",
           "world_pos": [
-            49471.9,
+            51303.3,
             0.0,
-            -2484.94
+            45127.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -52939,9 +53869,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            48765.5,
+            50037.3,
             0.0,
-            -7143.24
+            39409.2
           ],
           "local_pos": [
             0.0,
@@ -52967,9 +53897,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            48765.5,
+            50037.3,
             0.0,
-            -7143.24
+            39409.2
           ],
           "local_pos": [
             0.0,
@@ -52995,9 +53925,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            48765.5,
+            50037.3,
             0.0,
-            -7143.24
+            39409.2
           ],
           "local_pos": [
             0.0,
@@ -53023,9 +53953,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            48765.5,
+            50037.3,
             0.0,
-            -7143.24
+            39409.2
           ],
           "local_pos": [
             0.0,
@@ -53051,9 +53981,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            48765.5,
+            50037.3,
             0.0,
-            -7143.24
+            39409.2
           ],
           "local_pos": [
             0.0,
@@ -53079,14 +54009,14 @@
     "team": 2,
     "source_group": "ships",
     "world_pos": [
-      55581.7,
+      49318.9,
       0.0,
-      -7117.34
+      -859.021
     ],
     "editor_world_pos": [
-      55581.7,
+      49318.9,
       0.0,
-      -7117.34
+      -859.021
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -53107,9 +54037,9 @@
         1.0
       ],
       [
-        55581.7,
+        49318.9,
         0.0,
-        -7117.34
+        -859.021
       ]
     ],
     "runways": [],
@@ -53118,9 +54048,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_01",
           "world_pos": [
-            55581.7,
+            49318.9,
             0.0,
-            -7117.34
+            -859.021
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53128,9 +54058,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_02",
           "world_pos": [
-            55368.2,
+            49223.2,
             0.0,
-            -37066.3
+            -17800.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53138,9 +54068,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_03",
           "world_pos": [
-            56088.1,
+            51443.1,
             0.0,
-            -42484.1
+            -23145.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53148,9 +54078,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_04",
           "world_pos": [
-            59499.5,
+            56706.1,
             0.0,
-            -42503.5
+            -23186.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53158,9 +54088,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_05",
           "world_pos": [
-            60374.6,
+            59172.8,
             0.0,
-            -37460.8
+            -18127.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53168,9 +54098,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_06",
           "world_pos": [
-            60579.6,
+            59399.5,
             0.0,
-            -6853.34
+            -966.922
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53178,9 +54108,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_07",
           "world_pos": [
-            59692.9,
+            56897.2,
             0.0,
-            -2471.14
+            5324.78
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53188,9 +54118,9 @@
         {
           "name": "t2_aircraftcarrier_02_wp_08",
           "world_pos": [
-            56288.1,
+            51526.9,
             0.0,
-            -2459.04
+            5292.67
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53216,9 +54146,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            55581.7,
+            49318.9,
             0.0,
-            -7117.34
+            -859.021
           ],
           "local_pos": [
             0.0,
@@ -53244,9 +54174,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            55581.7,
+            49318.9,
             0.0,
-            -7117.34
+            -859.021
           ],
           "local_pos": [
             0.0,
@@ -53272,9 +54202,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            55581.7,
+            49318.9,
             0.0,
-            -7117.34
+            -859.021
           ],
           "local_pos": [
             0.0,
@@ -53300,9 +54230,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            55581.7,
+            49318.9,
             0.0,
-            -7117.34
+            -859.021
           ],
           "local_pos": [
             0.0,
@@ -53328,9 +54258,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            55581.7,
+            49318.9,
             0.0,
-            -7117.34
+            -859.021
           ],
           "local_pos": [
             0.0,
@@ -53356,14 +54286,14 @@
     "team": 2,
     "source_group": "ships",
     "world_pos": [
-      43755.1,
+      34353.0,
       0.0,
-      -17352.8
+      -10045.9
     ],
     "editor_world_pos": [
-      43755.1,
+      34353.0,
       0.0,
-      -17352.8
+      -10045.9
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -53384,9 +54314,9 @@
         1.0
       ],
       [
-        43755.1,
+        34353.0,
         0.0,
-        -17352.8
+        -10045.9
       ]
     ],
     "runways": [],
@@ -53395,9 +54325,9 @@
         {
           "name": "t2_destroyer_01_wp_01",
           "world_pos": [
-            43755.1,
+            34353.0,
             0.0,
-            -17352.8
+            -10045.9
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53405,9 +54335,9 @@
         {
           "name": "t2_destroyer_01_wp_02",
           "world_pos": [
-            44514.3,
+            35112.2,
             0.0,
-            -19735.6
+            -12428.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53415,9 +54345,9 @@
         {
           "name": "t2_destroyer_01_wp_03",
           "world_pos": [
-            46562.1,
+            37160.0,
             0.0,
-            -19646.9
+            -12340.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53425,9 +54355,9 @@
         {
           "name": "t2_destroyer_01_wp_04",
           "world_pos": [
-            47374.3,
+            37972.2,
             0.0,
-            -17060.4
+            -9753.48
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53435,9 +54365,9 @@
         {
           "name": "t2_destroyer_01_wp_05",
           "world_pos": [
-            47530.4,
+            38128.3,
             0.0,
-            -4865.64
+            2441.22
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53445,9 +54375,9 @@
         {
           "name": "t2_destroyer_01_wp_06",
           "world_pos": [
-            46736.9,
+            37334.8,
             0.0,
-            -2625.64
+            4681.22
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53455,9 +54385,9 @@
         {
           "name": "t2_destroyer_01_wp_07",
           "world_pos": [
-            44871.0,
+            35468.9,
             0.0,
-            -2539.34
+            4767.53
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53465,9 +54395,9 @@
         {
           "name": "t2_destroyer_01_wp_08",
           "world_pos": [
-            43884.8,
+            34482.7,
             0.0,
-            -4792.24
+            2514.62
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53493,9 +54423,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43755.1,
+            34353.0,
             0.0,
-            -17352.8
+            -10045.9
           ],
           "local_pos": [
             0.0,
@@ -53521,9 +54451,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43755.1,
+            34353.0,
             0.0,
-            -17352.8
+            -10045.9
           ],
           "local_pos": [
             0.0,
@@ -53549,9 +54479,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43755.1,
+            34353.0,
             0.0,
-            -17352.8
+            -10045.9
           ],
           "local_pos": [
             0.0,
@@ -53577,9 +54507,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43755.1,
+            34353.0,
             0.0,
-            -17352.8
+            -10045.9
           ],
           "local_pos": [
             0.0,
@@ -53605,9 +54535,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43755.1,
+            34353.0,
             0.0,
-            -17352.8
+            -10045.9
           ],
           "local_pos": [
             0.0,
@@ -53633,14 +54563,14 @@
     "team": 2,
     "source_group": "ships",
     "world_pos": [
-      43581.5,
+      40328.0,
       0.0,
-      -40087.7
+      -33402.8
     ],
     "editor_world_pos": [
-      43581.5,
+      40328.0,
       0.0,
-      -40087.7
+      -33402.8
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -53661,9 +54591,9 @@
         1.0
       ],
       [
-        43581.5,
+        40328.0,
         0.0,
-        -40087.7
+        -33402.8
       ]
     ],
     "runways": [],
@@ -53672,9 +54602,9 @@
         {
           "name": "t2_destroyer_02_wp_01",
           "world_pos": [
-            43581.5,
+            40328.0,
             0.0,
-            -40087.7
+            -33402.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53682,9 +54612,9 @@
         {
           "name": "t2_destroyer_02_wp_02",
           "world_pos": [
-            44340.1,
+            41086.6,
             0.0,
-            -42470.0
+            -35785.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53692,9 +54622,9 @@
         {
           "name": "t2_destroyer_02_wp_03",
           "world_pos": [
-            46387.8,
+            43134.3,
             0.0,
-            -42381.0
+            -35696.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53702,9 +54632,9 @@
         {
           "name": "t2_destroyer_02_wp_04",
           "world_pos": [
-            47200.4,
+            43946.8,
             0.0,
-            -39795.0
+            -33110.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53712,9 +54642,9 @@
         {
           "name": "t2_destroyer_02_wp_05",
           "world_pos": [
-            47380.5,
+            44126.9,
             0.0,
-            -25889.6
+            -19204.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53722,9 +54652,9 @@
         {
           "name": "t2_destroyer_02_wp_06",
           "world_pos": [
-            46587.0,
+            43333.4,
             0.0,
-            -23649.6
+            -16964.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53732,9 +54662,9 @@
         {
           "name": "t2_destroyer_02_wp_07",
           "world_pos": [
-            44721.1,
+            41467.5,
             0.0,
-            -23563.4
+            -16878.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53742,9 +54672,9 @@
         {
           "name": "t2_destroyer_02_wp_08",
           "world_pos": [
-            43735.0,
+            40481.4,
             0.0,
-            -25816.3
+            -19131.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53770,9 +54700,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43581.5,
+            40328.0,
             0.0,
-            -40087.7
+            -33402.8
           ],
           "local_pos": [
             0.0,
@@ -53798,9 +54728,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43581.5,
+            40328.0,
             0.0,
-            -40087.7
+            -33402.8
           ],
           "local_pos": [
             0.0,
@@ -53826,9 +54756,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43581.5,
+            40328.0,
             0.0,
-            -40087.7
+            -33402.8
           ],
           "local_pos": [
             0.0,
@@ -53854,9 +54784,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43581.5,
+            40328.0,
             0.0,
-            -40087.7
+            -33402.8
           ],
           "local_pos": [
             0.0,
@@ -53882,9 +54812,720 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            43581.5,
+            40328.0,
             0.0,
-            -40087.7
+            -33402.8
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_destroyer_03",
+    "unit_class": "us_destroyer_cf_adams_class_cf_adams_ec",
+    "team": 2,
+    "source_group": "ships",
+    "world_pos": [
+      18244.4,
+      0.0,
+      -34365.4
+    ],
+    "editor_world_pos": [
+      18244.4,
+      0.0,
+      -34365.4
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        18244.4,
+        0.0,
+        -34365.4
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t2_destroyer_03_wp_01",
+          "world_pos": [
+            18244.4,
+            0.0,
+            -34365.4
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t2_destroyer_03_wp_02",
+          "world_pos": [
+            18295.2,
+            0.0,
+            -23063.3
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t2_destroyer_03_wp_03",
+          "world_pos": [
+            19685.7,
+            0.0,
+            -17636.7
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t2_destroyer_03_wp_04",
+          "world_pos": [
+            23930.8,
+            0.0,
+            -17686.3
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t2_destroyer_03_wp_05",
+          "world_pos": [
+            25268.6,
+            0.0,
+            -23020.6
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t2_destroyer_03_wp_06",
+          "world_pos": [
+            25363.8,
+            0.0,
+            -34490.1
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t2_destroyer_03_wp_07",
+          "world_pos": [
+            23628.8,
+            0.0,
+            -39006.3
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        },
+        {
+          "name": "t2_destroyer_03_wp_08",
+          "world_pos": [
+            19754.8,
+            0.0,
+            -38990.8
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 300.0
+        }
+      ],
+      "closed": true,
+      "spline": true,
+      "speed": 300.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t2_destroyer_03",
+          "name": "us_destroyer_cf_adams_class_cf_adams_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            18244.4,
+            0.0,
+            -34365.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t2_destroyer_03",
+          "name": "us_destroyer_cf_adams_class_cf_adams_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            18244.4,
+            0.0,
+            -34365.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t2_destroyer_03",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            18244.4,
+            0.0,
+            -34365.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t2_destroyer_03",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            18244.4,
+            0.0,
+            -34365.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t2_destroyer_03",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            18244.4,
+            0.0,
+            -34365.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_destroyer_04",
+    "unit_class": "us_destroyer_cf_adams_class_cf_adams_ec",
+    "team": 2,
+    "source_group": "ships",
+    "world_pos": [
+      46128.1,
+      0.0,
+      960.208
+    ],
+    "editor_world_pos": [
+      46128.1,
+      0.0,
+      960.208
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        46128.1,
+        0.0,
+        960.208
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t2_destroyer_04_wp_01",
+          "world_pos": [
+            46128.1,
+            0.0,
+            960.208
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t2_destroyer_04_wp_02",
+          "world_pos": [
+            45952.9,
+            0.0,
+            -14154.8
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t2_destroyer_04",
+          "name": "us_destroyer_cf_adams_class_cf_adams_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            46128.1,
+            0.0,
+            960.208
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t2_destroyer_04",
+          "name": "us_destroyer_cf_adams_class_cf_adams_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            46128.1,
+            0.0,
+            960.208
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t2_destroyer_04",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            46128.1,
+            0.0,
+            960.208
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t2_destroyer_04",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            46128.1,
+            0.0,
+            960.208
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t2_destroyer_04",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            46128.1,
+            0.0,
+            960.208
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_destroyer_05",
+    "unit_class": "us_destroyer_cf_adams_class_cf_adams_ec",
+    "team": 2,
+    "source_group": "ships",
+    "world_pos": [
+      48919.2,
+      0.0,
+      45131.2
+    ],
+    "editor_world_pos": [
+      48919.2,
+      0.0,
+      45131.2
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        48919.2,
+        0.0,
+        45131.2
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t2_destroyer_05_wp_01",
+          "world_pos": [
+            48919.2,
+            0.0,
+            45131.2
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t2_destroyer_05_wp_02",
+          "world_pos": [
+            48320.7,
+            0.0,
+            31066.9
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t2_destroyer_05",
+          "name": "us_destroyer_cf_adams_class_cf_adams_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            48919.2,
+            0.0,
+            45131.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t2_destroyer_05",
+          "name": "us_destroyer_cf_adams_class_cf_adams_ec",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            48919.2,
+            0.0,
+            45131.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t2_destroyer_05",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            48919.2,
+            0.0,
+            45131.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t2_destroyer_05",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            48919.2,
+            0.0,
+            45131.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t2_destroyer_05",
+          "name": "us_cruiser_rckt_california",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            48919.2,
+            0.0,
+            45131.2
           ],
           "local_pos": [
             0.0,
@@ -53910,14 +55551,14 @@
     "team": 2,
     "source_group": "ships",
     "world_pos": [
-      31866.9,
+      13056.9,
       0.0,
-      -9438.83
+      -21262.6
     ],
     "editor_world_pos": [
-      31866.9,
+      13056.9,
       0.0,
-      -9438.83
+      -21262.6
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -53938,9 +55579,9 @@
         1.0
       ],
       [
-        31866.9,
+        13056.9,
         0.0,
-        -9438.83
+        -21262.6
       ]
     ],
     "runways": [],
@@ -53949,9 +55590,9 @@
         {
           "name": "t2_frigate_01_wp_01",
           "world_pos": [
-            31866.9,
+            13056.9,
             0.0,
-            -9438.83
+            -21262.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53959,9 +55600,9 @@
         {
           "name": "t2_frigate_01_wp_02",
           "world_pos": [
-            32307.0,
+            13497.0,
             0.0,
-            -11280.1
+            -23103.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53969,9 +55610,9 @@
         {
           "name": "t2_frigate_01_wp_03",
           "world_pos": [
-            33673.9,
+            14863.9,
             0.0,
-            -11313.1
+            -23136.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53979,9 +55620,9 @@
         {
           "name": "t2_frigate_01_wp_04",
           "world_pos": [
-            34181.1,
+            15371.1,
             0.0,
-            -9628.43
+            -21452.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53989,9 +55630,9 @@
         {
           "name": "t2_frigate_01_wp_05",
           "world_pos": [
-            34130.7,
+            15320.7,
             0.0,
-            -4110.94
+            -15934.7
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -53999,9 +55640,9 @@
         {
           "name": "t2_frigate_01_wp_06",
           "world_pos": [
-            33700.0,
+            14890.0,
             0.0,
-            -2578.44
+            -14402.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54009,9 +55650,9 @@
         {
           "name": "t2_frigate_01_wp_07",
           "world_pos": [
-            32209.9,
+            13399.9,
             0.0,
-            -2556.44
+            -14380.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54019,9 +55660,9 @@
         {
           "name": "t2_frigate_01_wp_08",
           "world_pos": [
-            31829.5,
+            13019.5,
             0.0,
-            -3884.74
+            -15708.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54047,9 +55688,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31866.9,
+            13056.9,
             0.0,
-            -9438.83
+            -21262.6
           ],
           "local_pos": [
             0.0,
@@ -54075,9 +55716,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31866.9,
+            13056.9,
             0.0,
-            -9438.83
+            -21262.6
           ],
           "local_pos": [
             0.0,
@@ -54103,9 +55744,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31866.9,
+            13056.9,
             0.0,
-            -9438.83
+            -21262.6
           ],
           "local_pos": [
             0.0,
@@ -54131,9 +55772,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31866.9,
+            13056.9,
             0.0,
-            -9438.83
+            -21262.6
           ],
           "local_pos": [
             0.0,
@@ -54159,9 +55800,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31866.9,
+            13056.9,
             0.0,
-            -9438.83
+            -21262.6
           ],
           "local_pos": [
             0.0,
@@ -54187,14 +55828,14 @@
     "team": 2,
     "source_group": "ships",
     "world_pos": [
-      31761.3,
+      8742.94,
       0.0,
-      -25166.3
+      -38934.8
     ],
     "editor_world_pos": [
-      31761.3,
+      8742.94,
       0.0,
-      -25166.3
+      -38934.8
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -54215,9 +55856,9 @@
         1.0
       ],
       [
-        31761.3,
+        8742.94,
         0.0,
-        -25166.3
+        -38934.8
       ]
     ],
     "runways": [],
@@ -54226,9 +55867,9 @@
         {
           "name": "t2_frigate_02_wp_01",
           "world_pos": [
-            31761.3,
+            8742.94,
             0.0,
-            -25166.3
+            -38934.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54236,9 +55877,9 @@
         {
           "name": "t2_frigate_02_wp_02",
           "world_pos": [
-            32201.5,
+            9183.14,
             0.0,
-            -27007.6
+            -40776.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54246,9 +55887,9 @@
         {
           "name": "t2_frigate_02_wp_03",
           "world_pos": [
-            33568.4,
+            10550.0,
             0.0,
-            -27040.6
+            -40809.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54256,9 +55897,9 @@
         {
           "name": "t2_frigate_02_wp_04",
           "world_pos": [
-            34075.6,
+            11057.2,
             0.0,
-            -25355.9
+            -39124.4
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54266,9 +55907,9 @@
         {
           "name": "t2_frigate_02_wp_05",
           "world_pos": [
-            34025.1,
+            11006.8,
             0.0,
-            -19838.5
+            -33607.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54276,9 +55917,9 @@
         {
           "name": "t2_frigate_02_wp_06",
           "world_pos": [
-            33594.5,
+            10576.1,
             0.0,
-            -18306.0
+            -32074.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54286,9 +55927,9 @@
         {
           "name": "t2_frigate_02_wp_07",
           "world_pos": [
-            32104.2,
+            9085.84,
             0.0,
-            -18283.9
+            -32052.5
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54296,9 +55937,9 @@
         {
           "name": "t2_frigate_02_wp_08",
           "world_pos": [
-            31723.9,
+            8705.54,
             0.0,
-            -19612.2
+            -33380.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54324,9 +55965,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31761.3,
+            8742.94,
             0.0,
-            -25166.3
+            -38934.8
           ],
           "local_pos": [
             0.0,
@@ -54352,9 +55993,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31761.3,
+            8742.94,
             0.0,
-            -25166.3
+            -38934.8
           ],
           "local_pos": [
             0.0,
@@ -54380,9 +56021,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31761.3,
+            8742.94,
             0.0,
-            -25166.3
+            -38934.8
           ],
           "local_pos": [
             0.0,
@@ -54408,9 +56049,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31761.3,
+            8742.94,
             0.0,
-            -25166.3
+            -38934.8
           ],
           "local_pos": [
             0.0,
@@ -54436,9 +56077,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31761.3,
+            8742.94,
             0.0,
-            -25166.3
+            -38934.8
           ],
           "local_pos": [
             0.0,
@@ -54464,14 +56105,14 @@
     "team": 2,
     "source_group": "ships",
     "world_pos": [
-      31665.5,
+      14099.4,
       0.0,
-      -40412.7
+      -51551.2
     ],
     "editor_world_pos": [
-      31665.5,
+      14099.4,
       0.0,
-      -40412.7
+      -51551.2
     ],
     "runtime_relocated": true,
     "runtime_position_kind": "ship_route_start",
@@ -54492,9 +56133,9 @@
         1.0
       ],
       [
-        31665.5,
+        14099.4,
         0.0,
-        -40412.7
+        -51551.2
       ]
     ],
     "runways": [],
@@ -54503,9 +56144,9 @@
         {
           "name": "t2_frigate_03_wp_01",
           "world_pos": [
-            31665.5,
+            14099.4,
             0.0,
-            -40412.7
+            -51551.2
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54513,9 +56154,9 @@
         {
           "name": "t2_frigate_03_wp_02",
           "world_pos": [
-            32105.6,
+            14539.5,
             0.0,
-            -42254.0
+            -53392.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54523,9 +56164,9 @@
         {
           "name": "t2_frigate_03_wp_03",
           "world_pos": [
-            33472.5,
+            15906.5,
             0.0,
-            -42287.0
+            -53425.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54533,9 +56174,9 @@
         {
           "name": "t2_frigate_03_wp_04",
           "world_pos": [
-            33979.7,
+            16413.6,
             0.0,
-            -40602.3
+            -51740.8
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54543,9 +56184,9 @@
         {
           "name": "t2_frigate_03_wp_05",
           "world_pos": [
-            33929.3,
+            16363.3,
             0.0,
-            -35085.0
+            -46223.6
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54553,9 +56194,9 @@
         {
           "name": "t2_frigate_03_wp_06",
           "world_pos": [
-            33498.6,
+            15932.6,
             0.0,
-            -33552.4
+            -44691.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54563,9 +56204,9 @@
         {
           "name": "t2_frigate_03_wp_07",
           "world_pos": [
-            32008.4,
+            14442.3,
             0.0,
-            -33530.4
+            -44669.0
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54573,9 +56214,9 @@
         {
           "name": "t2_frigate_03_wp_08",
           "world_pos": [
-            31628.1,
+            14062.0,
             0.0,
-            -34858.5
+            -45997.1
           ],
           "move_type": "MOVETO_STRAIGHT",
           "speed": 300.0
@@ -54601,9 +56242,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31665.5,
+            14099.4,
             0.0,
-            -40412.7
+            -51551.2
           ],
           "local_pos": [
             0.0,
@@ -54629,9 +56270,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31665.5,
+            14099.4,
             0.0,
-            -40412.7
+            -51551.2
           ],
           "local_pos": [
             0.0,
@@ -54657,9 +56298,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31665.5,
+            14099.4,
             0.0,
-            -40412.7
+            -51551.2
           ],
           "local_pos": [
             0.0,
@@ -54685,9 +56326,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31665.5,
+            14099.4,
             0.0,
-            -40412.7
+            -51551.2
           ],
           "local_pos": [
             0.0,
@@ -54713,9 +56354,443 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            31665.5,
+            14099.4,
             0.0,
-            -40412.7
+            -51551.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_frigate_04",
+    "unit_class": "us_ashville_class_douglas",
+    "team": 2,
+    "source_group": "ships",
+    "world_pos": [
+      41745.3,
+      0.0,
+      1117.08
+    ],
+    "editor_world_pos": [
+      41745.3,
+      0.0,
+      1117.08
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        41745.3,
+        0.0,
+        1117.08
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t2_frigate_04_wp_01",
+          "world_pos": [
+            41745.3,
+            0.0,
+            1117.08
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t2_frigate_04_wp_02",
+          "world_pos": [
+            41473.3,
+            0.0,
+            -14191.2
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t2_frigate_04",
+          "name": "us_ashville_class_douglas",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            41745.3,
+            0.0,
+            1117.08
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t2_frigate_04",
+          "name": "us_ashville_class_douglas",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            41745.3,
+            0.0,
+            1117.08
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t2_frigate_04",
+          "name": "germ_destroyer_lutjens_class_lutjens",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            41745.3,
+            0.0,
+            1117.08
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t2_frigate_04",
+          "name": "germ_destroyer_lutjens_class_lutjens",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            41745.3,
+            0.0,
+            1117.08
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t2_frigate_04",
+          "name": "germ_destroyer_lutjens_class_lutjens",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            41745.3,
+            0.0,
+            1117.08
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_frigate_05",
+    "unit_class": "us_ashville_class_douglas",
+    "team": 2,
+    "source_group": "ships",
+    "world_pos": [
+      47617.6,
+      0.0,
+      45245.5
+    ],
+    "editor_world_pos": [
+      47617.6,
+      0.0,
+      45245.5
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "ship_route_start",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        47617.6,
+        0.0,
+        45245.5
+      ]
+    ],
+    "runways": [],
+    "route": {
+      "points": [
+        {
+          "name": "t2_frigate_05_wp_01",
+          "world_pos": [
+            47617.6,
+            0.0,
+            45245.5
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        },
+        {
+          "name": "t2_frigate_05_wp_02",
+          "world_pos": [
+            47004.4,
+            0.0,
+            31198.7
+          ],
+          "move_type": "MOVETO_STRAIGHT",
+          "speed": 8.0
+        }
+      ],
+      "closed": false,
+      "spline": true,
+      "speed": 8.0
+    },
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "id": "t2_frigate_05",
+          "name": "us_ashville_class_douglas",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            47617.6,
+            0.0,
+            45245.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "id": "t2_frigate_05",
+          "name": "us_ashville_class_douglas",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            47617.6,
+            0.0,
+            45245.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "id": "t2_frigate_05",
+          "name": "germ_destroyer_lutjens_class_lutjens",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            47617.6,
+            0.0,
+            45245.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t2_frigate_05",
+          "name": "germ_destroyer_lutjens_class_lutjens",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            47617.6,
+            0.0,
+            45245.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t2_frigate_05",
+          "name": "germ_destroyer_lutjens_class_lutjens",
+          "role": "ship",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            47617.6,
+            0.0,
+            45245.5
           ],
           "local_pos": [
             0.0,
