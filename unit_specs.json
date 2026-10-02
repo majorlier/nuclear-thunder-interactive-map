@@ -2363,23 +2363,6 @@
     "ai_target_priority_max_radius": null,
     "ai_engagement_range": 2000.0
   },
-  "ussr_t_80b": {
-    "unit_class": "ussr_t_80b",
-    "model": "t_80b",
-    "unit_type": "typeMediumTank",
-    "on_radar_as": "tracked",
-    "exp_class": "exp_tank",
-    "maximum_speed_kph": 75.0,
-    "target_channels": 1,
-    "sensors": {},
-    "weapons": [],
-    "engagement_range": null,
-    "ai_gun_range": null,
-    "ai_attack_max_radius": 2000.0,
-    "ai_shell_max_radius": null,
-    "ai_target_priority_max_radius": null,
-    "ai_engagement_range": 2000.0
-  },
   "ussr_t_80bvm": {
     "unit_class": "ussr_t_80bvm",
     "model": "t_80bvm",
@@ -2401,6 +2384,23 @@
         "range_status": "confirmed"
       }
     },
+    "weapons": [],
+    "engagement_range": null,
+    "ai_gun_range": null,
+    "ai_attack_max_radius": 2000.0,
+    "ai_shell_max_radius": null,
+    "ai_target_priority_max_radius": null,
+    "ai_engagement_range": 2000.0
+  },
+  "ussr_t_80u": {
+    "unit_class": "ussr_t_80u",
+    "model": "t_80u",
+    "unit_type": "typeMediumTank",
+    "on_radar_as": "tracked",
+    "exp_class": "exp_tank",
+    "maximum_speed_kph": 75.0,
+    "target_channels": 1,
+    "sensors": {},
     "weapons": [],
     "engagement_range": null,
     "ai_gun_range": null,

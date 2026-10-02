@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "d7154f07554b90ba5dd590272d53ddecaa92360e",
+  "accepted_commit": "e15ef7f810be671a9e70a94dd100ff0b3604131d",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
@@ -15,7 +15,7 @@
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/strongpoints.blkx",
-      "sha": "c932ba6702447a33e6e2c8ae9c0dc8fe28c9daa7",
+      "sha": "7244e946881079cd225c5b2ba93334855796d3b1",
       "used_for_generation": true
     },
     {
@@ -25,12 +25,12 @@
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_tank.blkx",
-      "sha": "73f1d2c0c191faf6923659cd95054af0e87a22a7",
+      "sha": "d59b07c2e802337f061942f818080fadf70da064",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_equip.blkx",
-      "sha": "f07db0cd66e65809f197d421469a601acf143e60",
+      "sha": "42733ecc4f590f1acadd3b502ef27e553d5a3f62",
       "used_for_generation": true
     },
     {
@@ -50,17 +50,17 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1970.blkx",
-      "sha": "856bb67ea4abaec79c6ce1acd0d334cef224e63f",
+      "sha": "0b1d4bb60473b821eadbae3019f1288de14cf955",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1980.blkx",
-      "sha": "eb93db302e6dfef17228c540369de8c45eba638d",
+      "sha": "20341d5e436ee82a6832b4c2b421310a1c3e8789",
       "used_for_generation": true
     },
     {
       "path": "game.vromfs.bin_u/game/es/nuclear_escalation.das",
-      "sha": "83a0c839d417f20b72ea4a82a814ff82b322da34",
+      "sha": "18a1b5f9ab0b10d434c8ae42bd99837fbe180ae3",
       "used_for_generation": true
     },
     {
@@ -90,22 +90,22 @@
     },
     {
       "path": "aces.vromfs.bin_u/wtlibs/templates/units.blkx",
-      "sha": "8654a73380ded2835d6289347f4773497f989bd5",
+      "sha": "05ccf8062fdd657b183edaa8977e8eb46a356d90",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
-      "sha": "1d851d245e3356af22ef619b14d14ca376c9e38d",
+      "sha": "130a5b073143bd7fccca7be6e8eea316f20604da",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "cbc5f2e2c47453174101ea4754419931613e83d7",
+      "sha": "9c9010792e574bff05828db59e43889acac80bdd",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm.blkx",
-      "sha": "0654156a2335329c25ce23195f92930ebff33eca",
+      "sha": "8f3e70a3ed0c9d1de4bcf3b825e32f1473d2a585",
       "used_for_generation": true
     },
     {
@@ -124,43 +124,18 @@
       "used_for_generation": true
     },
     {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm_carriers_1970.blkx",
-      "sha": "86edea4c6b88bc85a110d19886afd42f777ec517",
-      "used_for_generation": true
-    },
-    {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm_carriers_1980.blkx",
-      "sha": "1139ee4de13ed61effd22d5d6f9d389acbff83df",
-      "used_for_generation": true
-    },
-    {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm_carriers_1970.blkx",
-      "sha": "8c015fed1a14f3e0669d9c4398859fd47be33a60",
-      "used_for_generation": true
-    },
-    {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm_carriers_1980.blkx",
-      "sha": "1bebea9a46711bc47914b01040e3a0c75532b45e",
-      "used_for_generation": true
-    },
-    {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm_carriers_1970.blkx",
-      "sha": "4994ae2c6996ba025a0802fe5f196c30b4a5dd2d",
-      "used_for_generation": true
-    },
-    {
-      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm_carriers_1980.blkx",
-      "sha": "9e3f5c9771a0ed993202ded89f29af549c728a8f",
-      "used_for_generation": true
-    },
-    {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1970.blkx",
-      "sha": "856bb67ea4abaec79c6ce1acd0d334cef224e63f",
+      "sha": "0b1d4bb60473b821eadbae3019f1288de14cf955",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1980.blkx",
-      "sha": "eb93db302e6dfef17228c540369de8c45eba638d",
+      "sha": "20341d5e436ee82a6832b4c2b421310a1c3e8789",
+      "used_for_generation": true
+    },
+    {
+      "path": "lang.vromfs.bin_u/lang/units.csv",
+      "sha": "53a1708ec6f84f6f25dbedac582f8f85c31c9095",
       "used_for_generation": true
     },
     {
@@ -180,7 +155,7 @@
     },
     {
       "path": "aces.vromfs.bin_u/gamedata/objectgroups/dynaf_archipelago_b.blkx",
-      "sha": "76e9c9d85aeca3b67b8abc424c9095a399f7bb7a",
+      "sha": "8f18d91e6468f8c87c1980d1cf7e7d962a3af1c3",
       "used_for_generation": true
     },
     {
@@ -196,6 +171,11 @@
     {
       "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_assembly_area_foundation.blkx",
       "sha": "698c2d9d0d6f86ec3fdcf2b4c5d8e891460f13d7",
+      "used_for_generation": true
+    },
+    {
+      "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_assembly_area_nomesh.blkx",
+      "sha": "b6deeaf7bb03cbb72777178824689b439fc2d5f1",
       "used_for_generation": true
     },
     {
