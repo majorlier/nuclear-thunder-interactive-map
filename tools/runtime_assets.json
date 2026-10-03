@@ -2,10 +2,11 @@
   "required": [
     "map_4k.png",
     "topographic_map.webp",
-    "terrain_height_8bit.png",
+    "terrain_meta.json",
+    "terrain_height_16bit.webp",
     "air_south_eastern_city_map.png",
     "generated/southeastern_city_heightmap/southeastern_city_topography.webp",
-    "generated/southeastern_city_heightmap/southeastern_city_height_8bit.png",
+    "generated/southeastern_city_heightmap/southeastern_city_height_16bit.webp",
     "road_network.json",
     "road_network_city.json",
     "navmesh_city.json",
@@ -16,6 +17,7 @@
     "images/icons/aircraft/tu_95m_ico.svg",
     "images/portraits/nebo_55j6.png",
     "images/portraits/tps_59_radar.png",
-    "images/portraits/us_an_tps_43_radar.png"
+    "images/portraits/us_an_tps_43_radar.png",
+    "generated/southeastern_city_heightmap/southeastern_city_height_meta.json"
   ]
 }

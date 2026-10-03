@@ -212,6 +212,31 @@ def active_templates(site, rank):
     return active, configs
 
 
+def mission_site_category(site, registry):
+    """Classify gameplay sites by inherited ECS components, not mesh names."""
+    templates = site.get("additionalEcsTemplates", {})
+    closure = registry.closure(templates)
+    components = {name for name, _ in closure}
+    # Fuel/ammunition factories identify their role with typed ECS tags,
+    # whereas assembly areas/airfields use named base templates.
+    components.update(
+        key.split(":", 1)[0]
+        for _, definition in closure
+        for key, _ in iter_dict_items(definition)
+        if key.endswith(":tag")
+    )
+    for component, category in (
+        ("assembly_area", "assembly_area"),
+        ("fuel_factory", "fuel_factory"),
+        ("ammo_factory", "ammo_factory"),
+        ("strongpoint", "strongpoint"),
+        ("nuclear_escalation_airfield", "airfield"),
+    ):
+        if component in components:
+            return category
+    return None
+
+
 def import_document_name(import_record):
     """Translate a mission import path into the downloaded input filename."""
     path = import_record.get("file", "") if isinstance(import_record, dict) else ""
@@ -305,6 +330,67 @@ def ship_with_mission_route(site, mission):
     resolved["isShipSpline"] = bool(route.get("isShipSpline"))
     resolved["shipTurnRadius"] = route.get("shipTurnRadius")
     return resolved
+
+
+def rank_condition_allows(condition, rank):
+    """Evaluate one ``varCompareInt mission_rank`` trigger condition."""
+    if not isinstance(condition, dict) or condition.get("var_value") != "mission_rank":
+        return True
+    value = condition.get("value")
+    if not isinstance(value, (int, float)):
+        return True
+    comparison = str(condition.get("comparasion_func", "")).lower()
+    return {
+        "more": rank > value,
+        "less": rank < value,
+        "equal": rank == value,
+        "notequal": rank != value,
+        "moreequal": rank >= value,
+        "lessequal": rank <= value,
+    }.get(comparison, True)
+
+
+def unit_spawn_rank_rules(mission):
+    """Map each trigger-spawned unit to its trigger's mission_rank conditions.
+
+    For example ``spawn_mlrs`` only runs when ``mission_rank`` is more than
+    30, so MLRS launchers are absent from the 1970 presets.
+    """
+    rules = {}
+    triggers = mission.get("triggers", {})
+    if not isinstance(triggers, dict):
+        return rules
+    for trigger in triggers.values():
+        if not isinstance(trigger, dict):
+            continue
+        conditions = trigger.get("conditions", {})
+        compares = conditions.get("varCompareInt", []) if isinstance(conditions, dict) else []
+        if isinstance(compares, dict):
+            compares = [compares]
+        rank_conditions = [
+            item for item in compares
+            if isinstance(item, dict) and item.get("var_value") == "mission_rank"
+        ]
+        if not rank_conditions:
+            continue
+        actions = trigger.get("actions", {})
+        if not isinstance(actions, dict):
+            continue
+        for action_name in ("unitRespawn", "unitSpawnOnObjectGroup"):
+            entries = actions.get(action_name, [])
+            if isinstance(entries, dict):
+                entries = [entries]
+            for entry in entries if isinstance(entries, list) else []:
+                if isinstance(entry, dict) and isinstance(entry.get("object"), str):
+                    rules.setdefault(entry["object"], []).extend(rank_conditions)
+    return rules
+
+
+def spawned_at_rank(rank_rules, unit_name, rank):
+    return all(
+        rank_condition_allows(condition, rank)
+        for condition in rank_rules.get(unit_name, [])
+    )
 
 
 def mission_object_groups(mission):
@@ -438,12 +524,9 @@ def lifecycle_for_unit(template_name, site, registry):
     if "restore_unit_by_timer" not in components:
         return {"kind": "none", "source": "template"}
 
-    depot_classes = {
-        "nt_fuel_factory_foundation",
-        "nt_ammo_factory_foundation",
-        "nt_assembly_area_foundation",
-    }
-    if site.get("unit_class") in depot_classes:
+    if mission_site_category(site, registry) in {
+        "fuel_factory", "ammo_factory", "assembly_area"
+    }:
         return {"kind": "repair_with_site", "source": "template"}
     return {"kind": "restore", "source": "template"}
 
@@ -465,7 +548,7 @@ def create_buildings(site, layout, template_names, inline_configs, registry):
                 }
             )
 
-    if site.get("unit_class") == "nt_assembly_area_foundation":
+    if mission_site_category(site, registry) == "assembly_area":
         keys = {
             "assembly_area__tankFactoryUnitName",
             "assembly_area__fuelStorageUnitName",
@@ -675,6 +758,7 @@ def main():
     if not isinstance(mission_data, dict):
         raise SystemExit(f"Invalid mission file: {args.mission}")
     presets = discover_presets(mission_data)
+    rank_rules = unit_spawn_rank_rules(mission_data)
     sites = []
     source_counts = Counter()
 
@@ -777,6 +861,7 @@ def main():
                     "unit_class": site["unit_class"],
                     "team": site.get("props", {}).get("army"),
                     "source_group": source_group,
+                    "category": mission_site_category(site, registry),
                     "world_pos": runtime_world_pos,
                     "editor_world_pos": editor_world_pos,
                     "runtime_relocated": runtime_world_pos != editor_world_pos,
@@ -811,9 +896,9 @@ def main():
                     if source_group in {"tankModels", "ships"}:
                         output_site["buildings_by_era"][preset_id] = []
                         output_site["units_by_era"][preset_id] = (
-                            []
-                            if preset_rank <= 30 and "_mlrs_" in site.get("name", "")
-                            else [direct_unit(site)]
+                            [direct_unit(site)]
+                            if spawned_at_rank(rank_rules, site.get("name"), preset_rank)
+                            else []
                         )
                         continue
 
@@ -875,8 +960,10 @@ def main():
                         "tm": site["tm"],
                         "runways": [],
                         "route": extract_route(site),
-                        "buildings_by_era": {},
-                        "units_by_era": {},
+                        # A ship that exists only in some eras still needs an
+                        # (empty) entry for every scenario preset.
+                        "buildings_by_era": {item["id"]: [] for item in presets},
+                        "units_by_era": {item["id"]: [] for item in presets},
                     }
                     sites.append(output_site)
                 output_site["buildings_by_era"][preset["id"]] = []

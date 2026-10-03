@@ -2,8 +2,13 @@
 """Extract and render the compiled HM2 terrain in a Dagor DBLD level.
 
 The War Thunder level stores the 4096x4096 terrain as Oodle-compressed
-8x8 blocks.  This script can either decode those blocks with the open-source
-`ooz` command-line tool or reuse an already-decoded chunk directory.
+8x8 blocks.  This script decodes those blocks with the ``pyooz`` Python
+package (``pip install pyooz``), the open-source ``ooz`` command-line tool
+(``--ooz``), or an already-decoded chunk directory (``--decoded-chunks``).
+
+Example (live client)::
+
+    python tools/extract_heightmap.py "F:\\Steam\\steamapps\\common\\War Thunder\\levels\\air_archipelago.bin" --output-dir .
 """
 
 from __future__ import annotations
@@ -18,6 +23,8 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image
+
+from terrain_raster import colorize_topography, write_height_raster
 
 
 def iter_dagor_blocks(data: bytes, start: int = 12):
@@ -69,6 +76,34 @@ def run_ooz(ooz: Path, packed: bytes, output_size: int, destination: Path):
     )
 
 
+def chunk_output_sizes(payload: bytes, chunks: list[bytes]) -> list[int]:
+    width_height = struct.unpack_from("<I", payload, 20)[0]
+    width = width_height & 0x1FFF
+    height = (width_height >> 13) & 0x1FFF
+    layout = struct.unpack_from("<I", payload, 44)[0]
+    block_width = 1 << (layout & 0xFF)
+    hierarchy_cell = (layout >> 8) & 0xFF
+    block_count = (width // block_width) * (height // block_width)
+    variance_chunk_size = width * height // (len(chunks) - 1)
+    hierarchy_levels = int(math.log2(width // hierarchy_cell))
+    hierarchy_bytes = (4**hierarchy_levels - 1) // 3
+    return [
+        block_count * 4 + hierarchy_bytes,
+        *([variance_chunk_size] * (len(chunks) - 1)),
+    ]
+
+
+def decode_chunks_in_process(payload: bytes) -> list[bytes]:
+    """Decode the Oodle chunks with the pyooz extension module."""
+    import ooz  # provided by the ``pyooz`` package
+
+    chunks = parse_nested_chunks(payload)
+    return [
+        bytes(ooz.decompress(chunk, size))
+        for chunk, size in zip(chunks, chunk_output_sizes(payload, chunks))
+    ]
+
+
 def decode_chunks(payload: bytes, ooz: Path, destination: Path) -> list[Path]:
     width_height = struct.unpack_from("<I", payload, 20)[0]
     width = width_height & 0x1FFF
@@ -98,17 +133,17 @@ def decode_chunks(payload: bytes, ooz: Path, destination: Path) -> list[Path]:
 
 
 def reconstruct_height(
-    decoded: list[Path], width: int, height: int, block_shift: int
+    decoded: list[bytes], width: int, height: int, block_shift: int
 ) -> np.ndarray:
     block_width = 1 << block_shift
     blocks_x = width // block_width
     blocks_y = height // block_width
     block_count = blocks_x * blocks_y
 
-    info = np.fromfile(decoded[0], dtype="<u2", count=block_count * 2)
+    info = np.frombuffer(decoded[0], dtype="<u2", count=block_count * 2)
     info = info.reshape(block_count, 2)
     variance = np.concatenate(
-        [np.fromfile(path, dtype=np.uint8) for path in decoded[1:]]
+        [np.frombuffer(chunk, dtype=np.uint8) for chunk in decoded[1:]]
     ).reshape(block_count, block_width * block_width)
 
     # Dagor delta-codes each block independently before Oodle compression.
@@ -127,61 +162,6 @@ def reconstruct_height(
     )
 
 
-def colorize_topography(meters: np.ndarray) -> np.ndarray:
-    gradient_y, gradient_x = np.gradient(meters, 64.0)
-    slope = np.pi / 2 - np.arctan(np.hypot(gradient_x, gradient_y))
-    aspect = np.arctan2(-gradient_x, gradient_y)
-    azimuth = np.deg2rad(315)
-    altitude = np.deg2rad(42)
-    shade = (
-        np.sin(altitude) * np.sin(slope)
-        + np.cos(altitude) * np.cos(slope) * np.cos(azimuth - aspect)
-    )
-    shade = np.clip((shade + 0.45) / 1.45, 0, 1)
-
-    stops = np.array(
-        [-50, 0, 250, 500, 1000, 1750, 2750, 3750, 5000],
-        dtype=np.float32,
-    )
-    colors = np.array(
-        [
-            [24, 65, 96],
-            [70, 105, 68],
-            [103, 126, 75],
-            [144, 137, 83],
-            [169, 126, 84],
-            [151, 101, 82],
-            [126, 105, 101],
-            [151, 145, 137],
-            [224, 222, 211],
-        ],
-        dtype=np.float32,
-    )
-
-    rgb = np.empty((*meters.shape, 3), dtype=np.float32)
-    for channel in range(3):
-        rgb[..., channel] = np.interp(
-            meters, stops, colors[:, channel]
-        )
-    rgb *= (0.55 + 0.62 * shade)[..., None]
-
-    land_height = np.maximum(meters, 0)
-    minor_band = np.floor(land_height / 100).astype(np.int32)
-    major_band = np.floor(land_height / 500).astype(np.int32)
-    land = meters >= 0
-    minor = land & (
-        (minor_band != np.roll(minor_band, 1, axis=0))
-        | (minor_band != np.roll(minor_band, 1, axis=1))
-    )
-    major = land & (
-        (major_band != np.roll(major_band, 1, axis=0))
-        | (major_band != np.roll(major_band, 1, axis=1))
-    )
-    rgb[minor] *= 0.66
-    rgb[major] *= 0.55
-    return np.clip(rgb, 0, 255).astype(np.uint8)
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("level", type=Path)
@@ -192,6 +172,18 @@ def main():
         help="Reuse a directory containing chunk0.raw, chunk1.raw, ...",
     )
     parser.add_argument("--output-dir", type=Path, default=Path("."))
+    parser.add_argument(
+        "--water-level",
+        type=float,
+        default=0.0,
+        help="Sea-surface height in world metres (default 0; checked against the tactical map)",
+    )
+    parser.add_argument(
+        "--height-downsample",
+        type=int,
+        default=2,
+        help="Average NxN HM2 cells into the browser height raster (default 2: 4096 -> 2048 px)",
+    )
     args = parser.parse_args()
 
     payload = find_hm2(args.level.read_bytes())
@@ -205,12 +197,18 @@ def main():
     block_shift = layout & 0xFF
 
     if args.decoded_chunks:
-        decoded = sorted(args.decoded_chunks.glob("chunk*.raw"))
-    else:
-        if not args.ooz:
-            parser.error("--ooz is required unless --decoded-chunks is used")
+        decoded = [path.read_bytes() for path in sorted(args.decoded_chunks.glob("chunk*.raw"))]
+    elif args.ooz:
         temporary = tempfile.TemporaryDirectory(prefix="hm2_")
-        decoded = decode_chunks(payload, args.ooz, Path(temporary.name))
+        decoded = [
+            path.read_bytes()
+            for path in decode_chunks(payload, args.ooz, Path(temporary.name))
+        ]
+    else:
+        try:
+            decoded = decode_chunks_in_process(payload)
+        except ImportError:
+            parser.error("install pyooz (pip install pyooz), or pass --ooz / --decoded-chunks")
 
     if len(decoded) < 2:
         raise ValueError("Decoded chunk files were not found")
@@ -224,19 +222,19 @@ def main():
 
     # Dagor rows run south-to-north; image rows run top-to-bottom.
     meters_image = meters[::-1]
-    encoded_image = encoded_height[::-1]
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    Image.fromarray(colorize_topography(meters_image), "RGB").save(
+    Image.fromarray(
+        colorize_topography(meters_image, cell_size, args.water_level), "RGB"
+    ).save(
         output_dir / "topographic_map.webp",
         "WEBP",
         lossless=True,
         method=6,
     )
-    Image.fromarray((encoded_image >> 8).astype(np.uint8), "L").save(
-        output_dir / "terrain_height_8bit.png",
-        optimize=True,
+    encoding = write_height_raster(
+        output_dir / "terrain_height_16bit.webp", meters_image, downsample=args.height_downsample
     )
 
     metadata = {
@@ -246,11 +244,13 @@ def main():
         "cell_size_m": cell_size,
         "origin_x_m": origin_x,
         "origin_z_m": origin_z,
-        "encoded_min_height_m": minimum_height,
-        "encoded_height_range_m": height_range,
+        "world_bounds_m": [origin_x, origin_x + cell_size * width],
+        "water_level_m": args.water_level,
+        "hm2_min_height_m": minimum_height,
+        "hm2_height_range_m": height_range,
         "actual_min_height_m": float(meters.min()),
         "actual_max_height_m": float(meters.max()),
-        "browser_readout_vertical_precision_m": height_range / 255.0,
+        "height_encoding": encoding,
     }
     (output_dir / "terrain_meta.json").write_text(
         json.dumps(metadata, indent=2) + "\n", encoding="utf-8"

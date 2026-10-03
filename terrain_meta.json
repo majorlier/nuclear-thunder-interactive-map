@@ -1,0 +1,26 @@
+{
+  "source": "air_archipelago.bin",
+  "width": 4096,
+  "height": 4096,
+  "cell_size_m": 64.0,
+  "origin_x_m": -131072.0,
+  "origin_z_m": -131072.0,
+  "world_bounds_m": [
+    -131072.0,
+    131072.0
+  ],
+  "water_level_m": 0.0,
+  "hm2_min_height_m": -149.0,
+  "hm2_height_range_m": 5120.0,
+  "actual_min_height_m": -30.013809204101562,
+  "actual_max_height_m": 4969.984375,
+  "height_encoding": {
+    "format": "rg16",
+    "image": "terrain_height_16bit.webp",
+    "width": 2048,
+    "height": 2048,
+    "min_m": -31.0,
+    "step_m": 0.25,
+    "max_m": 4970.0
+  }
+}

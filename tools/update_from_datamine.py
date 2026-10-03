@@ -108,6 +108,27 @@ def same_json(left: Path, right: Path) -> bool:
     return left.exists() and load_json(left) == load_json(right)
 
 
+def lock_without_commit(path: Path):
+    """Lock contents that matter for a data update.
+
+    The upstream datamine moves almost daily. When every source file hash is
+    unchanged, a new ``accepted_commit`` alone is not a data change and must
+    not open a pull request.
+    """
+    if not path.exists():
+        return None
+    value = load_json(path)
+    if isinstance(value, dict):
+        value = {key: item for key, item in value.items() if key != "accepted_commit"}
+        sources = value.get("sources")
+        if isinstance(sources, list):
+            value["sources"] = sorted(
+                (item for item in sources if isinstance(item, dict)),
+                key=lambda item: str(item.get("path", "")),
+            )
+    return value
+
+
 def rounded_position(position) -> tuple[float, ...] | None:
     if not isinstance(position, list):
         return None
@@ -430,7 +451,9 @@ def main() -> int:
         # (such as today's map-specific carrier files) cannot silently vanish
         # from the generated map.
         pending_imports = []
-        queued_imports: set[str] = set()
+        # Generator files already include the shared, rank-selected ship sets.
+        # Only fetch imports not yet present, including any future split files.
+        queued_imports: set[str] = set(all_paths)
         for document in mission_documents.values():
             for path in mission_import_paths(document):
                 if path not in queued_imports:
@@ -693,8 +716,17 @@ def main() -> int:
             "datamine-lock.json",
         ]
         changed_files = [
-            name for name in candidates if not same_json(ROOT / name, generated / name)
+            name
+            for name in candidates
+            if name != "datamine-lock.json"
+            and not same_json(ROOT / name, generated / name)
         ]
+        lock_changed = lock_without_commit(ROOT / "datamine-lock.json") != lock_without_commit(
+            generated / "datamine-lock.json"
+        )
+        if changed_files or lock_changed:
+            # Record the accepted commit together with any real data change.
+            changed_files.append("datamine-lock.json")
         summaries = {}
         for variant in mission_variants:
             variant_id = variant["id"]

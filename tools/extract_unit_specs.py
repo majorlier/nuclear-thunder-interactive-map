@@ -291,6 +291,37 @@ def sensor_specs(unit, source, unit_name=""):
     return result
 
 
+def positive_number(value):
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    return float(value) if value > 0 else None
+
+
+def weapon_ai_limits(unit_weapon, weapon_data):
+    """Return the AI firing envelope for one weapon mount.
+
+    Weapon BLKX files carry the AI aiming window (``aimMinDist`` /
+    ``aimMaxDist``) and an attack limit (``attackMaxDist``); the vehicle's
+    Weapon block can add its own ``AttackMaxRadius``.  The AI fires only
+    inside all of them, so the tightest upper bound is the ring the map
+    should draw.  (For example the I-HAWK has a 110 km missile but a 40 km
+    ``aimMaxDist``.)
+    """
+    upper = [
+        value
+        for value in (
+            positive_number(weapon_data.get("aimMaxDist")),
+            positive_number(weapon_data.get("attackMaxDist")),
+            positive_number(unit_weapon.get("AttackMaxRadius")),
+        )
+        if value is not None
+    ]
+    return (
+        positive_number(weapon_data.get("aimMinDist")),
+        min(upper) if upper else None,
+    )
+
+
 def weapon_specs(unit, source, allow_air_gun_range=False):
     weapons_root = unit.get("commonWeapons", {}).get("Weapon")
     results = []
@@ -309,12 +340,12 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
         if not path:
             continue
         weapon_data = source.load(path)
-        attack_max = weapon.get("AttackMaxRadius")
-        shell_attack_max = weapon.get("AttackShellMaxRadius")
-        if isinstance(attack_max, (int, float)) and attack_max > 0:
-            ai_attack_ranges.append(float(attack_max))
-        if isinstance(shell_attack_max, (int, float)) and shell_attack_max > 0:
-            ai_shell_ranges.append(float(shell_attack_max))
+        attack_max = positive_number(weapon.get("AttackMaxRadius"))
+        shell_attack_max = positive_number(weapon.get("AttackShellMaxRadius"))
+        if attack_max:
+            ai_attack_ranges.append(attack_max)
+        if shell_attack_max:
+            ai_shell_ranges.append(shell_attack_max)
         for priority in as_list(weapon.get("targetPriority")):
             if not isinstance(priority, dict):
                 continue
@@ -328,18 +359,20 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
             reload_seconds = weapon_data.get("reloadTime")
         if not isinstance(reload_seconds, (int, float)) or reload_seconds <= 0:
             reload_seconds = None
+        ai_minimum, ai_maximum = weapon_ai_limits(weapon, weapon_data)
         rocket = first_rocket(weapon_data)
         if not rocket:
-            attack_range = weapon.get("AttackMaxRadius")
-            if not isinstance(attack_range, (int, float)):
-                attack_range = weapon.get("AttackShellMaxRadius")
+            attack_range = attack_max or shell_attack_max
+            accuracy_air = weapon.get("accuracyAir", 0)
             is_ai_gun = (
                 allow_air_gun_range
-                and isinstance(attack_range, (int, float))
-                and weapon.get("accuracyAir", 0) > 0
+                and attack_range is not None
+                and isinstance(accuracy_air, (int, float))
+                and accuracy_air > 0
             )
             if is_ai_gun:
-                ai_gun_ranges.append(attack_range)
+                gun_range = ai_maximum or attack_range
+                ai_gun_ranges.append(gun_range)
                 results.append(
                     {
                         "name": Path(path).stem,
@@ -347,6 +380,8 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
                         "minimum": 0,
                         "effective_maximum": attack_range,
                         "physical_maximum": attack_range,
+                        "ai_minimum": ai_minimum,
+                        "ai_maximum": gun_range,
                         "guidance": None,
                         "reload_seconds": reload_seconds,
                     }
@@ -355,7 +390,9 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
 
         bullet_type = str(rocket.get("bulletType", "")).lower()
         guidance = rocket.get("guidanceType")
-        proximity_fuse = rocket.get("proximityFuse", {})
+        proximity_fuse = rocket.get("proximityFuse")
+        if not isinstance(proximity_fuse, dict):
+            proximity_fuse = {}
         is_air_weapon = (
             "sam" in bullet_type
             or "aam" in bullet_type
@@ -385,6 +422,8 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
                 "minimum": rocket.get("minDistance", 0),
                 "effective_maximum": effective_max,
                 "physical_maximum": physical_max,
+                "ai_minimum": ai_minimum,
+                "ai_maximum": ai_maximum,
                 "guidance": guidance,
                 "reload_seconds": reload_seconds,
             }
@@ -399,6 +438,14 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
     ]
     if ai_gun_ranges:
         engagement_candidates.append(max(ai_gun_ranges))
+    # A vehicle's AI engagement ring is the reach of its longest-reaching
+    # weapon.  Taking the minimum across different weapons made SAM/gun
+    # vehicles (Pantsir, 2S6, Gepard) show only their 3 km gun envelope.
+    ai_weapon_limits = [
+        weapon["ai_maximum"]
+        for weapon in results
+        if isinstance(weapon.get("ai_maximum"), (int, float))
+    ]
     return {
         "weapons": sorted(
             results,
@@ -409,14 +456,16 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
         if engagement_candidates
         else None,
         "ai_gun_range": max(ai_gun_ranges) if ai_gun_ranges else None,
-        # The AI launch envelope is the tightest explicit attack/targeting
-        # limit.  Keep the source components too; they often differ from the
-        # weapon's nominal projectile range.
+        # Raw mount-level AI limits, kept for diagnosis.
         "ai_attack_max_radius": max(ai_attack_ranges) if ai_attack_ranges else None,
         "ai_shell_max_radius": max(ai_shell_ranges) if ai_shell_ranges else None,
         "ai_target_priority_max_radius": max(ai_priority_ranges) if ai_priority_ranges else None,
         "ai_engagement_range": (
-            min(
+            max(ai_weapon_limits)
+            if ai_weapon_limits
+            # Vehicles without an extracted anti-air/strategic weapon keep
+            # the mount-level limit (for example a tank's 2 km AttackMaxRadius).
+            else min(
                 value for value in (
                     max(ai_shell_ranges) if ai_shell_ranges else None,
                     max(ai_priority_ranges) if ai_priority_ranges else None,

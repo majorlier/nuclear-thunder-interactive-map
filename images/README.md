@@ -4,7 +4,8 @@
   filename and (when different) a model-keyed alias, so two BLK classes that
   share one model use the same icon (for example both M192 variants can use
   `mim_23_hawk_launcher_m192.png`).
-- `portraits/`: large vehicle-card artwork, named `av_<model>_001.png` (the legacy `icons/av_…` location remains supported).
+- `portraits/`: large vehicle-card artwork, named `<model>.png` after the unit's
+  datamine `model` field (for example `mim_23_hawk_radar_cwar.png`).
 - `icons/vanilla/`: neutral map-role symbols such as `def_spaa_radar.svg`.
 - `icons/nato/`: NATO ally/enemy symbols (`def_nato_ally_*` and
   `def_nato_enemy_*`).

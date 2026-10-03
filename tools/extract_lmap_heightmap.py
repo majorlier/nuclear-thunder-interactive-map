@@ -24,6 +24,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from terrain_raster import colorize_topography, write_height_raster
+
 
 DEFAULT_ASSET_EXPLORER = Path(r"F:\WT_Stuff\Dagor-Asset-Explorer-master")
 
@@ -130,10 +132,13 @@ def decode_land_vertices(level: Path, asset_explorer: Path, lod: int = 0):
 
     # The world transform is the one used by LandMeshManager for packed land
     # vertices.  x/z are local to a 4096m cell; y is normalized against the
-    # complete land bounding box.
+    # complete land bounding box, i.e. it is centred on (min_y + max_y) / 2.
+    # (Centring on y_scale alone put the whole map min_y too high: the City
+    # sea read as +25 m instead of the -50 m seabed under a 0 m water plane.)
     min_y = min(box[0][1] for box in land.cellBounds)
     max_y = max(box[1][1] for box in land.cellBounds)
     y_scale = 0.5 * (max_y - min_y)
+    y_centre = 0.5 * (max_y + min_y)
     grid_x, grid_z = manager.mapSize
     cell_size = float(manager.landCellSize)
     origin_x, origin_z = manager.origin
@@ -149,7 +154,7 @@ def decode_land_vertices(level: Path, asset_explorer: Path, lod: int = 0):
         offset = np.array(
             [
                 cell_size * (x + origin_x + 0.5),
-                y_scale,
+                y_centre,
                 cell_size * (z + origin_z + 0.5),
             ]
         )
@@ -210,17 +215,64 @@ def rasterize(points: np.ndarray, resolution: int, world_min: float, world_max: 
     return values[::-1]
 
 
-def colorize(meters: np.ndarray, pixel_size: float) -> np.ndarray:
-    gy, gx = np.gradient(meters, pixel_size)
-    slope = np.pi / 2 - np.arctan(np.hypot(gx, gy))
-    aspect = np.arctan2(-gx, gy)
-    shade = np.sin(np.deg2rad(42)) * np.sin(slope) + np.cos(np.deg2rad(42)) * np.cos(slope) * np.cos(np.deg2rad(315) - aspect)
-    shade = np.clip((shade + 0.45) / 1.45, 0, 1)
-    stops = np.array([-50, 0, 250, 500, 1000, 1750, 2750, 3750, 5000], dtype=np.float32)
-    colors = np.array([[24, 65, 96], [70, 105, 68], [103, 126, 75], [144, 137, 83], [169, 126, 84], [151, 101, 82], [126, 105, 101], [151, 145, 137], [224, 222, 211]], dtype=np.float32)
-    rgb = np.stack([np.interp(meters, stops, colors[:, c]) for c in range(3)], axis=-1)
-    rgb *= (0.55 + 0.62 * shade)[..., None]
-    return np.clip(rgb, 0, 255).astype(np.uint8)
+def remove_flat_sea_artifacts(height, water_level=0.0, max_relief=10.0, max_pixels=400):
+    """Drop flat, featureless "islands" that the land mesh leaves in open sea.
+
+    Sparse sea cells rasterize some constant-height seam vertices (about +5 m
+    on South Eastern City) into diamond-shaped blobs that the game's tactical
+    map does not show. A blob is removed only when it is small, never rises
+    more than ``max_relief`` above the water and is enclosed by sea; real
+    islands have relief and are kept. Returns the number of pixels reset.
+    """
+    try:
+        from scipy import ndimage
+    except ImportError:
+        print("WARNING: scipy is not installed; flat sea artifacts were not removed")
+        return 0
+    land = height > water_level
+    labels, count = ndimage.label(land)
+    if not count:
+        return 0
+    index = np.arange(1, count + 1)
+    sizes = ndimage.sum(land, labels, index)
+    peaks = ndimage.maximum(height, labels, index)
+    remove = np.zeros(count + 1, dtype=bool)
+    remove[1:] = (sizes <= max_pixels) & (peaks <= water_level + max_relief)
+    mask = remove[labels]
+    if not mask.any():
+        return 0
+    sea = ~land
+    # Replace with the surrounding seabed height.
+    fill = ndimage.grey_erosion(np.where(sea, height, np.inf), size=3)
+    for _ in range(64):
+        pending = mask & ~np.isfinite(fill)
+        if not pending.any():
+            break
+        fill = np.where(np.isfinite(fill), fill, ndimage.grey_erosion(fill, size=3))
+    seabed = float(np.median(height[sea])) if sea.any() else water_level
+    height[mask] = np.where(np.isfinite(fill[mask]), np.minimum(fill[mask], water_level - 1), seabed)
+    return int(mask.sum())
+
+
+def write_outputs(height, metadata, output_dir, stem, world_min, world_max, water_level, resolution):
+    """Write the topography preview, the 16-bit height PNG and the f32 grid."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    pixel_size = (world_max - world_min) / resolution
+    Image.fromarray(colorize_topography(height, pixel_size, water_level), "RGB").save(
+        output_dir / f"{stem}_topography.webp", "WEBP", lossless=True, method=6
+    )
+    encoding = write_height_raster(output_dir / f"{stem}_height_16bit.webp", height)
+    height.astype("<f4").tofile(output_dir / f"{stem}_height_f32.bin")
+    metadata.update({
+        "resolution": [resolution, resolution],
+        "world_bounds_m": [world_min, world_max],
+        "water_level_m": water_level,
+        "actual_min_height_m": float(height.min()),
+        "actual_max_height_m": float(height.max()),
+        "height_encoding": encoding,
+        "note": "Rasterized from embedded land-mesh vertices; it is not an HM2 source heightmap.",
+    })
+    return metadata
 
 
 def main() -> None:
@@ -230,6 +282,12 @@ def main() -> None:
     parser.add_argument("--lod", type=int, default=0, choices=(0, 1))
     parser.add_argument("--resolution", type=int, default=1024)
     parser.add_argument("--output-dir", type=Path, default=Path("."))
+    parser.add_argument(
+        "--water-level",
+        type=float,
+        default=0.0,
+        help="Sea-surface height in world metres (air_south_eastern_city.blkx water_level is 0)",
+    )
     args = parser.parse_args()
     if args.resolution < 64:
         parser.error("--resolution must be at least 64")
@@ -242,21 +300,14 @@ def main() -> None:
     if (world_min, world_max) != (world_min_z, world_max_z):
         raise ValueError("This rasterizer currently requires a square lmap world extent")
     height = rasterize(points, args.resolution, world_min, world_max)
+    metadata["removed_flat_sea_artifact_pixels"] = remove_flat_sea_artifacts(height, args.water_level)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     stem = "southeastern_city"
-    Image.fromarray(colorize(height, (world_max - world_min) / args.resolution), "RGB").save(args.output_dir / f"{stem}_topography.webp", "WEBP", lossless=True, method=6)
-    encoded = np.clip((height - metadata["height_bounds_m"][0]) / (metadata["height_bounds_m"][1] - metadata["height_bounds_m"][0]) * 65535, 0, 65535).astype("<u2")
-    Image.fromarray((encoded >> 8).astype(np.uint8), "L").save(args.output_dir / f"{stem}_height_8bit.png", optimize=True)
-    height.astype("<f4").tofile(args.output_dir / f"{stem}_height_f32.bin")
+    write_outputs(height, metadata, args.output_dir, stem, world_min, world_max, args.water_level, args.resolution)
     metadata.update({
         "source": args.level.name,
         "stream": "lmap/lndm",
         "lod": args.lod,
-        "resolution": [args.resolution, args.resolution],
-        "world_bounds_m": [world_min, world_max],
-        "actual_min_height_m": float(height.min()),
-        "actual_max_height_m": float(height.max()),
-        "note": "Rasterized from embedded land-mesh vertices; it is not an HM2 source heightmap.",
     })
     (args.output_dir / f"{stem}_height_meta.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(metadata, indent=2))

@@ -4,6 +4,8 @@ import math
 import os
 import re
 
+from build_map_data import TemplateRegistry, mission_site_category
+
 
 def matrix_position(matrix):
     return [float(value) for value in matrix[3][:3]]
@@ -21,21 +23,6 @@ def contains_target_tag(value):
     if isinstance(value, list):
         return any(contains_target_tag(child) for child in value)
     return False
-
-
-def site_category(unit):
-    unit_class = unit.get("unit_class", "")
-    if unit_class == "nt_fuel_factory_foundation":
-        return "fuel_factory"
-    if unit_class == "nt_ammo_factory_foundation":
-        return "ammo_factory"
-    if unit_class == "nt_assembly_area_foundation":
-        return "assembly_area"
-    if unit_class == "nt_stronghold":
-        return "strongpoint"
-    if unit_class.startswith("dynaf_"):
-        return "airfield"
-    return None
 
 
 def nearest_links(factories, assemblies, count=3):
@@ -82,7 +69,12 @@ def nearest_armored_links(assemblies, sites, count=3):
     this overlay deliberately represents the initially eligible enemy sites.
     """
     links = []
-    eligible_categories = {"assembly_area", "strongpoint", "airfield"}
+    # nuclear_escalation.das (for_each_tank_column_target) accepts every
+    # enemy equip_factory entity (fuel/ammo factories and the tank factory at
+    # an assembly area), enemy strongpoints and enemy airfields.
+    eligible_categories = {
+        "assembly_area", "fuel_factory", "ammo_factory", "strongpoint", "airfield"
+    }
     for assembly in assemblies:
         candidates = [
             site
@@ -257,7 +249,7 @@ def extract_convoy_compositions(templates_dir):
                     ),
                 },
                 "spg_probability": template.get("_group", {}).get(
-                    "tank_factory__spgColummProbability", 0.15
+                    "tank_factory__spgColummProbability"
                 ),
             }
     return output
@@ -380,6 +372,187 @@ def extract_runtime_constants(templates_dir):
     return result
 
 
+def load_template_documents(templates_dir, filenames):
+    templates = {}
+    if not templates_dir:
+        return templates
+    for filename in filenames:
+        path = os.path.join(os.path.abspath(templates_dir), filename)
+        if not os.path.exists(path):
+            continue
+        with open(path, "r", encoding="utf-8") as source:
+            document = json.load(source)
+        templates.update(
+            {name: value for name, value in document.items() if isinstance(value, dict)}
+        )
+    return templates
+
+
+def template_value(template, key):
+    """Read an ECS component from a resolved template or its ``_group``."""
+    if not isinstance(template, dict):
+        return None
+    if key in template:
+        return template[key]
+    group = template.get("_group")
+    return group.get(key) if isinstance(group, dict) else None
+
+
+def number_or_none(value):
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    return float(value)
+
+
+def das_number(source, pattern):
+    match = re.search(pattern, source or "")
+    return float(match.group(1)) if match else None
+
+
+def read_text(templates_dir, filename):
+    if not templates_dir:
+        return ""
+    path = os.path.join(os.path.abspath(templates_dir), filename)
+    if not os.path.exists(path):
+        return ""
+    with open(path, "r", encoding="utf-8", errors="ignore") as source:
+        return source.read()
+
+
+def extract_rule_constants(templates_dir, convoys):
+    """Read logistics constants from the datamined templates and DAS source.
+
+    Values that cannot be found stay ``None`` (and are reported) instead of
+    being replaced by remembered numbers.
+    """
+    templates = load_template_documents(
+        templates_dir,
+        ("factory_equip.blkx", "factory_tank.blkx", "strongpoints.blkx", "airfields.blkx"),
+    )
+    cache = {}
+    storage = resolve_template("equip_storage", templates, cache)
+    factory = resolve_template("equip_factory", templates, cache)
+    tank_factory = resolve_template("tank_factory", templates, cache)
+    strongpoint = resolve_template("strongpoint", templates, cache)
+    airfield = resolve_template("nuclear_escalation_airfield", templates, cache)
+    das = read_text(templates_dir, "nuclear_escalation.das")
+    custom_logic = read_text(templates_dir, "mission_custom_logic.das")
+
+    arrived_dist = das_number(das, r"\blet\s+arrivedDist\s*=\s*([0-9.]+)")
+    column_speed = das_number(das, r"\blet\s+columnTanksSpeed\s*=\s*([0-9.]+)")
+    # tank_column_capture_check_es compares against arrivedDistSq * 4,
+    # i.e. twice the arrival distance, for factories and assembly areas.
+    depot_capture = arrived_dist * 2 if arrived_dist else None
+    airfield_capture = das_number(
+        das,
+        r"capture_blocked\(transform\[3\],\s*column_unit__ref\.unit\.army,\s*([0-9.]+)\)",
+    )
+    storage_fraction = re.search(
+        r"equip_storage__current\s*=\s*rnd_float\(equip_storage__capacity\s*\*\s*([0-9.]+),"
+        r"\s*equip_storage__capacity\s*\*\s*([0-9.]+)\)",
+        das,
+    )
+    tank_fraction = re.search(
+        r"tank_factory__spawnPoints\s*=\s*rnd_float\(tank_factory__spawnThreshold\s*\*\s*([0-9.]+),"
+        r"\s*tank_factory__spawnThreshold\s*\*\s*([0-9.]+)\)",
+        das,
+    )
+    mobile_speed = das_number(
+        custom_logic,
+        r"set_destination_way_point\(unit__ref\.unit,\s*\"USE_SPLINE\",\s*targetPos,\s*([0-9.]+)\)",
+    )
+
+    dispatch = number_or_none(template_value(factory, "equip_factory__equipForSendColumn"))
+    column_counts = sorted({
+        sum(entry.get("count", 1) for entry in entries)
+        for era in (convoys.get("resource") or {}).values()
+        for resource in era.values()
+        for entries in resource.values()
+        if entries
+    })
+    column_count = column_counts[0] if len(column_counts) == 1 else None
+
+    constants = {
+        "capture_radii": {
+            "fuel_factory": depot_capture,
+            "ammo_factory": depot_capture,
+            "assembly_area": depot_capture,
+            "strongpoint": number_or_none(template_value(strongpoint, "strongpoint__radius")),
+            "airfield": airfield_capture,
+        },
+        "tickets_by_capture": {
+            "depot": template_value(tank_factory, "equip_storage__ticketsByCapture"),
+            "strongpoint": template_value(strongpoint, "strongpoint__ticketsByCapture"),
+            "airfield": template_value(airfield, "airfield__ticketsByCapture"),
+        },
+        "resource_factory": {
+            "capacity": number_or_none(template_value(storage, "equip_storage__capacity")),
+            "initial_fraction": (
+                [float(storage_fraction.group(1)), float(storage_fraction.group(2))]
+                if storage_fraction else None
+            ),
+            "production_per_second": number_or_none(
+                template_value(factory, "equip_factory__productionRate")
+            ),
+            "dispatch_threshold": dispatch,
+            "max_column_units": template_value(factory, "equip_factory__maxUnitsCount"),
+            "column_vehicle_count": column_count,
+            "column_vehicle_counts": column_counts,
+            "resource_per_vehicle": (
+                dispatch / column_count if dispatch and column_count else None
+            ),
+            "delivery_radius": arrived_dist,
+            # select_supply_column_target: sort non-full friendly storages by
+            # distance, then take the one with the most free capacity among
+            # the three nearest. No random choice is involved.
+            "destination_choice": "most free capacity among the 3 nearest non-full friendly storages",
+            "travel_speed": column_speed,
+        },
+        "tank_factory": {
+            "spawn_threshold": number_or_none(
+                template_value(tank_factory, "tank_factory__spawnThreshold")
+            ),
+            "initial_fraction": (
+                [float(tank_fraction.group(1)), float(tank_fraction.group(2))]
+                if tank_fraction else None
+            ),
+            "base_production_per_second": number_or_none(
+                template_value(tank_factory, "tank_factory__baseProductionRate")
+            ),
+            "fuel_per_second": number_or_none(
+                template_value(tank_factory, "tank_factory__fuelConsumeRate")
+            ),
+            "ammo_per_second": number_or_none(
+                template_value(tank_factory, "tank_factory__ammoConsumeRate")
+            ),
+            # The component name is misspelled in the game templates.
+            "spg_probability": number_or_none(
+                template_value(tank_factory, "tank_factory__spgColummProbability")
+            ),
+            "target_choice": (
+                "random among the 3 nearest eligible targets: enemy factories, "
+                "assembly areas, strongpoints and airfields, plus friendly "
+                "strongpoints that have lost garrison units"
+            ),
+            "travel_speed": column_speed,
+        },
+        "mobile_fire_travel_speed": mobile_speed,
+    }
+    missing = []
+
+    def collect(prefix, value):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                collect(f"{prefix}.{key}" if prefix else key, child)
+        elif value is None and not prefix.endswith("column_vehicle_count"):
+            missing.append(prefix)
+
+    collect("", constants)
+    for name in missing:
+        print(f"WARNING: rule constant not found in datamine inputs: {name}")
+    return constants
+
+
 def extract_respawn_rules(mission):
     rules = []
 
@@ -462,10 +635,15 @@ def main():
         mission = json.load(source)
 
     object_groups = mission.get("units", {}).get("objectGroups", [])
+    registry = TemplateRegistry(load_template_documents(
+        args.templates_dir,
+        ("common.blkx", "factory_equip.blkx", "factory_tank.blkx",
+         "strongpoints.blkx", "airfields.blkx", "sam_sites.blkx"),
+    ))
     sites = []
     mlrs_tbm_targets = []
     for unit in object_groups:
-        category = site_category(unit)
+        category = mission_site_category(unit, registry)
         if not category:
             continue
         site = {
@@ -552,15 +730,11 @@ def main():
     ]
     assemblies = [site for site in sites if site["category"] == "assembly_area"]
 
-    capture_radii = {
-        "fuel_factory": 40.0,
-        "ammo_factory": 40.0,
-        "assembly_area": 40.0,
-        "strongpoint": 100.0,
-        "airfield": 50.0,
-    }
+    convoys = extract_convoy_compositions(args.templates_dir)
+    rule_constants = extract_rule_constants(args.templates_dir, convoys)
+    capture_radii = rule_constants["capture_radii"]
     for site in sites:
-        site["capture_radius"] = capture_radii[site["category"]]
+        site["capture_radius"] = capture_radii.get(site["category"])
 
     mission_settings = mission.get("mission_settings", {}).get("mission", {})
     respawn_rules = extract_respawn_rules(mission)
@@ -598,33 +772,20 @@ def main():
         "template_restore": template_restore,
         "runtime_constants": runtime_constants,
         "no_fixed_respawn": static_no_respawn,
-        "convoys": extract_convoy_compositions(args.templates_dir),
+        "convoys": convoys,
         "rules": {
+            "capture": {
+                "radii": capture_radii,
+                "tickets_by_capture": rule_constants["tickets_by_capture"],
+            },
             "resource_factory": {
-                "capacity": 1200,
-                "initial_fraction": [0.2, 0.4],
-                "production_per_second": 2,
-                "dispatch_threshold": 600,
-                "column_vehicle_count": 5,
-                "resource_per_vehicle": 120,
-                "delivery_radius": 20,
-                "destination_choice": "random among top 3 by free_capacity / distance",
-                "travel_speed": 20,
+                **rule_constants["resource_factory"],
                 "repair_seconds": template_restore.get("depot_repair_seconds"),
             },
-            "tank_factory": {
-                "spawn_threshold": 500,
-                "initial_fraction": [0.5, 0.8],
-                "base_production_per_second": 0.3,
-                "fuel_per_second": 1,
-                "ammo_per_second": 1,
-                "spg_probability": 0.15,
-                "target_choice": "random among 3 nearest eligible targets",
-                "travel_speed": 20,
-            },
+            "tank_factory": rule_constants["tank_factory"],
             "mobile_fire": {
                 "destination": "center of a randomly chosen non-repeating move area",
-                "travel_speed": 20,
+                "travel_speed": rule_constants["mobile_fire_travel_speed"],
                 "rearm_seconds": runtime_constants.get("mobile_fire_rearm_seconds"),
                 "target_choice": "nearest living enemy with mlrs_tbm_target tag",
             },

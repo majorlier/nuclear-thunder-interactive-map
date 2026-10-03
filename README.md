@@ -8,8 +8,10 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   terrain-height overlay; City has its own extracted vehicle-road network and
   navigation mesh for route previews.
 - Choose a scenario. The selector converts the mission's rank range to BR
-  using War Thunder's balance-level scale (`BR = 1 + rank / 3`). An explicit
-  BR value from generated data takes precedence if one is provided.
+  using War Thunder's balance-level scale (`BR = 1 + rank / 3`), with the lower
+  bound raised to the event's 8.7 minimum BR (a matchmaking rule that is not
+  stored in the client files). An explicit BR value from generated data takes
+  precedence if one is provided.
 - Use the **Icons** selector to switch the whole map between NATO (default),
   WT, and USSR role symbols.
 - Use **Swap REDFOR / BLUFOR locations** to move each faction's units to the
@@ -29,21 +31,33 @@ and places each ship at its mission-defined patrol route.
 
 Terrain and roads are maintained separately from the event data because they come from the compiled game level.
 
-### Extracting the City heightmap
+### Extracting the terrain heightmaps
 
-South Eastern City stores terrain in the optimized `lmap/lndm` land-mesh stream,
-not as an `HM2` block. To regenerate the developer heightmap, install/keep a
-local copy of Dagor Asset Explorer and run:
+Both maps read heights from the installed game client's compiled levels
+(`<War Thunder>\levels\*.bin`). Each extractor writes a shaded topographic
+overlay, a 16-bit height raster (`*_16bit.webp`: red = high byte, green = low
+byte, 0.25 m steps) and a metadata JSON that the map reads at load time, so a
+re-export needs no change to `index.html`. Heights are absolute metres; the
+sea surface is 0 m on both maps.
+
+Archipelago stores an `HM2` heightmap. Decoding needs Oodle, provided by the
+`pyooz` package (`pip install pyooz`; `--ooz <ooz.exe>` also works):
 
 ```text
-python tools/extract_lmap_heightmap.py F:\WarThunderDev\levels\air_south_eastern_city.bin --output-dir generated\southeastern_city_heightmap
+python tools/extract_heightmap.py "F:\Steam\steamapps\common\War Thunder\levels\air_archipelago.bin" --output-dir .
+```
+
+South Eastern City stores terrain in the optimized `lmap/lndm` land-mesh
+stream instead. Keep a local copy of Dagor Asset Explorer and run:
+
+```text
+python tools/extract_lmap_heightmap.py "F:\Steam\steamapps\common\War Thunder\levels\air_south_eastern_city.bin" --output-dir generated\southeastern_city_heightmap
 ```
 
 Use `--asset-explorer <folder>` if Asset Explorer is not in its default local
-folder, and `--resolution 2048` for a larger raster. The command writes a
-topographic preview, an 8-bit preview, a float32 height grid, and JSON metadata.
-The generated heightmap is a developer artifact; the interactive map continues
-to use the separately extracted map image.
+folder, and `--resolution 2048` for a larger raster. The extractor removes the
+flat, featureless blobs that sparse sea cells leave in open water (they are
+not on the in-game tactical map) and records how many pixels it reset.
 
 To test a local copy, run a small local web server from this folder and open
 `http://localhost:8000` in a browser (for example, run
@@ -72,7 +86,13 @@ python tools/sync_datamine_assets.py --datamine F:\WT_Stuff\War-Thunder-Datamine
 ```
 
 The command preserves existing local artwork. Add `--force` only when you want
-to replace it. A complete per-unit result is written to
+to replace it. If it copies new role SVGs, rebuild the bundled icon set the map
+actually loads:
+
+```text
+python tools/build_icon_templates.py
+```
+ A complete per-unit result is written to
 `generated/datamine_asset_sync_report.json`; the command also prints the units
 that still need artwork. Keeping these files locally means the deployed map
 does not depend on live Wiki or datamine URLs.
@@ -101,6 +121,12 @@ python tools/extract_display_names.py --units-csv F:\WT_Stuff\War-Thunder-Datami
 
 This writes `unit_display_names.json`; the map uses it first and falls back to
 the internal identifier only when a mission-only unit has no localization row.
+
+AI engagement rings come from each weapon's `aimMaxDist` / `attackMaxDist`
+and the vehicle's `AttackMaxRadius`: the AI only fires inside the tightest of
+these, which is often far shorter than the missile's flight range (the I-HAWK
+flies 110 km but is aimed out to 40 km). A vehicle with several weapons uses
+its longest-reaching one.
 
 The extracted unit specs also retain the datamine's `type`, `onRadarAs`, and
 `expClass` fields. The renderer uses those HUD classifications before falling

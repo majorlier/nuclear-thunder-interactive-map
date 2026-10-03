@@ -1372,9 +1372,9 @@
 <script>
     const MAP_IMAGE = "map_4k.png";
     const TOPOGRAPHIC_IMAGE = "topographic_map.webp";
-    const TERRAIN_HEIGHT_IMAGE = "terrain_height_8bit.png";
+    const TERRAIN_HEIGHT_IMAGE = "terrain_height_16bit.webp";
     const CITY_TOPOGRAPHIC_IMAGE = "generated/southeastern_city_heightmap/southeastern_city_topography.webp";
-    const CITY_TERRAIN_HEIGHT_IMAGE = "generated/southeastern_city_heightmap/southeastern_city_height_8bit.png";
+    const CITY_TERRAIN_HEIGHT_IMAGE = "generated/southeastern_city_heightmap/southeastern_city_height_16bit.webp";
     const IMG_SIZE = 4096;
     const LOS_GRID_SIZE = 256;
     const CITY_MAP_IMAGE = "air_south_eastern_city_map.png";
@@ -1389,8 +1389,14 @@
             supportsTerrain: true,
             terrainImage: TERRAIN_HEIGHT_IMAGE,
             terrainOverlay: TOPOGRAPHIC_IMAGE,
-            terrainEncodedMin: -149,
-            terrainEncodedRange: 5120,
+            // Decoding parameters are refreshed from terrain_meta.json (written
+            // by tools/extract_heightmap.py); these are the shipped values.
+            terrainMeta: "terrain_meta.json",
+            terrainEncoding: { format: "rg16", min_m: -31, step_m: 0.25 },
+            terrainDisplayRange: [-30, 4970],
+            // The tactical map's coastline sits at 0 m in the HM2 data, even
+            // though air_archipelago.blkx carries a legacy water_level of 80.
+            waterLevel: 0,
             supportsRoads: true,
             supportsNavmesh: false,
             roadFile: "road_network.json",
@@ -1407,10 +1413,11 @@
             supportsTerrain: true,
             terrainImage: CITY_TERRAIN_HEIGHT_IMAGE,
             terrainOverlay: CITY_TOPOGRAPHIC_IMAGE,
-            // The city extractor stores the high byte of a 16-bit normalized
-            // height value; these bounds come from its sidecar metadata.
-            terrainEncodedMin: -75.25747680664062,
-            terrainEncodedRange: 1307.5875549316406,
+            terrainMeta: "generated/southeastern_city_heightmap/southeastern_city_height_meta.json",
+            terrainEncoding: { format: "rg16", min_m: -74, step_m: 0.25 },
+            terrainDisplayRange: [-73, 1222],
+            // air_south_eastern_city.blkx: water_level 0.
+            waterLevel: 0,
             supportsRoads: true,
             supportsNavmesh: true,
             roadFile: "road_network_city.json",
@@ -1422,10 +1429,26 @@
         }
     };
     const mapSelectionStorageKey = "nuclear-thunder-map-selection";
+    // sessionStorage can throw in privacy modes or sandboxed frames; the
+    // remembered map/variant is only a convenience.
+    function readSessionValue(key) {
+        try {
+            return sessionStorage.getItem(key);
+        } catch (error) {
+            return null;
+        }
+    }
+    function writeSessionValue(key, value) {
+        try {
+            sessionStorage.setItem(key, value);
+        } catch (error) {
+            // Ignore: the selection simply is not remembered.
+        }
+    }
     // Keep the initial presentation aligned with the game's standard NATO
     // tactical map. This is intentionally not persisted between sessions.
     let iconFamily = "nato";
-    let currentMapId = sessionStorage.getItem(mapSelectionStorageKey) || "archipelago";
+    let currentMapId = readSessionValue(mapSelectionStorageKey) || "archipelago";
     if (!MAP_DEFINITIONS[currentMapId]) currentMapId = "archipelago";
 
     function activeMapDefinition() {
@@ -1520,47 +1543,126 @@
     );
     map.fitBounds(bounds);
 
-    const terrainCanvas = document.createElement("canvas");
-    terrainCanvas.width = IMG_SIZE;
-    terrainCanvas.height = IMG_SIZE;
-    const terrainContext = terrainCanvas.getContext("2d", {
-        willReadFrequently: true
-    });
     let terrainReadoutReady = false;
-    const terrainImage = new Image();
-    terrainImage.addEventListener("load", () => {
-        terrainContext.clearRect(0, 0, IMG_SIZE, IMG_SIZE);
-        terrainContext.drawImage(terrainImage, 0, 0, IMG_SIZE, IMG_SIZE);
-        terrainReadoutReady = true;
-        if (terrainReadoutElement) {
-            terrainReadoutElement.textContent = "Terrain elevation ready · move over the map";
+    // Decoded terrain heights in metres for the active map, stored once per
+    // load so the readout and line of sight never touch the canvas again.
+    // Rows run north to south like the source image.
+    let terrainGrid = null;
+    let terrainLoadToken = 0;
+
+    function decodeTerrainPixels(rgba, width, height, encoding) {
+        const heights = new Float32Array(width * height);
+        const format = encoding?.format || "rg16";
+        const minimum = Number(encoding?.min_m) || 0;
+        if (format === "r8") {
+            // Legacy 8-bit rasters: min + value / 255 * range.
+            const range = Number(encoding?.range_m) || 0;
+            for (let index = 0; index < heights.length; index += 1) {
+                heights[index] = minimum + rgba[index * 4] / 255 * range;
+            }
+        } else {
+            const step = Number(encoding?.step_m) || 1;
+            for (let index = 0; index < heights.length; index += 1) {
+                const offset = index * 4;
+                heights[index] = minimum + (rgba[offset] * 256 + rgba[offset + 1]) * step;
+            }
         }
-        if (planningPoints?.los?.length) {
-            renderLineOfSight();
-            updateMapToolsUi();
-        }
-    });
-    terrainImage.addEventListener("error", () => {
-        terrainReadoutReady = false;
-        if (terrainReadoutElement) {
-            terrainReadoutElement.textContent = "Terrain data could not be loaded for this map";
-        }
-        if (planningPoints?.los?.length) updateMapToolsUi();
-    });
+        return { width, height, heights };
+    }
+
+    async function readTerrainRaster(url, encoding) {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+        const blob = await response.blob();
+        // Packed height values must reach the canvas unchanged: no colour
+        // management and no premultiplication.
+        const bitmap = await createImageBitmap(blob, {
+            colorSpaceConversion: "none",
+            premultiplyAlpha: "none"
+        });
+        const canvas = document.createElement("canvas");
+        canvas.width = bitmap.width;
+        canvas.height = bitmap.height;
+        const context = canvas.getContext("2d", { willReadFrequently: true });
+        context.imageSmoothingEnabled = false;
+        context.drawImage(bitmap, 0, 0);
+        const rgba = context.getImageData(0, 0, bitmap.width, bitmap.height).data;
+        bitmap.close?.();
+        return decodeTerrainPixels(rgba, canvas.width, canvas.height, encoding);
+    }
+
     function loadTerrainForMap(definition) {
         terrainReadoutReady = false;
-        terrainContext.clearRect(0, 0, IMG_SIZE, IMG_SIZE);
+        terrainGrid = null;
+        const token = ++terrainLoadToken;
         if (!definition.terrainImage) {
             if (terrainReadoutElement) {
                 terrainReadoutElement.textContent = "Terrain data is unavailable for this map";
             }
             return;
         }
-        terrainImage.src = definition.terrainImage;
         if (terrainReadoutElement) {
             terrainReadoutElement.textContent = "Terrain: loading compiled height data…";
         }
+        readTerrainRaster(definition.terrainImage, definition.terrainEncoding)
+            .then(grid => {
+                if (token !== terrainLoadToken) return;
+                terrainGrid = grid;
+                terrainReadoutReady = true;
+                if (terrainReadoutElement) {
+                    terrainReadoutElement.textContent = "Terrain elevation ready · move over the map";
+                }
+                if (planningPoints?.los?.length) {
+                    renderLineOfSight();
+                    updateMapToolsUi();
+                }
+            })
+            .catch(error => {
+                if (token !== terrainLoadToken) return;
+                console.error("Could not load terrain heights:", error);
+                if (terrainReadoutElement) {
+                    terrainReadoutElement.textContent = "Terrain data could not be loaded for this map";
+                }
+                if (planningPoints?.los?.length) updateMapToolsUi();
+            });
     }
+
+    // Bilinear terrain height (metres) at a map-image position, or null.
+    function terrainHeightAtMapPoint(mapX, mapY) {
+        const grid = terrainGrid;
+        if (!grid || !Number.isFinite(mapX) || !Number.isFinite(mapY)) return null;
+        if (mapX < 0 || mapX >= IMG_SIZE || mapY < 0 || mapY >= IMG_SIZE) return null;
+        const gx = Math.min(grid.width - 1, Math.max(0, mapX / IMG_SIZE * grid.width - 0.5));
+        const gy = Math.min(grid.height - 1, Math.max(0, (IMG_SIZE - mapY) / IMG_SIZE * grid.height - 0.5));
+        const x0 = Math.floor(gx);
+        const y0 = Math.floor(gy);
+        const x1 = Math.min(grid.width - 1, x0 + 1);
+        const y1 = Math.min(grid.height - 1, y0 + 1);
+        const tx = gx - x0;
+        const ty = gy - y0;
+        const at = (x, y) => grid.heights[y * grid.width + x];
+        const top = at(x0, y0) * (1 - tx) + at(x1, y0) * tx;
+        const bottom = at(x0, y1) * (1 - tx) + at(x1, y1) * tx;
+        return top * (1 - ty) + bottom * ty;
+    }
+
+    // Terrain metadata files written by the extractors override the shipped
+    // decoding parameters, so a re-export needs no page edit.
+    function applyTerrainMeta(definition, meta) {
+        const encoding = meta?.height_encoding;
+        if (encoding?.format && Number.isFinite(Number(encoding.min_m))) {
+            definition.terrainEncoding = encoding;
+        }
+        const minimum = Number(meta?.actual_min_height_m);
+        const maximum = Number(meta?.actual_max_height_m);
+        if (Number.isFinite(minimum) && Number.isFinite(maximum)) {
+            definition.terrainDisplayRange = [minimum, maximum];
+        }
+        if (Number.isFinite(Number(meta?.water_level_m))) {
+            definition.waterLevel = Number(meta.water_level_m);
+        }
+    }
+
     const terrainReadoutControl = L.control({ position: "bottomleft" });
     let terrainReadoutElement;
     terrainReadoutControl.onAdd = () => {
@@ -1587,12 +1689,44 @@
             Height data used by terrain shading and LOS
             <div class="terrain-gradient"></div>
             <div class="terrain-scale-labels">
-                <span>low</span><span>0 m</span><span>high</span>
+                <span data-terrain-min>low</span><span data-terrain-max>high</span>
             </div>
         `;
+        updateTerrainLegendScale(activeMapDefinition());
         return terrainLegendElement;
     };
     terrainLegendControl.addTo(map);
+
+    function updateTerrainLegendScale(definition) {
+        if (!terrainLegendElement) return;
+        const [minimum, maximum] = (definition?.terrainDisplayRange || []).map(Number);
+        const format = value => Number.isFinite(value)
+            ? `${Math.round(value).toLocaleString()} m`
+            : "";
+        const minLabel = terrainLegendElement.querySelector("[data-terrain-min]");
+        const maxLabel = terrainLegendElement.querySelector("[data-terrain-max]");
+        if (minLabel) minLabel.textContent = format(minimum) || "low";
+        if (maxLabel) maxLabel.textContent = format(maximum) || "high";
+    }
+
+    Object.values(MAP_DEFINITIONS).forEach(definition => {
+        if (!definition.terrainMeta) return;
+        fetch(definition.terrainMeta)
+            .then(response => response.ok ? response.json() : null)
+            .then(meta => {
+                if (!meta) return;
+                const previousEncoding = JSON.stringify(definition.terrainEncoding);
+                applyTerrainMeta(definition, meta);
+                if (definition !== activeMapDefinition()) return;
+                updateTerrainLegendScale(definition);
+                if (JSON.stringify(definition.terrainEncoding) !== previousEncoding) {
+                    loadTerrainForMap(definition);
+                }
+            })
+            .catch(() => {
+                // Optional: the shipped decoding parameters remain in use.
+            });
+    });
 
     function refreshTerrainLegend() {
         terrainLegendElement?.classList.toggle(
@@ -1626,28 +1760,18 @@
                 `Terrain data is not extracted for this map · X ${worldX.toFixed(0)} m · Z ${worldZ.toFixed(0)} m`;
             return;
         }
-        if (!terrainReadoutReady) {
+        const elevation = terrainReadoutReady ? terrainHeightAtMapPoint(mapX, mapY) : null;
+        if (elevation === null) {
             terrainReadoutElement.textContent =
                 `X ${worldX.toFixed(0)} m · Z ${worldZ.toFixed(0)} m`;
             return;
         }
-        const imageX = Math.min(IMG_SIZE - 1, Math.max(0, Math.floor(mapX)));
-        const imageY = Math.min(
-            IMG_SIZE - 1,
-            Math.max(0, Math.floor(IMG_SIZE - 1 - mapY))
-        );
-        const encoded = terrainContext.getImageData(
-            imageX,
-            imageY,
-            1,
-            1
-        ).data[0];
-        const elevation =
-            definition.terrainEncodedMin +
-            encoded / 255 * definition.terrainEncodedRange;
+        const waterLevel = Number(definition.waterLevel) || 0;
+        const surface = elevation < waterLevel
+            ? `Water · depth ≈ ${Math.round(waterLevel - elevation).toLocaleString()} m`
+            : `Terrain ≈ ${Math.round(elevation).toLocaleString()} m`;
         terrainReadoutElement.textContent =
-            `Terrain ≈ ${Math.round(elevation).toLocaleString()} m · ` +
-            `X ${worldX.toFixed(0)} · Z ${worldZ.toFixed(0)}`;
+            `${surface} · X ${worldX.toFixed(0)} · Z ${worldZ.toFixed(0)}`;
     });
 
     map.createPane("strategicTargets");
@@ -1681,18 +1805,11 @@
     // Mission AI engagement limits are intentionally different from the
     // missile's physical flight distance.  The latter is useful in a card,
     // but it would overstate the area in which the AI actually launches.
-    const AI_ENGAGEMENT_RANGE_OVERRIDES = {
-        us_ai_sam_launcher_m192: 40000,
-        us_ai_sam_launcher_m192_early: 40000,
-        us_ai_sam_launcher_m901: 70000
-    };
-
+    // `ai_engagement_range` comes from the weapon BLKX aimMaxDist /
+    // attackMaxDist and the mount's AttackMaxRadius (extract_unit_specs.py).
     function displayEngagementRange(unit, specs) {
-        const name = String(unit?.name || "").toLowerCase();
         const missionLimit = Number(unit?.ai_engagement_range || unit?.engagement_range);
         const extractedAiLimit = Number(specs?.ai_engagement_range);
-        const override = Number(AI_ENGAGEMENT_RANGE_OVERRIDES[name]);
-        if (override > 0) return override;
         if (missionLimit > 0) return missionLimit;
         if (extractedAiLimit > 0) return extractedAiLimit;
         return Number(specs?.engagement_range || 0);
@@ -1857,20 +1974,14 @@
         });
     }
 
+    // Height of the visible surface: terrain, or the water plane above the
+    // seabed. Line of sight and observer/target heights use this surface.
     function sampleTerrainElevation(latlng) {
         const definition = activeMapDefinition();
-        if (!definition.supportsTerrain || !definition.terrainImage || !terrainReadoutReady) {
-            return null;
-        }
-        const x = Number(latlng.lng);
-        const y = Number(latlng.lat);
-        if (!Number.isFinite(x) || !Number.isFinite(y) || x < 0 || x >= IMG_SIZE || y < 0 || y >= IMG_SIZE) {
-            return null;
-        }
-        const imageX = Math.min(IMG_SIZE - 1, Math.max(0, Math.floor(x)));
-        const imageY = Math.min(IMG_SIZE - 1, Math.max(0, Math.floor(IMG_SIZE - 1 - y)));
-        const encoded = terrainContext.getImageData(imageX, imageY, 1, 1).data[0];
-        return definition.terrainEncodedMin + encoded / 255 * definition.terrainEncodedRange;
+        if (!definition.supportsTerrain || !terrainReadoutReady) return null;
+        const terrain = terrainHeightAtMapPoint(Number(latlng.lng), Number(latlng.lat));
+        if (terrain === null) return null;
+        return Math.max(terrain, Number(definition.waterLevel) || 0);
     }
 
     function renderLineOfSight() {
@@ -2170,6 +2281,19 @@
     map.on("dblclick", event => {
         if (activeMapTool !== "ruler") return;
         event.originalEvent?.preventDefault();
+        // A double-click first delivers two ordinary clicks at the same
+        // spot. Keep one point there instead of three stacked waypoints.
+        const points = planningPoints.ruler;
+        const samePlace = point =>
+            Math.hypot(point.lat - event.latlng.lat, point.lng - event.latlng.lng) < 1;
+        while (
+            points.length > 1 &&
+            samePlace(points[points.length - 1]) &&
+            samePlace(points[points.length - 2])
+        ) {
+            points.pop();
+        }
+        renderRuler();
         setActiveMapTool("ruler");
     });
 
@@ -2332,12 +2456,6 @@
     let globalRoadDataByMap = {};
     let globalNavmeshDataByMap = {};
     let globalSiteLocations = new Map();
-    let globalMissionSiteLocations = new Map();
-    let globalMobileFireLocations = new Map();
-    let globalBomberSpawnLocations = new Map();
-    let globalStrategicTargetLocations = new Map();
-    let globalConvoyLinkLocations = new Map();
-    let globalArmoredLinkLocations = new Map();
     const routeVisuals = new Map();
     const selectedDepotGroup = L.layerGroup().addTo(map);
     const autoRouteGroups = new Set();
@@ -2345,125 +2463,10 @@
     let routeVisibilityKeys = null;
     let selectedDepotName = null;
     const mapVariantStorageKey = "nuclear-thunder-map-variant";
-    let currentMapVariant = sessionStorage.getItem(mapVariantStorageKey) || "standard";
-
-    function opposingLocationName(name) {
-        const value = String(name || "");
-        if (value.startsWith("t1_")) return `t2_${value.slice(3)}`;
-        if (value.startsWith("t2_")) return `t1_${value.slice(3)}`;
-        return value;
-    }
+    let currentMapVariant = readSessionValue(mapVariantStorageKey) || "standard";
 
     function locationsByName(records) {
         return new Map(records.map(record => [record.name, record]));
-    }
-
-    function linkLocationKey(link) {
-        return [
-            link.factory || "",
-            link.assembly || "",
-            link.target || "",
-            link.resource || ""
-        ].join("\u0001");
-    }
-
-    function locationsByLink(records) {
-        return new Map(records.map(record => [linkLocationKey(record), record]));
-    }
-
-    function oppositeLinkLocationKey(link) {
-        return linkLocationKey({
-            ...link,
-            factory: opposingLocationName(link.factory),
-            assembly: opposingLocationName(link.assembly),
-            target: opposingLocationName(link.target)
-        });
-    }
-
-    function transformedLocalPosition(localPos, targetTransform) {
-        if (
-            !Array.isArray(localPos) || localPos.length < 3 ||
-            !Array.isArray(targetTransform) || targetTransform.length < 4
-        ) return null;
-        const [x, y, z] = localPos.map(Number);
-        if (![x, y, z].every(Number.isFinite)) return null;
-        const rows = targetTransform.map(row => row.map(Number));
-        if (!rows.slice(0, 4).every(row =>
-            row.length >= 3 && row.slice(0, 3).every(Number.isFinite)
-        )) return null;
-        return [
-            x * rows[0][0] + y * rows[1][0] + z * rows[2][0] + rows[3][0],
-            x * rows[0][1] + y * rows[1][1] + z * rows[2][1] + rows[3][1],
-            x * rows[0][2] + y * rows[1][2] + z * rows[2][2] + rows[3][2]
-        ];
-    }
-
-    function translatedWorldPosition(position, sourceWorldPos, targetWorldPos) {
-        if (
-            !Array.isArray(position) || !Array.isArray(sourceWorldPos) ||
-            !Array.isArray(targetWorldPos)
-        ) return null;
-        const values = [...position, ...sourceWorldPos, ...targetWorldPos].map(Number);
-        if (!values.every(Number.isFinite)) return null;
-        return [
-            position[0] - sourceWorldPos[0] + targetWorldPos[0],
-            position[1] - sourceWorldPos[1] + targetWorldPos[1],
-            position[2] - sourceWorldPos[2] + targetWorldPos[2]
-        ];
-    }
-
-    function moveItemsToLocation(items = [], targetItems = [], sourceSite, targetSite) {
-        return items.map((item, index) => {
-            const target = targetItems[index];
-            const worldPos = transformedLocalPosition(
-                item.local_pos,
-                targetSite?.tm
-            ) || target?.world_pos || translatedWorldPosition(
-                item.world_pos,
-                sourceSite?.world_pos,
-                targetSite?.world_pos
-            );
-            return worldPos ? { ...item, world_pos: worldPos } : item;
-        });
-    }
-
-    function moveEraItemsToLocation(
-        itemsByEra = {},
-        targetItemsByEra = {},
-        sourceSite,
-        targetSite
-    ) {
-        return Object.fromEntries(Object.entries(itemsByEra).map(([era, items]) => [
-            era,
-            moveItemsToLocation(
-                items,
-                targetItemsByEra[era] || [],
-                sourceSite,
-                targetSite
-            )
-        ]));
-    }
-
-    // Every t1_ location in the extracted mission has a matching t2_ location.
-    // Keep each faction's own unit set, but move every unit to its matching
-    // opposing location. The two factions can use different-sized batteries,
-    // so source-local coordinates prevent extra units from being left behind.
-    function moveMapSiteToOpposingLocation(site) {
-        // Standard and mirror missions have authored coordinates for every
-        // object. The selected dataset is already in the correct location.
-        return site;
-    }
-
-    function moveWorldRecordToOpposingLocation(record, locations) {
-        return record;
-    }
-
-    function moveMobileFireUnitToOpposingLocation(unit) {
-        return unit;
-    }
-
-    function moveLinkToOpposingLocation(link, locations) {
-        return link;
     }
 
     function populateMapSelector() {
@@ -2478,7 +2481,10 @@
             input.checked = definition.id === currentMapId;
             input.addEventListener("change", event => {
                 currentMapId = event.target.value;
-                sessionStorage.setItem(mapSelectionStorageKey, currentMapId);
+                writeSessionValue(mapSelectionStorageKey, currentMapId);
+                // Planning points are stored in image coordinates, which
+                // mean different world positions and scales on each map.
+                clearPlanningTools();
                 refreshMapArtwork();
                 rebuildGroupedLayerControl();
                 activateMapVariant(activeMapDefinition().defaultVariant);
@@ -2490,6 +2496,7 @@
 
     function refreshMapArtwork() {
         const definition = activeMapDefinition();
+        updateTerrainLegendScale(definition);
         standardMapLayer.setUrl(definition.image);
         topographicMapLayer.setUrl(definition.terrainOverlay || definition.image);
         loadTerrainForMap(definition);
@@ -2620,26 +2627,10 @@
             variantId = definition.defaultVariant;
         }
         currentMapVariant = variantId;
-        sessionStorage.setItem(mapVariantStorageKey, currentMapVariant);
+        writeSessionValue(mapVariantStorageKey, currentMapVariant);
         globalSiteData = globalMapVariants[currentMapVariant];
         globalMissionLogic = globalMissionLogicVariants[currentMapVariant];
         globalSiteLocations = locationsByName(globalSiteData);
-        globalMissionSiteLocations = locationsByName(globalMissionLogic.sites || []);
-        globalMobileFireLocations = locationsByName(
-            globalMissionLogic.mobile_fire_units || []
-        );
-        globalBomberSpawnLocations = locationsByName(
-            globalMissionLogic.bomber_spawns || []
-        );
-        globalStrategicTargetLocations = locationsByName(
-            globalMissionLogic.mlrs_tbm_targets || []
-        );
-        globalConvoyLinkLocations = locationsByLink(
-            globalMissionLogic.likely_convoy_links || []
-        );
-        globalArmoredLinkLocations = locationsByLink(
-            globalMissionLogic.likely_armored_links || []
-        );
         clearVariantLayers();
         asphaltRoadGroup.clearLayers();
         gravelRoadGroup.clearLayers();
@@ -2670,6 +2661,14 @@
     }
 
     function operationalCategory(site) {
+        const templateCategories = {
+            assembly_area: "vehicleDepots",
+            fuel_factory: "fuelAmmoDepots",
+            ammo_factory: "fuelAmmoDepots",
+            strongpoint: "strongpoints",
+            airfield: "airfields"
+        };
+        if (templateCategories[site.category]) return templateCategories[site.category];
         const siteName = String(site.name || "").toLowerCase();
         const sourceGroup = String(site.source_group || "").toLowerCase();
         if (sourceGroup === "ships") return "fleet";
@@ -3153,6 +3152,15 @@
             globalArmoredRoutes.set(armoredRouteKey(link), roadRoute);
             return roadRoute;
         }
+        // Same fallback order as convoys: roads first, then the navmesh.
+        const navmeshRoute = globalRoadGraph && globalNavmeshGraph &&
+            link?.from?.length >= 3 && link?.to?.length >= 3
+            ? findRoadPath(globalNavmeshGraph, link.from, link.to)
+            : null;
+        if (navmeshRoute) {
+            globalArmoredRoutes.set(armoredRouteKey(link), navmeshRoute);
+            return navmeshRoute;
+        }
         return {
             worldPoints: [link.from, link.to],
             distance: worldPathDistance([link.from, link.to]),
@@ -3503,11 +3511,24 @@
             : Math.min(requested, 30);
     }
 
-    function vectorIconDataUri(team, family, path) {
+    // Icon fills are role-based rather than hardcoded into individual
+    // renderers. Add a new role here when another site/unit category needs a
+    // distinct team palette; callers only need to pass `colorRole`.
+    const ICON_TEAM_PALETTES = {
+        default: { 1: "#fc8181", 2: "#90cdf4" },
+        "sam-site": { 1: "#fc8181", 2: "#90cdf4" }
+    };
+
+    function iconTeamFill(team, colorRole = "default") {
+        const palette = ICON_TEAM_PALETTES[colorRole] || ICON_TEAM_PALETTES.default;
+        return palette[team] || "#fdfcff";
+    }
+
+    function vectorIconDataUri(team, family, path, colorRole = "default") {
         const fileName = String(path).split("/").pop();
         const source = globalIconTemplates[family]?.[fileName];
         if (!source) return null;
-        const color = team === 1 ? "#fc8181" : team === 2 ? "#90cdf4" : "#fdfcff";
+        const color = iconTeamFill(team, colorRole);
         // Replace only the white symbol fill. Black outlines/detail paths are
         // deliberately preserved from the original vector artwork.
         let recolored = source.replace(/(#fdfcff|#fff(?:fff)?|white)/gi, color);
@@ -3532,7 +3553,7 @@
         return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(recolored)}`;
     }
 
-    function natoIconPath(team, iconType) {
+    function natoIconPath(team, iconType, options = {}) {
         const family = activeIconFamily();
         let type = iconTypeForFamily(iconType, family);
         // A few legacy entries use a semantic type that is not a filename in
@@ -3550,15 +3571,20 @@
             const side = team === 1 ? "enemy" : "ally";
             path = `images/icons/nato/def_nato_${side}_${type}_radar.svg`;
         }
-        const vectorSource = vectorIconDataUri(team, family, path);
+        const vectorSource = vectorIconDataUri(
+            team,
+            family,
+            path,
+            options?.colorRole || "default"
+        );
         if (vectorSource) return vectorSource;
         // Fallback while templates are unavailable (for example during a
         // development hot reload). The source SVG remains usable directly.
         return `${path}?team=${team || 0}`;
     }
 
-    function natoIcon(team, iconType, size = 30) {
-        const path = natoIconPath(team, iconType);
+    function natoIcon(team, iconType, size = 30, options = {}) {
+        const path = natoIconPath(team, iconType, options);
         const family = activeIconFamily();
         const renderSize = iconRenderSize(size);
         return L.divIcon({
@@ -3659,6 +3685,12 @@
     };
 
     function natoRadarBand(band) {
+        if (Array.isArray(band)) {
+            const labels = band
+                .map(natoRadarBand)
+                .filter(label => label !== "Band unknown");
+            return labels.length ? [...new Set(labels)].join(" / ") : "Band unknown";
+        }
         const index = Number(band);
         return Number.isInteger(index) && NATO_RADAR_BANDS[index]
             ? `${NATO_RADAR_BANDS[index]}-band`
@@ -3791,12 +3823,20 @@
                 `${tooltip}<br><i>Click to highlight this depot's routes</i>`
             ).addTo(categoryGroup.objectives);
             const sourceSite = globalSiteLocations.get(site.name);
-            const mainBuilding = sourceSite?.buildings_by_era?.[selectedPresetId()]?.[0];
-            if (mainBuilding && BUILDING_CARD_DATA[String(mainBuilding.name || "").toLowerCase()]) {
-                marker.bindPopup(
-                    buildingCardHtml(mainBuilding, { ...sourceSite, team: site.team }),
-                    { maxWidth: 360 }
-                );
+            const mainBuildingFor = presetId =>
+                sourceSite?.buildings_by_era?.[presetId]?.[0];
+            const hasBuildingCard = Object.keys(sourceSite?.buildings_by_era || {}).some(presetId =>
+                BUILDING_CARD_DATA[String(mainBuildingFor(presetId)?.name || "").toLowerCase()]
+            );
+            if (hasBuildingCard) {
+                // Resolve the card when it opens so it follows the currently
+                // selected scenario rather than the one active at draw time.
+                marker.bindPopup(() => {
+                    const mainBuilding = mainBuildingFor(selectedPresetId());
+                    return mainBuilding
+                        ? buildingCardHtml(mainBuilding, { ...sourceSite, team: site.team })
+                        : "";
+                }, { maxWidth: 360 });
             }
             marker.on("click", event =>
                 selectDepotRoutes(site, position, event)
@@ -3892,33 +3932,8 @@
     }
 
     function drawMissionLogic(logic) {
-        logic = {
-            ...logic,
-            sites: logic.sites.map(site =>
-                moveWorldRecordToOpposingLocation(site, globalMissionSiteLocations)
-            ),
-            mobile_fire_units: logic.mobile_fire_units.map(
-                moveMobileFireUnitToOpposingLocation
-            ),
-            likely_convoy_links: logic.likely_convoy_links.map(link =>
-                moveLinkToOpposingLocation(link, globalConvoyLinkLocations)
-            ),
-            likely_armored_links: (logic.likely_armored_links || []).map(link =>
-                moveLinkToOpposingLocation(link, globalArmoredLinkLocations)
-            ),
-            mlrs_tbm_targets: logic.mlrs_tbm_targets.map(target =>
-                moveWorldRecordToOpposingLocation(
-                    target,
-                    globalStrategicTargetLocations
-                )
-            ),
-            bomber_spawns: (logic.bomber_spawns || []).map(spawn =>
-                moveWorldRecordToOpposingLocation(
-                    spawn,
-                    globalBomberSpawnLocations
-                )
-            )
-        };
+        // Standard and swapped missions each carry authored coordinates, so
+        // the selected variant's records are drawn as they are.
         logic.sites.forEach(drawLogicSite);
         logic.mobile_fire_units.forEach(drawMobileFireUnit);
 
@@ -3940,7 +3955,7 @@
                 Selection distance: ${formatDistance(link.distance)} · rank ${link.rank_by_distance}<br>
                 Approximate route: ${formatDistance(route.distance)}<br>
                 ${routeNetworkLabel(route)}<br>
-                Actual destination choice also depends on free storage capacity<br>
+                The game sends each column to whichever of the 3 nearest non-full storages has the most free capacity<br>
                 <i>Click to keep this route highlighted</i>
                 `,
                 group: (missionGroups[link.team] || missionGroups[1])
@@ -3965,8 +3980,9 @@
                 Direct selection distance: ${formatDistance(link.distance)}<br>
                 Approximate route: ${formatDistance(route.distance)}<br>
                 ${routeNetworkLabel(route)}<br>
-                The game randomly chooses among the three nearest eligible targets;
-                ownership and surviving defenders can change eligibility<br>
+                The game randomly chooses among the three nearest eligible targets
+                (enemy depots, strongpoints and airfields); ownership and
+                surviving defenders can change eligibility<br>
                 <i>Click to keep this route highlighted</i>
                 `,
                 group: (missionGroups[link.team] || missionGroups[1])
@@ -4062,8 +4078,9 @@
         const name = String(unit.name || "unit");
         const role = String(unit.role || "vehicle");
         const lifecycle = lifecycleForUnit(unit, site);
-        const isDepotSpaa = unitIconType(unit, site) === "spaa" &&
-            lifecycle.kind === "repair_with_site";
+        // Depot repair is mission behavior, not an icon role: missile-based
+        // defenders can use a SAM symbol while still repairing with the depot.
+        const repairsWithDepot = lifecycle.kind === "repair_with_site";
         const specs = globalUnitSpecs[name.toLowerCase()];
         const icon = natoIconPath(site.team, unitIconType(unit, site));
         const vehicleImage = vehicleImageSources(name);
@@ -4075,7 +4092,8 @@
             if (sensorData?.nominal) {
                 statEntries.push([label, formatDistance(sensorData.nominal)]);
             }
-            if (Number.isFinite(Number(sensorData?.band)) && Number(sensorData.band) >= 0) {
+            const bands = Array.isArray(sensorData?.band) ? sensorData.band : [sensorData?.band];
+            if (bands.some(band => Number.isFinite(Number(band)) && Number(band) >= 0)) {
                 statEntries.push([`${label} band`, natoRadarBand(sensorData.band)]);
             }
         }
@@ -4099,7 +4117,7 @@
         }
         const timerSeconds = Number(lifecycle.seconds);
         const noRespawn = lifecycle.kind === "none";
-        const depotTimerSeconds = isDepotSpaa && timerSeconds > 0 ? timerSeconds : null;
+        const depotTimerSeconds = repairsWithDepot && timerSeconds > 0 ? timerSeconds : null;
         if (specs?.target_channels) {
             statEntries.push(["Channels", specs.target_channels]);
         }
@@ -4140,7 +4158,7 @@
                 <img class="vehicle-card-art" src="${escapeHtml(vehicleImage.src)}" alt=""
                     data-fallbacks="${escapeHtml(vehicleImage.fallbacks.join("|"))}"
                     onerror="const sources=(this.dataset.fallbacks||'').split('|').filter(Boolean);if(sources.length){this.dataset.fallbacks=sources.slice(1).join('|');this.src=sources[0];}else{this.remove();this.parentElement.classList.add('no-art');}">
-                ${isDepotSpaa
+                ${repairsWithDepot
                     ? `<span class="vehicle-card-depot-context"><img src="images/icons/respawnbase_timer_ui.svg" alt=""><span>With depot</span>${depotTimerSeconds > 0 ? `<b>${escapeHtml(formatSeconds(depotTimerSeconds))}</b>` : ""}</span>`
                     : (timerSeconds > 0
                     ? `<span class="vehicle-card-timer"><img src="images/icons/respawnbase_timer_ui.svg" alt="">${escapeHtml(formatSeconds(timerSeconds))}</span>`
@@ -4260,20 +4278,6 @@
         `;
     }
 
-    function compositionCategoryLabel(category) {
-        return {
-            shortSams: "Close SAM sites",
-            longSams: "Long-range SAM sites",
-            ewRadars: "Early-warning radars",
-            airfields: "Airfield defences",
-            strategic: "Strategic launch systems",
-            fleet: "Fleet patrol groups",
-            vehicleDepots: "Vehicle depots",
-            fuelAmmoDepots: "Fuel and ammunition depots",
-            strongpoints: "Strongpoints and other ground forces"
-        }[category] || "Other forces";
-    }
-
     function compositionSiteLabel(site, siteCount = 1) {
         const category = operationalCategory(site);
         const prefix = site.team === 1 ? "REDFOR" : "BLUFOR";
@@ -4291,128 +4295,6 @@
         }[category] || "ground site";
         if (siteCount > 1) return `${prefix} ${type} ×${siteCount}`;
         return `${prefix} ${type}${number ? ` ${number}` : ""}`;
-    }
-
-    function renderCompositionPanel(presetId) {
-        const panel = document.getElementById("composition-panel");
-        if (!panel || !globalSiteData?.length) return;
-        const records = [];
-        globalSiteData.forEach(sourceSite => {
-            const site = moveMapSiteToOpposingLocation(sourceSite);
-            const units = (site.units_by_era?.[presetId] || []).map(unit => ({
-                ...unit,
-                _originSiteName: sourceSite.name
-            }));
-            if (units.length) records.push({ site, units: [...units] });
-        });
-
-        // A SAM position is built from a central site BLK plus nearby SAM and
-        // SPAA cover foundations.  The three are separate mission records but
-        // represent one physical battery, so present their combined order of
-        // battle rather than three misleading mini-sites.
-        const mainAirDefenceSites = records.filter(({ site }) =>
-            /_(short|long)_sam_site_\d+$/.test(String(site.name || ""))
-        );
-        const absorbedCoverSites = new Set();
-        records.forEach(record => {
-            const name = String(record.site.name || "");
-            if (!/_(sam|spaa)_cover_foundation_\d+$/.test(name)) return;
-            const [x, , z] = record.site.world_pos;
-            let nearest = null;
-            let nearestDistance = Infinity;
-            mainAirDefenceSites.forEach(candidate => {
-                if (candidate.site.team !== record.site.team) return;
-                const [candidateX, , candidateZ] = candidate.site.world_pos;
-                const distance = Math.hypot(x - candidateX, z - candidateZ);
-                if (distance < nearestDistance) {
-                    nearest = candidate;
-                    nearestDistance = distance;
-                }
-            });
-            if (nearest && nearestDistance <= 2000) {
-                nearest.units.push(...record.units);
-                absorbedCoverSites.add(record);
-            }
-        });
-        // Merge only sites with the same team, operational role, and per-site
-        // unit composition. This makes repeated batteries, airfield layouts,
-        // depots, and strongpoints compact without hiding genuine variations.
-        const grouped = new Map();
-        records.forEach(record => {
-            const { site, units } = record;
-            if (absorbedCoverSites.has(record)) return;
-            const category = operationalCategory(site);
-            if (!grouped.has(category)) grouped.set(category, []);
-            const unitsByType = new Map();
-            units.forEach(unit => {
-                const key = [unit.name, unit.role, unit.preset].join("|");
-                const entry = unitsByType.get(key) || { unit, count: 0 };
-                entry.count += 1;
-                unitsByType.set(key, entry);
-            });
-            const compactUnits = [...unitsByType.values()].sort((a, b) =>
-                [a.unit.name, a.unit.role, a.unit.preset].join("|").localeCompare(
-                    [b.unit.name, b.unit.role, b.unit.preset].join("|")
-                )
-            );
-            const compositionKey = compactUnits.map(({ unit, count }) =>
-                [unit.name, unit.role, unit.preset, count].join("|")
-            ).join(";");
-            const matchingEntry = grouped.get(category).find(entry =>
-                entry.site.team === site.team && entry.compositionKey === compositionKey
-            );
-            if (matchingEntry) {
-                matchingEntry.siteCount += 1;
-                matchingEntry.siteNames.push(site.name);
-            } else {
-                grouped.get(category).push({
-                    site,
-                    units: compactUnits,
-                    compositionKey,
-                    siteCount: 1,
-                    siteNames: [site.name]
-                });
-            }
-        });
-
-        const order = [
-            "shortSams", "longSams", "ewRadars", "airfields", "strategic",
-            "fleet", "vehicleDepots", "fuelAmmoDepots", "strongpoints"
-        ];
-        const sections = order.filter(category => grouped.has(category)).map(category => {
-            const sites = grouped.get(category).sort((a, b) =>
-                a.site.team - b.site.team || a.site.name.localeCompare(b.site.name)
-            );
-            const entries = sites.map(({ site, units, siteCount }, index) => {
-                const composition = units.map(({ unit, count }) =>
-                    `${count} ${displayName(unit.name)}`
-                ).join(" · ");
-                const open = (category === "shortSams" || category === "longSams" || category === "airfields") && index < 4;
-                const matchingSites = siteCount > 1
-                    ? `${siteCount} matching sites · each: `
-                    : "";
-                return `
-                    <details class="composition-site team-${site.team}" ${open ? "open" : ""}>
-                        <summary>${escapeHtml(compositionSiteLabel(site, siteCount))}</summary>
-                        <p class="composition-site-description">${escapeHtml(matchingSites + composition)}</p>
-                        <div class="vehicle-card-grid">
-                            ${units.map(({ unit, count }) => unitCardHtml(unit, site, count)).join("")}
-                        </div>
-                    </details>
-                `;
-            }).join("");
-            return `
-                <section class="composition-section">
-                    <h3 class="composition-section-title">${escapeHtml(compositionCategoryLabel(category))}</h3>
-                    ${entries}
-                </section>
-            `;
-        }).join("");
-        panel.innerHTML = `
-            <h2>${escapeHtml(presetDisplayName(presetId))} composition</h2>
-            <p>Datamined unit layouts. Open a site to inspect its vehicle cards.</p>
-            ${sections || "<p>No unit layout is defined for this scenario.</p>"}
-        `;
     }
 
     function compactSiteUnits(units) {
@@ -4464,10 +4346,12 @@
             strategic: "tbm"
         }[category] || "tank";
         const classes = ["site-overview-icon", `team-${team}`];
+        const samSite = category === "shortSams" || category === "longSams";
+        if (samSite) classes.push("sam-site");
         if (category === "longSams") classes.push("long-range");
         const family = activeIconFamily();
         const renderSize = iconRenderSize(30);
-        const content = `<img data-icon-family="${family}" data-icon-size="${renderSize}" style="width:${renderSize}px;height:${renderSize}px" src="${escapeHtml(natoIconPath(team, type))}" alt="">`;
+        const content = `<img data-icon-family="${family}" data-icon-size="${renderSize}" style="width:${renderSize}px;height:${renderSize}px" src="${escapeHtml(natoIconPath(team, type, { colorRole: samSite ? "sam-site" : "default" }))}" alt="">`;
         return L.divIcon({
             className: "",
             html: `<span class="${classes.join(" ")}">${content}</span>`,
@@ -4490,15 +4374,9 @@
     }
 
     function convoyEraKey(presetId) {
-        const id = String(presetId || "").toLowerCase();
-        const idEra = {
-            "rank-0-26": "1970_early",
-            "rank-27-30": "1970_late",
-            "rank-31-36": "1980",
-            "rank-37-39": "2018",
-            "rank-40-50": "2018"
-        }[id];
-        if (idEra) return idEra;
+        // Preset labels are generated from the active mission templates
+        // (build_map_data.py), so they name the same era as the convoy
+        // templates without hard-coding rank boundaries here.
         const label = presetDisplayName(presetId).toLowerCase();
         if (label.includes("1970") && label.includes("early")) return "1970_early";
         if (label.includes("1970") && label.includes("late")) return "1970_late";
@@ -4541,7 +4419,7 @@
         };
         if (category === "resourceConvoys") {
             const resourceByEra = convoys.resource || {};
-            const resource = resourceByEra[era] || resourceByEra[Object.keys(resourceByEra)[0]];
+            const resource = era ? resourceByEra[era] : null;
             if (!resource) return "<p>Convoy composition is not available for this preset.</p>";
             const side = legendTeam === 1 ? "redfor" : "blufor";
             const sideLabel = legendTeam === 1 ? "REDFOR" : "BLUFOR";
@@ -4549,7 +4427,7 @@
                 convoyCards(resource.ammo?.[side], legendTeam, `Ammunition convoy · ${sideLabel}`);
         }
         const armoredByEra = convoys.armored || {};
-        const armored = armoredByEra[era] || armoredByEra[Object.keys(armoredByEra)[0]];
+        const armored = era ? armoredByEra[era] : null;
         if (!armored) return "<p>Armoured-column composition is not available for this preset.</p>";
         const side = legendTeam === 1 ? "redfor" : "blufor";
         const sideLabel = legendTeam === 1 ? "REDFOR" : "BLUFOR";
@@ -4608,13 +4486,12 @@
     }
 
     function overviewSiteRecords(selectedEra) {
-        const records = globalSiteData.map(sourceSite => {
-            const site = moveMapSiteToOpposingLocation(sourceSite);
+        const records = globalSiteData.map(site => {
             return {
                 site,
                 units: (site.units_by_era?.[selectedEra] || []).map(unit => ({
                     ...unit,
-                    _originSiteName: sourceSite.name
+                    _originSiteName: site.name
                 })),
                 buildings: [...(site.buildings_by_era?.[selectedEra] || [])],
                 siteNames: [site.name],
@@ -4800,9 +4677,11 @@
             .filter(entry => operationalCategory(entry.site) === "airfields")
             .forEach(entry => {
                 const focused = focusedOverviewSite?.site.name === entry.site.name;
-                const highlighted = focused || (
+                const siteLayer = siteGroups[entry.site.team]?.airfields;
+                const layerVisible = !siteLayer || layerIsEnabled(siteLayer);
+                const highlighted = layerVisible && (focused || (
                     legendCategory === "airfields" && entry.site.team === legendTeam
-                );
+                ));
                 const baseColor = teamColor(entry.site.team);
                 const detailLayers = runwayLayersBySite.get(entry.site.name) || [];
                 detailLayers.forEach((layer, index) => {
@@ -4831,10 +4710,18 @@
 
     function applyLegendHighlights() {
         overviewMarkers.forEach(({ marker, entry }) => {
+            const category = operationalCategory(entry.site);
+            const siteLayer = siteGroups[entry.site.team]?.[category];
+            // Legend selection must never revive or highlight a category the
+            // user hid in the layer drawer. The logical visibility state is
+            // separate from Leaflet's temporary zoom representation, so this
+            // remains correct when overview/detail layers are swapped.
+            const layerVisible = !siteLayer || layerIsEnabled(siteLayer);
             const highlighted = Boolean(
                 legendCategory &&
                 entry.site.team === legendTeam &&
-                operationalCategory(entry.site) === legendCategory
+                category === legendCategory &&
+                layerVisible
             );
             marker.setZIndexOffset(highlighted ? 1100 : 500);
             marker.getElement()?.classList.toggle("legend-highlighted", highlighted);
@@ -5008,60 +4895,6 @@
         overviewMarkers.push({ marker, entry });
     }
 
-    function makeCategoryClusters(entries) {
-        const clusters = new Map();
-        entries.forEach(entry => {
-            const category = operationalCategory(entry.site);
-            const key = `${entry.site.team}:${category}`;
-            const existing = clusters.get(key);
-            if (!existing) {
-                clusters.set(key, {
-                    ...entry,
-                    units: [...entry.units],
-                    buildings: [...entry.buildings],
-                    siteNames: [...entry.siteNames],
-                    relatedSites: [...entry.relatedSites],
-                    siteCount: entry.siteCount
-                });
-                return;
-            }
-            const previousCount = existing.siteCount;
-            existing.siteCount += entry.siteCount;
-            existing.units.push(...entry.units);
-            existing.buildings.push(...entry.buildings);
-            existing.siteNames.push(...entry.siteNames);
-            existing.relatedSites.push(...entry.relatedSites);
-            const [oldX, oldY, oldZ] = existing.site.world_pos;
-            const [newX, newY, newZ] = entry.site.world_pos;
-            existing.site = {
-                ...existing.site,
-                world_pos: [
-                    (oldX * previousCount + newX * entry.siteCount) / existing.siteCount,
-                    (oldY * previousCount + newY * entry.siteCount) / existing.siteCount,
-                    (oldZ * previousCount + newZ * entry.siteCount) / existing.siteCount
-                ]
-            };
-        });
-        const order = [
-            "strongpoints", "vehicleDepots", "fuelAmmoDepots", "shortSams",
-            "longSams", "ewRadars", "airfields", "strategic"
-        ];
-        return [...clusters.values()].map(entry => {
-            const index = Math.max(0, order.indexOf(operationalCategory(entry.site)));
-            const angle = (Math.PI * 2 * index) / order.length;
-            const radius = 9000;
-            const [x, y, z] = entry.site.world_pos;
-            return {
-                ...entry,
-                displayWorldPos: [
-                    x + Math.cos(angle) * radius,
-                    y,
-                    z + Math.sin(angle) * radius
-                ]
-            };
-        });
-    }
-
     function drawOverviewSites(selectedEra) {
         const entries = overviewSiteRecords(selectedEra);
         latestOverviewEntries = entries;
@@ -5155,6 +4988,10 @@
                     }).join("") : "<p>No matching sites in this scenario.</p>"}
                 </section>
             ` : ""}
+            <details class="composition-site respawn-legend">
+                <summary>Respawn and restore timers</summary>
+                <div class="composition-site-description">${respawnLegendHtml()}</div>
+            </details>
         `;
         panel.querySelectorAll("[data-legend-team]").forEach(button => {
             button.addEventListener("click", () => {
@@ -5337,8 +5174,7 @@
         runwayLayersBySite.clear();
         runwayOutlineLayersBySite.clear();
 
-        globalSiteData.forEach(sourceSite => {
-            const site = moveMapSiteToOpposingLocation(sourceSite);
+        globalSiteData.forEach(site => {
             (site.runways || []).forEach(runway => {
                 drawRunway(runway, site);
             });
@@ -5516,6 +5352,14 @@
         })
         .catch(error => {
             console.error("Could not load map data:", error);
+            const message = window.location.protocol === "file:"
+                ? "Map data cannot load from a local file. Run a local web server (see README)."
+                : `Map data could not be loaded: ${error?.message || error}`;
+            const options = document.getElementById("map-options");
+            if (options) {
+                options.textContent = message;
+                options.setAttribute("role", "alert");
+            }
         });
 
     // Folder-eye state is deliberately session-only. Each folder remembers
@@ -5765,6 +5609,26 @@
                 ];
             }
 
+            function ancestorVisibilitySnapshot(nodePath) {
+                let ancestorPath = String(nodePath || "");
+                while (ancestorPath.includes("/")) {
+                    ancestorPath = ancestorPath.slice(
+                        0,
+                        ancestorPath.lastIndexOf("/")
+                    );
+                    const snapshot = folderVisibilitySnapshots.get(ancestorPath);
+                    if (snapshot) return snapshot;
+                }
+                return null;
+            }
+
+            function clearDescendantSnapshots(nodePath) {
+                const prefix = `${nodePath}/`;
+                [...folderVisibilitySnapshots.keys()]
+                    .filter(path => path.startsWith(prefix))
+                    .forEach(path => folderVisibilitySnapshots.delete(path));
+            }
+
             function setOptionVisibility(option, visible, rememberUser = true) {
                 if (rememberUser) {
                     userLayerVisibility.set(option.layer, Boolean(visible));
@@ -5785,15 +5649,16 @@
                 ).length;
                 const anyVisible = visibleCount > 0;
                 const allVisible = visibleCount === options.length;
-                const hasSnapshot = folderVisibilitySnapshots.has(
-                    node.visibilityPath
-                );
+                const hasSnapshot = folderVisibilitySnapshots.has(node.visibilityPath);
+                const inheritedSnapshot = !anyVisible
+                    ? ancestorVisibilitySnapshot(node.visibilityPath)
+                    : null;
                 node.eyeButton.classList.toggle("active", anyVisible);
                 node.eyeButton.classList.toggle(
                     "partial",
                     anyVisible && !allVisible
                 );
-                node.eyeButton.title = hasSnapshot
+                node.eyeButton.title = hasSnapshot || inheritedSnapshot
                     ? `Restore previous ${node.title}`
                     : anyVisible
                         ? `Hide all ${node.title}`
@@ -5873,6 +5738,7 @@
                             );
                         });
                         folderVisibilitySnapshots.delete(nodePath);
+                        clearDescendantSnapshots(nodePath);
                         // Reapply the current zoom representation after
                         // restoring the logical layer choices. Otherwise a
                         // restore briefly/additionally displays both site
@@ -5892,9 +5758,21 @@
                                 layerIsEnabled(option.layer)
                             ]))
                         );
+                        clearDescendantSnapshots(nodePath);
                         options.forEach(option => setOptionVisibility(option, false));
                     } else {
-                        options.forEach(option => setOptionVisibility(option, true));
+                        // If an ancestor folder was hidden, restore this
+                        // child from the ancestor's saved mix instead of
+                        // turning on every descendant layer.
+                        const inheritedSnapshot = ancestorVisibilitySnapshot(nodePath);
+                        if (inheritedSnapshot) {
+                            options.forEach(option => setOptionVisibility(
+                                option,
+                                inheritedSnapshot.get(option.layer) ?? false
+                            ));
+                        } else {
+                            options.forEach(option => setOptionVisibility(option, true));
+                        }
                     }
                     syncDetailVisibility();
                     refreshAllFolderEyes();
@@ -5938,6 +5816,9 @@
                         checkbox.checked = layerIsEnabled(option.layer);
                         checkbox.addEventListener("change", () => {
                             setOptionVisibility(option, checkbox.checked);
+                            // Site markers and individual units swap by zoom
+                            // level; re-apply that after a manual toggle.
+                            syncDetailVisibility();
                             refreshAllFolderEyes();
                         });
                         label.append(

@@ -14,9 +14,7 @@
   ],
   "y_scale_m": 653.7937774658203,
   "landmesh_vertex_count": 493197,
-  "source": "air_south_eastern_city.bin",
-  "stream": "lmap/lndm",
-  "lod": 0,
+  "removed_flat_sea_artifact_pixels": 10742,
   "resolution": [
     1024,
     1024
@@ -25,7 +23,21 @@
     -65536.0,
     65536.0
   ],
-  "actual_min_height_m": 2.0950591564178467,
-  "actual_max_height_m": 1297.351806640625,
-  "note": "Rasterized from embedded land-mesh vertices; it is not an HM2 source heightmap."
+  "water_level_m": 0.0,
+  "actual_min_height_m": -73.16241455078125,
+  "actual_max_height_m": 1222.0943603515625,
+  "height_encoding": {
+    "format": "rg16",
+    "image": "southeastern_city_height_16bit.webp",
+    "width": 1024,
+    "height": 1024,
+    "min_m": -74.0,
+    "step_m": 0.25,
+    "max_m": 1222.0
+  },
+  "note": "Rasterized from embedded land-mesh vertices; it is not an HM2 source heightmap.",
+  "source": "air_south_eastern_city.bin",
+  "stream": "lmap/lndm",
+  "lod": 0,
+  "vertical_correction": "Regenerated from the previous raster with the land-mesh centre offset fixed (-75.2575 m)."
 }

@@ -73,7 +73,8 @@ def choose(index: dict[str, list[Path]], stems: list[str], suffix: str) -> Path 
 
 def copy_once(source: Path | None, destination: Path, force: bool) -> str:
     if source is None:
-        return "missing"
+        # Hand-added art is not in the datamine but is not missing either.
+        return "local_only" if destination.exists() else "missing"
     if destination.exists() and not force:
         return "existing"
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -245,17 +246,17 @@ def main() -> int:
         "",
         f"Scanned **{len(report)}** map units from `{datamine}`.",
         "",
-        "| Asset | Copied | Already local | Missing in datamine |",
-        "| --- | ---: | ---: | ---: |",
-        f"| Slot images | {count('slot', 'copied')} | {count('slot', 'existing')} | {count('slot', 'missing')} |",
-        f"| Portraits | {count('portrait', 'copied')} | {count('portrait', 'existing')} | {count('portrait', 'missing')} |",
-        f"| Role SVG library | {sum(item['status'] == 'copied' for item in role_icons)} | {sum(item['status'] == 'existing' for item in role_icons)} | {sum(item['status'] == 'missing' for item in role_icons)} |",
+        "| Asset | Copied | Already local | Local only (not in datamine) | Missing |",
+        "| --- | ---: | ---: | ---: | ---: |",
+        f"| Slot images | {count('slot', 'copied')} | {count('slot', 'existing')} | {count('slot', 'local_only')} | {count('slot', 'missing')} |",
+        f"| Portraits | {count('portrait', 'copied')} | {count('portrait', 'existing')} | {count('portrait', 'local_only')} | {count('portrait', 'missing')} |",
+        f"| Role SVG library | {sum(item['status'] == 'copied' for item in role_icons)} | {sum(item['status'] == 'existing' for item in role_icons)} | 0 | {sum(item['status'] == 'missing' for item in role_icons)} |",
         "",
         "## Missing slot images",
         "",
     ]
     lines += [f"- `{item['unit_class']}`" for item in missing_slots] or ["- None"]
-    lines += ["", "## Missing portraits (no datamine art)", ""]
+    lines += ["", "## Missing portraits (no datamine or local art)", ""]
     lines += [f"- `{item['unit_class']}` — model `{item['model'] or 'unknown'}`" for item in missing_portraits] or ["- None"]
     markdown_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -264,6 +265,8 @@ def main() -> int:
     print(f"Portraits: {count('portrait', 'copied')} copied, {count('portrait', 'existing')} already local, {count('portrait', 'missing')} missing in datamine")
     print(f"Role SVG icons: {sum(item['status'] == 'copied' for item in role_icons)} copied, {sum(item['status'] == 'existing' for item in role_icons)} already local, {sum(item['status'] == 'missing' for item in role_icons)} missing")
     print(f"Report: {report_path}")
+    if any(item["status"] == "copied" for item in role_icons):
+        print("New role SVGs were copied: run tools/build_icon_templates.py so the map uses them.")
     print(f"Readable report: {markdown_path}")
     print("Units missing a slot image:")
     for item in report:
