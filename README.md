@@ -14,8 +14,8 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   precedence if one is provided.
 - Use the **Icons** selector to switch the whole map between NATO (default),
   WT, and USSR role symbols.
-- Use **Swap REDFOR / BLUFOR locations** to move each faction's units to the
-  matching opposing-side location used by the alternate event placement.
+- Use **Swap sides** on either map to load its game-defined mirrored mission,
+  including the opposing-side site locations and mission routes.
 - Open folders in the map controls to show forces, airfields, depots, routes, and range overlays.
 - Click a unit to show its available sensor, weapon, reload, ammo, and respawn
   information. The legend also lists site compositions, convoy compositions,
@@ -65,7 +65,7 @@ To test a local copy, run a small local web server from this folder and open
 will block the data files in most browsers.
 
 The updater can be run manually with `python tools/update_from_datamine.py`.
-It downloads the pinned Nuclear Escalation inputs, regenerates all three map
+It downloads the pinned Nuclear Escalation inputs, regenerates all four map
 variants and unit/range data, and records the source commit in
 `datamine-lock.json`. Review the generated files and the map preview before
 committing or merging the update proposal.

@@ -39,6 +39,14 @@
             transform: translateX(calc(-100% - 8px));
         }
 
+        .feedback-contact {
+            margin: 12px 0 0;
+            padding-top: 9px;
+            border-top: 1px solid #3b4252;
+            color: #b8c3d1;
+            font-size: 11px;
+        }
+
         .drawer-toggle {
             position: absolute;
             top: 10px;
@@ -1354,6 +1362,7 @@
         </div>
     </div>
 
+    <p class="feedback-contact">Feedback: Discord @majorlier</p>
 </div>
 
 <aside id="composition-window" class="composition-window">
@@ -1385,6 +1394,7 @@
             image: MAP_IMAGE,
             variants: ["standard", "mirror"],
             defaultVariant: "standard",
+            mirroredVariant: "mirror",
             supportsTeamSwap: true,
             supportsTerrain: true,
             terrainImage: TERRAIN_HEIGHT_IMAGE,
@@ -1407,9 +1417,10 @@
             id: "city",
             label: "South Eastern City",
             image: CITY_MAP_IMAGE,
-            variants: ["city"],
+            variants: ["city", "city_mirror"],
             defaultVariant: "city",
-            supportsTeamSwap: false,
+            mirroredVariant: "city_mirror",
+            supportsTeamSwap: true,
             supportsTerrain: true,
             terrainImage: CITY_TERRAIN_HEIGHT_IMAGE,
             terrainOverlay: CITY_TOPOGRAPHIC_IMAGE,
@@ -2525,7 +2536,7 @@
             return;
         }
         swapButton.disabled = false;
-        const mirrored = currentMapVariant === "mirror";
+        const mirrored = currentMapVariant === definition.mirroredVariant;
         swapButton.setAttribute("aria-pressed", String(mirrored));
         swapButton.textContent = mirrored ? "RESTORE SIDES" : "SWAP SIDES";
     }
@@ -5196,8 +5207,12 @@
     }
 
     document.getElementById("team-swap").addEventListener("click", () => {
+        const definition = activeMapDefinition();
+        if (!definition.supportsTeamSwap) return;
         activateMapVariant(
-            currentMapVariant === "mirror" ? "standard" : "mirror"
+            currentMapVariant === definition.mirroredVariant
+                ? definition.defaultVariant
+                : definition.mirroredVariant
         );
     });
 
@@ -5290,6 +5305,14 @@
             if (!response.ok) throw new Error(`mission_logic_city.json: HTTP ${response.status}`);
             return response.json();
         }),
+        fetch("map_data_city_mirror.json").then(response => {
+            if (!response.ok) throw new Error(`map_data_city_mirror.json: HTTP ${response.status}`);
+            return response.json();
+        }),
+        fetch("mission_logic_city_mirror.json").then(response => {
+            if (!response.ok) throw new Error(`mission_logic_city_mirror.json: HTTP ${response.status}`);
+            return response.json();
+        }),
         fetch("presets.json").then(response => {
             if (!response.ok) throw new Error(`presets.json: HTTP ${response.status}`);
             return response.json();
@@ -5317,6 +5340,8 @@
             mirrorLogicData,
             citySiteData,
             cityLogicData,
+            cityMirrorSiteData,
+            cityMirrorLogicData,
             presetData,
             unitSpecs,
             unitDisplayNames,
@@ -5325,12 +5350,14 @@
             globalMapVariants = {
                 standard: standardSiteData,
                 mirror: mirrorSiteData,
-                city: citySiteData
+                city: citySiteData,
+                city_mirror: cityMirrorSiteData
             };
             globalMissionLogicVariants = {
                 standard: standardLogicData,
                 mirror: mirrorLogicData,
-                city: cityLogicData
+                city: cityLogicData,
+                city_mirror: cityMirrorLogicData
             };
             globalPresetData = presetData;
             globalUnitSpecs = unitSpecs;

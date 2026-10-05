@@ -58,6 +58,10 @@
     {
       "id": "city",
       "label": "South Eastern City"
+    },
+    {
+      "id": "city_mirror",
+      "label": "South Eastern City \u2014 swapped locations"
     }
   ]
 }

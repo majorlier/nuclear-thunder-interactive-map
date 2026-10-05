@@ -5,6 +5,7 @@ import unittest
 from build_map_data import (
     TemplateRegistry, create_buildings, lifecycle_for_unit,
     mission_site_category, ship_with_mission_route,
+    unit_spawn_rank_rules, spawned_at_rank,
 )
 from update_from_datamine import mission_import_paths
 
@@ -72,6 +73,23 @@ class MissionExtractionTests(unittest.TestCase):
         self.assertEqual(mission_import_paths(mission), [
             "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1980.blkx",
         ])
+
+    def test_mlrs_spawn_only_above_1970_rank_boundary(self):
+        mission = {"triggers": {"spawn_mlrs": {
+            "conditions": {"varCompareInt": {
+                "var_value": "mission_rank", "value": 30,
+                "comparasion_func": "more",
+            }},
+            "actions": {"unitRespawn": [
+                {"object": "t1_mlrs_01"}, {"object": "t2_mlrs_01"},
+            ]},
+        }}}
+        rules = unit_spawn_rank_rules(mission)
+        for unit in ["t1_mlrs_01", "t2_mlrs_01"]:
+            for rank in [0, 26, 27, 30]:
+                self.assertFalse(spawned_at_rank(rules, unit, rank))
+            for rank in [31, 36, 37, 50]:
+                self.assertTrue(spawned_at_rank(rules, unit, rank))
 
 
 if __name__ == "__main__":

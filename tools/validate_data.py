@@ -151,9 +151,11 @@ def main() -> int:
     map_data = load_json(root / "map_data.json")
     map_data_mirror = load_json(root / "map_data_mirror.json")
     map_data_city = load_json(root / "map_data_city.json")
+    map_data_city_mirror = load_json(root / "map_data_city_mirror.json")
     mission_logic = load_json(root / "mission_logic.json")
     mission_logic_mirror = load_json(root / "mission_logic_mirror.json")
     mission_logic_city = load_json(root / "mission_logic_city.json")
+    mission_logic_city_mirror = load_json(root / "mission_logic_city_mirror.json")
     road_network = load_json(root / "road_network.json")
     unit_specs = load_json(root / "unit_specs.json")
     html = (root / "index.html").read_text(encoding="utf-8")
@@ -177,23 +179,35 @@ def main() -> int:
     city_sites, city_units = validate_variant(
         "city", map_data_city, preset_ids, errors
     )
-    if set(standard_sites) != set(mirror_sites):
-        errors.append("standard and mirror maps contain different site names")
-    for site_name, site in standard_sites.items():
-        if not site_name.startswith(("t1_", "t2_")):
-            continue
-        opposite = ("t2_" if site_name.startswith("t1_") else "t1_") + site_name[3:]
-        mirror_site = mirror_sites.get(site_name)
-        standard_opposite = standard_sites.get(opposite)
-        if mirror_site and standard_opposite and not same_position(
-            mirror_site.get("world_pos"), standard_opposite.get("world_pos")
-        ):
-            errors.append(f"mirror position does not match opposite side: {site_name}")
+    city_mirror_sites, city_mirror_units = validate_variant(
+        "city_mirror", map_data_city_mirror, preset_ids, errors
+    )
+    expected_variants = {"standard", "mirror", "city", "city_mirror"}
+    actual_variants = {item.get("id") for item in presets_document.get("variants", [])}
+    if actual_variants != expected_variants:
+        errors.append("presets.json must declare both normal and mirrored missions for each map")
+    for label, normal, mirrored in (
+        ("Archipelago", standard_sites, mirror_sites),
+        ("City", city_sites, city_mirror_sites),
+    ):
+        if set(normal) != set(mirrored):
+            errors.append(f"{label} normal and mirrored maps contain different site names")
+        for site_name in normal:
+            if not site_name.startswith(("t1_", "t2_")):
+                continue
+            opposite = ("t2_" if site_name.startswith("t1_") else "t1_") + site_name[3:]
+            mirror_site = mirrored.get(site_name)
+            normal_opposite = normal.get(opposite)
+            if mirror_site and normal_opposite and not same_position(
+                mirror_site.get("world_pos"), normal_opposite.get("world_pos")
+            ):
+                errors.append(f"{label} mirror position does not match opposite side: {site_name}")
 
     for variant_name, logic in (
         ("standard", mission_logic),
         ("mirror", mission_logic_mirror),
         ("city", mission_logic_city),
+        ("city_mirror", mission_logic_city_mirror),
     ):
         for site in logic.get("sites", []):
             if not valid_position(site.get("world_pos")):
@@ -209,7 +223,7 @@ def main() -> int:
         errors.append("road_network.json contains no roads")
 
     known_specs = {name.lower() for name in unit_specs}
-    missing = sorted((standard_units | mirror_units | city_units) - known_specs)
+    missing = sorted((standard_units | mirror_units | city_units | city_mirror_units) - known_specs)
     if missing:
         warnings.append(
             f"{len(missing)} unit classes have no optional detail card: "
@@ -230,6 +244,8 @@ def main() -> int:
         'fetch("mission_logic_mirror.json")',
         'fetch("map_data_city.json")',
         'fetch("mission_logic_city.json")',
+        'fetch("map_data_city_mirror.json")',
+        'fetch("mission_logic_city_mirror.json")',
         'fetch("presets.json")',
     ):
         if required_fetch not in html:
@@ -240,7 +256,8 @@ def main() -> int:
     for error in errors:
         print("ERROR:", error)
     print(
-        f"Checked {len(map_data)} standard, {len(map_data_mirror)} mirrored, and {len(map_data_city)} City map objects, "
+        f"Checked {len(map_data)} standard, {len(map_data_mirror)} mirrored, "
+        f"{len(map_data_city)} City, and {len(map_data_city_mirror)} mirrored City map objects, "
         f"{len(roads) if isinstance(roads, list) else 0} roads, and {len(unit_specs)} unit specs."
     )
     if errors:
