@@ -6498,14 +6498,14 @@
     "source_group": "objectGroups",
     "category": "fuel_factory",
     "world_pos": [
-      7751.97,
-      22.0,
-      43863.1
+      7656.48,
+      26.3599,
+      43762.5
     ],
     "editor_world_pos": [
-      7751.97,
-      22.0,
-      43863.1
+      7656.48,
+      26.3599,
+      43762.5
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -6526,9 +6526,9 @@
         -0.824954
       ],
       [
-        7751.97,
-        22.0,
-        43863.1
+        7656.48,
+        26.3599,
+        43762.5
       ]
     ],
     "runways": [],
@@ -6539,9 +6539,9 @@
           "name": "nt_fuel_factory",
           "role": "building",
           "world_pos": [
-            7751.97,
-            22.0,
-            43863.1
+            7656.48,
+            26.3599,
+            43762.5
           ],
           "local_pos": [
             0.0,
@@ -6555,9 +6555,9 @@
           "name": "nt_fuel_factory",
           "role": "building",
           "world_pos": [
-            7751.97,
-            22.0,
-            43863.1
+            7656.48,
+            26.3599,
+            43762.5
           ],
           "local_pos": [
             0.0,
@@ -6571,9 +6571,9 @@
           "name": "nt_fuel_factory",
           "role": "building",
           "world_pos": [
-            7751.97,
-            22.0,
-            43863.1
+            7656.48,
+            26.3599,
+            43762.5
           ],
           "local_pos": [
             0.0,
@@ -6587,9 +6587,9 @@
           "name": "nt_fuel_factory",
           "role": "building",
           "world_pos": [
-            7751.97,
-            22.0,
-            43863.1
+            7656.48,
+            26.3599,
+            43762.5
           ],
           "local_pos": [
             0.0,
@@ -6603,9 +6603,9 @@
           "name": "nt_fuel_factory",
           "role": "building",
           "world_pos": [
-            7751.97,
-            22.0,
-            43863.1
+            7656.48,
+            26.3599,
+            43762.5
           ],
           "local_pos": [
             0.0,
@@ -6623,9 +6623,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            7872.150977,
-            22.0,
-            43847.430978000004
+            7776.660977,
+            26.3599,
+            43746.830978000005
           ],
           "local_pos": [
             -108.0,
@@ -6648,9 +6648,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            7775.157538,
-            22.0,
-            43919.94482699999
+            7679.667538,
+            26.3599,
+            43819.34482699999
           ],
           "local_pos": [
             13.0,
@@ -6673,9 +6673,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            7818.457072,
-            22.0,
-            43769.060348
+            7722.9670719999995,
+            26.3599,
+            43668.460348
           ],
           "local_pos": [
             -108.0,
@@ -6700,9 +6700,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            7872.150977,
-            22.0,
-            43847.430978000004
+            7776.660977,
+            26.3599,
+            43746.830978000005
           ],
           "local_pos": [
             -108.0,
@@ -6725,9 +6725,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            7775.157538,
-            22.0,
-            43919.94482699999
+            7679.667538,
+            26.3599,
+            43819.34482699999
           ],
           "local_pos": [
             13.0,
@@ -6750,9 +6750,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            7818.457072,
-            22.0,
-            43769.060348
+            7722.9670719999995,
+            26.3599,
+            43668.460348
           ],
           "local_pos": [
             -108.0,
@@ -6777,9 +6777,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            7872.150977,
-            22.0,
-            43847.430978000004
+            7776.660977,
+            26.3599,
+            43746.830978000005
           ],
           "local_pos": [
             -108.0,
@@ -6802,9 +6802,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            7775.157538,
-            22.0,
-            43919.94482699999
+            7679.667538,
+            26.3599,
+            43819.34482699999
           ],
           "local_pos": [
             13.0,
@@ -6827,9 +6827,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            7818.457072,
-            22.0,
-            43769.060348
+            7722.9670719999995,
+            26.3599,
+            43668.460348
           ],
           "local_pos": [
             -108.0,
@@ -6854,9 +6854,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            7872.150977,
-            22.0,
-            43847.430978000004
+            7776.660977,
+            26.3599,
+            43746.830978000005
           ],
           "local_pos": [
             -108.0,
@@ -6879,9 +6879,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            7775.157538,
-            22.0,
-            43919.94482699999
+            7679.667538,
+            26.3599,
+            43819.34482699999
           ],
           "local_pos": [
             13.0,
@@ -6904,9 +6904,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            7818.457072,
-            22.0,
-            43769.060348
+            7722.9670719999995,
+            26.3599,
+            43668.460348
           ],
           "local_pos": [
             -108.0,
@@ -6931,9 +6931,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            7872.150977,
-            22.0,
-            43847.430978000004
+            7776.660977,
+            26.3599,
+            43746.830978000005
           ],
           "local_pos": [
             -108.0,
@@ -6956,9 +6956,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            7775.157538,
-            22.0,
-            43919.94482699999
+            7679.667538,
+            26.3599,
+            43819.34482699999
           ],
           "local_pos": [
             13.0,
@@ -6981,9 +6981,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            7818.457072,
-            22.0,
-            43769.060348
+            7722.9670719999995,
+            26.3599,
+            43668.460348
           ],
           "local_pos": [
             -108.0,
@@ -7010,14 +7010,14 @@
     "source_group": "objectGroups",
     "category": "ammo_factory",
     "world_pos": [
-      -16722.1,
-      82.3097,
-      36125.5
+      -16723.6,
+      82.3098,
+      36122.1
     ],
     "editor_world_pos": [
-      -16722.1,
-      82.3097,
-      36125.5
+      -16723.6,
+      82.3098,
+      36122.1
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -7038,9 +7038,9 @@
         0.423752
       ],
       [
-        -16722.1,
-        82.3097,
-        36125.5
+        -16723.6,
+        82.3098,
+        36122.1
       ]
     ],
     "runways": [],
@@ -7051,9 +7051,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -16722.1,
-            82.3097,
-            36125.5
+            -16723.6,
+            82.3098,
+            36122.1
           ],
           "local_pos": [
             0.0,
@@ -7067,9 +7067,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -16722.1,
-            82.3097,
-            36125.5
+            -16723.6,
+            82.3098,
+            36122.1
           ],
           "local_pos": [
             0.0,
@@ -7083,9 +7083,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -16722.1,
-            82.3097,
-            36125.5
+            -16723.6,
+            82.3098,
+            36122.1
           ],
           "local_pos": [
             0.0,
@@ -7099,9 +7099,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -16722.1,
-            82.3097,
-            36125.5
+            -16723.6,
+            82.3098,
+            36122.1
           ],
           "local_pos": [
             0.0,
@@ -7115,9 +7115,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -16722.1,
-            82.3097,
-            36125.5
+            -16723.6,
+            82.3098,
+            36122.1
           ],
           "local_pos": [
             0.0,
@@ -7135,9 +7135,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -16589.777242,
-            82.3097,
-            36104.603122
+            -16591.277242,
+            82.3098,
+            36101.203122
           ],
           "local_pos": [
             75.0,
@@ -7160,9 +7160,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -16671.762806,
-            82.3097,
-            36237.371176
+            -16673.262806,
+            82.3098,
+            36233.971176
           ],
           "local_pos": [
             -80.0,
@@ -7185,9 +7185,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -16829.686154,
-            82.3097,
-            36117.120612000006
+            -16831.186154,
+            82.3098,
+            36113.720612000005
           ],
           "local_pos": [
             -38.0,
@@ -7212,9 +7212,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -16589.777242,
-            82.3097,
-            36104.603122
+            -16591.277242,
+            82.3098,
+            36101.203122
           ],
           "local_pos": [
             75.0,
@@ -7237,9 +7237,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -16671.762806,
-            82.3097,
-            36237.371176
+            -16673.262806,
+            82.3098,
+            36233.971176
           ],
           "local_pos": [
             -80.0,
@@ -7262,9 +7262,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -16829.686154,
-            82.3097,
-            36117.120612000006
+            -16831.186154,
+            82.3098,
+            36113.720612000005
           ],
           "local_pos": [
             -38.0,
@@ -7289,9 +7289,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -16589.777242,
-            82.3097,
-            36104.603122
+            -16591.277242,
+            82.3098,
+            36101.203122
           ],
           "local_pos": [
             75.0,
@@ -7314,9 +7314,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -16671.762806,
-            82.3097,
-            36237.371176
+            -16673.262806,
+            82.3098,
+            36233.971176
           ],
           "local_pos": [
             -80.0,
@@ -7339,9 +7339,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -16829.686154,
-            82.3097,
-            36117.120612000006
+            -16831.186154,
+            82.3098,
+            36113.720612000005
           ],
           "local_pos": [
             -38.0,
@@ -7366,9 +7366,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -16589.777242,
-            82.3097,
-            36104.603122
+            -16591.277242,
+            82.3098,
+            36101.203122
           ],
           "local_pos": [
             75.0,
@@ -7391,9 +7391,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -16671.762806,
-            82.3097,
-            36237.371176
+            -16673.262806,
+            82.3098,
+            36233.971176
           ],
           "local_pos": [
             -80.0,
@@ -7416,9 +7416,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -16829.686154,
-            82.3097,
-            36117.120612000006
+            -16831.186154,
+            82.3098,
+            36113.720612000005
           ],
           "local_pos": [
             -38.0,
@@ -7443,9 +7443,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -16589.777242,
-            82.3097,
-            36104.603122
+            -16591.277242,
+            82.3098,
+            36101.203122
           ],
           "local_pos": [
             75.0,
@@ -7468,9 +7468,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -16671.762806,
-            82.3097,
-            36237.371176
+            -16673.262806,
+            82.3098,
+            36233.971176
           ],
           "local_pos": [
             -80.0,
@@ -7493,9 +7493,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -16829.686154,
-            82.3097,
-            36117.120612000006
+            -16831.186154,
+            82.3098,
+            36113.720612000005
           ],
           "local_pos": [
             -38.0,
@@ -7522,22 +7522,22 @@
     "source_group": "objectGroups",
     "category": "ammo_factory",
     "world_pos": [
-      -15598.0,
-      41.0277,
-      9801.69
+      -14034.3,
+      120.54,
+      7972.07
     ],
     "editor_world_pos": [
-      -15598.0,
-      41.0277,
-      9801.69
+      -14034.3,
+      120.54,
+      7972.07
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        -0.54744,
+        0.325524,
         0.0,
-        0.836845
+        -0.945534
       ],
       [
         0.0,
@@ -7545,14 +7545,14 @@
         0.0
       ],
       [
-        -0.836845,
+        0.945534,
         0.0,
-        -0.54744
+        0.325524
       ],
       [
-        -15598.0,
-        41.0277,
-        9801.69
+        -14034.3,
+        120.54,
+        7972.07
       ]
     ],
     "runways": [],
@@ -7563,9 +7563,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -15598.0,
-            41.0277,
-            9801.69
+            -14034.3,
+            120.54,
+            7972.07
           ],
           "local_pos": [
             0.0,
@@ -7579,9 +7579,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -15598.0,
-            41.0277,
-            9801.69
+            -14034.3,
+            120.54,
+            7972.07
           ],
           "local_pos": [
             0.0,
@@ -7595,9 +7595,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -15598.0,
-            41.0277,
-            9801.69
+            -14034.3,
+            120.54,
+            7972.07
           ],
           "local_pos": [
             0.0,
@@ -7611,9 +7611,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -15598.0,
-            41.0277,
-            9801.69
+            -14034.3,
+            120.54,
+            7972.07
           ],
           "local_pos": [
             0.0,
@@ -7627,9 +7627,9 @@
           "name": "nt_ammo_factory",
           "role": "building",
           "world_pos": [
-            -15598.0,
-            41.0277,
-            9801.69
+            -14034.3,
+            120.54,
+            7972.07
           ],
           "local_pos": [
             0.0,
@@ -7647,9 +7647,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -15731.947795,
-            41.0277,
-            9803.687535000001
+            -13904.931426,
+            120.54,
+            7937.288114
           ],
           "local_pos": [
             75.0,
@@ -7672,9 +7672,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -15632.031385,
-            41.0277,
-            9683.83048
+            -13972.407258,
+            120.54,
+            8077.986451999999
           ],
           "local_pos": [
             -80.0,
@@ -7697,9 +7697,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -15492.675935000001,
-            41.0277,
-            9825.181330000001
+            -14142.168845999999,
+            120.54,
+            7975.122367999999
           ],
           "local_pos": [
             -38.0,
@@ -7724,9 +7724,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -15731.947795,
-            41.0277,
-            9803.687535000001
+            -13904.931426,
+            120.54,
+            7937.288114
           ],
           "local_pos": [
             75.0,
@@ -7749,9 +7749,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -15632.031385,
-            41.0277,
-            9683.83048
+            -13972.407258,
+            120.54,
+            8077.986451999999
           ],
           "local_pos": [
             -80.0,
@@ -7774,9 +7774,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -15492.675935000001,
-            41.0277,
-            9825.181330000001
+            -14142.168845999999,
+            120.54,
+            7975.122367999999
           ],
           "local_pos": [
             -38.0,
@@ -7801,9 +7801,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -15731.947795,
-            41.0277,
-            9803.687535000001
+            -13904.931426,
+            120.54,
+            7937.288114
           ],
           "local_pos": [
             75.0,
@@ -7826,9 +7826,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -15632.031385,
-            41.0277,
-            9683.83048
+            -13972.407258,
+            120.54,
+            8077.986451999999
           ],
           "local_pos": [
             -80.0,
@@ -7851,9 +7851,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -15492.675935000001,
-            41.0277,
-            9825.181330000001
+            -14142.168845999999,
+            120.54,
+            7975.122367999999
           ],
           "local_pos": [
             -38.0,
@@ -7878,9 +7878,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15731.947795,
-            41.0277,
-            9803.687535000001
+            -13904.931426,
+            120.54,
+            7937.288114
           ],
           "local_pos": [
             75.0,
@@ -7903,9 +7903,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15632.031385,
-            41.0277,
-            9683.83048
+            -13972.407258,
+            120.54,
+            8077.986451999999
           ],
           "local_pos": [
             -80.0,
@@ -7928,9 +7928,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15492.675935000001,
-            41.0277,
-            9825.181330000001
+            -14142.168845999999,
+            120.54,
+            7975.122367999999
           ],
           "local_pos": [
             -38.0,
@@ -7955,9 +7955,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15731.947795,
-            41.0277,
-            9803.687535000001
+            -13904.931426,
+            120.54,
+            7937.288114
           ],
           "local_pos": [
             75.0,
@@ -7980,9 +7980,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15632.031385,
-            41.0277,
-            9683.83048
+            -13972.407258,
+            120.54,
+            8077.986451999999
           ],
           "local_pos": [
             -80.0,
@@ -8005,9 +8005,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15492.675935000001,
-            41.0277,
-            9825.181330000001
+            -14142.168845999999,
+            120.54,
+            7975.122367999999
           ],
           "local_pos": [
             -38.0,
@@ -9058,22 +9058,22 @@
     "source_group": "objectGroups",
     "category": "assembly_area",
     "world_pos": [
-      -11957.1,
+      -11959.7,
       71.9248,
-      45409.3
+      45412.4
     ],
     "editor_world_pos": [
-      -11957.1,
+      -11959.7,
       71.9248,
-      45409.3
+      45412.4
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        0.638218,
+        0.454721,
         0.0,
-        0.769855
+        0.890633
       ],
       [
         0.0,
@@ -9081,14 +9081,14 @@
         0.0
       ],
       [
-        -0.769855,
+        -0.890633,
         0.0,
-        0.638218
+        0.454721
       ],
       [
-        -11957.1,
+        -11959.7,
         71.9248,
-        45409.3
+        45412.4
       ]
     ],
     "runways": [],
@@ -9099,9 +9099,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -11957.1,
+            -11959.7,
             71.9248,
-            45409.3
+            45412.4
           ],
           "local_pos": [
             0.0,
@@ -9113,9 +9113,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -12029.450832,
+            -12074.883707,
             71.9248,
-            45613.46245300001
+            45595.838369000005
           ],
           "local_pos": [
             111.0,
@@ -9127,9 +9127,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -11966.361821100001,
+            -11942.35033295,
             71.9248,
-            45288.44758775
+            45292.44139465
           ],
           "local_pos": [
             -98.95,
@@ -9143,9 +9143,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -11957.1,
+            -11959.7,
             71.9248,
-            45409.3
+            45412.4
           ],
           "local_pos": [
             0.0,
@@ -9157,9 +9157,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -12029.450832,
+            -12074.883707,
             71.9248,
-            45613.46245300001
+            45595.838369000005
           ],
           "local_pos": [
             111.0,
@@ -9171,9 +9171,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -11966.361821100001,
+            -11942.35033295,
             71.9248,
-            45288.44758775
+            45292.44139465
           ],
           "local_pos": [
             -98.95,
@@ -9187,9 +9187,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -11957.1,
+            -11959.7,
             71.9248,
-            45409.3
+            45412.4
           ],
           "local_pos": [
             0.0,
@@ -9201,9 +9201,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -12029.450832,
+            -12074.883707,
             71.9248,
-            45613.46245300001
+            45595.838369000005
           ],
           "local_pos": [
             111.0,
@@ -9215,9 +9215,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -11966.361821100001,
+            -11942.35033295,
             71.9248,
-            45288.44758775
+            45292.44139465
           ],
           "local_pos": [
             -98.95,
@@ -9231,9 +9231,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -11957.1,
+            -11959.7,
             71.9248,
-            45409.3
+            45412.4
           ],
           "local_pos": [
             0.0,
@@ -9245,9 +9245,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -12029.450832,
+            -12074.883707,
             71.9248,
-            45613.46245300001
+            45595.838369000005
           ],
           "local_pos": [
             111.0,
@@ -9259,9 +9259,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -11966.361821100001,
+            -11942.35033295,
             71.9248,
-            45288.44758775
+            45292.44139465
           ],
           "local_pos": [
             -98.95,
@@ -9275,9 +9275,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -11957.1,
+            -11959.7,
             71.9248,
-            45409.3
+            45412.4
           ],
           "local_pos": [
             0.0,
@@ -9289,9 +9289,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -12029.450832,
+            -12074.883707,
             71.9248,
-            45613.46245300001
+            45595.838369000005
           ],
           "local_pos": [
             111.0,
@@ -9303,9 +9303,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -11966.361821100001,
+            -11942.35033295,
             71.9248,
-            45288.44758775
+            45292.44139465
           ],
           "local_pos": [
             -98.95,
@@ -9323,9 +9323,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -12253.676855,
+            -12241.826046000002,
             71.9248,
-            45375.89230100001
+            45315.041152
           ],
           "local_pos": [
             -215.0,
@@ -9348,9 +9348,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -11989.007923,
+            -12058.727260000001,
             71.9248,
-            45720.220859
+            45708.851409999996
           ],
           "local_pos": [
             219.0,
@@ -9373,9 +9373,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -11701.871975,
+            -11728.245990000001,
             71.9248,
-            45489.975765
+            45546.85788
           ],
           "local_pos": [
             225.0,
@@ -9400,9 +9400,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -12253.676855,
+            -12241.826046000002,
             71.9248,
-            45375.89230100001
+            45315.041152
           ],
           "local_pos": [
             -215.0,
@@ -9425,9 +9425,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -11989.007923,
+            -12058.727260000001,
             71.9248,
-            45720.220859
+            45708.851409999996
           ],
           "local_pos": [
             219.0,
@@ -9450,9 +9450,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -11701.871975,
+            -11728.245990000001,
             71.9248,
-            45489.975765
+            45546.85788
           ],
           "local_pos": [
             225.0,
@@ -9477,9 +9477,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -12253.676855,
+            -12241.826046000002,
             71.9248,
-            45375.89230100001
+            45315.041152
           ],
           "local_pos": [
             -215.0,
@@ -9502,9 +9502,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -11989.007923,
+            -12058.727260000001,
             71.9248,
-            45720.220859
+            45708.851409999996
           ],
           "local_pos": [
             219.0,
@@ -9527,9 +9527,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -11701.871975,
+            -11728.245990000001,
             71.9248,
-            45489.975765
+            45546.85788
           ],
           "local_pos": [
             225.0,
@@ -9554,9 +9554,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -12253.676855,
+            -12241.826046000002,
             71.9248,
-            45375.89230100001
+            45315.041152
           ],
           "local_pos": [
             -215.0,
@@ -9579,9 +9579,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -11989.007923,
+            -12058.727260000001,
             71.9248,
-            45720.220859
+            45708.851409999996
           ],
           "local_pos": [
             219.0,
@@ -9604,9 +9604,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -11701.871975,
+            -11728.245990000001,
             71.9248,
-            45489.975765
+            45546.85788
           ],
           "local_pos": [
             225.0,
@@ -9631,9 +9631,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -12253.676855,
+            -12241.826046000002,
             71.9248,
-            45375.89230100001
+            45315.041152
           ],
           "local_pos": [
             -215.0,
@@ -9656,9 +9656,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -11989.007923,
+            -12058.727260000001,
             71.9248,
-            45720.220859
+            45708.851409999996
           ],
           "local_pos": [
             219.0,
@@ -9681,9 +9681,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -11701.871975,
+            -11728.245990000001,
             71.9248,
-            45489.975765
+            45546.85788
           ],
           "local_pos": [
             225.0,
@@ -9723,9 +9723,9 @@
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        -0.605279,
+        -0.581437,
         0.0,
-        -0.796014
+        -0.813592
       ],
       [
         0.0,
@@ -9733,9 +9733,9 @@
         0.0
       ],
       [
-        0.796014,
+        0.813592,
         0.0,
-        -0.605279
+        -0.581437
       ],
       [
         -15077.6,
@@ -9765,9 +9765,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -14996.727365,
+            -14990.811395,
             87.4375,
-            40307.060551999995
+            40309.544006000004
           ],
           "local_pos": [
             111.0,
@@ -9779,9 +9779,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -15073.428622950001,
+            -15077.018248850001,
             87.4375,
-            40629.13511530001
+            40629.2055184
           ],
           "local_pos": [
             -98.95,
@@ -9809,9 +9809,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -14996.727365,
+            -14990.811395,
             87.4375,
-            40307.060551999995
+            40309.544006000004
           ],
           "local_pos": [
             111.0,
@@ -9823,9 +9823,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -15073.428622950001,
+            -15077.018248850001,
             87.4375,
-            40629.13511530001
+            40629.2055184
           ],
           "local_pos": [
             -98.95,
@@ -9853,9 +9853,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -14996.727365,
+            -14990.811395,
             87.4375,
-            40307.060551999995
+            40309.544006000004
           ],
           "local_pos": [
             111.0,
@@ -9867,9 +9867,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -15073.428622950001,
+            -15077.018248850001,
             87.4375,
-            40629.13511530001
+            40629.2055184
           ],
           "local_pos": [
             -98.95,
@@ -9897,9 +9897,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -14996.727365,
+            -14990.811395,
             87.4375,
-            40307.060551999995
+            40309.544006000004
           ],
           "local_pos": [
             111.0,
@@ -9911,9 +9911,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -15073.428622950001,
+            -15077.018248850001,
             87.4375,
-            40629.13511530001
+            40629.2055184
           ],
           "local_pos": [
             -98.95,
@@ -9941,9 +9941,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -14996.727365,
+            -14990.811395,
             87.4375,
-            40307.060551999995
+            40309.544006000004
           ],
           "local_pos": [
             111.0,
@@ -9955,9 +9955,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -15073.428622950001,
+            -15077.018248850001,
             87.4375,
-            40629.13511530001
+            40629.2055184
           ],
           "local_pos": [
             -98.95,
@@ -9975,9 +9975,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -14782.690117,
+            -14784.177501000002,
             87.4375,
-            40553.850257
+            40562.564821
           ],
           "local_pos": [
             -215.0,
@@ -10000,9 +10000,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -15032.644979,
+            -15023.503687,
             87.4375,
-            40198.695717
+            40200.162900999996
           ],
           "local_pos": [
             219.0,
@@ -10025,9 +10025,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -15329.209805,
+            -15326.394165,
             87.4375,
-            40416.662305
+            40409.250165
           ],
           "local_pos": [
             225.0,
@@ -10052,9 +10052,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -14782.690117,
+            -14784.177501000002,
             87.4375,
-            40553.850257
+            40562.564821
           ],
           "local_pos": [
             -215.0,
@@ -10077,9 +10077,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -15032.644979,
+            -15023.503687,
             87.4375,
-            40198.695717
+            40200.162900999996
           ],
           "local_pos": [
             219.0,
@@ -10102,9 +10102,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -15329.209805,
+            -15326.394165,
             87.4375,
-            40416.662305
+            40409.250165
           ],
           "local_pos": [
             225.0,
@@ -10129,9 +10129,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -14782.690117,
+            -14784.177501000002,
             87.4375,
-            40553.850257
+            40562.564821
           ],
           "local_pos": [
             -215.0,
@@ -10154,9 +10154,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -15032.644979,
+            -15023.503687,
             87.4375,
-            40198.695717
+            40200.162900999996
           ],
           "local_pos": [
             219.0,
@@ -10179,9 +10179,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -15329.209805,
+            -15326.394165,
             87.4375,
-            40416.662305
+            40409.250165
           ],
           "local_pos": [
             225.0,
@@ -10206,9 +10206,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -14782.690117,
+            -14784.177501000002,
             87.4375,
-            40553.850257
+            40562.564821
           ],
           "local_pos": [
             -215.0,
@@ -10231,9 +10231,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15032.644979,
+            -15023.503687,
             87.4375,
-            40198.695717
+            40200.162900999996
           ],
           "local_pos": [
             219.0,
@@ -10256,9 +10256,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15329.209805,
+            -15326.394165,
             87.4375,
-            40416.662305
+            40409.250165
           ],
           "local_pos": [
             225.0,
@@ -10283,9 +10283,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -14782.690117,
+            -14784.177501000002,
             87.4375,
-            40553.850257
+            40562.564821
           ],
           "local_pos": [
             -215.0,
@@ -10308,9 +10308,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15032.644979,
+            -15023.503687,
             87.4375,
-            40198.695717
+            40200.162900999996
           ],
           "local_pos": [
             219.0,
@@ -10333,9 +10333,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -15329.209805,
+            -15326.394165,
             87.4375,
-            40416.662305
+            40409.250165
           ],
           "local_pos": [
             225.0,
@@ -11014,14 +11014,14 @@
     "source_group": "objectGroups",
     "category": "assembly_area",
     "world_pos": [
-      -13300.5,
-      29.7196,
-      12474.4
+      -13305.1,
+      32.1187,
+      12472.6
     ],
     "editor_world_pos": [
-      -13300.5,
-      29.7196,
-      12474.4
+      -13305.1,
+      32.1187,
+      12472.6
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -11042,9 +11042,9 @@
         0.759979
       ],
       [
-        -13300.5,
-        29.7196,
-        12474.4
+        -13305.1,
+        32.1187,
+        12472.6
       ]
     ],
     "runways": [],
@@ -11055,9 +11055,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -13300.5,
-            29.7196,
-            12474.4
+            -13305.1,
+            32.1187,
+            12472.6
           ],
           "local_pos": [
             0.0,
@@ -11069,9 +11069,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -13095.252188999999,
-            29.7196,
-            12543.611977
+            -13099.852189,
+            32.1187,
+            12541.811977000001
           ],
           "local_pos": [
             111.0,
@@ -11083,9 +11083,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -13421.19621205,
-            29.7196,
-            12485.51372565
+            -13425.79621205,
+            32.1187,
+            12483.713725650001
           ],
           "local_pos": [
             -98.95,
@@ -11099,9 +11099,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -13300.5,
-            29.7196,
-            12474.4
+            -13305.1,
+            32.1187,
+            12472.6
           ],
           "local_pos": [
             0.0,
@@ -11113,9 +11113,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -13095.252188999999,
-            29.7196,
-            12543.611977
+            -13099.852189,
+            32.1187,
+            12541.811977000001
           ],
           "local_pos": [
             111.0,
@@ -11127,9 +11127,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -13421.19621205,
-            29.7196,
-            12485.51372565
+            -13425.79621205,
+            32.1187,
+            12483.713725650001
           ],
           "local_pos": [
             -98.95,
@@ -11143,9 +11143,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -13300.5,
-            29.7196,
-            12474.4
+            -13305.1,
+            32.1187,
+            12472.6
           ],
           "local_pos": [
             0.0,
@@ -11157,9 +11157,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -13095.252188999999,
-            29.7196,
-            12543.611977
+            -13099.852189,
+            32.1187,
+            12541.811977000001
           ],
           "local_pos": [
             111.0,
@@ -11171,9 +11171,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -13421.19621205,
-            29.7196,
-            12485.51372565
+            -13425.79621205,
+            32.1187,
+            12483.713725650001
           ],
           "local_pos": [
             -98.95,
@@ -11187,9 +11187,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -13300.5,
-            29.7196,
-            12474.4
+            -13305.1,
+            32.1187,
+            12472.6
           ],
           "local_pos": [
             0.0,
@@ -11201,9 +11201,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -13095.252188999999,
-            29.7196,
-            12543.611977
+            -13099.852189,
+            32.1187,
+            12541.811977000001
           ],
           "local_pos": [
             111.0,
@@ -11215,9 +11215,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -13421.19621205,
-            29.7196,
-            12485.51372565
+            -13425.79621205,
+            32.1187,
+            12483.713725650001
           ],
           "local_pos": [
             -98.95,
@@ -11231,9 +11231,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            -13300.5,
-            29.7196,
-            12474.4
+            -13305.1,
+            32.1187,
+            12472.6
           ],
           "local_pos": [
             0.0,
@@ -11245,9 +11245,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            -13095.252188999999,
-            29.7196,
-            12543.611977
+            -13099.852189,
+            32.1187,
+            12541.811977000001
           ],
           "local_pos": [
             111.0,
@@ -11259,9 +11259,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            -13421.19621205,
-            29.7196,
-            12485.51372565
+            -13425.79621205,
+            32.1187,
+            12483.713725650001
           ],
           "local_pos": [
             -98.95,
@@ -11279,9 +11279,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -13329.356456,
-            29.7196,
-            12771.454258
+            -13333.956456,
+            32.1187,
+            12769.654258
           ],
           "local_pos": [
             -215.0,
@@ -11304,9 +11304,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -12989.126418,
-            29.7196,
-            12501.536924
+            -12993.726418,
+            32.1187,
+            12499.736924
           ],
           "local_pos": [
             219.0,
@@ -11329,9 +11329,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            -13223.74704,
-            29.7196,
-            12217.96497
+            -13228.34704,
+            32.1187,
+            12216.164970000002
           ],
           "local_pos": [
             225.0,
@@ -11356,9 +11356,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -13329.356456,
-            29.7196,
-            12771.454258
+            -13333.956456,
+            32.1187,
+            12769.654258
           ],
           "local_pos": [
             -215.0,
@@ -11381,9 +11381,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -12989.126418,
-            29.7196,
-            12501.536924
+            -12993.726418,
+            32.1187,
+            12499.736924
           ],
           "local_pos": [
             219.0,
@@ -11406,9 +11406,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            -13223.74704,
-            29.7196,
-            12217.96497
+            -13228.34704,
+            32.1187,
+            12216.164970000002
           ],
           "local_pos": [
             225.0,
@@ -11433,9 +11433,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -13329.356456,
-            29.7196,
-            12771.454258
+            -13333.956456,
+            32.1187,
+            12769.654258
           ],
           "local_pos": [
             -215.0,
@@ -11458,9 +11458,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -12989.126418,
-            29.7196,
-            12501.536924
+            -12993.726418,
+            32.1187,
+            12499.736924
           ],
           "local_pos": [
             219.0,
@@ -11483,9 +11483,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            -13223.74704,
-            29.7196,
-            12217.96497
+            -13228.34704,
+            32.1187,
+            12216.164970000002
           ],
           "local_pos": [
             225.0,
@@ -11510,9 +11510,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -13329.356456,
-            29.7196,
-            12771.454258
+            -13333.956456,
+            32.1187,
+            12769.654258
           ],
           "local_pos": [
             -215.0,
@@ -11535,9 +11535,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -12989.126418,
-            29.7196,
-            12501.536924
+            -12993.726418,
+            32.1187,
+            12499.736924
           ],
           "local_pos": [
             219.0,
@@ -11560,9 +11560,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -13223.74704,
-            29.7196,
-            12217.96497
+            -13228.34704,
+            32.1187,
+            12216.164970000002
           ],
           "local_pos": [
             225.0,
@@ -11587,9 +11587,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -13329.356456,
-            29.7196,
-            12771.454258
+            -13333.956456,
+            32.1187,
+            12769.654258
           ],
           "local_pos": [
             -215.0,
@@ -11612,9 +11612,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -12989.126418,
-            29.7196,
-            12501.536924
+            -12993.726418,
+            32.1187,
+            12499.736924
           ],
           "local_pos": [
             219.0,
@@ -11637,9 +11637,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            -13223.74704,
-            29.7196,
-            12217.96497
+            -13228.34704,
+            32.1187,
+            12216.164970000002
           ],
           "local_pos": [
             225.0,
@@ -12970,14 +12970,14 @@
     "source_group": "objectGroups",
     "category": "assembly_area",
     "world_pos": [
-      9106.66,
+      9119.29,
       68.026,
-      47514.0
+      47502.0
     ],
     "editor_world_pos": [
-      9106.66,
+      9119.29,
       68.026,
-      47514.0
+      47502.0
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -12998,9 +12998,9 @@
         -0.391265
       ],
       [
-        9106.66,
+        9119.29,
         68.026,
-        47514.0
+        47502.0
       ]
     ],
     "runways": [],
@@ -13011,9 +13011,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            9106.66,
+            9119.29,
             68.026,
-            47514.0
+            47502.0
           ],
           "local_pos": [
             0.0,
@@ -13025,9 +13025,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            9234.401292999999,
+            9247.031293,
             68.026,
-            47339.073852
+            47327.073852
           ],
           "local_pos": [
             111.0,
@@ -13039,9 +13039,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            9080.95621175,
+            9093.586211750002,
             68.026,
-            47632.4500581
+            47620.4500581
           ],
           "local_pos": [
             -98.95,
@@ -13055,9 +13055,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            9106.66,
+            9119.29,
             68.026,
-            47514.0
+            47502.0
           ],
           "local_pos": [
             0.0,
@@ -13069,9 +13069,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            9234.401292999999,
+            9247.031293,
             68.026,
-            47339.073852
+            47327.073852
           ],
           "local_pos": [
             111.0,
@@ -13083,9 +13083,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            9080.95621175,
+            9093.586211750002,
             68.026,
-            47632.4500581
+            47620.4500581
           ],
           "local_pos": [
             -98.95,
@@ -13099,9 +13099,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            9106.66,
+            9119.29,
             68.026,
-            47514.0
+            47502.0
           ],
           "local_pos": [
             0.0,
@@ -13113,9 +13113,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            9234.401292999999,
+            9247.031293,
             68.026,
-            47339.073852
+            47327.073852
           ],
           "local_pos": [
             111.0,
@@ -13127,9 +13127,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            9080.95621175,
+            9093.586211750002,
             68.026,
-            47632.4500581
+            47620.4500581
           ],
           "local_pos": [
             -98.95,
@@ -13143,9 +13143,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            9106.66,
+            9119.29,
             68.026,
-            47514.0
+            47502.0
           ],
           "local_pos": [
             0.0,
@@ -13157,9 +13157,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            9234.401292999999,
+            9247.031293,
             68.026,
-            47339.073852
+            47327.073852
           ],
           "local_pos": [
             111.0,
@@ -13171,9 +13171,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            9080.95621175,
+            9093.586211750002,
             68.026,
-            47632.4500581
+            47620.4500581
           ],
           "local_pos": [
             -98.95,
@@ -13187,9 +13187,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            9106.66,
+            9119.29,
             68.026,
-            47514.0
+            47502.0
           ],
           "local_pos": [
             0.0,
@@ -13201,9 +13201,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            9234.401292999999,
+            9247.031293,
             68.026,
-            47339.073852
+            47327.073852
           ],
           "local_pos": [
             111.0,
@@ -13215,9 +13215,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            9080.95621175,
+            9093.586211750002,
             68.026,
-            47632.4500581
+            47620.4500581
           ],
           "local_pos": [
             -98.95,
@@ -13235,9 +13235,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            9381.279521,
+            9393.909521000001,
             68.026,
-            47630.867915
+            47618.867915
           ],
           "local_pos": [
             -215.0,
@@ -13260,9 +13260,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            9226.194958999999,
+            9238.824959,
             68.026,
-            47225.207022999995
+            47213.207022999995
           ],
           "local_pos": [
             219.0,
@@ -13285,9 +13285,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            8885.185065,
+            8897.815065,
             68.026,
-            47363.670874999996
+            47351.670874999996
           ],
           "local_pos": [
             225.0,
@@ -13312,9 +13312,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            9381.279521,
+            9393.909521000001,
             68.026,
-            47630.867915
+            47618.867915
           ],
           "local_pos": [
             -215.0,
@@ -13337,9 +13337,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            9226.194958999999,
+            9238.824959,
             68.026,
-            47225.207022999995
+            47213.207022999995
           ],
           "local_pos": [
             219.0,
@@ -13362,9 +13362,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            8885.185065,
+            8897.815065,
             68.026,
-            47363.670874999996
+            47351.670874999996
           ],
           "local_pos": [
             225.0,
@@ -13389,9 +13389,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            9381.279521,
+            9393.909521000001,
             68.026,
-            47630.867915
+            47618.867915
           ],
           "local_pos": [
             -215.0,
@@ -13414,9 +13414,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            9226.194958999999,
+            9238.824959,
             68.026,
-            47225.207022999995
+            47213.207022999995
           ],
           "local_pos": [
             219.0,
@@ -13439,9 +13439,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            8885.185065,
+            8897.815065,
             68.026,
-            47363.670874999996
+            47351.670874999996
           ],
           "local_pos": [
             225.0,
@@ -13466,9 +13466,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            9381.279521,
+            9393.909521000001,
             68.026,
-            47630.867915
+            47618.867915
           ],
           "local_pos": [
             -215.0,
@@ -13491,9 +13491,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            9226.194958999999,
+            9238.824959,
             68.026,
-            47225.207022999995
+            47213.207022999995
           ],
           "local_pos": [
             219.0,
@@ -13516,9 +13516,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            8885.185065,
+            8897.815065,
             68.026,
-            47363.670874999996
+            47351.670874999996
           ],
           "local_pos": [
             225.0,
@@ -13543,9 +13543,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            9381.279521,
+            9393.909521000001,
             68.026,
-            47630.867915
+            47618.867915
           ],
           "local_pos": [
             -215.0,
@@ -13568,9 +13568,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            9226.194958999999,
+            9238.824959,
             68.026,
-            47225.207022999995
+            47213.207022999995
           ],
           "local_pos": [
             219.0,
@@ -13593,9 +13593,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            8885.185065,
+            8897.815065,
             68.026,
-            47363.670874999996
+            47351.670874999996
           ],
           "local_pos": [
             225.0,
@@ -13622,14 +13622,14 @@
     "source_group": "objectGroups",
     "category": "assembly_area",
     "world_pos": [
-      4837.14,
+      4845.54,
       68.2563,
-      40780.1
+      40771.7
     ],
     "editor_world_pos": [
-      4837.14,
+      4845.54,
       68.2563,
-      40780.1
+      40771.7
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
@@ -13650,9 +13650,9 @@
         -0.360124
       ],
       [
-        4837.14,
+        4845.54,
         68.2563,
-        40780.1
+        40771.7
       ]
     ],
     "runways": [],
@@ -13663,9 +13663,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            4837.14,
+            4845.54,
             68.2563,
-            40780.1
+            40771.7
           ],
           "local_pos": [
             0.0,
@@ -13677,9 +13677,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            4970.68638,
+            4979.08638,
             68.2563,
-            40609.564591999995
+            40601.164591999994
           ],
           "local_pos": [
             111.0,
@@ -13691,9 +13691,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            4807.4709898,
+            4815.8709898,
             68.2563,
-            40897.6195308
+            40889.2195308
           ],
           "local_pos": [
             -98.95,
@@ -13707,9 +13707,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            4837.14,
+            4845.54,
             68.2563,
-            40780.1
+            40771.7
           ],
           "local_pos": [
             0.0,
@@ -13721,9 +13721,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            4970.68638,
+            4979.08638,
             68.2563,
-            40609.564591999995
+            40601.164591999994
           ],
           "local_pos": [
             111.0,
@@ -13735,9 +13735,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            4807.4709898,
+            4815.8709898,
             68.2563,
-            40897.6195308
+            40889.2195308
           ],
           "local_pos": [
             -98.95,
@@ -13751,9 +13751,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            4837.14,
+            4845.54,
             68.2563,
-            40780.1
+            40771.7
           ],
           "local_pos": [
             0.0,
@@ -13765,9 +13765,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            4970.68638,
+            4979.08638,
             68.2563,
-            40609.564591999995
+            40601.164591999994
           ],
           "local_pos": [
             111.0,
@@ -13779,9 +13779,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            4807.4709898,
+            4815.8709898,
             68.2563,
-            40897.6195308
+            40889.2195308
           ],
           "local_pos": [
             -98.95,
@@ -13795,9 +13795,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            4837.14,
+            4845.54,
             68.2563,
-            40780.1
+            40771.7
           ],
           "local_pos": [
             0.0,
@@ -13809,9 +13809,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            4970.68638,
+            4979.08638,
             68.2563,
-            40609.564591999995
+            40601.164591999994
           ],
           "local_pos": [
             111.0,
@@ -13823,9 +13823,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            4807.4709898,
+            4815.8709898,
             68.2563,
-            40897.6195308
+            40889.2195308
           ],
           "local_pos": [
             -98.95,
@@ -13839,9 +13839,9 @@
           "name": "nt_assembly_area_tank_factory",
           "role": "building",
           "world_pos": [
-            4837.14,
+            4845.54,
             68.2563,
-            40780.1
+            40771.7
           ],
           "local_pos": [
             0.0,
@@ -13853,9 +13853,9 @@
           "name": "nt_assembly_area_ammo_storage",
           "role": "building",
           "world_pos": [
-            4970.68638,
+            4979.08638,
             68.2563,
-            40609.564591999995
+            40601.164591999994
           ],
           "local_pos": [
             111.0,
@@ -13867,9 +13867,9 @@
           "name": "nt_assembly_area_fuel_storage",
           "role": "building",
           "world_pos": [
-            4807.4709898,
+            4815.8709898,
             68.2563,
-            40897.6195308
+            40889.2195308
           ],
           "local_pos": [
             -98.95,
@@ -13887,9 +13887,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            5107.677788,
+            5116.077788,
             68.2563,
-            40906.128692
+            40897.728692
           ],
           "local_pos": [
             -215.0,
@@ -13912,9 +13912,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            4966.310436,
+            4974.710435999999,
             68.2563,
-            40495.48637199999
+            40487.08637199999
           ],
           "local_pos": [
             219.0,
@@ -13937,9 +13937,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_early",
           "world_pos": [
-            4620.84102,
+            4629.2410199999995,
             68.2563,
-            40622.41458
+            40614.014579999995
           ],
           "local_pos": [
             225.0,
@@ -13964,9 +13964,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            5107.677788,
+            5116.077788,
             68.2563,
-            40906.128692
+            40897.728692
           ],
           "local_pos": [
             -215.0,
@@ -13989,9 +13989,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            4966.310436,
+            4974.710435999999,
             68.2563,
-            40495.48637199999
+            40487.08637199999
           ],
           "local_pos": [
             219.0,
@@ -14014,9 +14014,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1970_late",
           "world_pos": [
-            4620.84102,
+            4629.2410199999995,
             68.2563,
-            40622.41458
+            40614.014579999995
           ],
           "local_pos": [
             225.0,
@@ -14041,9 +14041,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            5107.677788,
+            5116.077788,
             68.2563,
-            40906.128692
+            40897.728692
           ],
           "local_pos": [
             -215.0,
@@ -14066,9 +14066,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            4966.310436,
+            4974.710435999999,
             68.2563,
-            40495.48637199999
+            40487.08637199999
           ],
           "local_pos": [
             219.0,
@@ -14091,9 +14091,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_1980",
           "world_pos": [
-            4620.84102,
+            4629.2410199999995,
             68.2563,
-            40622.41458
+            40614.014579999995
           ],
           "local_pos": [
             225.0,
@@ -14118,9 +14118,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            5107.677788,
+            5116.077788,
             68.2563,
-            40906.128692
+            40897.728692
           ],
           "local_pos": [
             -215.0,
@@ -14143,9 +14143,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            4966.310436,
+            4974.710435999999,
             68.2563,
-            40495.48637199999
+            40487.08637199999
           ],
           "local_pos": [
             219.0,
@@ -14168,9 +14168,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            4620.84102,
+            4629.2410199999995,
             68.2563,
-            40622.41458
+            40614.014579999995
           ],
           "local_pos": [
             225.0,
@@ -14195,9 +14195,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            5107.677788,
+            5116.077788,
             68.2563,
-            40906.128692
+            40897.728692
           ],
           "local_pos": [
             -215.0,
@@ -14220,9 +14220,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            4966.310436,
+            4974.710435999999,
             68.2563,
-            40495.48637199999
+            40487.08637199999
           ],
           "local_pos": [
             219.0,
@@ -14245,9 +14245,9 @@
           "slot_type": "spaa",
           "preset": "factory_air_defence_preset_2018",
           "world_pos": [
-            4620.84102,
+            4629.2410199999995,
             68.2563,
-            40622.41458
+            40614.014579999995
           ],
           "local_pos": [
             225.0,
@@ -25659,22 +25659,22 @@
     "source_group": "objectGroups",
     "category": "strongpoint",
     "world_pos": [
-      -4230.79,
-      20.6483,
-      798.584
+      -4945.99,
+      4.33304,
+      613.105
     ],
     "editor_world_pos": [
-      -4230.79,
-      20.6483,
-      798.584
+      -4945.99,
+      4.33304,
+      613.105
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        -0.668758,
+        -0.941957,
         0.0,
-        0.74348
+        0.335733
       ],
       [
         0.0,
@@ -25682,14 +25682,14 @@
         0.0
       ],
       [
-        -0.74348,
+        -0.335733,
         0.0,
-        -0.668758
+        -0.941957
       ],
       [
-        -4230.79,
-        20.6483,
-        798.584
+        -4945.99,
+        4.33304,
+        613.105
       ]
     ],
     "runways": [],
@@ -25709,9 +25709,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4193.845661049,
-            20.6483,
-            709.7562478497999
+            -4871.231086433199,
+            4.33304,
+            552.5545473362
           ],
           "local_pos": [
             -90.7485,
@@ -25734,9 +25734,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4210.8827280871,
-            20.6483,
-            817.5738815934
+            -4937.51594104575,
+            4.33304,
+            639.27951623195
           ],
           "local_pos": [
             0.80545,
@@ -25759,9 +25759,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4183.2568334052,
-            20.6483,
-            880.1350556801999
+            -4942.9842655330995,
+            4.33304,
+            707.4497982625
           ],
           "local_pos": [
             28.8434,
@@ -25784,9 +25784,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4233.871660257,
-            20.6483,
-            919.1717686382
+            -5006.0764030578,
+            4.33304,
+            717.7019825868
           ],
           "local_pos": [
             91.7155,
@@ -25809,9 +25809,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4286.5331159704,
-            20.6483,
-            825.915107996
+            -5008.0231835296,
+            4.33304,
+            610.6214420584
           ],
           "local_pos": [
             57.5988,
@@ -25834,9 +25834,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4131.687699237799,
-            20.6483,
-            780.1606054363999
+            -4850.058457301299,
+            4.33304,
+            644.0537514929
           ],
           "local_pos": [
             -79.9729,
@@ -25861,9 +25861,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4193.845661049,
-            20.6483,
-            709.7562478497999
+            -4871.231086433199,
+            4.33304,
+            552.5545473362
           ],
           "local_pos": [
             -90.7485,
@@ -25886,9 +25886,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4210.8827280871,
-            20.6483,
-            817.5738815934
+            -4937.51594104575,
+            4.33304,
+            639.27951623195
           ],
           "local_pos": [
             0.80545,
@@ -25911,9 +25911,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4183.2568334052,
-            20.6483,
-            880.1350556801999
+            -4942.9842655330995,
+            4.33304,
+            707.4497982625
           ],
           "local_pos": [
             28.8434,
@@ -25936,9 +25936,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4233.871660257,
-            20.6483,
-            919.1717686382
+            -5006.0764030578,
+            4.33304,
+            717.7019825868
           ],
           "local_pos": [
             91.7155,
@@ -25961,9 +25961,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4286.5331159704,
-            20.6483,
-            825.915107996
+            -5008.0231835296,
+            4.33304,
+            610.6214420584
           ],
           "local_pos": [
             57.5988,
@@ -25986,9 +25986,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -4131.687699237799,
-            20.6483,
-            780.1606054363999
+            -4850.058457301299,
+            4.33304,
+            644.0537514929
           ],
           "local_pos": [
             -79.9729,
@@ -26013,9 +26013,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4193.845661049,
-            20.6483,
-            709.7562478497999
+            -4871.231086433199,
+            4.33304,
+            552.5545473362
           ],
           "local_pos": [
             -90.7485,
@@ -26038,9 +26038,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4210.8827280871,
-            20.6483,
-            817.5738815934
+            -4937.51594104575,
+            4.33304,
+            639.27951623195
           ],
           "local_pos": [
             0.80545,
@@ -26063,9 +26063,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4183.2568334052,
-            20.6483,
-            880.1350556801999
+            -4942.9842655330995,
+            4.33304,
+            707.4497982625
           ],
           "local_pos": [
             28.8434,
@@ -26088,9 +26088,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4233.871660257,
-            20.6483,
-            919.1717686382
+            -5006.0764030578,
+            4.33304,
+            717.7019825868
           ],
           "local_pos": [
             91.7155,
@@ -26113,9 +26113,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4286.5331159704,
-            20.6483,
-            825.915107996
+            -5008.0231835296,
+            4.33304,
+            610.6214420584
           ],
           "local_pos": [
             57.5988,
@@ -26138,9 +26138,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -4131.687699237799,
-            20.6483,
-            780.1606054363999
+            -4850.058457301299,
+            4.33304,
+            644.0537514929
           ],
           "local_pos": [
             -79.9729,
@@ -26165,9 +26165,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4193.845661049,
-            20.6483,
-            709.7562478497999
+            -4871.231086433199,
+            4.33304,
+            552.5545473362
           ],
           "local_pos": [
             -90.7485,
@@ -26190,9 +26190,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4210.8827280871,
-            20.6483,
-            817.5738815934
+            -4937.51594104575,
+            4.33304,
+            639.27951623195
           ],
           "local_pos": [
             0.80545,
@@ -26215,9 +26215,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4183.2568334052,
-            20.6483,
-            880.1350556801999
+            -4942.9842655330995,
+            4.33304,
+            707.4497982625
           ],
           "local_pos": [
             28.8434,
@@ -26240,9 +26240,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4233.871660257,
-            20.6483,
-            919.1717686382
+            -5006.0764030578,
+            4.33304,
+            717.7019825868
           ],
           "local_pos": [
             91.7155,
@@ -26265,9 +26265,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4286.5331159704,
-            20.6483,
-            825.915107996
+            -5008.0231835296,
+            4.33304,
+            610.6214420584
           ],
           "local_pos": [
             57.5988,
@@ -26290,9 +26290,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4131.687699237799,
-            20.6483,
-            780.1606054363999
+            -4850.058457301299,
+            4.33304,
+            644.0537514929
           ],
           "local_pos": [
             -79.9729,
@@ -26317,9 +26317,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4193.845661049,
-            20.6483,
-            709.7562478497999
+            -4871.231086433199,
+            4.33304,
+            552.5545473362
           ],
           "local_pos": [
             -90.7485,
@@ -26342,9 +26342,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4210.8827280871,
-            20.6483,
-            817.5738815934
+            -4937.51594104575,
+            4.33304,
+            639.27951623195
           ],
           "local_pos": [
             0.80545,
@@ -26367,9 +26367,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4183.2568334052,
-            20.6483,
-            880.1350556801999
+            -4942.9842655330995,
+            4.33304,
+            707.4497982625
           ],
           "local_pos": [
             28.8434,
@@ -26392,9 +26392,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4233.871660257,
-            20.6483,
-            919.1717686382
+            -5006.0764030578,
+            4.33304,
+            717.7019825868
           ],
           "local_pos": [
             91.7155,
@@ -26417,9 +26417,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4286.5331159704,
-            20.6483,
-            825.915107996
+            -5008.0231835296,
+            4.33304,
+            610.6214420584
           ],
           "local_pos": [
             57.5988,
@@ -26442,9 +26442,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -4131.687699237799,
-            20.6483,
-            780.1606054363999
+            -4850.058457301299,
+            4.33304,
+            644.0537514929
           ],
           "local_pos": [
             -79.9729,
@@ -28090,7 +28090,7 @@
   },
   {
     "name": "t2_strongpoint_05",
-    "unit_class": "nt_stronghold",
+    "unit_class": "nt_stronghold_sand",
     "team": 2,
     "source_group": "objectGroups",
     "category": "strongpoint",
@@ -28145,14 +28145,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -212.1386097922,
+            -211.7306814912,
             13.8759,
-            1254.2441094322
+            1254.4369220852
           ],
           "local_pos": [
-            -90.7485,
+            -91.062,
             0.0,
-            31.9369
+            32.2614
           ],
           "number": 1,
           "count": 3,
@@ -28195,14 +28195,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -365.8834093256,
+            -366.4919341922,
             13.8759,
-            1180.0580980629998
+            1179.7655738844
           ],
           "local_pos": [
-            28.8434,
+            29.3157,
             0.0,
-            -89.8779
+            -90.3604
           ],
           "number": 3,
           "count": 3,
@@ -28220,14 +28220,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -375.13972333379996,
+            -378.92999774559996,
             13.8759,
-            1116.8122161958
+            1117.5939233728
           ],
           "local_pos": [
-            91.7155,
+            92.1912,
             0.0,
-            -78.3529
+            -82.1936
           ],
           "number": 1,
           "count": 2,
@@ -28245,14 +28245,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -268.04185427759995,
+            -266.9108412724,
             13.8759,
-            1116.5537075864
+            1115.5102673816
           ],
           "local_pos": [
-            57.5988,
+            58.2242,
             0.0,
-            23.166
+            24.572
           ],
           "number": 2,
           "count": 2,
@@ -28270,14 +28270,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -303.9601649118,
+            -307.6996850168,
             13.8759,
-            1273.9716936743998
+            1275.8120858866
           ],
           "local_pos": [
-            -79.9729,
+            -80.5162,
             0.0,
-            -61.3598
+            -65.4921
           ],
           "number": 1,
           "count": 1,
@@ -28297,14 +28297,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -212.1386097922,
+            -211.7306814912,
             13.8759,
-            1254.2441094322
+            1254.4369220852
           ],
           "local_pos": [
-            -90.7485,
+            -91.062,
             0.0,
-            31.9369
+            32.2614
           ],
           "number": 1,
           "count": 3,
@@ -28347,14 +28347,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -365.8834093256,
+            -366.4919341922,
             13.8759,
-            1180.0580980629998
+            1179.7655738844
           ],
           "local_pos": [
-            28.8434,
+            29.3157,
             0.0,
-            -89.8779
+            -90.3604
           ],
           "number": 3,
           "count": 3,
@@ -28372,14 +28372,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -375.13972333379996,
+            -378.92999774559996,
             13.8759,
-            1116.8122161958
+            1117.5939233728
           ],
           "local_pos": [
-            91.7155,
+            92.1912,
             0.0,
-            -78.3529
+            -82.1936
           ],
           "number": 1,
           "count": 2,
@@ -28397,14 +28397,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -268.04185427759995,
+            -266.9108412724,
             13.8759,
-            1116.5537075864
+            1115.5102673816
           ],
           "local_pos": [
-            57.5988,
+            58.2242,
             0.0,
-            23.166
+            24.572
           ],
           "number": 2,
           "count": 2,
@@ -28422,14 +28422,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            -303.9601649118,
+            -307.6996850168,
             13.8759,
-            1273.9716936743998
+            1275.8120858866
           ],
           "local_pos": [
-            -79.9729,
+            -80.5162,
             0.0,
-            -61.3598
+            -65.4921
           ],
           "number": 1,
           "count": 1,
@@ -28449,14 +28449,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -212.1386097922,
+            -211.7306814912,
             13.8759,
-            1254.2441094322
+            1254.4369220852
           ],
           "local_pos": [
-            -90.7485,
+            -91.062,
             0.0,
-            31.9369
+            32.2614
           ],
           "number": 1,
           "count": 3,
@@ -28499,14 +28499,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -365.8834093256,
+            -366.4919341922,
             13.8759,
-            1180.0580980629998
+            1179.7655738844
           ],
           "local_pos": [
-            28.8434,
+            29.3157,
             0.0,
-            -89.8779
+            -90.3604
           ],
           "number": 3,
           "count": 3,
@@ -28524,14 +28524,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -375.13972333379996,
+            -378.92999774559996,
             13.8759,
-            1116.8122161958
+            1117.5939233728
           ],
           "local_pos": [
-            91.7155,
+            92.1912,
             0.0,
-            -78.3529
+            -82.1936
           ],
           "number": 1,
           "count": 2,
@@ -28549,14 +28549,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -268.04185427759995,
+            -266.9108412724,
             13.8759,
-            1116.5537075864
+            1115.5102673816
           ],
           "local_pos": [
-            57.5988,
+            58.2242,
             0.0,
-            23.166
+            24.572
           ],
           "number": 2,
           "count": 2,
@@ -28574,14 +28574,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            -303.9601649118,
+            -307.6996850168,
             13.8759,
-            1273.9716936743998
+            1275.8120858866
           ],
           "local_pos": [
-            -79.9729,
+            -80.5162,
             0.0,
-            -61.3598
+            -65.4921
           ],
           "number": 1,
           "count": 1,
@@ -28601,14 +28601,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -212.1386097922,
+            -211.7306814912,
             13.8759,
-            1254.2441094322
+            1254.4369220852
           ],
           "local_pos": [
-            -90.7485,
+            -91.062,
             0.0,
-            31.9369
+            32.2614
           ],
           "number": 1,
           "count": 3,
@@ -28651,14 +28651,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -365.8834093256,
+            -366.4919341922,
             13.8759,
-            1180.0580980629998
+            1179.7655738844
           ],
           "local_pos": [
-            28.8434,
+            29.3157,
             0.0,
-            -89.8779
+            -90.3604
           ],
           "number": 3,
           "count": 3,
@@ -28676,14 +28676,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -375.13972333379996,
+            -378.92999774559996,
             13.8759,
-            1116.8122161958
+            1117.5939233728
           ],
           "local_pos": [
-            91.7155,
+            92.1912,
             0.0,
-            -78.3529
+            -82.1936
           ],
           "number": 1,
           "count": 2,
@@ -28701,14 +28701,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -268.04185427759995,
+            -266.9108412724,
             13.8759,
-            1116.5537075864
+            1115.5102673816
           ],
           "local_pos": [
-            57.5988,
+            58.2242,
             0.0,
-            23.166
+            24.572
           ],
           "number": 2,
           "count": 2,
@@ -28726,14 +28726,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -303.9601649118,
+            -307.6996850168,
             13.8759,
-            1273.9716936743998
+            1275.8120858866
           ],
           "local_pos": [
-            -79.9729,
+            -80.5162,
             0.0,
-            -61.3598
+            -65.4921
           ],
           "number": 1,
           "count": 1,
@@ -28753,14 +28753,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -212.1386097922,
+            -211.7306814912,
             13.8759,
-            1254.2441094322
+            1254.4369220852
           ],
           "local_pos": [
-            -90.7485,
+            -91.062,
             0.0,
-            31.9369
+            32.2614
           ],
           "number": 1,
           "count": 3,
@@ -28803,14 +28803,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -365.8834093256,
+            -366.4919341922,
             13.8759,
-            1180.0580980629998
+            1179.7655738844
           ],
           "local_pos": [
-            28.8434,
+            29.3157,
             0.0,
-            -89.8779
+            -90.3604
           ],
           "number": 3,
           "count": 3,
@@ -28828,14 +28828,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -375.13972333379996,
+            -378.92999774559996,
             13.8759,
-            1116.8122161958
+            1117.5939233728
           ],
           "local_pos": [
-            91.7155,
+            92.1912,
             0.0,
-            -78.3529
+            -82.1936
           ],
           "number": 1,
           "count": 2,
@@ -28853,14 +28853,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -268.04185427759995,
+            -266.9108412724,
             13.8759,
-            1116.5537075864
+            1115.5102673816
           ],
           "local_pos": [
-            57.5988,
+            58.2242,
             0.0,
-            23.166
+            24.572
           ],
           "number": 2,
           "count": 2,
@@ -28878,14 +28878,14 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            -303.9601649118,
+            -307.6996850168,
             13.8759,
-            1273.9716936743998
+            1275.8120858866
           ],
           "local_pos": [
-            -79.9729,
+            -80.5162,
             0.0,
-            -61.3598
+            -65.4921
           ],
           "number": 1,
           "count": 1,
@@ -28907,22 +28907,22 @@
     "source_group": "objectGroups",
     "category": "strongpoint",
     "world_pos": [
-      4409.42,
-      21.7998,
-      -160.363
+      -1794.75,
+      36.75,
+      4545.45
     ],
     "editor_world_pos": [
-      4409.42,
-      21.7998,
-      -160.363
+      -1794.75,
+      36.75,
+      4545.45
     ],
     "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
-        -0.95004,
+        -0.118749,
         0.0,
-        -0.312129
+        -0.992925
       ],
       [
         0.0,
@@ -28930,14 +28930,14 @@
         0.0
       ],
       [
-        0.312129,
+        0.992925,
         0.0,
-        -0.95004
+        -0.118749
       ],
       [
-        4409.42,
-        21.7998,
-        -160.363
+        -1794.75,
+        36.75,
+        4545.45
       ]
     ],
     "runways": [],
@@ -28957,9 +28957,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4505.6031376001,
-            21.7998,
-            -162.37909391949998
+            -1752.262759941,
+            36.75,
+            4631.7639794244
           ],
           "local_pos": [
             -90.7485,
@@ -28982,9 +28982,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4400.0711491433,
-            21.7998,
-            -134.48801929105002
+            -1822.15138175955,
+            36.75,
+            4547.91588168345
           ],
           "local_pos": [
             0.80545,
@@ -29007,9 +29007,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4353.9641172149,
-            21.7998,
-            -83.97826148259999
+            -1887.4171387641002,
+            36.75,
+            4527.4835778021
           ],
           "local_pos": [
             28.8434,
@@ -29032,9 +29032,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4297.8303940559,
-            21.7998,
-            -114.55167818349999
+            -1883.439677142,
+            36.75,
+            4463.6877156846
           ],
           "local_pos": [
             91.7155,
@@ -29057,9 +29057,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4361.929616462,
-            21.7998,
-            -200.3498824852
+            -1778.5876993512,
+            36.75,
+            4485.507772176
           ],
           "local_pos": [
             57.5988,
@@ -29082,9 +29082,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4466.2452809018,
-            21.7998,
-            -77.10687430389999
+            -1846.1789775129,
+            36.75,
+            4632.1435066226995
           ],
           "local_pos": [
             -79.9729,
@@ -29109,9 +29109,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4505.6031376001,
-            21.7998,
-            -162.37909391949998
+            -1752.262759941,
+            36.75,
+            4631.7639794244
           ],
           "local_pos": [
             -90.7485,
@@ -29134,9 +29134,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4400.0711491433,
-            21.7998,
-            -134.48801929105002
+            -1822.15138175955,
+            36.75,
+            4547.91588168345
           ],
           "local_pos": [
             0.80545,
@@ -29159,9 +29159,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4353.9641172149,
-            21.7998,
-            -83.97826148259999
+            -1887.4171387641002,
+            36.75,
+            4527.4835778021
           ],
           "local_pos": [
             28.8434,
@@ -29184,9 +29184,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4297.8303940559,
-            21.7998,
-            -114.55167818349999
+            -1883.439677142,
+            36.75,
+            4463.6877156846
           ],
           "local_pos": [
             91.7155,
@@ -29209,9 +29209,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4361.929616462,
-            21.7998,
-            -200.3498824852
+            -1778.5876993512,
+            36.75,
+            4485.507772176
           ],
           "local_pos": [
             57.5988,
@@ -29234,9 +29234,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1970",
           "world_pos": [
-            4466.2452809018,
-            21.7998,
-            -77.10687430389999
+            -1846.1789775129,
+            36.75,
+            4632.1435066226995
           ],
           "local_pos": [
             -79.9729,
@@ -29261,9 +29261,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            4505.6031376001,
-            21.7998,
-            -162.37909391949998
+            -1752.262759941,
+            36.75,
+            4631.7639794244
           ],
           "local_pos": [
             -90.7485,
@@ -29286,9 +29286,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            4400.0711491433,
-            21.7998,
-            -134.48801929105002
+            -1822.15138175955,
+            36.75,
+            4547.91588168345
           ],
           "local_pos": [
             0.80545,
@@ -29311,9 +29311,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            4353.9641172149,
-            21.7998,
-            -83.97826148259999
+            -1887.4171387641002,
+            36.75,
+            4527.4835778021
           ],
           "local_pos": [
             28.8434,
@@ -29336,9 +29336,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            4297.8303940559,
-            21.7998,
-            -114.55167818349999
+            -1883.439677142,
+            36.75,
+            4463.6877156846
           ],
           "local_pos": [
             91.7155,
@@ -29361,9 +29361,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            4361.929616462,
-            21.7998,
-            -200.3498824852
+            -1778.5876993512,
+            36.75,
+            4485.507772176
           ],
           "local_pos": [
             57.5988,
@@ -29386,9 +29386,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_1980",
           "world_pos": [
-            4466.2452809018,
-            21.7998,
-            -77.10687430389999
+            -1846.1789775129,
+            36.75,
+            4632.1435066226995
           ],
           "local_pos": [
             -79.9729,
@@ -29413,9 +29413,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4505.6031376001,
-            21.7998,
-            -162.37909391949998
+            -1752.262759941,
+            36.75,
+            4631.7639794244
           ],
           "local_pos": [
             -90.7485,
@@ -29438,9 +29438,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4400.0711491433,
-            21.7998,
-            -134.48801929105002
+            -1822.15138175955,
+            36.75,
+            4547.91588168345
           ],
           "local_pos": [
             0.80545,
@@ -29463,9 +29463,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4353.9641172149,
-            21.7998,
-            -83.97826148259999
+            -1887.4171387641002,
+            36.75,
+            4527.4835778021
           ],
           "local_pos": [
             28.8434,
@@ -29488,9 +29488,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4297.8303940559,
-            21.7998,
-            -114.55167818349999
+            -1883.439677142,
+            36.75,
+            4463.6877156846
           ],
           "local_pos": [
             91.7155,
@@ -29513,9 +29513,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4361.929616462,
-            21.7998,
-            -200.3498824852
+            -1778.5876993512,
+            36.75,
+            4485.507772176
           ],
           "local_pos": [
             57.5988,
@@ -29538,9 +29538,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4466.2452809018,
-            21.7998,
-            -77.10687430389999
+            -1846.1789775129,
+            36.75,
+            4632.1435066226995
           ],
           "local_pos": [
             -79.9729,
@@ -29565,9 +29565,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4505.6031376001,
-            21.7998,
-            -162.37909391949998
+            -1752.262759941,
+            36.75,
+            4631.7639794244
           ],
           "local_pos": [
             -90.7485,
@@ -29590,9 +29590,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4400.0711491433,
-            21.7998,
-            -134.48801929105002
+            -1822.15138175955,
+            36.75,
+            4547.91588168345
           ],
           "local_pos": [
             0.80545,
@@ -29615,9 +29615,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4353.9641172149,
-            21.7998,
-            -83.97826148259999
+            -1887.4171387641002,
+            36.75,
+            4527.4835778021
           ],
           "local_pos": [
             28.8434,
@@ -29640,9 +29640,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4297.8303940559,
-            21.7998,
-            -114.55167818349999
+            -1883.439677142,
+            36.75,
+            4463.6877156846
           ],
           "local_pos": [
             91.7155,
@@ -29665,9 +29665,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4361.929616462,
-            21.7998,
-            -200.3498824852
+            -1778.5876993512,
+            36.75,
+            4485.507772176
           ],
           "local_pos": [
             57.5988,
@@ -29690,9 +29690,9 @@
           "slot_type": "tm",
           "preset": "strongpoint_2018",
           "world_pos": [
-            4466.2452809018,
-            21.7998,
-            -77.10687430389999
+            -1846.1789775129,
+            36.75,
+            4632.1435066226995
           ],
           "local_pos": [
             -79.9729,
@@ -48662,6 +48662,1310 @@
     }
   },
   {
+    "name": "t1_base_06",
+    "unit_class": "nt_assembly_area_foundation",
+    "team": 1,
+    "source_group": "objectGroups",
+    "category": "assembly_area",
+    "world_pos": [
+      -19630.0,
+      33.759,
+      21758.5
+    ],
+    "editor_world_pos": [
+      -19630.0,
+      33.759,
+      21758.5
+    ],
+    "runtime_relocated": false,
+    "runtime_position_kind": "fixed",
+    "tm": [
+      [
+        0.922397,
+        0.0,
+        0.386241
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        -0.386241,
+        0.0,
+        0.922397
+      ],
+      [
+        -19630.0,
+        33.759,
+        21758.5
+      ]
+    ],
+    "runways": [],
+    "route": null,
+    "buildings_by_era": {
+      "rank-0-26": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            -19630.0,
+            33.759,
+            21758.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            -19599.454759,
+            33.759,
+            21972.938593
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            -19694.23431315,
+            33.759,
+            21655.71366305
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-27-30": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            -19630.0,
+            33.759,
+            21758.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            -19599.454759,
+            33.759,
+            21972.938593
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            -19694.23431315,
+            33.759,
+            21655.71366305
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-31-36": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            -19630.0,
+            33.759,
+            21758.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            -19599.454759,
+            33.759,
+            21972.938593
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            -19694.23431315,
+            33.759,
+            21655.71366305
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-37-39": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            -19630.0,
+            33.759,
+            21758.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            -19599.454759,
+            33.759,
+            21972.938593
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            -19694.23431315,
+            33.759,
+            21655.71366305
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-40-50": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            -19630.0,
+            33.759,
+            21758.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            -19599.454759,
+            33.759,
+            21972.938593
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            -19694.23431315,
+            33.759,
+            21655.71366305
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ]
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "name": "ussr_zsu_57_2",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_early",
+          "world_pos": [
+            -19908.267241999998,
+            33.759,
+            21866.394364
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_zsu_23_4",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_early",
+          "world_pos": [
+            -19514.126800000002,
+            33.759,
+            22048.781310000002
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 1,
+          "count": 2,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_zsu_23_4",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_early",
+          "world_pos": [
+            -19366.455729999998,
+            33.759,
+            21711.656659999997
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 2,
+          "count": 2,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "name": "ussr_zsu_23_4",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_late",
+          "world_pos": [
+            -19908.267241999998,
+            33.759,
+            21866.394364
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 2,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_zsu_23_4",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_late",
+          "world_pos": [
+            -19514.126800000002,
+            33.759,
+            22048.781310000002
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 2,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_9a33bm3",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_late",
+          "world_pos": [
+            -19366.455729999998,
+            33.759,
+            21711.656659999997
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "name": "ussr_9a33bm3",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1980",
+          "world_pos": [
+            -19908.267241999998,
+            33.759,
+            21866.394364
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 2,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_9a33bm3",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1980",
+          "world_pos": [
+            -19514.126800000002,
+            33.759,
+            22048.781310000002
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 2,
+          "threat_range": 12500.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_9a35_m2",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1980",
+          "world_pos": [
+            -19366.455729999998,
+            33.759,
+            21711.656659999997
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            -19908.267241999998,
+            33.759,
+            21866.394364
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            -19514.126800000002,
+            33.759,
+            22048.781310000002
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            -19366.455729999998,
+            33.759,
+            21711.656659999997
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            -19908.267241999998,
+            33.759,
+            21866.394364
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            -19514.126800000002,
+            33.759,
+            22048.781310000002
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            -19366.455729999998,
+            33.759,
+            21711.656659999997
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_base_06",
+    "unit_class": "nt_assembly_area_nomesh",
+    "team": 2,
+    "source_group": "objectGroups",
+    "category": "assembly_area",
+    "world_pos": [
+      1327.2,
+      6.58301,
+      6765.32
+    ],
+    "editor_world_pos": [
+      1327.2,
+      6.58301,
+      6765.32
+    ],
+    "runtime_relocated": false,
+    "runtime_position_kind": "fixed",
+    "tm": [
+      [
+        0.309451,
+        0.0,
+        -0.950915
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.950915,
+        0.0,
+        0.309451
+      ],
+      [
+        1327.2,
+        6.58301,
+        6765.32
+      ]
+    ],
+    "runways": [],
+    "route": null,
+    "buildings_by_era": {
+      "rank-0-26": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            1327.2,
+            6.58301,
+            6765.32
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            1538.4192509999998,
+            6.58301,
+            6717.326321
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            1230.0157735500002,
+            6.58301,
+            6837.75146925
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-27-30": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            1327.2,
+            6.58301,
+            6765.32
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            1538.4192509999998,
+            6.58301,
+            6717.326321
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            1230.0157735500002,
+            6.58301,
+            6837.75146925
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-31-36": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            1327.2,
+            6.58301,
+            6765.32
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            1538.4192509999998,
+            6.58301,
+            6717.326321
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            1230.0157735500002,
+            6.58301,
+            6837.75146925
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-37-39": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            1327.2,
+            6.58301,
+            6765.32
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            1538.4192509999998,
+            6.58301,
+            6717.326321
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            1230.0157735500002,
+            6.58301,
+            6837.75146925
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ],
+      "rank-40-50": [
+        {
+          "name": "nt_assembly_area_tank_factory",
+          "role": "building",
+          "world_pos": [
+            1327.2,
+            6.58301,
+            6765.32
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_ammo_storage",
+          "role": "building",
+          "world_pos": [
+            1538.4192509999998,
+            6.58301,
+            6717.326321
+          ],
+          "local_pos": [
+            111.0,
+            0.0,
+            186.0
+          ]
+        },
+        {
+          "name": "nt_assembly_area_fuel_storage",
+          "role": "building",
+          "world_pos": [
+            1230.0157735500002,
+            6.58301,
+            6837.75146925
+          ],
+          "local_pos": [
+            -98.95,
+            0.0,
+            -70.0
+          ]
+        }
+      ]
+    },
+    "units_by_era": {
+      "rank-0-26": [
+        {
+          "name": "us_m42_duster",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_early",
+          "world_pos": [
+            1457.50744,
+            6.58301,
+            7033.823082
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "us_m163_vulcan",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_early",
+          "world_pos": [
+            1607.0238140000001,
+            6.58301,
+            6626.077187999999
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 1,
+          "count": 2,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "us_m163_vulcan",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_early",
+          "world_pos": [
+            1258.9438,
+            6.58301,
+            6506.49373
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 2,
+          "count": 2,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-27-30": [
+        {
+          "name": "us_m163_vulcan",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_late",
+          "world_pos": [
+            1457.50744,
+            6.58301,
+            7033.823082
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 2,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "us_m163_vulcan",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_late",
+          "world_pos": [
+            1607.0238140000001,
+            6.58301,
+            6626.077187999999
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 2,
+          "threat_range": null,
+          "template": "tank+nuclear_escalation_spaa_radar_off",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "germ_flarakpz_1",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1970_late",
+          "world_pos": [
+            1258.9438,
+            6.58301,
+            6506.49373
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-31-36": [
+        {
+          "name": "germ_flarakpz_1",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1980",
+          "world_pos": [
+            1457.50744,
+            6.58301,
+            7033.823082
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 2,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "germ_flarakpz_1",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1980",
+          "world_pos": [
+            1607.0238140000001,
+            6.58301,
+            6626.077187999999
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 2,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "germ_flakpz_1a2_Gepard",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_1980",
+          "world_pos": [
+            1258.9438,
+            6.58301,
+            6506.49373
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": 5000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "name": "sw_crotale_ng",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            1457.50744,
+            6.58301,
+            7033.823082
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 15000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "sw_crotale_ng",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            1607.0238140000001,
+            6.58301,
+            6626.077187999999
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 15000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "sw_crotale_ng",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            1258.9438,
+            6.58301,
+            6506.49373
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 15000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "name": "sw_crotale_ng",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            1457.50744,
+            6.58301,
+            7033.823082
+          ],
+          "local_pos": [
+            -215.0,
+            0.0,
+            207.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 15000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "sw_crotale_ng",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            1607.0238140000001,
+            6.58301,
+            6626.077187999999
+          ],
+          "local_pos": [
+            219.0,
+            0.0,
+            223.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 15000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        },
+        {
+          "name": "sw_crotale_ng",
+          "role": "spaa",
+          "slot_type": "spaa",
+          "preset": "factory_air_defence_preset_2018",
+          "world_pos": [
+            1258.9438,
+            6.58301,
+            6506.49373
+          ],
+          "local_pos": [
+            225.0,
+            0.0,
+            -145.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 15000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
     "name": "t1_tactical_missile_launcher_01",
     "unit_class": "ussr_ai_tbm_9k79_tochka",
     "team": 1,
@@ -49794,6 +51098,558 @@
             24937.5,
             50.1162,
             56345.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t1_mlrs_01",
+    "unit_class": "ussr_ai_mlrs_9a52_2_smerch",
+    "team": 1,
+    "source_group": "tankModels",
+    "category": null,
+    "world_pos": [
+      -19777.5,
+      110.71,
+      38385.6
+    ],
+    "editor_world_pos": [
+      -112951.0,
+      93.1191,
+      -105587.0
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "random_spawn_area_center",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -112951.0,
+        93.1191,
+        -105587.0
+      ]
+    ],
+    "runways": [],
+    "route": null,
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [
+        {
+          "id": "t1_mlrs_01",
+          "name": "ussr_ai_mlrs_9a52_2_smerch",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -19777.5,
+            110.71,
+            38385.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t1_mlrs_01",
+          "name": "ussr_ai_mlrs_9a52_2_smerch",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -19777.5,
+            110.71,
+            38385.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t1_mlrs_01",
+          "name": "ussr_ai_mlrs_9a52_2_smerch",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -19777.5,
+            110.71,
+            38385.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t1_mlrs_02",
+    "unit_class": "ussr_ai_mlrs_9a52_2_smerch",
+    "team": 1,
+    "source_group": "tankModels",
+    "category": null,
+    "world_pos": [
+      -16909.9,
+      64.8691,
+      43806.4
+    ],
+    "editor_world_pos": [
+      -112951.0,
+      93.1191,
+      -105592.0
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "random_spawn_area_center",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -112951.0,
+        93.1191,
+        -105592.0
+      ]
+    ],
+    "runways": [],
+    "route": null,
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [
+        {
+          "id": "t1_mlrs_02",
+          "name": "ussr_ai_mlrs_9a52_2_smerch",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -16909.9,
+            64.8691,
+            43806.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t1_mlrs_02",
+          "name": "ussr_ai_mlrs_9a52_2_smerch",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -16909.9,
+            64.8691,
+            43806.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t1_mlrs_02",
+          "name": "ussr_ai_mlrs_9a52_2_smerch",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            -16909.9,
+            64.8691,
+            43806.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_mlrs_01",
+    "unit_class": "us_ai_mlrs_m270",
+    "team": 2,
+    "source_group": "tankModels",
+    "category": null,
+    "world_pos": [
+      6492.95,
+      69.8378,
+      44698.4
+    ],
+    "editor_world_pos": [
+      -112951.0,
+      93.1191,
+      -105737.0
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "random_spawn_area_center",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -112951.0,
+        93.1191,
+        -105737.0
+      ]
+    ],
+    "runways": [],
+    "route": null,
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [
+        {
+          "id": "t2_mlrs_01",
+          "name": "us_ai_mlrs_m270",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            6492.95,
+            69.8378,
+            44698.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t2_mlrs_01",
+          "name": "us_ai_mlrs_m270",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            6492.95,
+            69.8378,
+            44698.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t2_mlrs_01",
+          "name": "us_ai_mlrs_m270",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            6492.95,
+            69.8378,
+            44698.4
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "t2_mlrs_02",
+    "unit_class": "us_ai_mlrs_m270",
+    "team": 2,
+    "source_group": "tankModels",
+    "category": null,
+    "world_pos": [
+      6506.79,
+      88.0885,
+      42325.1
+    ],
+    "editor_world_pos": [
+      -112951.0,
+      93.1191,
+      -105742.0
+    ],
+    "runtime_relocated": true,
+    "runtime_position_kind": "random_spawn_area_center",
+    "tm": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -112951.0,
+        93.1191,
+        -105742.0
+      ]
+    ],
+    "runways": [],
+    "route": null,
+    "buildings_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [],
+      "rank-37-39": [],
+      "rank-40-50": []
+    },
+    "units_by_era": {
+      "rank-0-26": [],
+      "rank-27-30": [],
+      "rank-31-36": [
+        {
+          "id": "t2_mlrs_02",
+          "name": "us_ai_mlrs_m270",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            6506.79,
+            88.0885,
+            42325.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-37-39": [
+        {
+          "id": "t2_mlrs_02",
+          "name": "us_ai_mlrs_m270",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            6506.79,
+            88.0885,
+            42325.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 1,
+          "threat_range": null,
+          "template": "",
+          "lifecycle": {
+            "kind": "none",
+            "source": "mission"
+          },
+          "unplaced": false
+        }
+      ],
+      "rank-40-50": [
+        {
+          "id": "t2_mlrs_02",
+          "name": "us_ai_mlrs_m270",
+          "role": "vehicle",
+          "slot_type": "origin",
+          "preset": "mission unit",
+          "world_pos": [
+            6506.79,
+            88.0885,
+            42325.1
           ],
           "local_pos": [
             0.0,
