@@ -19,6 +19,12 @@
       "label": "South Eastern City",
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm.blkx",
       "name": "air_south_eastern_city_nuclear_escalation_tdm.blkx"
+    },
+    {
+      "id": "city_mirror",
+      "label": "South Eastern City — swapped locations",
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx",
+      "name": "air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx"
     }
   ],
   "generator_files": [
@@ -98,6 +104,7 @@
     }
   ],
   "watch_files": [
+    "aces.vromfs.bin_u/levels/air_south_eastern_city.blkx",
     "mis.vromfs.bin_u/gamedata/missions/cta/planes/events/nuclear_escalation_tdm.blkx",
     "aces.vromfs.bin_u/levels/avg_nuclear_incident.blkx",
     "gui.vromfs.bin_u/reactivegui/hud/scoreboard/nuclearescalation.ui.nut"

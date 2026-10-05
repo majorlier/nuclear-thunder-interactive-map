@@ -1,0 +1,23 @@
+name: Validate map update
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the map
+        uses: actions/checkout@v6
+      - name: Test mission extraction
+        run: python tools/test_mission_extraction.py
+      - name: Validate all mission data and deployment assets
+        run: python tools/validate_data.py
+      - name: Check browser syntax and map variants
+        run: node tools/check_frontend.js

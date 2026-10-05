@@ -25,7 +25,10 @@ jobs:
           --github-output "$GITHUB_OUTPUT"
 
       - name: Validate the result
-        run: python tools/validate_data.py
+        run: |
+          python tools/test_mission_extraction.py
+          python tools/validate_data.py
+          node tools/check_frontend.js
 
       - name: Summarize detected changes
         run: cat datamine-update-report.md >> "$GITHUB_STEP_SUMMARY"
@@ -51,9 +54,11 @@ jobs:
             map_data.json
             map_data_mirror.json
             map_data_city.json
+            map_data_city_mirror.json
             mission_logic.json
             mission_logic_mirror.json
             mission_logic_city.json
+            mission_logic_city_mirror.json
             presets.json
             unit_specs.json
             unit_display_names.json
