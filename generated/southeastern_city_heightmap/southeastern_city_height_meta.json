@@ -1,43 +1,34 @@
 {
-  "grid_size": [
-    32,
-    32
-  ],
-  "cell_size_m": 4096.0,
-  "origin_cells": [
-    -16,
-    -16
-  ],
-  "height_bounds_m": [
-    -75.25747680664062,
-    1232.330078125
-  ],
-  "y_scale_m": 653.7937774658203,
-  "landmesh_vertex_count": 493197,
-  "removed_flat_sea_artifact_pixels": 10742,
-  "resolution": [
-    1024,
-    1024
-  ],
+  "source": "air_south_eastern_city.bin",
+  "source_sha256": "79fed642e6028282fc1da9a1a014cfd8737c65f9e4196fa6cc5bd6821fe995ff",
+  "stream": "HM2",
+  "width": 4096,
+  "height": 4096,
+  "cell_size_m": 32.0,
+  "origin_x_m": -65536.0,
+  "origin_z_m": -65536.0,
   "world_bounds_m": [
     -65536.0,
     65536.0
   ],
+  "world_bounds_z_m": [
+    -65536.0,
+    65536.0
+  ],
   "water_level_m": 0.0,
-  "actual_min_height_m": -73.16241455078125,
-  "actual_max_height_m": 1222.0943603515625,
+  "hm2_min_height_m": -302.0,
+  "hm2_height_range_m": 1536.0,
+  "actual_min_height_m": -50.01959228515625,
+  "actual_max_height_m": 1232.3125,
   "height_encoding": {
     "format": "rg16",
     "image": "southeastern_city_height_16bit.webp",
-    "width": 1024,
-    "height": 1024,
-    "min_m": -74.0,
+    "width": 2048,
+    "height": 2048,
+    "min_m": -51.0,
     "step_m": 0.25,
-    "max_m": 1222.0
+    "max_m": 1224.25
   },
-  "note": "Rasterized from embedded land-mesh vertices; it is not an HM2 source heightmap.",
-  "source": "air_south_eastern_city.bin",
-  "stream": "lmap/lndm",
-  "lod": 0,
-  "vertical_correction": "Regenerated from the previous raster with the land-mesh centre offset fixed (-75.2575 m)."
+  "raster_cell_size_m": 64.0,
+  "height_downsample": 2
 }
