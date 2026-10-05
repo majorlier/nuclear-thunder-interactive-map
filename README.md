@@ -47,17 +47,33 @@ Archipelago stores an `HM2` heightmap. Decoding needs Oodle, provided by the
 python tools/extract_heightmap.py "F:\Steam\steamapps\common\War Thunder\levels\air_archipelago.bin" --output-dir .
 ```
 
-South Eastern City stores terrain in the optimized `lmap/lndm` land-mesh
-stream instead. Keep a local copy of Dagor Asset Explorer and run:
+The current South Eastern City level also contains `HM2`. Use the same
+extractor with a City filename prefix so Archipelago assets are not overwritten:
 
 ```text
-python tools/extract_lmap_heightmap.py "F:\Steam\steamapps\common\War Thunder\levels\air_south_eastern_city.bin" --output-dir generated\southeastern_city_heightmap
+python tools/extract_heightmap.py "<War Thunder>\levels\air_south_eastern_city.bin" --output-dir generated\southeastern_city_heightmap --output-stem southeastern_city --height-downsample 2
 ```
 
-Use `--asset-explorer <folder>` if Asset Explorer is not in its default local
-folder, and `--resolution 2048` for a larger raster. The extractor removes the
-flat, featureless blobs that sparse sea cells leave in open water (they are
-not on the in-game tactical map) and records how many pixels it reset.
+If `pyooz` is unavailable, add `--asset-explorer <folder>` to use the local
+Dagor Asset Explorer decompression DLL on Windows, or use `--ooz <ooz.exe>`.
+City's source is a 4096 x 4096 grid at 32 m spacing; the browser receives a
+2048 x 2048 raster at 64 m spacing after averaging 2 x 2 source cells. Both
+maps retain 0.25 m vertical precision and bilinear height sampling.
+
+For older City levels without `HM2`, `tools/extract_lmap_heightmap.py` remains
+available as a land-mesh fallback (`--resolution 2048` for a larger raster).
+
+Refresh City roads and navigation from that same installed level:
+
+```text
+python tools/extract_roads.py "<War Thunder>\levels\air_south_eastern_city.bin" --include-local-roads --output road_network_city.json
+python tools/extract_navmesh.py "<War Thunder>\levels\air_south_eastern_city.bin" --output navmesh_city.json
+```
+
+Navigation extraction needs `zstandard` (`pip install zstandard`). Route
+previews are reconstructed from the exported road geometry and navigation
+mesh, not recordings of the game's live AI paths. The tactical background
+image is maintained separately and is not replaced by these commands.
 
 To test a local copy, run a small local web server from this folder and open
 `http://localhost:8000` in a browser (for example, run

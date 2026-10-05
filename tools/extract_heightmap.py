@@ -4,7 +4,8 @@
 The War Thunder level stores the 4096x4096 terrain as Oodle-compressed
 8x8 blocks.  This script decodes those blocks with the ``pyooz`` Python
 package (``pip install pyooz``), the open-source ``ooz`` command-line tool
-(``--ooz``), or an already-decoded chunk directory (``--decoded-chunks``).
+(``--ooz``), Dagor Asset Explorer's local DLL (``--asset-explorer``), or an
+already-decoded chunk directory (``--decoded-chunks``).
 
 Example (live client)::
 
@@ -14,6 +15,8 @@ Example (live client)::
 from __future__ import annotations
 
 import argparse
+import ctypes
+import hashlib
 import json
 import math
 import struct
@@ -104,6 +107,26 @@ def decode_chunks_in_process(payload: bytes) -> list[bytes]:
     ]
 
 
+def decode_chunks_with_asset_explorer(payload: bytes, root: Path) -> list[bytes]:
+    """Use the existing local Dagor DLL without importing the Explorer GUI."""
+    dll_path = root / "lib" / "daKernel-dev.dll"
+    if not dll_path.is_file():
+        raise FileNotFoundError(f"Asset Explorer decompression DLL not found: {dll_path}")
+    library = ctypes.CDLL(str(dll_path))
+    decompress = library[574]
+    decompress.argtypes = (ctypes.c_void_p, ctypes.c_int64, ctypes.c_void_p, ctypes.c_int64)
+    decompress.restype = ctypes.c_int64
+    chunks = parse_nested_chunks(payload)
+    decoded = []
+    for chunk, size in zip(chunks, chunk_output_sizes(payload, chunks)):
+        destination = ctypes.create_string_buffer(size)
+        result = decompress(destination, size, chunk, len(chunk))
+        if result != size:
+            raise ValueError(f"Oodle decoded {result} bytes; expected {size}")
+        decoded.append(destination.raw)
+    return decoded
+
+
 def decode_chunks(payload: bytes, ooz: Path, destination: Path) -> list[Path]:
     width_height = struct.unpack_from("<I", payload, 20)[0]
     width = width_height & 0x1FFF
@@ -166,12 +189,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("level", type=Path)
     parser.add_argument("--ooz", type=Path, help="Path to ooz or ooz.exe")
+    parser.add_argument("--asset-explorer", type=Path, help="Local Dagor Asset Explorer folder for DLL decompression")
     parser.add_argument(
         "--decoded-chunks",
         type=Path,
         help="Reuse a directory containing chunk0.raw, chunk1.raw, ...",
     )
     parser.add_argument("--output-dir", type=Path, default=Path("."))
+    parser.add_argument(
+        "--output-stem", help="Optional filename prefix, e.g. southeastern_city (default keeps Archipelago filenames)"
+    )
     parser.add_argument(
         "--water-level",
         type=float,
@@ -185,8 +212,13 @@ def main():
         help="Average NxN HM2 cells into the browser height raster (default 2: 4096 -> 2048 px)",
     )
     args = parser.parse_args()
+    if args.height_downsample < 1:
+        parser.error("--height-downsample must be at least 1")
+    if args.output_stem and (Path(args.output_stem).name != args.output_stem or any(c in args.output_stem for c in '/\\')):
+        parser.error("--output-stem must be a filename prefix, not a path")
 
-    payload = find_hm2(args.level.read_bytes())
+    source_data = args.level.read_bytes()
+    payload = find_hm2(source_data)
     cell_size, minimum_height, height_range, origin_x, origin_z = (
         struct.unpack_from("<5f", payload, 0)
     )
@@ -204,11 +236,13 @@ def main():
             path.read_bytes()
             for path in decode_chunks(payload, args.ooz, Path(temporary.name))
         ]
+    elif args.asset_explorer:
+        decoded = decode_chunks_with_asset_explorer(payload, args.asset_explorer)
     else:
         try:
             decoded = decode_chunks_in_process(payload)
         except ImportError:
-            parser.error("install pyooz (pip install pyooz), or pass --ooz / --decoded-chunks")
+            parser.error("install pyooz, or pass --ooz / --asset-explorer / --decoded-chunks")
 
     if len(decoded) < 2:
         raise ValueError("Decoded chunk files were not found")
@@ -224,35 +258,43 @@ def main():
     meters_image = meters[::-1]
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
+    topography_name = f"{args.output_stem}_topography.webp" if args.output_stem else "topographic_map.webp"
+    height_name = f"{args.output_stem}_height_16bit.webp" if args.output_stem else "terrain_height_16bit.webp"
+    meta_name = f"{args.output_stem}_height_meta.json" if args.output_stem else "terrain_meta.json"
 
     Image.fromarray(
         colorize_topography(meters_image, cell_size, args.water_level), "RGB"
     ).save(
-        output_dir / "topographic_map.webp",
+        output_dir / topography_name,
         "WEBP",
         lossless=True,
         method=6,
     )
     encoding = write_height_raster(
-        output_dir / "terrain_height_16bit.webp", meters_image, downsample=args.height_downsample
+        output_dir / height_name, meters_image, downsample=args.height_downsample
     )
 
     metadata = {
         "source": args.level.name,
+        "source_sha256": hashlib.sha256(source_data).hexdigest(),
+        "stream": "HM2",
         "width": width,
         "height": height,
         "cell_size_m": cell_size,
         "origin_x_m": origin_x,
         "origin_z_m": origin_z,
         "world_bounds_m": [origin_x, origin_x + cell_size * width],
+        "world_bounds_z_m": [origin_z, origin_z + cell_size * height],
         "water_level_m": args.water_level,
         "hm2_min_height_m": minimum_height,
         "hm2_height_range_m": height_range,
         "actual_min_height_m": float(meters.min()),
         "actual_max_height_m": float(meters.max()),
         "height_encoding": encoding,
+        "raster_cell_size_m": cell_size * args.height_downsample,
+        "height_downsample": args.height_downsample,
     }
-    (output_dir / "terrain_meta.json").write_text(
+    (output_dir / meta_name).write_text(
         json.dumps(metadata, indent=2) + "\n", encoding="utf-8"
     )
     print(json.dumps(metadata, indent=2))

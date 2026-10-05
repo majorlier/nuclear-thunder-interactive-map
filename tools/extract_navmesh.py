@@ -10,13 +10,11 @@ baked mesh, not a claim about runtime avoidance or dynamic obstacles.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import struct
 from pathlib import Path
-
-import zstandard as zstd
-
 
 DBLD_MAGIC = b"DBLD3x64"
 
@@ -55,6 +53,8 @@ def decompress_vand(payload: bytes) -> bytes:
     # compression method byte.  The compressed data is a zstd frame here.
     if payload[3] != 0x40:
         raise ValueError(f"Unsupported Lnav compression method 0x{payload[3]:02x}")
+    import zstandard as zstd
+
     return zstd.ZstdDecompressor().decompress(payload[4:])
 
 
@@ -75,7 +75,10 @@ def parse_candidate(data: bytes, vertex_offset: int, vertex_count: int, triangle
     non_degenerate = 0
     for index in range(triangle_count):
         record = vertex_end + index * 32
-        _, packed, third = struct.unpack_from("<IHH", data, record)
+        # Four-byte face ID, two uint16 vertex indices packed into a uint32,
+        # then the third uint16 index. Reading the packed pair as uint16
+        # silently turned the second index into zero on every triangle.
+        _, packed, third = struct.unpack_from("<IIH", data, record)
         triangle = [packed & 0xFFFF, packed >> 16, third]
         if any(value >= vertex_count for value in triangle):
             return None
@@ -133,9 +136,11 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("navmesh.json"))
     args = parser.parse_args()
 
-    vand = decompress_vand(find_lnav_payload(args.level.read_bytes()))
+    source_data = args.level.read_bytes()
+    vand = decompress_vand(find_lnav_payload(source_data))
     mesh = parse_vand(vand)
     mesh["source"] = args.level.name
+    mesh["source_sha256"] = hashlib.sha256(source_data).hexdigest()
     args.output.write_text(json.dumps(mesh, separators=(",", ":")), encoding="utf-8")
     print(
         f"Saved VAND v{mesh['version']} with {len(mesh['vertices'])} vertices and "
