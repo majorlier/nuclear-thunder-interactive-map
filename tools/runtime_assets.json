@@ -1,5 +1,7 @@
 {
   "required": [
+    "favicon.svg",
+    "favicon.ico",
     "map_4k.png",
     "topographic_map.webp",
     "terrain_meta.json",
