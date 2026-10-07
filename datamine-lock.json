@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "a5fef60f211c742c48183cf195dab8f603931196",
+  "accepted_commit": "15773f37f2b1463bd7ab9de60dbacb35e27a0297",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
@@ -110,12 +110,12 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "19b755c657816375bdcd2aeffd34eee8d778fc07",
+      "sha": "bcb0b92b6203b608a1964fe4ad51179695cbac26",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/levels/air_south_eastern_city.blkx",
-      "sha": "e52f077315e2c59ff879c3b57e3b814b766059d3",
+      "sha": "9753a4fc0e019272e4a7e7d154c78d3e2292bdb4",
       "used_for_generation": false
     },
     {
@@ -130,7 +130,7 @@
     },
     {
       "path": "lang.vromfs.bin_u/lang/units.csv",
-      "sha": "53a1708ec6f84f6f25dbedac582f8f85c31c9095",
+      "sha": "dceaaed237f97ec3695922463877226e87794b61",
       "used_for_generation": true
     },
     {
