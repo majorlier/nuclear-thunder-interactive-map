@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "15773f37f2b1463bd7ab9de60dbacb35e27a0297",
+  "accepted_commit": "bdb4575cf12de70a513eff44e6bd1ef29cf2fb75",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
@@ -105,12 +105,12 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm.blkx",
-      "sha": "8738a9a56571ca0763b4296d9f7c4a96cc6b346c",
+      "sha": "4cd7d6bc1f00b9af6f76f08dd191553f92ac8e24",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "bcb0b92b6203b608a1964fe4ad51179695cbac26",
+      "sha": "63bbc0c4e54d39692115def9263aa1c97b93bf54",
       "used_for_generation": true
     },
     {
@@ -130,7 +130,7 @@
     },
     {
       "path": "lang.vromfs.bin_u/lang/units.csv",
-      "sha": "dceaaed237f97ec3695922463877226e87794b61",
+      "sha": "6f751e8a6bc75a02526936ad87f169612bd9e655",
       "used_for_generation": true
     },
     {
@@ -181,11 +181,6 @@
     {
       "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_stronghold.blkx",
       "sha": "c1778ab4feb556772302d33487d6e0a3749eea27",
-      "used_for_generation": true
-    },
-    {
-      "path": "aces.vromfs.bin_u/gamedata/objectgroups/nt_stronghold_sand.blkx",
-      "sha": "b012c8686588291dde9ca07bbc838ea636bd3e94",
       "used_for_generation": true
     }
   ],
