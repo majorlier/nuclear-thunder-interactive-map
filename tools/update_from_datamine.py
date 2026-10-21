@@ -402,6 +402,7 @@ def main() -> int:
         missions: dict[str, Path] = {}
         mission_documents: dict[str, dict] = {}
         localization_file: Path | None = None
+        weaponry_file: Path | None = None
 
         for source_path in all_paths:
             encoded_path = urllib.parse.quote(source_path, safe="/")
@@ -516,6 +517,30 @@ def main() -> int:
                 }
             )
             print(f"Downloaded {localization_path}")
+
+        # Weapon labels live in a second localization table. The extractor
+        # needs it to name the weapons carried by the mission units.
+        weaponry_path = "lang.vromfs.bin_u/lang/units_weaponry.csv"
+        encoded_path = urllib.parse.quote(weaponry_path, safe="/")
+        weaponry_url = f"https://raw.githubusercontent.com/{repository}/{commit}/{encoded_path}"
+        try:
+            weaponry_content = download_bytes(weaponry_url)
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                print(f"WARNING: Weapon localization table is absent: {weaponry_path}")
+            else:
+                raise
+        else:
+            weaponry_file = inputs / "units_weaponry.csv"
+            weaponry_file.write_bytes(weaponry_content)
+            source_records.append(
+                {
+                    "path": weaponry_path,
+                    "sha": git_blob_sha(weaponry_content),
+                    "used_for_generation": True,
+                }
+            )
+            print(f"Downloaded {weaponry_path}")
 
         # Each mission object references a reusable object-group BLKX by
         # unit_class. Those blocks contain the exact local launcher/radar/etc.
@@ -687,6 +712,27 @@ def main() -> int:
         else:
             write_json(generated_names, {})
 
+        generated_weapon_names = generated / "unit_weapon_display_names.json"
+        if weaponry_file:
+            run(
+                [
+                    sys.executable,
+                    str(TOOLS / "extract_weapon_names.py"),
+                    "--weaponry-csv",
+                    str(weaponry_file),
+                    "--specs",
+                    str(generated / "unit_specs.json"),
+                    "--output",
+                    str(generated_weapon_names),
+                ]
+            )
+        elif (ROOT / "unit_weapon_display_names.json").exists():
+            shutil.copyfile(
+                ROOT / "unit_weapon_display_names.json", generated_weapon_names
+            )
+        else:
+            write_json(generated_weapon_names, {})
+
         lock = {
             "repository": repository,
             "ref": ref,
@@ -713,6 +759,7 @@ def main() -> int:
         candidates = generated_outputs + [
             "unit_specs.json",
             "unit_display_names.json",
+            "unit_weapon_display_names.json",
             "datamine-lock.json",
         ]
         changed_files = [

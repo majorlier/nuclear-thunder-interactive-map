@@ -134,6 +134,11 @@
       "used_for_generation": true
     },
     {
+      "path": "lang.vromfs.bin_u/lang/units_weaponry.csv",
+      "sha": "2716fed7ccae83846600a48111cd8bebd1d0c158",
+      "used_for_generation": true
+    },
+    {
       "path": "aces.vromfs.bin_u/gamedata/objectgroups/dyn_foundation_7m.blkx",
       "sha": "ae7840eb35edff34db9e0a9536a5644b625f690f",
       "used_for_generation": true

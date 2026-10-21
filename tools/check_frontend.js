@@ -83,4 +83,73 @@ for (const definition of Object.values(definitions)) {
         }
     }
 }
-console.log(`Frontend passed: ${scripts} script(s), ${displayed.size} mission variants.`);
+// Language packs must expose identical keys with identical placeholders, and
+// every literal key used by the page or its markup must exist in English.
+const i18nDirectory = path.join(root, "i18n");
+const packFiles = fs.readdirSync(i18nDirectory).filter(name => name.endsWith(".json"));
+assert(packFiles.length > 0, "No language packs found");
+const locales = packFiles.map(name => path.basename(name, ".json"));
+const dictionaries = new Map(locales.map(locale => [
+    locale,
+    JSON.parse(fs.readFileSync(path.join(i18nDirectory, `${locale}.json`), "utf8"))
+]));
+const english = dictionaries.get("en");
+assert(english, "English is required as the fallback pack");
+const placeholders = text => [...String(text).matchAll(/\{(\w+)\}/g)]
+    .map(match => match[1])
+    .sort();
+for (const locale of locales) {
+    const pack = dictionaries.get(locale);
+    assert.deepEqual(
+        Object.keys(pack).sort(),
+        Object.keys(english).sort(),
+        `${locale}: keys differ from en`
+    );
+    for (const [key, value] of Object.entries(pack)) {
+        assert(typeof value === "string" && value.trim().length > 0,
+            `${locale}: empty value for ${key}`);
+        assert.deepEqual(placeholders(value), placeholders(english[key]),
+            `${locale}: placeholders differ for ${key}`);
+    }
+}
+const usedKeys = new Set([
+    ...[...html.matchAll(/\bt\(\s*"([\w.-]+)"/g)].map(match => match[1]),
+    ...[...html.matchAll(/data-i18n(?:-aria|-title)?="([\w.-]+)"/g)].map(match => match[1])
+]);
+const unknownKeys = [...usedKeys].filter(key => !(key in english));
+assert.equal(unknownKeys.length, 0, `Unknown i18n keys: ${unknownKeys.join(", ")}`);
+// Localized name tables are generated data: a missing file, an empty table or
+// a leftover zero-width space would silently degrade every card.
+for (const name of ["unit_display_names.json", "unit_weapon_display_names.json"]) {
+    if (!html.includes(`fetch("${name}")`)) continue;
+    const file = path.join(root, name);
+    assert(fs.existsSync(file), `Missing localized data file: ${name}`);
+    const table = JSON.parse(fs.readFileSync(file, "utf8"));
+    assert(table.en && typeof table.en === "object", `${name}: English table missing`);
+    for (const [locale, entries] of Object.entries(table)) {
+        assert(entries && typeof entries === "object",
+            `${name}: ${locale} is not a table`);
+        for (const [key, label] of Object.entries(entries)) {
+            assert(typeof label === "string" && label.trim().length > 0,
+                `${name}: empty ${locale} label for ${key}`);
+            assert(!/[\u200b\u200c\u200d\ufeff]/.test(label),
+                `${name}: ${locale}/${key} keeps an invisible separator`);
+            if (key.endsWith("#short")) {
+                const base = key.slice(0, -"#short".length);
+                assert(entries[base], `${name}: ${locale}/${key} has no full name`);
+            }
+        }
+    }
+}
+
+// Both tables are exported from the same localization pass, so they must cover
+// the same locales; a mismatch means one extractor lost a language column.
+const unitNames = JSON.parse(fs.readFileSync(path.join(root, "unit_display_names.json"), "utf8"));
+const weaponNames = JSON.parse(fs.readFileSync(path.join(root, "unit_weapon_display_names.json"), "utf8"));
+assert.deepEqual(
+    Object.keys(weaponNames).sort(),
+    Object.keys(unitNames).sort(),
+    "Localized name tables expose different locales"
+);
+console.log(`Frontend passed: ${scripts} script(s), ${displayed.size} mission variants, ` +
+    `${locales.length} language pack(s) with ${Object.keys(english).length} keys.`);
