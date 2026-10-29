@@ -90,6 +90,14 @@
             backdrop-filter: blur(5px);
         }
 
+        /* On phones the open legend covers the bottom-left map tools and
+           terrain readout; hide them until the legend is collapsed. */
+        @media (max-width: 700px) {
+            body.legend-open .leaflet-bottom.leaflet-left {
+                visibility: hidden;
+            }
+        }
+
         .composition-window.is-collapsed {
             transform: translateX(calc(100% + 12px));
         }
@@ -1642,12 +1650,8 @@
     function refreshLocalizedUi() {
         applyTranslations();
         renderLanguageSelector();
-        if (!Array.isArray(globalSiteData) || !globalSiteData.length) return;
-        populateMapSelector();
-        if ((globalPresetData.presets || []).length) populateScenarioSelector();
+        // Controls that exist before the map data loads.
         rebuildGroupedLayerControl();
-        renderSiteLegend();
-        updateTeamSwapUi();
         setInfoPanelCollapsed(infoPanel.classList.contains("is-collapsed"));
         setCompositionWindowCollapsed(compositionWindow.classList.contains("is-collapsed"));
         refreshTerrainLegendCopy();
@@ -1655,6 +1659,11 @@
         refreshRangeDisclaimerCopy();
         updateMapToolsUi();
         updateThreatStatus();
+        if (!Array.isArray(globalSiteData) || !globalSiteData.length) return;
+        populateMapSelector();
+        if ((globalPresetData.presets || []).length) populateScenarioSelector();
+        renderSiteLegend();
+        updateTeamSwapUi();
         // Cards are rebuilt on the next click; close the stale-language popup.
         clearFocusedSite({ keepRoutes: true });
     }
@@ -1756,6 +1765,17 @@
     const narrowViewport = window.matchMedia?.("(max-width: 700px)").matches === true;
     function drawerStartsCollapsed(saved) {
         return typeof saved === "boolean" ? saved : narrowViewport;
+    }
+    // On a narrow screen only one drawer is open at a time: opening one
+    // collapses the others, which would otherwise cover it. Checked on every
+    // click so a resized window behaves the same way.
+    const narrowQuery = window.matchMedia?.("(max-width: 700px)");
+    const phoneDrawerCollapsers = {};
+    function drawerOpened(name) {
+        if (!narrowQuery?.matches) return;
+        Object.entries(phoneDrawerCollapsers).forEach(([other, collapse]) => {
+            if (other !== name) collapse();
+        });
     }
     function saveUiState(changes) {
         Object.assign(uiState, changes);
@@ -1900,7 +1920,13 @@
         const collapsed = !infoPanel.classList.contains("is-collapsed");
         setInfoPanelCollapsed(collapsed);
         saveUiState({ controlsCollapsed: collapsed });
+        if (!collapsed) drawerOpened("controls");
     });
+    phoneDrawerCollapsers.controls = () => {
+        if (infoPanel.classList.contains("is-collapsed")) return;
+        setInfoPanelCollapsed(true);
+        saveUiState({ controlsCollapsed: true });
+    };
     infoPanel.appendChild(infoDrawerToggle);
     setInfoPanelCollapsed(uiState.controlsCollapsed === true);
 
@@ -1908,6 +1934,7 @@
     const compositionWindowToggle = document.getElementById("composition-window-toggle");
     function setCompositionWindowCollapsed(collapsed) {
         compositionWindow.classList.toggle("is-collapsed", collapsed);
+        document.body.classList.toggle("legend-open", !collapsed);
         compositionWindowToggle.textContent = collapsed ? "‹" : "›";
         compositionWindowToggle.setAttribute("aria-expanded", String(!collapsed));
         compositionWindowToggle.setAttribute(
@@ -1919,7 +1946,13 @@
         const collapsed = !compositionWindow.classList.contains("is-collapsed");
         setCompositionWindowCollapsed(collapsed);
         saveUiState({ legendCollapsed: collapsed });
+        if (!collapsed) drawerOpened("legend");
     });
+    phoneDrawerCollapsers.legend = () => {
+        if (compositionWindow.classList.contains("is-collapsed")) return;
+        setCompositionWindowCollapsed(true);
+        saveUiState({ legendCollapsed: true });
+    };
     setCompositionWindowCollapsed(drawerStartsCollapsed(uiState.legendCollapsed));
 
     const standardMapLayer = L.imageOverlay(activeMapDefinition().image, bounds).addTo(map);
@@ -3010,8 +3043,8 @@
         updateMapToolsUi();
         return element;
     };
-    mapToolsControl.addTo(map);
-    rangeDisclaimerControl.addTo(map);
+    // Map tools and the range notice are added once the language packs
+    // arrive (end of script), so their labels never show raw keys.
 
     map.on("click", event => {
         if (activeMapTool === "flight") return;
@@ -4498,6 +4531,21 @@
     const WIKI_IMAGE_BASE = "https://static.encyclopedia.warthunder.com/images/";
     const SLOT_IMAGE_BASE = "images/slots/";
     const PORTRAIT_IMAGE_BASE = "images/portraits/";
+    // Slot and portrait files that exist (tools/build_image_manifest.py).
+    // Many event-only units have no art at all, so candidates outside this
+    // list are skipped instead of requested. Until it loads, or if it is
+    // missing, every candidate is tried as before.
+    let availableArt = null;
+    fetch("images/manifest.json")
+        .then(response => (response.ok ? response.json() : null))
+        .then(manifest => {
+            if (!manifest) return;
+            availableArt = new Set([
+                ...(manifest.slots || []).map(name => SLOT_IMAGE_BASE + name),
+                ...(manifest.portraits || []).map(name => PORTRAIT_IMAGE_BASE + name)
+            ]);
+        })
+        .catch(() => {});
     // Event naval entries sometimes use an `_ec`/`_ai` suffix even though
     // their playable encyclopedia entry uses the base class name.
     const PLAYABLE_IMAGE_ALIASES = {
@@ -4602,9 +4650,15 @@
     // requested the same missing slot/portrait files again.
     const failedImageUrls = new Set();
 
+    function isKnownMissingArt(source) {
+        return availableArt !== null &&
+            (source.startsWith(SLOT_IMAGE_BASE) || source.startsWith(PORTRAIT_IMAGE_BASE)) &&
+            !availableArt.has(source);
+    }
+
     function usableImageSources(sources) {
         return [...new Set((sources || []).filter(Boolean))]
-            .filter(source => !failedImageUrls.has(source));
+            .filter(source => !failedImageUrls.has(source) && !isKnownMissingArt(source));
     }
 
     // Shared onerror handler for card and tooltip images. Remembers the
@@ -4659,9 +4713,11 @@
     function drawLogicSite(site) {
         const [x, , z] = site.world_pos;
         const position = worldToLatLng(x, z);
+        // The trailing number tells several sites of one type apart.
+        const number = String(site.name || "").match(/_(\d+)$/)?.[1];
         const category = logicSiteLabel(site.category);
         const tooltip = `
-            <b>${escapeHtml(category)}</b><br>
+            <b>${escapeHtml(number ? `${category} ${number}` : category)}</b><br>
             ${escapeHtml(t("logic.team", { team: site.team }))}<br>
             ${escapeHtml(t("logic.captureRadius", {
                 radius: formatNumber(Math.round(Number(site.capture_radius)))
@@ -4692,7 +4748,7 @@
                 pane: "depotMarkers",
                 zIndexOffset: 300,
                 riseOnHover: true
-            }            ).bindTooltip(
+            }).bindTooltip(
                 `${tooltip}<br><i>${escapeHtml(t("route.depotHint"))}</i>`
             ).addTo(categoryGroup.objectives);
             const sourceSite = globalSiteLocations.get(site.name);
@@ -6635,7 +6691,14 @@
                 const collapsed = !drawer.classList.contains("is-collapsed");
                 setDrawerCollapsed(collapsed);
                 saveUiState({ layersCollapsed: collapsed });
+                if (!collapsed) drawerOpened("layers");
             });
+            // Replaced on every rebuild so it always targets the live drawer.
+            phoneDrawerCollapsers.layers = () => {
+                if (drawer.classList.contains("is-collapsed")) return;
+                setDrawerCollapsed(true);
+                saveUiState({ layersCollapsed: true });
+            };
             // The control is rebuilt on every map switch; keep its state.
             setDrawerCollapsed(drawerStartsCollapsed(uiState.layersCollapsed));
             L.DomEvent.disableClickPropagation(drawer);
@@ -6906,7 +6969,15 @@
         ]);
     }
 
-    rebuildGroupedLayerControl();
+    // Controls whose labels come from t() are built once the language packs
+    // have loaded (they are small and arrive well before the map data), so
+    // they never show raw keys. Added in this order to keep the bottom-left
+    // stacking: terrain readout, map tools, range notice.
+    i18nReady.then(() => {
+        mapToolsControl.addTo(map);
+        rangeDisclaimerControl.addTo(map);
+        refreshLocalizedUi();
+    });
 
 </script>
 

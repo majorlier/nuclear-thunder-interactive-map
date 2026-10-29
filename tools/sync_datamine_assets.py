@@ -25,6 +25,8 @@ import re
 import shutil
 from pathlib import Path
 
+from build_image_manifest import write_manifest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -265,6 +267,9 @@ def main() -> int:
     print(f"Portraits: {count('portrait', 'copied')} copied, {count('portrait', 'existing')} already local, {count('portrait', 'missing')} missing in datamine")
     print(f"Role SVG icons: {sum(item['status'] == 'copied' for item in role_icons)} copied, {sum(item['status'] == 'existing' for item in role_icons)} already local, {sum(item['status'] == 'missing' for item in role_icons)} missing")
     print(f"Report: {report_path}")
+    # The page only requests art listed here, so newly copied images must be
+    # added to it.
+    print(f"Image manifest: {write_manifest(repo)}")
     if any(item["status"] == "copied" for item in role_icons):
         print("New role SVGs were copied: run tools/build_icon_templates.py so the map uses them.")
     print(f"Readable report: {markdown_path}")

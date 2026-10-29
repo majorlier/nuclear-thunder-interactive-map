@@ -177,9 +177,8 @@ SVGs; team colour is applied by the map when rendered.
 
 Readable unit names come from the datamine localization table
 `lang.vromfs.bin_u/lang/units.csv` (the `_0` row is the full name). That table
-has one column per language, so the extractor writes English, Simplified
-Chinese, Traditional Chinese (Taiwan) and Traditional Chinese (Hong Kong) in a
-single pass. Refresh the lookup after changing `unit_specs.json` or pulling a
+has one column per language; the extractor writes the languages the map
+offers (English and Simplified Chinese) in a single pass. Refresh the lookup after changing `unit_specs.json` or pulling a
 new datamine:
 
 ```text
