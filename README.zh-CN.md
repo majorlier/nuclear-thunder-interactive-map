@@ -148,8 +148,7 @@ datamine 链接。
 ### 游戏内显示名称
 
 可读的单位名称来自 datamine 本地化表 `lang.vromfs.bin_u/lang/units.csv`（`_0` 行是
-全名）。该表每种语言一列，因此提取器会一次性写出英文、简体中文、繁体中文（台湾）和
-繁体中文（香港）。改动 `unit_specs.json` 或拉取新的 datamine 之后，请刷新查找表：
+全名）。该表每种语言一列，提取器会一次性写出地图提供的语言（英文和简体中文）。改动 `unit_specs.json` 或拉取新的 datamine 之后，请刷新查找表：
 
 ```text
 python tools/extract_display_names.py --units-csv F:\WT_Stuff\War-Thunder-Datamine\lang.vromfs.bin_u\lang\units.csv

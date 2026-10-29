@@ -28,8 +28,6 @@ ROOT = Path(__file__).resolve().parents[1]
 LOCALE_COLUMNS = {
     "en": "<English>",
     "zh-CN": "<Chinese>",
-    "zh-TW": "<TChinese>",
-    "zh-HK": "<HChinese>",
 }
 
 INVISIBLE = re.compile(r"[\u200b\u200c\u200d\ufeff]")
