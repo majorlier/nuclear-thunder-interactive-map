@@ -1642,12 +1642,8 @@
     function refreshLocalizedUi() {
         applyTranslations();
         renderLanguageSelector();
-        if (!Array.isArray(globalSiteData) || !globalSiteData.length) return;
-        populateMapSelector();
-        if ((globalPresetData.presets || []).length) populateScenarioSelector();
+        // Controls that exist before the map data loads.
         rebuildGroupedLayerControl();
-        renderSiteLegend();
-        updateTeamSwapUi();
         setInfoPanelCollapsed(infoPanel.classList.contains("is-collapsed"));
         setCompositionWindowCollapsed(compositionWindow.classList.contains("is-collapsed"));
         refreshTerrainLegendCopy();
@@ -1655,6 +1651,11 @@
         refreshRangeDisclaimerCopy();
         updateMapToolsUi();
         updateThreatStatus();
+        if (!Array.isArray(globalSiteData) || !globalSiteData.length) return;
+        populateMapSelector();
+        if ((globalPresetData.presets || []).length) populateScenarioSelector();
+        renderSiteLegend();
+        updateTeamSwapUi();
         // Cards are rebuilt on the next click; close the stale-language popup.
         clearFocusedSite({ keepRoutes: true });
     }
@@ -3010,8 +3011,8 @@
         updateMapToolsUi();
         return element;
     };
-    mapToolsControl.addTo(map);
-    rangeDisclaimerControl.addTo(map);
+    // Map tools and the range notice are added once the language packs
+    // arrive (end of script), so their labels never show raw keys.
 
     map.on("click", event => {
         if (activeMapTool === "flight") return;
@@ -4659,9 +4660,11 @@
     function drawLogicSite(site) {
         const [x, , z] = site.world_pos;
         const position = worldToLatLng(x, z);
+        // The trailing number tells several sites of one type apart.
+        const number = String(site.name || "").match(/_(\d+)$/)?.[1];
         const category = logicSiteLabel(site.category);
         const tooltip = `
-            <b>${escapeHtml(category)}</b><br>
+            <b>${escapeHtml(number ? `${category} ${number}` : category)}</b><br>
             ${escapeHtml(t("logic.team", { team: site.team }))}<br>
             ${escapeHtml(t("logic.captureRadius", {
                 radius: formatNumber(Math.round(Number(site.capture_radius)))
@@ -4692,7 +4695,7 @@
                 pane: "depotMarkers",
                 zIndexOffset: 300,
                 riseOnHover: true
-            }            ).bindTooltip(
+            }).bindTooltip(
                 `${tooltip}<br><i>${escapeHtml(t("route.depotHint"))}</i>`
             ).addTo(categoryGroup.objectives);
             const sourceSite = globalSiteLocations.get(site.name);
@@ -6906,7 +6909,15 @@
         ]);
     }
 
-    rebuildGroupedLayerControl();
+    // Controls whose labels come from t() are built once the language packs
+    // have loaded (they are small and arrive well before the map data), so
+    // they never show raw keys. Added in this order to keep the bottom-left
+    // stacking: terrain readout, map tools, range notice.
+    i18nReady.then(() => {
+        mapToolsControl.addTo(map);
+        rangeDisclaimerControl.addTo(map);
+        refreshLocalizedUi();
+    });
 
 </script>
 
