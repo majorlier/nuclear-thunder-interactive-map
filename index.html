@@ -1292,6 +1292,10 @@
             vertical-align: -1px;
         }
 
+        .threat-legend em {
+            font-style: normal;
+        }
+
         .threat-status {
             grid-column: 1 / -1;
             color: #e2e8f0;
@@ -1394,53 +1398,94 @@
             font-size: 10px;
         }
 
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 7px;
+            color: #a0aec0;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .language-selector select {
+            flex: 1;
+            min-width: 0;
+            padding: 4px 6px;
+            border: 1px solid #4a5568;
+            border-radius: 5px;
+            color: #e2e8f0;
+            background: #202734;
+            font: 600 11px/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
+            text-transform: none;
+        }
+
     </style>
 </head>
 <body>
 
 <div class="info-panel">
-    <div class="title">Nuclear Thunder Interactive Map</div>
+    <div class="title" data-i18n="app.title">Nuclear Thunder Interactive Map</div>
 
-    <div class="map-selector" id="map-selector">
-        <span id="map-options">Loading maps…</span>
+    <div class="map-selector" id="map-selector" role="radiogroup" aria-label="Map"
+        data-i18n-aria="map.label">
+        <span id="map-options" data-i18n="map.loading">Loading maps…</span>
     </div>
 
     <div class="era-selector" id="scenario-selector">
         <div class="scenario-select-row">
-            <select id="scenario-options" aria-label="Scenario" disabled>
-                <option>Loading scenarios…</option>
+            <select id="scenario-options" aria-label="Scenario" data-i18n-aria="scenario.label" disabled>
+                <option data-i18n="scenario.loading">Loading scenarios…</option>
             </select>
         </div>
     </div>
 
-    <button id="team-swap" class="team-swap" type="button" aria-pressed="false" disabled>
+    <button id="team-swap" class="team-swap" type="button" aria-pressed="false"
+        data-i18n="swap.swap" disabled>
         SWAP SIDES
     </button>
 
     <div class="icon-family-selector">
-        <div id="icon-family-options" class="icon-family-options" role="radiogroup" aria-label="Map icon style">
-            <button type="button" class="icon-family-option" data-icon-family="vanilla" aria-label="WT icons" title="WT icons">
+        <div id="icon-family-options" class="icon-family-options" role="radiogroup"
+            aria-label="Map icon style" data-i18n-aria="icons.label">
+            <button type="button" class="icon-family-option" data-icon-family="vanilla"
+                aria-label="WT icons" data-i18n-aria="icons.vanilla" title="WT icons"
+                data-i18n-title="icons.vanilla">
                 <img data-icon-preview="vanilla" src="images/icons/vanilla/def_spaa_radar.svg" alt="">
             </button>
-            <button type="button" class="icon-family-option is-selected" data-icon-family="nato" aria-label="NATO icons" title="NATO icons">
+            <button type="button" class="icon-family-option is-selected" data-icon-family="nato"
+                aria-label="NATO icons" data-i18n-aria="icons.nato" title="NATO icons"
+                data-i18n-title="icons.nato">
                 <img data-icon-preview="nato" src="images/icons/nato/def_nato_ally_sam_radar.svg" alt="">
             </button>
-            <button type="button" class="icon-family-option" data-icon-family="pact" aria-label="USSR icons" title="USSR icons">
+            <button type="button" class="icon-family-option" data-icon-family="pact"
+                aria-label="USSR icons" data-i18n-aria="icons.pact" title="USSR icons"
+                data-i18n-title="icons.pact">
                 <img data-icon-preview="pact" src="images/icons/pact/def_ussr_sam_radar.svg" alt="">
             </button>
         </div>
     </div>
 
-    <p class="feedback-contact">Updated 2.59.0.62<br>Feedback: Discord @majorlier</p>
+    <div class="language-selector">
+        <label for="language-options" data-i18n="language.label">Language</label>
+        <select id="language-options" aria-label="Language" data-i18n-aria="language.label"></select>
+    </div>
+
+    <p class="feedback-contact"><span data-i18n="app.updated"
+        data-i18n-args='{"version":"2.59.0.62"}'>Updated 2.59.0.62</span><br><span
+        data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
 </div>
 
 <aside id="composition-window" class="composition-window">
     <button id="composition-window-toggle" class="drawer-toggle" type="button"
-        aria-label="Collapse map legend" aria-expanded="true">›</button>
+        aria-label="Collapse map legend" data-i18n-aria="legend.collapse"
+        aria-expanded="true">›</button>
     <section class="composition-drawer">
-        <h2 class="legend-heading">Map legend</h2>
+        <h2 class="legend-heading" data-i18n="legend.title">Map legend</h2>
         <section id="composition-panel" class="composition-panel" aria-live="polite">
-            <p>Loading map legend…</p>
+            <p data-i18n="legend.loading">Loading map legend…</p>
         </section>
     </section>
 </aside>
@@ -1448,6 +1493,184 @@
 <div id="map"></div>
 
 <script>
+    // ---- Internationalisation -------------------------------------------------
+    // User-facing copy lives in i18n/<locale>.json. The English text is also
+    // kept in the markup so the page paints before the packs arrive;
+    // applyTranslations() replaces it in place once they load. Unit, weapon and
+    // scenario names are translated from the data files instead (displayName),
+    // so a data update never has to touch this dictionary.
+    const I18N_DIRECTORY = "i18n/";
+    const I18N_SUPPORTED_LOCALES = ["en", "zh-CN"];
+    const I18N_FALLBACK_LOCALE = "en";
+    const i18nPacks = {};
+    let i18nLocale = I18N_FALLBACK_LOCALE;
+
+    function normalizeLocale(value) {
+        const raw = String(value || "").trim().toLowerCase();
+        if (!raw) return null;
+        const exact = I18N_SUPPORTED_LOCALES.find(locale => locale.toLowerCase() === raw);
+        if (exact) return exact;
+        const base = raw.split("-")[0];
+        return I18N_SUPPORTED_LOCALES.find(
+            locale => locale.split("-")[0].toLowerCase() === base
+        ) || null;
+    }
+
+    function i18nLookup(locale, key) {
+        const pack = i18nPacks[locale];
+        return pack && Object.prototype.hasOwnProperty.call(pack, key)
+            ? pack[key]
+            : undefined;
+    }
+
+    function formatMessage(template, params) {
+        if (!params) return template;
+        return String(template).replace(/\{(\w+)\}/g, (match, name) =>
+            Object.prototype.hasOwnProperty.call(params, name)
+                ? String(params[name])
+                : match
+        );
+    }
+
+    // Missing keys fall back to English, then to the caller's fallback, then to
+    // the key itself: a half-translated pack must never blank out the UI.
+    function t(key, params = null, fallback = null) {
+        const template = i18nLookup(i18nLocale, key)
+            ?? i18nLookup(I18N_FALLBACK_LOCALE, key);
+        if (template === undefined) {
+            return fallback === null ? key : fallback;
+        }
+        return formatMessage(template, params);
+    }
+
+    function hasTranslation(key) {
+        return i18nLookup(i18nLocale, key) !== undefined ||
+            i18nLookup(I18N_FALLBACK_LOCALE, key) !== undefined;
+    }
+
+    function formatNumber(value, options) {
+        const number = Number(value);
+        if (!Number.isFinite(number)) return "";
+        try {
+            return number.toLocaleString(i18nLocale, options);
+        } catch (error) {
+            return number.toLocaleString(undefined, options);
+        }
+    }
+
+    // Fetch failures surface in the UI, so they are translated too. The
+    // fallback keeps the technical text readable before any pack has loaded.
+    function httpError(file, response) {
+        return new Error(t(
+            "error.http",
+            { file, status: response.status },
+            `${file}: HTTP ${response.status}`
+        ));
+    }
+
+    function loadI18nPack(locale) {
+        if (i18nPacks[locale]) return Promise.resolve(i18nPacks[locale]);
+        return fetch(`${I18N_DIRECTORY}${locale}.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw httpError(`${I18N_DIRECTORY}${locale}.json`, response);
+                }
+                return response.json();
+            })
+            .then(pack => {
+                i18nPacks[locale] = pack && typeof pack === "object" ? pack : {};
+                return i18nPacks[locale];
+            })
+            .catch(error => {
+                // A missing pack degrades to the English copy already in the
+                // markup instead of blocking the map.
+                console.warn("Could not load language pack", locale, error);
+                i18nPacks[locale] = {};
+                return i18nPacks[locale];
+            });
+    }
+
+    function i18nArgs(raw) {
+        if (!raw) return null;
+        try {
+            return JSON.parse(raw);
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function applyTranslations(root = document) {
+        // Without the fallback pack the markup already holds readable English;
+        // replacing it with raw keys would be worse than doing nothing.
+        if (!Object.keys(i18nPacks[I18N_FALLBACK_LOCALE] || {}).length) return;
+        if (root === document) document.title = t("app.title");
+        root.querySelectorAll("[data-i18n]").forEach(node => {
+            node.textContent = t(node.dataset.i18n, i18nArgs(node.dataset.i18nArgs));
+        });
+        root.querySelectorAll("[data-i18n-aria]").forEach(node => {
+            node.setAttribute("aria-label", t(node.dataset.i18nAria));
+        });
+        root.querySelectorAll("[data-i18n-title]").forEach(node => {
+            node.setAttribute("title", t(node.dataset.i18nTitle));
+        });
+    }
+
+    // Every pack names its own language, so a selector label never depends on
+    // another pack translating it; the locale code is the last resort.
+    function nativeLanguageName(locale) {
+        const native = i18nLookup(locale, "language.nativeName");
+        return typeof native === "string" && native.trim() ? native : locale;
+    }
+
+    function renderLanguageSelector() {
+        const select = document.getElementById("language-options");
+        if (!select) return;
+        if (!select.options.length) {
+            I18N_SUPPORTED_LOCALES.forEach(locale => {
+                const option = document.createElement("option");
+                option.value = locale;
+                select.append(option);
+            });
+        }
+        [...select.options].forEach(option => {
+            option.textContent = nativeLanguageName(option.value);
+        });
+        select.value = i18nLocale;
+        select.onchange = event => setLocale(event.target.value);
+    }
+
+    function refreshLocalizedUi() {
+        applyTranslations();
+        renderLanguageSelector();
+        if (!Array.isArray(globalSiteData) || !globalSiteData.length) return;
+        populateMapSelector();
+        if ((globalPresetData.presets || []).length) populateScenarioSelector();
+        rebuildGroupedLayerControl();
+        renderSiteLegend();
+        updateTeamSwapUi();
+        setInfoPanelCollapsed(infoPanel.classList.contains("is-collapsed"));
+        setCompositionWindowCollapsed(compositionWindow.classList.contains("is-collapsed"));
+        refreshTerrainLegendCopy();
+        refreshTerrainReadoutCopy();
+        refreshRangeDisclaimerCopy();
+        updateMapToolsUi();
+        updateThreatStatus();
+        // Cards are rebuilt on the next click; close the stale-language popup.
+        clearFocusedSite({ keepRoutes: true });
+    }
+
+    function setLocale(locale, { persist = true } = {}) {
+        const requested = normalizeLocale(locale) || I18N_FALLBACK_LOCALE;
+        return loadI18nPack(requested).then(() => {
+            i18nLocale = Object.keys(i18nPacks[requested] || {}).length
+                ? requested
+                : I18N_FALLBACK_LOCALE;
+            document.documentElement.lang = i18nLocale;
+            if (persist) saveUiState({ locale: i18nLocale });
+            refreshLocalizedUi();
+        });
+    }
+
     const MAP_IMAGE = "map_4k.png";
     const TOPOGRAPHIC_IMAGE = "topographic_map.webp";
     const TERRAIN_HEIGHT_IMAGE = "terrain_height_16bit.webp";
@@ -1546,6 +1769,20 @@
             // Ignore: the choice simply is not remembered.
         }
     }
+    // A saved language wins over the browser preference; both fall back to
+    // English. The pack loads with the map data so no rendered copy can run
+    // before its translations are available.
+    i18nLocale = normalizeLocale(uiState.locale)
+        || normalizeLocale(navigator.language)
+        || I18N_FALLBACK_LOCALE;
+    // Every pack names its own language, so the selector needs all of them
+    // before it can render native labels; they are small and cached.
+    const i18nReady = Promise.all(
+        I18N_SUPPORTED_LOCALES.map(locale => loadI18nPack(locale))
+    ).then(() => {
+        document.documentElement.lang = i18nLocale;
+    });
+
     // NATO symbols match the game's standard tactical map and stay the
     // default until another family is chosen.
     let iconFamily = ["vanilla", "pact"].includes(uiState.iconFamily)
@@ -1584,10 +1821,32 @@
             .replaceAll("'", "&#039;");
     }
 
-    function displayName(value) {
+    // Unit and weapon names are data, not UI copy. A flat {id: name} table is
+    // the English default; a table keyed by locale
+    // ({ "en": {...}, "zh-CN": {...} }) carries several languages without a
+    // code change, falling back to English and finally to the identifier.
+    function localizedName(table, keys) {
+        if (!table || typeof table !== "object") return "";
+        const pick = source => keys
+            .map(key => source[key])
+            .find(label => typeof label === "string" && label) || "";
+        const fallback = table[I18N_FALLBACK_LOCALE];
+        if (!fallback || typeof fallback !== "object") {
+            // Legacy flat English table.
+            return pick(table);
+        }
+        return pick(table[i18nLocale] || {}) || pick(fallback);
+    }
+
+    function nameFromTable(table, value, { short = false } = {}) {
         const raw = String(value ?? "unit").replaceAll("\\", "/").toLowerCase();
         const tail = raw.split("/").pop();
-        const localized = globalUnitDisplayNames[raw] || globalUnitDisplayNames[tail];
+        // Short names are only exported when the client has a shorter label, so
+        // a missing `#short` key falls back to the full name on its own.
+        const keys = short
+            ? [`${raw}#short`, `${tail}#short`, raw, tail]
+            : [raw, tail];
+        const localized = localizedName(table, keys);
         if (localized) return localized;
         // Mission identifiers carry the nation and often an `ai` marker;
         // those are useful for data lookup but noisy in user-facing labels.
@@ -1599,6 +1858,17 @@
             .replace(/^ai_/i, "")
             .replace(/_ai(?=_|$)/ig, "")
             .replaceAll("_", " ");
+    }
+
+    // Lists use the compact name; the detail card keeps the full one.
+    function displayName(value, options) {
+        return nameFromTable(globalUnitDisplayNames, value, options);
+    }
+
+    // Weapon labels live in a separate table because the datamine keeps them in
+    // units_weaponry.csv; both tables share the same locale and fallback rules.
+    function weaponName(value) {
+        return nameFromTable(globalUnitWeaponNames, value);
     }
 
     const bounds = [[0, 0], [IMG_SIZE, IMG_SIZE]];
@@ -1614,7 +1884,7 @@
     const infoDrawerToggle = document.createElement("button");
     infoDrawerToggle.type = "button";
     infoDrawerToggle.className = "drawer-toggle";
-    infoDrawerToggle.setAttribute("aria-label", "Collapse left controls");
+    infoDrawerToggle.setAttribute("aria-label", t("controls.collapse"));
     infoDrawerToggle.setAttribute("aria-expanded", "true");
     infoDrawerToggle.textContent = "‹";
     function setInfoPanelCollapsed(collapsed) {
@@ -1623,7 +1893,7 @@
         infoDrawerToggle.setAttribute("aria-expanded", String(!collapsed));
         infoDrawerToggle.setAttribute(
             "aria-label",
-            collapsed ? "Expand left controls" : "Collapse left controls"
+            collapsed ? t("controls.expand") : t("controls.collapse")
         );
     }
     infoDrawerToggle.addEventListener("click", () => {
@@ -1642,7 +1912,7 @@
         compositionWindowToggle.setAttribute("aria-expanded", String(!collapsed));
         compositionWindowToggle.setAttribute(
             "aria-label",
-            collapsed ? "Expand map legend" : "Collapse map legend"
+            collapsed ? t("legend.expand") : t("legend.collapse")
         );
     }
     compositionWindowToggle.addEventListener("click", () => {
@@ -1702,7 +1972,7 @@
 
     async function readTerrainRaster(url, encoding) {
         const response = await fetch(url);
-        if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+        if (!response.ok) throw httpError(url, response);
         const blob = await response.blob();
         // Packed height values must reach the canvas unchanged: no colour
         // management and no premultiplication.
@@ -1733,12 +2003,12 @@
         const token = ++terrainLoadToken;
         if (!definition.terrainImage) {
             if (terrainReadoutElement) {
-                terrainReadoutElement.textContent = "Terrain data is unavailable for this map";
+                terrainReadoutElement.textContent = t("terrain.unavailable");
             }
             return;
         }
         if (terrainReadoutElement) {
-            terrainReadoutElement.textContent = "Terrain: loading compiled height data…";
+            terrainReadoutElement.textContent = t("terrain.loading");
         }
         readTerrainRaster(definition.terrainImage, definition.terrainEncoding)
             .then(grid => {
@@ -1746,7 +2016,7 @@
                 terrainGrid = grid;
                 terrainReadoutReady = true;
                 if (terrainReadoutElement) {
-                    terrainReadoutElement.textContent = "Terrain elevation ready · move over the map";
+                    terrainReadoutElement.textContent = t("terrain.ready");
                 }
                 if (planningPoints?.los?.length) {
                     renderLineOfSight();
@@ -1760,7 +2030,7 @@
                 terrainLoadKey = null;
                 console.error("Could not load terrain heights:", error);
                 if (terrainReadoutElement) {
-                    terrainReadoutElement.textContent = "Terrain data could not be loaded for this map";
+                    terrainReadoutElement.textContent = t("terrain.error");
                 }
                 if (planningPoints?.los?.length) updateMapToolsUi();
             });
@@ -1809,12 +2079,28 @@
             "div",
             "terrain-readout"
         );
-        terrainReadoutElement.textContent =
-            "Terrain: loading compiled height data…";
+        // The packs may still be in flight here, so keep readable English as
+        // the fallback; refreshTerrainReadoutCopy() retranslates it later.
+        terrainReadoutElement.textContent = t(
+            "terrain.loading",
+            null,
+            "Terrain: loading compiled height data…"
+        );
         return terrainReadoutElement;
     };
     terrainReadoutControl.addTo(map);
     loadTerrainForMap(activeMapDefinition());
+
+    function terrainLegendMarkup() {
+        return `
+            <strong>${escapeHtml(t("terrain.legendTitle"))}</strong>
+            <span>${escapeHtml(t("terrain.legendBody"))}</span>
+            <div class="terrain-gradient"></div>
+            <div class="terrain-scale-labels">
+                <span data-terrain-min>${escapeHtml(t("terrain.low"))}</span><span data-terrain-max>${escapeHtml(t("terrain.high"))}</span>
+            </div>
+        `;
+    }
 
     const terrainLegendControl = L.control({ position: "bottomright" });
     let terrainLegendElement;
@@ -1823,29 +2109,37 @@
             "div",
             "terrain-legend"
         );
-        terrainLegendElement.innerHTML = `
-            <strong>Extracted terrain elevation</strong>
-            Height data used by terrain shading and LOS
-            <div class="terrain-gradient"></div>
-            <div class="terrain-scale-labels">
-                <span data-terrain-min>low</span><span data-terrain-max>high</span>
-            </div>
-        `;
+        terrainLegendElement.innerHTML = terrainLegendMarkup();
         updateTerrainLegendScale(activeMapDefinition());
         return terrainLegendElement;
     };
     terrainLegendControl.addTo(map);
 
+    function refreshTerrainLegendCopy() {
+        if (!terrainLegendElement) return;
+        terrainLegendElement.innerHTML = terrainLegendMarkup();
+        updateTerrainLegendScale(activeMapDefinition());
+    }
+
+    // The readout also carries live coordinates, so it cannot be driven by
+    // data-i18n; only the placeholder is retranslated after a locale switch.
+    function refreshTerrainReadoutCopy() {
+        if (!terrainReadoutElement || terrainReadoutReady) return;
+        // A finished or failed load has already written its own message.
+        if (!terrainLoadKey) return;
+        terrainReadoutElement.textContent = t("terrain.loading");
+    }
+
     function updateTerrainLegendScale(definition) {
         if (!terrainLegendElement) return;
         const [minimum, maximum] = (definition?.terrainDisplayRange || []).map(Number);
         const format = value => Number.isFinite(value)
-            ? `${Math.round(value).toLocaleString()} m`
+            ? t("format.m", { value: formatNumber(Math.round(value)) })
             : "";
         const minLabel = terrainLegendElement.querySelector("[data-terrain-min]");
         const maxLabel = terrainLegendElement.querySelector("[data-terrain-max]");
-        if (minLabel) minLabel.textContent = format(minimum) || "low";
-        if (maxLabel) maxLabel.textContent = format(maximum) || "high";
+        if (minLabel) minLabel.textContent = format(minimum) || t("terrain.low");
+        if (maxLabel) maxLabel.textContent = format(maximum) || t("terrain.high");
     }
 
     Object.values(MAP_DEFINITIONS).forEach(definition => {
@@ -1886,7 +2180,7 @@
             mapX < 0 || mapX >= IMG_SIZE ||
             mapY < 0 || mapY >= IMG_SIZE
         ) {
-            terrainReadoutElement.textContent = "Outside terrain grid";
+            terrainReadoutElement.textContent = t("terrain.outside");
             return;
         }
         const definition = activeMapDefinition();
@@ -1895,22 +2189,33 @@
         const worldX = minX + mapX / IMG_SIZE * (maxX - minX);
         const worldZ = minZ + mapY / IMG_SIZE * (maxZ - minZ);
         if (!definition.supportsTerrain || !definition.terrainImage) {
-            terrainReadoutElement.textContent =
-                `Terrain data is not extracted for this map · X ${worldX.toFixed(0)} m · Z ${worldZ.toFixed(0)} m`;
+            terrainReadoutElement.textContent = t("terrain.notExtracted", {
+                x: worldX.toFixed(0),
+                z: worldZ.toFixed(0)
+            });
             return;
         }
         const elevation = terrainReadoutReady ? terrainHeightAtMapPoint(mapX, mapY) : null;
         if (elevation === null) {
-            terrainReadoutElement.textContent =
-                `X ${worldX.toFixed(0)} m · Z ${worldZ.toFixed(0)} m`;
+            terrainReadoutElement.textContent = t("terrain.coords", {
+                x: worldX.toFixed(0),
+                z: worldZ.toFixed(0)
+            });
             return;
         }
         const waterLevel = Number(definition.waterLevel) || 0;
         const surface = elevation < waterLevel
-            ? `Water · depth ≈ ${Math.round(waterLevel - elevation).toLocaleString()} m`
-            : `Terrain ≈ ${Math.round(elevation).toLocaleString()} m`;
-        terrainReadoutElement.textContent =
-            `${surface} · X ${worldX.toFixed(0)} · Z ${worldZ.toFixed(0)}`;
+            ? t("terrain.water", {
+                depth: formatNumber(Math.round(waterLevel - elevation))
+            })
+            : t("terrain.ground", {
+                elevation: formatNumber(Math.round(elevation))
+            });
+        terrainReadoutElement.textContent = t("terrain.readout", {
+            surface,
+            x: worldX.toFixed(0),
+            z: worldZ.toFixed(0)
+        });
     });
 
     map.createPane("strategicTargets");
@@ -2006,23 +2311,35 @@
         selectedSamSiteRangeLayers.set(key, group);
     }
 
-    const rangeDisclaimerControl = L.control({ position: "bottomleft" });
-    rangeDisclaimerControl.onAdd = () => {
-        const element = L.DomUtil.create("aside", "range-disclaimer-control");
-        element.innerHTML = `
-            <button class="range-disclaimer-close" type="button" aria-label="Close range notice">×</button>
-            <strong>Range guide only</strong>
-            Any radar and missile ranges shown on this map are extracted
-            reference values, not representative of exact in-game performance.
-            Actual detection and engagement depend on terrain, altitude, target
-            aspect, vehicle configuration, and game/AI logic.
+    function rangeDisclaimerMarkup() {
+        return `
+            <button class="range-disclaimer-close" type="button"
+                aria-label="${escapeHtml(t("range.close"))}">×</button>
+            <strong>${escapeHtml(t("range.title"))}</strong>
+            <span>${escapeHtml(t("range.body"))}</span>
         `;
-        L.DomEvent.disableClickPropagation(element);
-        L.DomEvent.disableScrollPropagation(element);
-        element.querySelector("button").addEventListener("click", event => {
+    }
+
+    function bindRangeDisclaimerClose(element) {
+        element.querySelector("button")?.addEventListener("click", event => {
             L.DomEvent.stop(event);
             clearRangeDisclaimer();
         });
+    }
+
+    function refreshRangeDisclaimerCopy() {
+        if (!rangeDisclaimerElement) return;
+        rangeDisclaimerElement.innerHTML = rangeDisclaimerMarkup();
+        bindRangeDisclaimerClose(rangeDisclaimerElement);
+    }
+
+    const rangeDisclaimerControl = L.control({ position: "bottomleft" });
+    rangeDisclaimerControl.onAdd = () => {
+        const element = L.DomUtil.create("aside", "range-disclaimer-control");
+        element.innerHTML = rangeDisclaimerMarkup();
+        L.DomEvent.disableClickPropagation(element);
+        L.DomEvent.disableScrollPropagation(element);
+        bindRangeDisclaimerClose(element);
         rangeDisclaimerElement = element;
         return element;
     };
@@ -2445,13 +2762,17 @@
         if (!threatStatus) return;
         const result = renderThreatCover.lastResult;
         if (!activeMapDefinition().supportsTerrain) {
-            threatStatus.textContent = "Terrain elevation is unavailable for this map.";
+            threatStatus.textContent = t("threat.noTerrain");
         } else if (!terrainReadoutReady || !globalSiteData.length) {
-            threatStatus.textContent = "Loading terrain and site data…";
+            threatStatus.textContent = t("threat.loading");
         } else if (result) {
             threatStatus.textContent = result.emitters
-                ? `${result.emitters} emitter positions · ${result.radarPercent}% of map in coverage · ${result.weaponPercent}% in weapon range.`
-                : "No radar or air defence for this team in this scenario.";
+                ? t("threat.summary", {
+                    emitters: formatNumber(result.emitters),
+                    radar: formatNumber(result.radarPercent),
+                    weapon: formatNumber(result.weaponPercent)
+                })
+                : t("threat.none");
         } else {
             threatStatus.textContent = "";
         }
@@ -2477,33 +2798,41 @@
         if (activeMapTool === "ruler") {
             const points = planningPoints.ruler;
             mapToolsStatus.textContent = points.length
-                ? `Ruler: ${points.length} points · ${formatDistance(planningDistance(points))}. Click map to add.`
-                : "Ruler active — click the map to add points.";
+                ? t("tools.rulerPoints", {
+                    count: formatNumber(points.length),
+                    distance: formatDistance(planningDistance(points))
+                })
+                : t("tools.rulerActive");
         } else if (activeMapTool === "flight") {
             mapToolsStatus.textContent = flightStrokes.length
-                ? `Flight brush: ${flightStrokes.length} stroke${flightStrokes.length === 1 ? "" : "s"}. Drag on the map to add.`
-                : "Flight brush active — drag on the map to draw a route.";
+                ? t(flightStrokes.length === 1
+                    ? "tools.flightStrokesOne"
+                    : "tools.flightStrokesMany", {
+                    count: formatNumber(flightStrokes.length)
+                })
+                : t("tools.flightActive");
         } else if (activeMapTool === "los") {
             const points = planningPoints.los;
             const result = renderLineOfSight.lastResult;
             if (!activeMapDefinition().supportsTerrain) {
                 mapToolsStatus.textContent = points.length
-                    ? "Terrain elevation is unavailable for this map."
-                    : "LOS active — click an observer point on the map.";
+                    ? t("tools.noTerrain")
+                    : t("tools.losActive");
             } else if (!terrainReadoutReady) {
-                mapToolsStatus.textContent = "Loading terrain elevation…";
+                mapToolsStatus.textContent = t("tools.loadingTerrain");
             } else if (result && points.length) {
                 const total = result.coverage || 1;
                 const visiblePercent = Math.round(result.visibleCells / total * 100);
-                mapToolsStatus.textContent =
-                    `Viewshed ready · ${visiblePercent}% visible · red is terrain shadow.`;
+                mapToolsStatus.textContent = t("tools.viewshed", {
+                    percent: formatNumber(visiblePercent)
+                });
             } else {
                 mapToolsStatus.textContent = points.length
-                    ? "Viewshed ready — click a new point to move the observer."
-                    : "LOS active — click an observer point on the map.";
+                    ? t("tools.viewshedMove")
+                    : t("tools.losActive");
             }
         } else {
-            mapToolsStatus.textContent = "Choose a tool, then click on the map.";
+            mapToolsStatus.textContent = t("tools.choose");
         }
         if (flightBrushOptions) {
             flightBrushOptions.hidden = activeMapTool !== "flight";
@@ -2575,45 +2904,45 @@
     mapToolsControl.onAdd = () => {
         const element = L.DomUtil.create("section", "map-tools-control");
         element.innerHTML = `
-            <strong>Map tools</strong>
+            <strong data-i18n="tools.title">${escapeHtml(t("tools.title"))}</strong>
             <div class="map-tools-actions">
-                <button type="button" data-tool="ruler" aria-pressed="false">Measure</button>
-                <button type="button" data-tool="los" aria-pressed="false" title="Create a terrain viewshed from one observer point">Line of sight</button>
-                <button type="button" data-tool="flight" aria-pressed="false">Flight brush</button>
-                <button type="button" data-tool="threat" aria-pressed="false" title="Show where one team's radars and air defences cover an aircraft at a chosen altitude">Threat cover</button>
-                <button type="button" data-tool="clear">Clear</button>
+                <button type="button" data-tool="ruler" aria-pressed="false" data-i18n="tools.measure">${escapeHtml(t("tools.measure"))}</button>
+                <button type="button" data-tool="los" aria-pressed="false" data-i18n="tools.los" data-i18n-title="tools.losTitle" title="${escapeHtml(t("tools.losTitle"))}">${escapeHtml(t("tools.los"))}</button>
+                <button type="button" data-tool="flight" aria-pressed="false" data-i18n="tools.flight">${escapeHtml(t("tools.flight"))}</button>
+                <button type="button" data-tool="threat" aria-pressed="false" data-i18n="tools.threat" data-i18n-title="tools.threatTitle" title="${escapeHtml(t("tools.threatTitle"))}">${escapeHtml(t("tools.threat"))}</button>
+                <button type="button" data-tool="clear" data-i18n="tools.clear">${escapeHtml(t("tools.clear"))}</button>
             </div>
             <div class="brush-options" hidden>
-                <label><span>Colour</span><select data-tool="flight-colour" aria-label="Flight brush colour">
-                    <option value="#90cdf4">Blue</option>
-                    <option value="#f6e05e">Yellow</option>
-                    <option value="#fc8181">Red</option>
-                    <option value="#68d391">Green</option>
-                    <option value="#e2e8f0">White</option>
+                <label><span data-i18n="tools.colour">${escapeHtml(t("tools.colour"))}</span><select data-tool="flight-colour" data-i18n-aria="tools.colourAria" aria-label="${escapeHtml(t("tools.colourAria"))}">
+                    <option value="#90cdf4" data-i18n="colour.blue">${escapeHtml(t("colour.blue"))}</option>
+                    <option value="#f6e05e" data-i18n="colour.yellow">${escapeHtml(t("colour.yellow"))}</option>
+                    <option value="#fc8181" data-i18n="colour.red">${escapeHtml(t("colour.red"))}</option>
+                    <option value="#68d391" data-i18n="colour.green">${escapeHtml(t("colour.green"))}</option>
+                    <option value="#e2e8f0" data-i18n="colour.white">${escapeHtml(t("colour.white"))}</option>
                 </select></label>
-                <label><span>Size</span><input data-tool="flight-size" type="range" min="2" max="18" step="1" value="5" aria-label="Flight brush size"></label>
+                <label><span data-i18n="tools.size">${escapeHtml(t("tools.size"))}</span><input data-tool="flight-size" type="range" min="2" max="18" step="1" value="5" data-i18n-aria="tools.sizeAria" aria-label="${escapeHtml(t("tools.sizeAria"))}"></label>
             </div>
             <div class="los-options" hidden>
-                <label><span>Observer height</span><input data-tool="los-observer-height" type="number" min="0" max="1000" step="1" value="2" aria-label="Observer height above ground in metres"></label>
-                <label><span>Target height</span><input data-tool="los-target-height" type="number" min="0" max="1000" step="1" value="2" aria-label="Target height above ground in metres"></label>
-                <small class="los-hint">Green: a target at this height above the surface is in view of the observer. Red: hidden behind terrain.</small>
+                <label><span data-i18n="tools.observerHeight">${escapeHtml(t("tools.observerHeight"))}</span><input data-tool="los-observer-height" type="number" min="0" max="1000" step="1" value="2" data-i18n-aria="tools.observerHeightAria" aria-label="${escapeHtml(t("tools.observerHeightAria"))}"></label>
+                <label><span data-i18n="tools.targetHeight">${escapeHtml(t("tools.targetHeight"))}</span><input data-tool="los-target-height" type="number" min="0" max="1000" step="1" value="2" data-i18n-aria="tools.targetHeightAria" aria-label="${escapeHtml(t("tools.targetHeightAria"))}"></label>
+                <small class="los-hint" data-i18n="tools.losHint">${escapeHtml(t("tools.losHint"))}</small>
             </div>
             <div class="threat-options" hidden>
-                <label><span>Threats from</span><select data-tool="threat-team" aria-label="Team whose radars and air defences are shown">
-                    <option value="1">REDFOR</option>
-                    <option value="2">BLUFOR</option>
+                <label><span data-i18n="tools.threatsFrom">${escapeHtml(t("tools.threatsFrom"))}</span><select data-tool="threat-team" data-i18n-aria="tools.threatTeamAria" aria-label="${escapeHtml(t("tools.threatTeamAria"))}">
+                    <option value="1" data-i18n="team.redfor">${escapeHtml(t("team.redfor"))}</option>
+                    <option value="2" data-i18n="team.blufor">${escapeHtml(t("team.blufor"))}</option>
                 </select></label>
-                <label><span>Altitude (m)</span><input data-tool="threat-altitude" type="number" min="0" max="20000" step="50" aria-label="Aircraft altitude in metres"></label>
-                <label><span>Measured</span><select data-tool="threat-altitude-mode" aria-label="Altitude reference">
-                    <option value="agl">Above ground</option>
-                    <option value="asl">Above sea level</option>
+                <label><span data-i18n="tools.altitude">${escapeHtml(t("tools.altitude"))}</span><input data-tool="threat-altitude" type="number" min="0" max="20000" step="50" data-i18n-aria="tools.altitudeAria" aria-label="${escapeHtml(t("tools.altitudeAria"))}"></label>
+                <label><span data-i18n="tools.measured">${escapeHtml(t("tools.measured"))}</span><select data-tool="threat-altitude-mode" data-i18n-aria="tools.altitudeReferenceAria" aria-label="${escapeHtml(t("tools.altitudeReferenceAria"))}">
+                    <option value="agl" data-i18n="tools.aboveGround">${escapeHtml(t("tools.aboveGround"))}</option>
+                    <option value="asl" data-i18n="tools.aboveSeaLevel">${escapeHtml(t("tools.aboveSeaLevel"))}</option>
                 </select></label>
                 <div class="threat-legend">
-                    <span><i style="background: rgba(245, 101, 101, 0.8)"></i>Weapon range</span>
-                    <span><i style="background: rgba(246, 224, 94, 0.7)"></i>Radar coverage</span>
-                    <span><i style="background: rgba(26, 32, 44, 0.9)"></i>Below terrain</span>
+                    <span><i style="background: rgba(245, 101, 101, 0.8)"></i><em data-i18n="tools.legendWeaponRange">${escapeHtml(t("tools.legendWeaponRange"))}</em></span>
+                    <span><i style="background: rgba(246, 224, 94, 0.7)"></i><em data-i18n="tools.legendRadarCoverage">${escapeHtml(t("tools.legendRadarCoverage"))}</em></span>
+                    <span><i style="background: rgba(26, 32, 44, 0.9)"></i><em data-i18n="tools.legendBelowTerrain">${escapeHtml(t("tools.legendBelowTerrain"))}</em></span>
                 </div>
-                <small class="los-hint">Range and terrain masking only: SAM altitude limits, radar ground clutter and Earth curvature are not modelled. Ships are shown at their spawn points.</small>
+                <small class="los-hint" data-i18n="tools.threatHint">${escapeHtml(t("tools.threatHint"))}</small>
                 <div class="threat-status" aria-live="polite"></div>
             </div>
             <div class="map-tools-status" aria-live="polite"></div>
@@ -2896,6 +3225,7 @@
     let globalPresetData = { presets: [], variants: [] };
     let globalUnitSpecs = {};
     let globalUnitDisplayNames = {};
+    let globalUnitWeaponNames = {};
     let globalIconTemplates = { nato: {}, vanilla: {}, pact: {}, aircraft: {} };
     let globalMissionLogic = null;
     let globalConvoyRoutes = new Map();
@@ -2916,6 +3246,16 @@
     let currentMapVariant = typeof uiState.mapVariant === "string"
         ? uiState.mapVariant
         : "standard";
+
+    // Data files carry the default English labels; the language pack may
+    // override them by id so a data update never has to include translations.
+    function mapLabel(definition) {
+        return t(`map.${definition.id}`, null, definition.label);
+    }
+
+    function presetLabel(preset) {
+        return preset ? t(`preset.${preset.id}`, null, preset.label) : "";
+    }
 
     function locationsByName(records) {
         return new Map(records.map(record => [record.name, record]));
@@ -2941,7 +3281,7 @@
                 rebuildGroupedLayerControl();
                 activateMapVariant(activeMapDefinition().defaultVariant);
             });
-            label.append(input, definition.label);
+            label.append(input, mapLabel(definition));
             options.append(label);
         });
     }
@@ -2966,8 +3306,7 @@
             gravelRoadGroup.clearLayers();
         }
         if (!definition.supportsTerrain && terrainReadoutElement) {
-            terrainReadoutElement.textContent =
-                "Terrain data is unavailable for this map";
+            terrainReadoutElement.textContent = t("terrain.unavailable");
         }
         refreshTerrainLegend();
         map.fitBounds(bounds, { animate: false });
@@ -2979,13 +3318,13 @@
         if (!definition.supportsTeamSwap) {
             swapButton.disabled = true;
             swapButton.setAttribute("aria-pressed", "false");
-            swapButton.textContent = "SWAP SIDES (UNAVAILABLE)";
+            swapButton.textContent = t("swap.unavailable");
             return;
         }
         swapButton.disabled = false;
         const mirrored = currentMapVariant === definition.mirroredVariant;
         swapButton.setAttribute("aria-pressed", String(mirrored));
-        swapButton.textContent = mirrored ? "RESTORE SIDES" : "SWAP SIDES";
+        swapButton.textContent = t(mirrored ? "swap.restore" : "swap.swap");
     }
 
     function selectedPresetId() {
@@ -2994,8 +3333,8 @@
     }
 
     function presetDisplayName(presetId) {
-        return globalPresetData.presets?.find(preset => preset.id === presetId)
-            ?.label || presetId;
+        const preset = globalPresetData.presets?.find(item => item.id === presetId);
+        return presetLabel(preset) || presetId;
     }
 
     function presetBrLabel(preset) {
@@ -3025,7 +3364,7 @@
             const upper = toBr(range[1]);
             if (lower && upper) return `${lower}–${upper}`;
         }
-        return "BR not set";
+        return t("scenario.brUnset");
     }
 
     function populateScenarioSelector() {
@@ -3033,6 +3372,7 @@
         const previouslySelected = options.value;
         options.replaceChildren();
         const presets = globalPresetData.presets || [];
+        const labelFor = preset => presetLabel(preset) || preset.id;
         const suffixFor = preset => {
             const br = presetBrLabel(preset);
             return br ? `[${br}]` : "";
@@ -3042,16 +3382,17 @@
         // entry only, so the closed select stays narrow enough to show the
         // full BR on phones as well.
         const width = Math.max(0, ...presets.map(preset =>
-            preset.label.length + suffixFor(preset).length + 1
+            labelFor(preset).length + suffixFor(preset).length + 1
         ));
         presets.forEach(preset => {
             const option = document.createElement("option");
             option.value = preset.id;
+            const label = labelFor(preset);
             const suffix = suffixFor(preset);
             const gap = suffix
-                ? "\u00a0".repeat(Math.max(1, width - preset.label.length - suffix.length))
+                ? "\u00a0".repeat(Math.max(1, width - label.length - suffix.length))
                 : "";
-            option.textContent = `${preset.label}${gap}${suffix}`;
+            option.textContent = `${label}${gap}${suffix}`;
             options.append(option);
         });
         options.disabled = !presets.length;
@@ -3202,7 +3543,7 @@
             fillColor: teamColor(team),
             fillOpacity: 0.001,
             interactive: true
-        }).bindTooltip(`<b>Landing strip</b><br>Width: ${width} m`)
+        }).bindTooltip(`<b>${escapeHtml(t("route.landingStrip"))}</b><br>${escapeHtml(t("route.stripWidth", { width: formatNumber(Math.round(width)) }))}`)
             .bindPopup(airfieldCardHtml(site), { maxWidth: 360 })
             .addTo(runwayGroup);
         // At detail zoom the team-colored strip gets a one-pixel black outer
@@ -3254,15 +3595,22 @@
         }
 
         const color = site.team === 1 ? "#fc8181" : site.team === 2 ? "#90cdf4" : "#cbd5e0";
-        const speed = route.speed == null ? "" : `<br>Stored speed: ${escapeHtml(route.speed)}`;
+        const speed = route.speed == null
+            ? ""
+            : `<br>${escapeHtml(t("route.storedSpeed", { speed: route.speed }))}`;
         L.polyline(positions, {
             color,
             weight: 2,
             opacity: 0.8,
             dashArray: "7, 5"
         }).bindTooltip(`
-            <b>${escapeHtml(site.name)} patrol route</b><br>
-            ${route.points.length} waypoints · ${route.closed ? "closed loop" : "open route"}
+            <b>${escapeHtml(t("route.patrolTitle", {
+                site: siteDisplayName(site)
+            }))}</b><br>
+            ${escapeHtml(t("route.waypoints", {
+                count: formatNumber(route.points.length),
+                shape: t(route.closed ? "route.closedLoop" : "route.openRoute")
+            }))}
             ${speed}
         `).addTo((missionGroups[site.team] || missionGroups[1]).fleet.routes);
     }
@@ -3851,7 +4199,7 @@
                     ? threatSearch
                     : specs.sensors?.detection?.nominal ||
                         Math.max(...(specs.sensors?.detection?.scope_ranges || []), 0),
-                label: "Radar detection",
+                label: t("layers.radarDetection"),
                 style: {
                     color,
                     weight: 2,
@@ -3862,7 +4210,7 @@
             },
             {
                 value: specs.sensors?.tracking?.nominal,
-                label: "Radar tracking",
+                label: t("layers.radarTracking"),
                 style: {
                     color,
                     weight: 2,
@@ -3873,7 +4221,7 @@
             },
             {
                 value: displayEngagementRange(unit, specs),
-                label: "Weapon engagement",
+                label: t("layers.weaponEngagement"),
                 style: {
                     color,
                     fillColor: color,
@@ -4162,16 +4510,17 @@
     };
 
     function natoRadarBand(band) {
+        const unknown = () => t("unit.bandUnknown");
         if (Array.isArray(band)) {
             const labels = band
                 .map(natoRadarBand)
-                .filter(label => label !== "Band unknown");
-            return labels.length ? [...new Set(labels)].join(" / ") : "Band unknown";
+                .filter(label => label !== unknown());
+            return labels.length ? [...new Set(labels)].join(" / ") : unknown();
         }
         const index = Number(band);
         return Number.isInteger(index) && NATO_RADAR_BANDS[index]
             ? `${NATO_RADAR_BANDS[index]}-band`
-            : "Band unknown";
+            : unknown();
     }
 
     function modelArtUrls(model) {
@@ -4294,21 +4643,29 @@
             onerror="handleImageError(this)">`;
     }
 
+    const LOGIC_SITE_KEYS = {
+        fuel_factory: "logic.fuelFactory",
+        ammo_factory: "logic.ammoFactory",
+        assembly_area: "logic.assemblyArea",
+        strongpoint: "logic.strongpoint",
+        airfield: "logic.airfield"
+    };
+
+    function logicSiteLabel(category) {
+        const key = LOGIC_SITE_KEYS[category];
+        return key ? t(key) : displayName(category);
+    }
+
     function drawLogicSite(site) {
         const [x, , z] = site.world_pos;
         const position = worldToLatLng(x, z);
-        const labels = {
-            fuel_factory: "Fuel factory",
-            ammo_factory: "Ammunition factory",
-            assembly_area: "Assembly area",
-            strongpoint: "Strongpoint",
-            airfield: "Airfield"
-        };
-        const category = labels[site.category] || displayName(site.category);
+        const category = logicSiteLabel(site.category);
         const tooltip = `
-            <b>${escapeHtml(site.name)}</b><br>
-            ${escapeHtml(category)} · Team ${escapeHtml(site.team)}<br>
-            Capture radius: ${Number(site.capture_radius).toFixed(0)} m
+            <b>${escapeHtml(category)}</b><br>
+            ${escapeHtml(t("logic.team", { team: site.team }))}<br>
+            ${escapeHtml(t("logic.captureRadius", {
+                radius: formatNumber(Math.round(Number(site.capture_radius)))
+            }))}
         `;
 
         const teamMission = missionGroups[site.team] || missionGroups[1];
@@ -4335,8 +4692,8 @@
                 pane: "depotMarkers",
                 zIndexOffset: 300,
                 riseOnHover: true
-            }).bindTooltip(
-                `${tooltip}<br><i>Click to highlight this depot's routes</i>`
+            }            ).bindTooltip(
+                `${tooltip}<br><i>${escapeHtml(t("route.depotHint"))}</i>`
             ).addTo(categoryGroup.objectives);
             const sourceSite = globalSiteLocations.get(site.name);
             const mainBuildingFor = presetId =>
@@ -4401,14 +4758,16 @@
                 weight: 2
             }).bindTooltip(`
                 <b>${escapeHtml(unit.name)}</b><br>
-                ${typeLabel} randomized spawn area<br>
-                Radius: ${Number(unit.spawn_area.radius).toFixed(0)} m
+                ${escapeHtml(t("unit.spawnArea", { kind: typeLabel }))}<br>
+                ${escapeHtml(t("unit.spawnRadius", {
+                    radius: Number(unit.spawn_area.radius).toFixed(0)
+                }))}
             `).addTo(spawnGroup);
             L.marker(worldToLatLng(x, z), {
                 icon: natoIcon(unit.team, isMlrs ? "mlrs" : "tbm", 30)
             }).bindTooltip(`
                 <b>${escapeHtml(unit.name)}</b><br>
-                Representative marker at randomized spawn-area centre
+                ${escapeHtml(t("unit.spawnMarker"))}
             `).addTo(spawnGroup);
         }
 
@@ -4424,8 +4783,13 @@
                 dashArray: "6, 5"
             }).bindTooltip(`
                 <b>${escapeHtml(unit.name)}</b><br>
-                ${typeLabel} relocation destination ${index + 1}<br>
-                AI drives to the centre · ${Number(area.radius).toFixed(0)} m editor area
+                ${escapeHtml(t("unit.relocation", {
+                    kind: typeLabel,
+                    index: index + 1
+                }))}<br>
+                ${escapeHtml(t("unit.relocationDetail", {
+                    radius: Number(area.radius).toFixed(0)
+                }))}
             `).addTo(moveGroup);
             L.circleMarker(position, {
                 radius: 3,
@@ -4438,13 +4802,9 @@
     }
 
     function routeNetworkLabel(route) {
-        if (route?.source === "navigation mesh") {
-            return "Fallback route through the extracted navigation mesh; endpoint connectors may be off-mesh";
-        }
-        if (route?.source === "direct fallback") {
-            return "No connected extracted route; showing a straight-line preview";
-        }
-        return "Routed through extracted vehicle roads; short endpoint connectors may be off-road";
+        if (route?.source === "navigation mesh") return t("route.navmesh");
+        if (route?.source === "direct fallback") return t("route.direct");
+        return t("route.roads");
     }
 
     function drawMissionLogic(logic) {
@@ -4466,13 +4826,18 @@
                 color,
                 dashArray: "5, 6",
                 tooltip: `
-                <b>Possible ${escapeHtml(link.resource)} convoy</b><br>
+                <b>${escapeHtml(t("route.possibleConvoy", {
+                    resource: t(/ammo/i.test(String(link.resource)) ? "convoy.ammo" : "convoy.fuel")
+                }))}</b><br>
                 ${escapeHtml(link.factory)} → ${escapeHtml(link.assembly)}<br>
-                Selection distance: ${formatDistance(link.distance)} · rank ${link.rank_by_distance}<br>
-                Approximate route: ${formatDistance(route.distance)}<br>
-                ${routeNetworkLabel(route)}<br>
-                The game sends each column to whichever of the 3 nearest non-full storages has the most free capacity<br>
-                <i>Click to keep this route highlighted</i>
+                ${escapeHtml(t("route.selectionDistance", {
+                    distance: formatDistance(link.distance),
+                    rank: formatNumber(link.rank_by_distance)
+                }))}<br>
+                ${escapeHtml(t("route.approximate", { distance: formatDistance(route.distance) }))}<br>
+                ${escapeHtml(routeNetworkLabel(route))}<br>
+                ${escapeHtml(t("route.convoyRule"))}<br>
+                <i>${escapeHtml(t("route.keepHighlighted"))}</i>
                 `,
                 group: (missionGroups[link.team] || missionGroups[1])
                     .fuelAmmoDepots.convoy
@@ -4490,16 +4855,17 @@
                 baseWeight: 2.25,
                 baseOpacity: 0.78,
                 tooltip: `
-                <b>Likely initial armored-column route</b><br>
+                <b>${escapeHtml(t("route.armoredInitial"))}</b><br>
                 ${escapeHtml(link.assembly)} → ${escapeHtml(link.target)}<br>
-                Target: ${escapeHtml(displayName(link.target_category))} · nearest rank ${link.rank_by_distance}<br>
-                Direct selection distance: ${formatDistance(link.distance)}<br>
-                Approximate route: ${formatDistance(route.distance)}<br>
-                ${routeNetworkLabel(route)}<br>
-                The game randomly chooses among the three nearest eligible targets
-                (enemy depots, strongpoints and airfields); ownership and
-                surviving defenders can change eligibility<br>
-                <i>Click to keep this route highlighted</i>
+                ${escapeHtml(t("route.target", {
+                    target: logicSiteLabel(link.target_category),
+                    rank: formatNumber(link.rank_by_distance)
+                }))}<br>
+                ${escapeHtml(t("route.directSelection", { distance: formatDistance(link.distance) }))}<br>
+                ${escapeHtml(t("route.approximate", { distance: formatDistance(route.distance) }))}<br>
+                ${escapeHtml(routeNetworkLabel(route))}<br>
+                ${escapeHtml(t("route.armoredRule"))}<br>
+                <i>${escapeHtml(t("route.keepHighlighted"))}</i>
                 `,
                 group: (missionGroups[link.team] || missionGroups[1])
                     .vehicleDepots.armored
@@ -4511,7 +4877,9 @@
             const position = worldToLatLng(x, z);
             const tooltip = `
                 <b>${escapeHtml(target.name)}</b><br>
-                Eligible enemy target for MLRS/TBM · ${escapeHtml(displayName(target.category))}
+                ${escapeHtml(t("route.eligibleTarget", {
+                    category: logicSiteLabel(target.category)
+                }))}
             `;
 
             // Eligible targets share their coordinates with the normal objective
@@ -4546,7 +4914,9 @@
                 icon: bomberIcon(spawn.team)
             }).bindTooltip(`
                 <b>${escapeHtml(spawn.name)}</b><br>
-                ${spawn.team === 1 ? "Tu-95M" : "B-52H"} strategic-bomber spawn
+                ${escapeHtml(t("route.bomberSpawn", {
+                    aircraft: spawn.team === 1 ? "Tu-95M" : "B-52H"
+                }))}
             `).addTo(
                 (missionGroups[spawn.team] || missionGroups[1]).strategic.bombers
             );
@@ -4595,10 +4965,27 @@
     // guns are guns. unit_specs.json exposes guidance and the weapon name.
     function weaponRangeKind(weapon) {
         const name = String(weapon?.name || "").toLowerCase();
-        if (weapon?.guidance) return "Missile";
-        if (/rocket|missile/.test(name)) return "Rocket";
-        if (/cannon|machinegun|gun/.test(name)) return "Gun";
-        return "Weapon";
+        if (weapon?.guidance) return "missile";
+        if (/rocket|missile/.test(name)) return "rocket";
+        if (/cannon|machinegun|gun/.test(name)) return "gun";
+        return "weapon";
+    }
+
+    function weaponRangeKindLabel(weapon) {
+        return t(`unit.weaponKind.${weaponRangeKind(weapon)}`);
+    }
+
+    // Mission roles are internal enum values; translate the ones we know and
+    // fall back to the identifier cleanup so new roles still render.
+    function roleLabel(role) {
+        // Convoy data writes roles such as "SPAA escort", so normalise the
+        // spacing before looking the key up.
+        const normalized = String(role || "vehicle")
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "_");
+        const key = `role.${normalized}`;
+        return hasTranslation(key) ? t(key) : displayName(role);
     }
 
     function longestRangeWeapon(weapons) {
@@ -4632,38 +5019,48 @@
             }
             const bands = Array.isArray(sensorData?.band) ? sensorData.band : [sensorData?.band];
             if (bands.some(band => Number.isFinite(Number(band)) && Number(band) >= 0)) {
-                statEntries.push([`${label} band`, natoRadarBand(sensorData.band)]);
+                statEntries.push([
+                    t("unit.band", { label }),
+                    natoRadarBand(sensorData.band)
+                ]);
             }
         }
-        addSensorStat("Detection", sensor.detection);
-        addSensorStat("Tracking", sensor.tracking);
-        addSensorStat("IRST", sensor.irst);
+        addSensorStat(t("unit.detection"), sensor.detection);
+        addSensorStat(t("unit.tracking"), sensor.tracking);
+        addSensorStat(t("unit.irst"), sensor.irst);
         if (specs?.sensors?.detection?.designation_range) {
             statEntries.push([
-                "Designation",
+                t("unit.designation"),
                 formatDistance(specs.sensors.detection.designation_range)
             ]);
         }
         const physicalMissileMax = Number(specs?.engagement_range || 0);
         if (displayedEngagement > 0) {
-            statEntries.push(["Engagement", formatDistance(displayedEngagement)]);
+            statEntries.push([t("unit.engagement"), formatDistance(displayedEngagement)]);
             if (physicalMissileMax > displayedEngagement) {
-                const kind = weaponRangeKind(longestRangeWeapon(specs?.weapons));
-                statEntries.push([`${kind} max`, formatDistance(physicalMissileMax)]);
+                statEntries.push([
+                    t("unit.max", {
+                        kind: weaponRangeKindLabel(longestRangeWeapon(specs?.weapons))
+                    }),
+                    formatDistance(physicalMissileMax)
+                ]);
             }
         } else if (unit.threat_range) {
-            statEntries.push(["Threat range", formatDistance(unit.threat_range)]);
+            statEntries.push([t("unit.threatRange"), formatDistance(unit.threat_range)]);
         }
         const timerSeconds = Number(lifecycle.seconds);
         const noRespawn = lifecycle.kind === "none";
         const depotTimerSeconds = repairsWithDepot && timerSeconds > 0 ? timerSeconds : null;
         if (specs?.target_channels) {
-            statEntries.push(["Channels", specs.target_channels]);
+            statEntries.push([t("unit.channels"), formatNumber(specs.target_channels)]);
         }
         const staticGroundPosition = site.source_group !== "ships" &&
             operationalCategory(site) !== "strategic";
         if (specs?.maximum_speed_kph && !staticGroundPosition) {
-            statEntries.push(["Road speed", `${specs.maximum_speed_kph} km/h`]);
+            statEntries.push([
+                t("unit.roadSpeed"),
+                t("unit.speed", { speed: formatNumber(specs.maximum_speed_kph) })
+            ]);
         }
         const statHtml = statEntries.length
             ? `<div class="vehicle-card-stats">${statEntries.map(([label, value]) => `
@@ -4675,18 +5072,18 @@
             const ammoValue = Number(weapon.ammo);
             const ammo = weapon.ammo !== null && weapon.ammo !== undefined &&
                 Number.isFinite(ammoValue) && ammoValue >= 0
-                ? ` · ammo ${ammoValue}`
+                ? t("unit.ammo", { count: formatNumber(ammoValue) })
                 : "";
             const reload = weapon.reload_seconds
-                ? ` · reload ${formatSeconds(weapon.reload_seconds)}`
+                ? t("unit.reload", { time: formatSeconds(weapon.reload_seconds) })
                 : "";
             const rangeLabel = range
                 ? (physicalMissileMax > displayedEngagement &&
                     /_sam_launcher_|_tbm_|_mlrs_/.test(name.toLowerCase())
-                    ? ` ${weaponRangeKind(weapon).toLowerCase()} max ${formatDistance(range)}`
+                    ? ` ${t("unit.max", { kind: weaponRangeKindLabel(weapon) })} ${formatDistance(range)}`
                     : ` ${formatDistance(range)}`)
                 : "";
-            return `<strong>${escapeHtml(displayName(weapon.name))}</strong>` +
+            return `<strong>${escapeHtml(weaponName(weapon.name))}</strong>` +
                 rangeLabel + ammo + reload;
         });
         const weaponHtml = weaponLines.length
@@ -4698,10 +5095,10 @@
                     data-fallbacks="${escapeHtml(vehicleImage.fallbacks.join("|"))}"
                     onerror="handleImageError(this, 'remove')">` : ""}
                 ${repairsWithDepot
-                    ? `<span class="vehicle-card-depot-context"><img src="images/icons/respawnbase_timer_ui.svg" alt=""><span>With depot</span>${depotTimerSeconds > 0 ? `<b>${escapeHtml(formatSeconds(depotTimerSeconds))}</b>` : ""}</span>`
+                    ? `<span class="vehicle-card-depot-context"><img src="images/icons/respawnbase_timer_ui.svg" alt=""><span>${escapeHtml(t("unit.withDepot"))}</span>${depotTimerSeconds > 0 ? `<b>${escapeHtml(formatSeconds(depotTimerSeconds))}</b>` : ""}</span>`
                     : (timerSeconds > 0
                     ? `<span class="vehicle-card-timer"><img src="images/icons/respawnbase_timer_ui.svg" alt="">${escapeHtml(formatSeconds(timerSeconds))}</span>`
-                    : (noRespawn ? `<span class="vehicle-card-timer no-respawn"><img src="images/icons/respawnbase_timer_ui.svg" alt="">NO</span>` : ""))}
+                    : (noRespawn ? `<span class="vehicle-card-timer no-respawn"><img src="images/icons/respawnbase_timer_ui.svg" alt="">${escapeHtml(t("unit.noRespawn"))}</span>` : ""))}
                 ${count > 1 ? `<span class="vehicle-card-count">×${count}</span>` : ""}
             </div>`
             : "";
@@ -4716,7 +5113,7 @@
                     ${headerCount}
                 </div>
                 ${artHtml}
-                <div class="vehicle-card-role">${escapeHtml(displayName(role))}</div>
+                <div class="vehicle-card-role">${escapeHtml(roleLabel(role))}</div>
                 ${statHtml}
                 ${weaponHtml}
             </article>
@@ -4725,31 +5122,31 @@
 
     const BUILDING_CARD_DATA = {
         nt_fuel_factory: {
-            label: "Fuel factory",
+            labelKey: "building.fuelFactory",
             hp: 4000,
             icon: "fuel_storage",
             art: "images/portraits/bombtarget_oil_storage_07_a.png"
         },
         nt_ammo_factory: {
-            label: "Ammunition factory",
+            labelKey: "building.ammoFactory",
             hp: 5000,
             icon: "ammo_storage",
             art: "images/portraits/assembly_area_ammo_storage_a.png"
         },
         nt_assembly_area_fuel_storage: {
-            label: "Assembly fuel storage",
+            labelKey: "building.assemblyFuelStorage",
             hp: 4000,
             icon: "fuel_storage",
             art: "images/portraits/bombtarget_oil_storage_08_a.png"
         },
         nt_assembly_area_ammo_storage: {
-            label: "Assembly ammunition storage",
+            labelKey: "building.assemblyAmmoStorage",
             hp: 5000,
             icon: "ammo_storage",
             art: "images/portraits/assembly_area_ammo_storage_a.png"
         },
         nt_assembly_area_tank_factory: {
-            label: "Assembly tank factory",
+            labelKey: "building.assemblyTankFactory",
             hp: 6000,
             icon: "tank_storage",
             art: "images/portraits/bombtarget_tank_garage_building_01_a.png"
@@ -4784,16 +5181,16 @@
             <article class="vehicle-card team-${escapeHtml(site.team)} building-card">
                 <div class="vehicle-card-header">
                     <img class="vehicle-card-icon" src="${escapeHtml(natoIconPath(site.team, data.icon))}" alt="">
-                    <span>${escapeHtml(data.label)}</span>
+                    <span>${escapeHtml(t(data.labelKey))}</span>
                     ${count > 1 ? `<span class="vehicle-card-count">×${count}</span>` : ""}
                 </div>
                 <div class="vehicle-card-art-wrap${art ? "" : " no-art"}">
                     ${art ? `<img class="vehicle-card-art" src="${escapeHtml(art)}" alt="" onerror="handleImageError(this, 'remove')">` : ""}
                     ${repairSeconds > 0 ? `<span class="vehicle-card-timer"><img src="images/icons/respawnbase_timer_ui.svg" alt="">${escapeHtml(formatSeconds(repairSeconds))}</span>` : ""}
                 </div>
-                <div class="vehicle-card-role">Structure · ${escapeHtml(site.name)}</div>
+                <div class="vehicle-card-role">${escapeHtml(t("building.structure", { site: siteDisplayName(site) }))}</div>
                 <div class="vehicle-card-stats">
-                    <span class="vehicle-card-stat">Integrity<b>${data.hp.toLocaleString()} HP</b></span>
+                    <span class="vehicle-card-stat">${escapeHtml(t("building.integrity"))}<b>${escapeHtml(t("building.hp", { hp: formatNumber(data.hp) }))}</b></span>
                 </div>
             </article>
         `;
@@ -4806,35 +5203,39 @@
         const units = compactSiteUnits(site.units_by_era?.[selectedPresetId()] || []);
         return `
             <section class="airfield-popup team-${escapeHtml(site.team)}">
-                <h2 class="site-popup-title">${isMain ? "Main airfield" : "Front airfield"}</h2>
-                <p class="airfield-popup-meta">${escapeHtml(site.name)} · ${hp.toLocaleString()} HP</p>
-                <h3>Airfield defence</h3>
+                <h2 class="site-popup-title">${escapeHtml(t(isMain ? "airfield.main" : "airfield.front"))}</h2>
+                <p class="airfield-popup-meta">${escapeHtml(siteDisplayName(site))} · ${escapeHtml(t("building.hp", { hp: formatNumber(hp) }))}</p>
+                <h3>${escapeHtml(t("airfield.defence"))}</h3>
                 <ul class="airfield-popup-composition">
                     ${units.length
-                        ? units.map(({ unit, count }) => `<li>${count > 1 ? `${count}× ` : ""}${escapeHtml(displayName(unit.name))}</li>`).join("")
-                        : "<li>No airfield defence layout is extracted.</li>"}
+                        ? units.map(({ unit, count }) => `<li>${count > 1 ? `${count}× ` : ""}${escapeHtml(displayName(unit.name, { short: true }))}</li>`).join("")
+                        : `<li>${escapeHtml(t("airfield.noDefence"))}</li>`}
                 </ul>
             </section>
         `;
     }
 
+    function teamLabel(team) {
+        return t(Number(team) === 1 ? "team.redfor" : "team.blufor");
+    }
+
+    function siteTypeLabel(category) {
+        const key = `siteType.${category}`;
+        return hasTranslation(key) ? t(key) : t("siteType.groundSite");
+    }
+
     function compositionSiteLabel(site, siteCount = 1) {
-        const category = operationalCategory(site);
-        const prefix = site.team === 1 ? "REDFOR" : "BLUFOR";
+        const prefix = teamLabel(site.team);
         const number = String(site.name || "").match(/_(\d+)$/)?.[1];
-        const type = {
-            shortSams: "close SAM site",
-            longSams: "long-range SAM site",
-            ewRadars: "early-warning radar",
-            airfields: "airfield",
-            strategic: "strategic launch unit",
-            fleet: "fleet patrol group",
-            vehicleDepots: "vehicle depot",
-            fuelAmmoDepots: "fuel/ammunition depot",
-            strongpoints: "strongpoint"
-        }[category] || "ground site";
+        const type = siteTypeLabel(operationalCategory(site));
         if (siteCount > 1) return `${prefix} ${type} ×${siteCount}`;
         return `${prefix} ${type}${number ? ` ${number}` : ""}`;
+    }
+
+    // Site names are mission identifiers such as t1_longrange_radar_squad, so
+    // user-facing labels use the localized team and site type instead.
+    function siteDisplayName(site) {
+        return compositionSiteLabel(site || {});
     }
 
     function compactSiteUnits(units) {
@@ -4870,7 +5271,7 @@
                 : 0;
             return L.divIcon({
                 className: "",
-                html: `<span class="airfield-overview-icon team-${team}" style="transform:rotate(${angle.toFixed(2)}deg)" aria-label="${team === 1 ? "REDFOR" : "BLUFOR"} airfield"></span>`,
+                html: `<span class="airfield-overview-icon team-${team}" style="transform:rotate(${angle.toFixed(2)}deg)" aria-label="${escapeHtml(t("layers.airfields"))}"></span>`,
                 iconSize: [38, 12],
                 iconAnchor: [19, 6],
                 tooltipAnchor: [0, -14]
@@ -4916,8 +5317,11 @@
     function convoyEraKey(presetId) {
         // Preset labels are generated from the active mission templates
         // (build_map_data.py), so they name the same era as the convoy
-        // templates without hard-coding rank boundaries here.
-        const label = presetDisplayName(presetId).toLowerCase();
+        // templates without hard-coding rank boundaries here. The data label
+        // is English on purpose: parsing the translated label would make the
+        // era lookup depend on the active language.
+        const preset = globalPresetData.presets?.find(item => item.id === presetId);
+        const label = String(preset?.label || presetId || "").toLowerCase();
         if (label.includes("1970") && label.includes("early")) return "1970_early";
         if (label.includes("1970") && label.includes("late")) return "1970_late";
         if (label.includes("1980")) return "1980";
@@ -4952,7 +5356,7 @@
                                 role: entry.role || "vehicle",
                                 count: entry.count
                             }, site, Number(entry.count || 1))).join("")
-                            : `<p class="composition-site-description">No units listed.</p>`}
+                            : `<p class="composition-site-description">${escapeHtml(t("convoy.noUnits"))}</p>`}
                     </div>
                 </details>
             `;
@@ -4960,20 +5364,63 @@
         if (category === "resourceConvoys") {
             const resourceByEra = convoys.resource || {};
             const resource = era ? resourceByEra[era] : null;
-            if (!resource) return "<p>Convoy composition is not available for this preset.</p>";
+            if (!resource) {
+                return `<p>${escapeHtml(t("convoy.unavailable"))}</p>`;
+            }
             const side = legendTeam === 1 ? "redfor" : "blufor";
-            const sideLabel = legendTeam === 1 ? "REDFOR" : "BLUFOR";
-            return convoyCards(resource.fuel?.[side], legendTeam, `Fuel convoy · ${sideLabel}`) +
-                convoyCards(resource.ammo?.[side], legendTeam, `Ammunition convoy · ${sideLabel}`);
+            const sideLabel = teamLabel(legendTeam);
+            const convoyTitle = key =>
+                t("convoy.label", { type: t(key), team: sideLabel });
+            return convoyCards(resource.fuel?.[side], legendTeam, convoyTitle("convoy.fuel")) +
+                convoyCards(resource.ammo?.[side], legendTeam, convoyTitle("convoy.ammo"));
         }
         const armoredByEra = convoys.armored || {};
         const armored = era ? armoredByEra[era] : null;
-        if (!armored) return "<p>Armoured-column composition is not available for this preset.</p>";
+        if (!armored) {
+            return `<p>${escapeHtml(t("convoy.armoredUnavailable"))}</p>`;
+        }
         const side = legendTeam === 1 ? "redfor" : "blufor";
-        const sideLabel = legendTeam === 1 ? "REDFOR" : "BLUFOR";
-        return `<p class="composition-site-description"><b>SPG variant probability:</b> ${Math.round(Number(armored.spg_probability || 0) * 100)}%</p>` +
-            convoyCards(armored.standard?.[side], legendTeam, `Standard column · ${sideLabel}`) +
-            convoyCards(armored.spg?.[side], legendTeam, `SPG column · ${sideLabel}`);
+        const sideLabel = teamLabel(legendTeam);
+        const convoyTitle = key =>
+            t("convoy.label", { type: t(key), team: sideLabel });
+        const spgProbability = formatNumber(
+            Math.round(Number(armored.spg_probability || 0) * 100)
+        );
+        return `<p class="composition-site-description"><b>${escapeHtml(t("convoy.spgProbability"))}</b> ${spgProbability}%</p>` +
+            convoyCards(armored.standard?.[side], legendTeam, convoyTitle("convoy.standard")) +
+            convoyCards(armored.spg?.[side], legendTeam, convoyTitle("convoy.spg"));
+    }
+
+    // The extractor names respawn systems in English; known names have pack
+    // entries, anything new still renders through the identifier cleanup.
+    const RESPAWN_SYSTEM_KEYS = {
+        "long-range radar": "respawnSystem.longRangeRadar",
+        mlrs: "respawnSystem.mlrs",
+        tbm: "respawnSystem.tbm"
+    };
+
+    function respawnSystemLabel(system) {
+        const key = RESPAWN_SYSTEM_KEYS[String(system || "").toLowerCase()];
+        return key && hasTranslation(key) ? t(key) : displayName(system);
+    }
+
+    // Same for the systems without a fixed timer: the extractor writes whole
+    // sentences, so match on their prefix and keep the raw text as a fallback.
+    const NO_FIXED_RESPAWN_KEYS = [
+        [/^sam-site launchers/, "respawn.noFixed.sam"],
+        [/^airfield aa/, "respawn.noFixed.airfieldAA"],
+        [/^strongpoint vehicles/, "respawn.noFixed.strongpoints"],
+        [/^airfields/, "respawn.noFixed.airfields"],
+        [/^ships/, "respawn.noFixed.ships"],
+        [/^dynamically produced/, "respawn.noFixed.convoys"]
+    ];
+
+    function noFixedRespawnLabel(system) {
+        const value = String(system || "");
+        const match = NO_FIXED_RESPAWN_KEYS.find(
+            ([pattern]) => pattern.test(value.toLowerCase())
+        );
+        return match && hasTranslation(match[1]) ? t(match[1]) : value;
     }
 
     function respawnLegendHtml() {
@@ -4986,42 +5433,35 @@
             grouped.set(key, entry);
         });
         const fixed = [...grouped.values()].map(({ rule, count }) =>
-            `<p><b>${escapeHtml(rule.system)}:</b> ${escapeHtml(formatSeconds(rule.seconds))} ${rule.mode === "restore" ? "restore" : "respawn"}${count > 1 ? ` (${count} units)` : ""}</p>`
+            `<p><b>${escapeHtml(respawnSystemLabel(rule.system))}:</b> ${escapeHtml(formatSeconds(rule.seconds))} ${escapeHtml(t(rule.mode === "restore" ? "respawn.restore" : "respawn.respawn"))}${count > 1 ? escapeHtml(t("respawn.units", { count: formatNumber(count) })) : ""}</p>`
         ).join("");
-        const noFixed = globalMissionLogic?.no_fixed_respawn || [
-            "Static SAM/AA sites",
-            "Strongpoints and depot buildings",
-            "Airfields",
-            "Ships",
-            "Dynamically produced convoys and columns"
-        ];
+        const noFixed = (globalMissionLogic?.no_fixed_respawn || []).length
+            ? globalMissionLogic.no_fixed_respawn.map(noFixedRespawnLabel)
+            : [
+                t("respawn.noFixed.sam"),
+                t("respawn.noFixed.airfieldAA"),
+                t("respawn.noFixed.strongpoints"),
+                t("respawn.noFixed.airfields"),
+                t("respawn.noFixed.ships"),
+                t("respawn.noFixed.convoys")
+            ];
         const templateRestoreSeconds = Number(globalMissionLogic?.template_restore?.restore_seconds);
         const templateLine = templateRestoreSeconds > 0
-            ? `<p><b>Template restoration:</b> ${escapeHtml(formatSeconds(templateRestoreSeconds))}.</p>`
+            ? `<p><b>${escapeHtml(t("respawn.template"))}</b> ${escapeHtml(formatSeconds(templateRestoreSeconds))}.</p>`
             : "";
         const depotSeconds = Number(
             globalMissionLogic?.template_restore?.depot_repair_seconds
         );
         const depotLine = depotSeconds > 0
-            ? `<p><b>Depot restore:</b> ${escapeHtml(formatSeconds(depotSeconds))} after damage/repair timer.</p>`
+            ? `<p><b>${escapeHtml(t("respawn.depot"))}</b> ${escapeHtml(t("respawn.afterRepair", { time: formatSeconds(depotSeconds) }))}</p>`
             : "";
         return fixed + templateLine + depotLine +
-            `<p><b>No fixed timer:</b> ${escapeHtml(noFixed.join("; "))}.</p>`;
+            `<p><b>${escapeHtml(t("respawn.noFixed"))}</b> ${escapeHtml(noFixed.join("; "))}.</p>`;
     }
 
     function overviewSiteLabel(entry) {
-        const category = operationalCategory(entry.site);
-        const prefix = entry.site.team === 1 ? "REDFOR" : "BLUFOR";
-        const type = {
-            shortSams: "close SAM site",
-            longSams: "long-range SAM site",
-            ewRadars: "early-warning radar",
-            airfields: "airfield",
-            strategic: "strategic launch unit",
-            vehicleDepots: "vehicle depot",
-            fuelAmmoDepots: "fuel/ammunition depot",
-            strongpoints: "strongpoint"
-        }[category] || "ground site";
+        const prefix = teamLabel(entry.site.team);
+        const type = siteTypeLabel(operationalCategory(entry.site));
         return `${prefix} ${type}${entry.siteCount > 1 ? ` ×${entry.siteCount}` : ""}`;
     }
 
@@ -5079,7 +5519,7 @@
     function overviewUnitSummary(entry) {
         const units = compactSiteUnits(entry.units);
         const unitText = units.map(({ unit, count }) =>
-            `${count}× ${displayName(unit.name)}`
+            `${count}× ${displayName(unit.name, { short: true })}`
         );
         const buildingText = compactSiteBuildings(entry.buildings).map(({ building, count }) =>
             `${count}× ${displayName(building.name)}`
@@ -5115,7 +5555,7 @@
                 data-popup-unit-index="${index}"
                 title="${escapeHtml(displayName(name))}">
                 ${image}
-                <span class="site-popup-unit-label">${escapeHtml(displayName(name))}</span>
+                <span class="site-popup-unit-label">${escapeHtml(displayName(name, { short: true }))}</span>
                 ${count > 1 ? `<span class="site-popup-unit-count">×${count}</span>` : ""}
             </button>`;
         }).join("");
@@ -5124,9 +5564,9 @@
             if (!data) return "";
             return `<button type="button" class="site-popup-unit"
                 data-popup-building-index="${index}"
-                title="${escapeHtml(data.label)}">
+                title="${escapeHtml(t(data.labelKey))}">
                 <img class="site-popup-unit-image" src="${escapeHtml(natoIconPath(entry.site.team, data.icon))}" alt="">
-                <span class="site-popup-unit-label">${escapeHtml(data.label)}</span>
+                <span class="site-popup-unit-label">${escapeHtml(t(data.labelKey))}</span>
                 ${count > 1 ? `<span class="site-popup-unit-count">×${count}</span>` : ""}
             </button>`;
         }).join("");
@@ -5146,7 +5586,7 @@
             ? buildingCardHtml(record.building, entry.site, record.count)
             : unitCardHtml(record.unit, entry.site, record.count);
         return `
-            <button type="button" class="site-popup-back" data-popup-back>← Site overview</button>
+            <button type="button" class="site-popup-back" data-popup-back>${escapeHtml(t("overview.back"))}</button>
             <h2 class="site-popup-title">${escapeHtml(overviewSiteLabel(entry))}</h2>
             <div class="vehicle-card-grid">${card}</div>
         `;
@@ -5427,7 +5867,7 @@
             <b>${escapeHtml(overviewSiteLabel(entry))}</b><br>
             ${(overviewUnitSummary(entry).length
                 ? overviewUnitSummary(entry).map(escapeHtml).join("<br>")
-                : "No individual layout is extracted.")}
+                : escapeHtml(t("overview.noLayout")))}
         `, { direction: "top", opacity: 0.95 })
             .addTo((targetGroups[entry.site.team] || targetGroups[1])[category]);
         marker.on("click", event => {
@@ -5452,16 +5892,16 @@
         const panel = document.getElementById("composition-panel");
         if (!panel) return;
         const items = [
-            ["strongpoints", "Strongpoint"],
-            ["vehicleDepots", "Vehicle depot"],
-            ["fuelAmmoDepots", "Fuel/ammo depot"],
-            ["shortSams", "Close SAM"],
-            ["longSams", "Long-range SAM"],
-            ["ewRadars", "EW radar"],
-            ["airfields", "Airfield"],
-            ["strategic", "TBM / MLRS"],
-            ["resourceConvoys", "Resource convoys"],
-            ["armoredColumns", "Armoured columns"]
+            ["strongpoints", "legend.category.strongpoints"],
+            ["vehicleDepots", "legend.category.vehicleDepots"],
+            ["fuelAmmoDepots", "legend.category.fuelAmmoDepots"],
+            ["shortSams", "legend.category.shortSams"],
+            ["longSams", "legend.category.longSams"],
+            ["ewRadars", "legend.category.ewRadars"],
+            ["airfields", "legend.category.airfields"],
+            ["strategic", "legend.category.strategic"],
+            ["resourceConvoys", "legend.category.resourceConvoys"],
+            ["armoredColumns", "legend.category.armoredColumns"]
         ];
         const selectedEntries = legendCategory
             && !["resourceConvoys", "armoredColumns"].includes(legendCategory)
@@ -5489,49 +5929,61 @@
             return groups;
         }, new Map()).values()];
         const selectedLabel = items.find(([category]) => category === legendCategory)?.[1];
+        const selectedText = selectedLabel ? t(selectedLabel) : "";
         const convoySelection = ["resourceConvoys", "armoredColumns"].includes(legendCategory);
         panel.innerHTML = `
-            <p>Click a legend type to highlight every matching site. Click a map site once for ranges and composition; click it again to zoom in.</p>
-            <div class="legend-team-switch" aria-label="Legend composition team">
-                <button type="button" data-legend-team="1" class="${legendTeam === 1 ? "is-selected" : ""}">REDFOR</button>
-                <button type="button" data-legend-team="2" class="${legendTeam === 2 ? "is-selected" : ""}">BLUFOR</button>
+            <p>${escapeHtml(t("legend.hint"))}</p>
+            <div class="legend-team-switch" aria-label="${escapeHtml(t("legend.teamLabel"))}"
+                data-i18n-aria="legend.teamLabel">
+                <button type="button" data-legend-team="1" class="${legendTeam === 1 ? "is-selected" : ""}">${escapeHtml(teamLabel(1))}</button>
+                <button type="button" data-legend-team="2" class="${legendTeam === 2 ? "is-selected" : ""}">${escapeHtml(teamLabel(2))}</button>
             </div>
             <div class="site-legend-items">
-                ${items.map(([category, label]) => `
+                ${items.map(([category, labelKey]) => `
                     <button type="button" class="site-legend-item ${legendCategory === category ? "is-selected" : ""}" data-legend-category="${category}">
-                        ${siteLegendIcon(legendTeam, category)}${escapeHtml(label)}
+                        ${siteLegendIcon(legendTeam, category)}${escapeHtml(t(labelKey))}
                     </button>
                 `).join("")}
             </div>
             ${convoySelection ? `
                 <section class="legend-composition convoy-legend">
-                    <h3 class="composition-section-title">${escapeHtml(selectedLabel)}</h3>
+                    <h3 class="composition-section-title">${escapeHtml(selectedText)}</h3>
                     ${convoyLegendHtml(legendCategory)}
                 </section>
             ` : legendCategory ? `
                 <section class="legend-composition">
-                    <h3 class="composition-section-title">${escapeHtml(legendTeam === 1 ? "REDFOR" : "BLUFOR")} ${escapeHtml(selectedLabel || "site")} composition</h3>
+                    <h3 class="composition-section-title">${escapeHtml(t("legend.composition", {
+                        team: teamLabel(legendTeam),
+                        type: selectedText || t("legend.siteFallback")
+                    }))}</h3>
                     ${groupedCompositions.length ? groupedCompositions.map(group => {
                         const { entry, entries } = group;
                         const count = entries.length;
-                        const locations = entries.map(candidate => candidate.site.name).join(" · ");
+                        const locations = entries
+                            .map(candidate => siteDisplayName(candidate.site))
+                            .join(" · ");
                         return `
                         <details class="composition-site team-${entry.site.team}" open>
                             <summary>${escapeHtml(compositionSiteLabel(entry.site, count))}</summary>
                             <p class="composition-site-description">${escapeHtml(
-                                `${count > 1 ? `${count} matching locations: ${locations}. ` : ""}` +
-                                (overviewUnitSummary(entry).join(" · ") || "No individual vehicle layout is extracted.")
+                                (count > 1
+                                    ? t("legend.matchingLocations", {
+                                        count: formatNumber(count),
+                                        locations
+                                    })
+                                    : "") +
+                                (overviewUnitSummary(entry).join(" · ") || t("legend.noLayout"))
                             )}</p>
                             <div class="vehicle-card-grid">
                                 ${siteCardHtml(entry)}
                             </div>
                         </details>
                         `;
-                    }).join("") : "<p>No matching sites in this scenario.</p>"}
+                    }).join("") : `<p>${escapeHtml(t("legend.noSites"))}</p>`}
                 </section>
             ` : ""}
             <details class="composition-site respawn-legend">
-                <summary>Respawn and restore timers</summary>
+                <summary>${escapeHtml(t("legend.respawn"))}</summary>
                 <div class="composition-site-description">${respawnLegendHtml()}</div>
             </details>
         `;
@@ -5633,8 +6085,8 @@
                 ], "unit-hover-icon")}
                 <span class="unit-hover-text">
                     <b>${escapeHtml(displayName(name))}</b><br>
-                    ${escapeHtml(displayName(role))}<br>
-                    <small>${escapeHtml(site.name)}</small>
+                    ${escapeHtml(roleLabel(role))}<br>
+                    <small>${escapeHtml(siteDisplayName(site))}</small>
                 </span>
             </div>
         `).bindPopup(() => unitCardHtml(unit, site)).addTo(targetGroup);
@@ -5692,11 +6144,14 @@
             zIndexOffset: 1200,
             riseOnHover: true
         }).bindTooltip(`
-            <b>${escapeHtml(data.label)}</b><br>
-            ${data.hp.toLocaleString()} HP<br>
-            Site: ${escapeHtml(site.name)}<br>
-            Structure: ${escapeHtml(displayName(building.name))}<br>
-            Position: [${x.toFixed(1)}, ${z.toFixed(1)}]
+            <b>${escapeHtml(t(data.labelKey))}</b><br>
+            ${escapeHtml(t("building.hp", { hp: formatNumber(data.hp) }))}<br>
+            ${escapeHtml(t("building.site", { site: siteDisplayName(site) }))}<br>
+            ${escapeHtml(t("building.kind", { structure: displayName(building.name) }))}<br>
+            ${escapeHtml(t("building.position", {
+                x: x.toFixed(1),
+                z: z.toFixed(1)
+            }))}
         `).bindPopup(() => buildingCardHtml(building, site), { maxWidth: 360 })
             .addTo(targetGroup);
         marker.on("click", event => {
@@ -5790,86 +6245,92 @@
 
     function formatDistance(meters) {
         const value = Number(meters);
-        if (!Number.isFinite(value)) return "unknown";
+        if (!Number.isFinite(value)) return t("format.unknown");
         if (value >= 1000) {
-            return `${(value / 1000).toLocaleString(undefined, {
-                maximumFractionDigits: 1
-            })} km`;
+            return t("format.km", {
+                value: formatNumber(value / 1000, { maximumFractionDigits: 1 })
+            });
         }
-        return `${value.toLocaleString()} m`;
+        return t("format.m", { value: formatNumber(value) });
     }
 
     function formatSeconds(seconds) {
         const value = Number(seconds);
         if (!Number.isFinite(value) || value <= 0) return "";
-        return `${value.toLocaleString(undefined, {
-            maximumFractionDigits: 2
-        })} s`;
+        return t("format.seconds", {
+            value: formatNumber(value, { maximumFractionDigits: 2 })
+        });
     }
 
     Promise.all([
+        i18nReady,
         fetch("map_data.json").then(response => {
-            if (!response.ok) throw new Error(`map_data.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("map_data.json", response);
             return response.json();
         }),
         fetch("map_data_mirror.json").then(response => {
-            if (!response.ok) throw new Error(`map_data_mirror.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("map_data_mirror.json", response);
             return response.json();
         }),
         fetch("road_network.json").then(response => {
-            if (!response.ok) throw new Error(`road_network.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("road_network.json", response);
             return response.json();
         }),
         fetch("road_network_city.json").then(response => {
-            if (!response.ok) throw new Error(`road_network_city.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("road_network_city.json", response);
             return response.json();
         }),
         fetch("navmesh_city.json").then(response => {
-            if (!response.ok) throw new Error(`navmesh_city.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("navmesh_city.json", response);
             return response.json();
         }),
         fetch("mission_logic.json").then(response => {
-            if (!response.ok) throw new Error(`mission_logic.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("mission_logic.json", response);
             return response.json();
         }),
         fetch("mission_logic_mirror.json").then(response => {
-            if (!response.ok) throw new Error(`mission_logic_mirror.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("mission_logic_mirror.json", response);
             return response.json();
         }),
         fetch("map_data_city.json").then(response => {
-            if (!response.ok) throw new Error(`map_data_city.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("map_data_city.json", response);
             return response.json();
         }),
         fetch("mission_logic_city.json").then(response => {
-            if (!response.ok) throw new Error(`mission_logic_city.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("mission_logic_city.json", response);
             return response.json();
         }),
         fetch("map_data_city_mirror.json").then(response => {
-            if (!response.ok) throw new Error(`map_data_city_mirror.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("map_data_city_mirror.json", response);
             return response.json();
         }),
         fetch("mission_logic_city_mirror.json").then(response => {
-            if (!response.ok) throw new Error(`mission_logic_city_mirror.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("mission_logic_city_mirror.json", response);
             return response.json();
         }),
         fetch("presets.json").then(response => {
-            if (!response.ok) throw new Error(`presets.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("presets.json", response);
             return response.json();
         }),
         fetch("unit_specs.json").then(response => {
-            if (!response.ok) throw new Error(`unit_specs.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("unit_specs.json", response);
             return response.json();
         }),
         fetch("unit_display_names.json").then(response => {
-            if (!response.ok) throw new Error(`unit_display_names.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("unit_display_names.json", response);
+            return response.json();
+        }),
+        fetch("unit_weapon_display_names.json").then(response => {
+            if (!response.ok) throw httpError("unit_weapon_display_names.json", response);
             return response.json();
         }),
         fetch("icon_templates.json").then(response => {
-            if (!response.ok) throw new Error(`icon_templates.json: HTTP ${response.status}`);
+            if (!response.ok) throw httpError("icon_templates.json", response);
             return response.json();
         })
     ])
         .then(([
+            ,
             standardSiteData,
             mirrorSiteData,
             roadData,
@@ -5884,8 +6345,11 @@
             presetData,
             unitSpecs,
             unitDisplayNames,
+            unitWeaponNames,
             iconTemplates
         ]) => {
+            applyTranslations();
+            renderLanguageSelector();
             globalMapVariants = {
                 standard: standardSiteData,
                 mirror: mirrorSiteData,
@@ -5901,6 +6365,7 @@
             globalPresetData = presetData;
             globalUnitSpecs = unitSpecs;
             globalUnitDisplayNames = unitDisplayNames || {};
+            globalUnitWeaponNames = unitWeaponNames || {};
             globalIconTemplates = iconTemplates || { nato: {}, vanilla: {}, pact: {}, aircraft: {} };
             renderIconFamilySelector();
             refreshLayerFolderIcons();
@@ -5916,12 +6381,15 @@
             populateScenarioSelector();
             refreshMapArtwork();
             activateMapVariant(currentMapVariant);
+            // Controls created before the packs arrived (drawer aria, tool
+            // panel) now carry their translations.
+            refreshLocalizedUi();
         })
         .catch(error => {
             console.error("Could not load map data:", error);
             const message = window.location.protocol === "file:"
-                ? "Map data cannot load from a local file. Run a local web server (see README)."
-                : `Map data could not be loaded: ${error?.message || error}`;
+                ? t("error.localFile")
+                : t("error.mapData", { error: error?.message || error });
             const options = document.getElementById("map-options");
             if (options) {
                 options.textContent = message;
@@ -5962,26 +6430,26 @@
         const coverage = coverageGroups[team][key];
         if (key === "fleet") {
             return [
-                layerOption("Ships", unitGroups[team][key]),
+                layerOption(t("layers.ships"), unitGroups[team][key]),
                 ...additionalOptions,
-                layerOption("Radar detection", coverage.detection),
-                layerOption("Radar tracking", coverage.tracking),
-                layerOption("Weapon engagement", coverage.engagement)
+                layerOption(t("layers.radarDetection"), coverage.detection),
+                layerOption(t("layers.radarTracking"), coverage.tracking),
+                layerOption(t("layers.weaponEngagement"), coverage.engagement)
             ];
         }
         return [
             layerOption(
-                "Site markers",
+                t("layers.siteMarkers"),
                 siteGroups[team][key]
             ),
             layerOption(
-                "Individual units",
+                t("layers.individualUnits"),
                 unitGroups[team][key]
             ),
             ...additionalOptions,
-            layerOption("Radar detection", coverage.detection),
-            layerOption("Radar tracking", coverage.tracking),
-            layerOption("Weapon engagement", coverage.engagement)
+            layerOption(t("layers.radarDetection"), coverage.detection),
+            layerOption(t("layers.radarTracking"), coverage.tracking),
+            layerOption(t("layers.weaponEngagement"), coverage.engagement)
         ];
     }
 
@@ -6007,108 +6475,108 @@
             children: [
                 forceFolder(
                     team,
-                    "Strongpoints",
+                    t("layers.strongpoints"),
                     "strongpoints",
                     "tank",
                     [
                         layerOption(
-                            "Capture zones",
+                            t("layers.captureZones"),
                             mission.strongpoints.capture
                         )
                     ]
                 ),
                 forceFolder(
                     team,
-                    "Vehicle depots",
+                    t("layers.vehicleDepots"),
                     "vehicleDepots",
                     "tank_storage",
                     [
                         layerOption(
-                            "Depot markers",
+                            t("layers.depotMarkers"),
                             mission.vehicleDepots.objectives
                         ),
                         layerOption(
-                            "Capture zones",
+                            t("layers.captureZones"),
                             mission.vehicleDepots.capture
                         ),
                         layerOption(
-                            "Likely armored-column routes",
+                            t("layers.armoredColumns"),
                             mission.vehicleDepots.armored
                         )
                     ]
                 ),
                 forceFolder(
                     team,
-                    "Fuel/ammo depots",
+                    t("layers.fuelAmmoDepots"),
                     "fuelAmmoDepots",
                     ["fuel_storage", "ammo_storage"],
                     [
                         layerOption(
-                            "Depot markers",
+                            t("layers.depotMarkers"),
                             mission.fuelAmmoDepots.objectives
                         ),
                         layerOption(
-                            "Capture zones",
+                            t("layers.captureZones"),
                             mission.fuelAmmoDepots.capture
                         ),
                         layerOption(
-                            "Likely convoy links",
+                            t("layers.convoyLinks"),
                             mission.fuelAmmoDepots.convoy
                         )
                     ]
                 ),
-                forceFolder(team, "Short SAMs", "shortSams", "spaa"),
-                forceFolder(team, "Long SAMs", "longSams", "sam"),
+                forceFolder(team, t("layers.shortSams"), "shortSams", "spaa"),
+                forceFolder(team, t("layers.longSams"), "longSams", "sam"),
                 forceFolder(
                     team,
-                    "EW radars",
+                    t("layers.ewRadars"),
                     "ewRadars",
                     "radar_station"
                 ),
                 forceFolder(
                     team,
-                    "Airfields",
+                    t("layers.airfields"),
                     "airfields",
                     null,
                     [
-                        layerOption("Landing strips", mission.airfields.runways),
-                        layerOption("Capture zones", mission.airfields.capture)
+                        layerOption(t("layers.landingStrips"), mission.airfields.runways),
+                        layerOption(t("layers.captureZones"), mission.airfields.capture)
                     ],
                     "✈"
                 ),
                 forceFolder(
                     team,
-                    "TBM/MLRS",
+                    t("layers.tbmMlrs"),
                     "strategic",
                     ["mlrs", "tbm"],
                     [
-                        layerOption("MLRS spawn areas", mission.strategic.mlrsSpawn),
-                        layerOption("TBM spawn areas", mission.strategic.tbmSpawn),
+                        layerOption(t("layers.mlrsSpawn"), mission.strategic.mlrsSpawn),
+                        layerOption(t("layers.tbmSpawn"), mission.strategic.tbmSpawn),
                         layerOption(
-                            "MLRS relocation areas",
+                            t("layers.mlrsMove"),
                             mission.strategic.mlrsMove
                         ),
                         layerOption(
-                            "TBM relocation areas",
+                            t("layers.tbmMove"),
                             mission.strategic.tbmMove
                         ),
                         layerOption(
-                            "Eligible enemy targets",
+                            t("layers.targets"),
                             mission.strategic.targets
                         ),
                         layerOption(
-                            "Strategic bomber spawns",
+                            t("layers.bombers"),
                             mission.strategic.bombers
                         )
                     ]
                 ),
                 forceFolder(
                     team,
-                    "Fleet",
+                    t("layers.fleet"),
                     "fleet",
                     "aircraft_carrier",
                     [
-                        layerOption("Patrol routes", mission.fleet.routes)
+                        layerOption(t("layers.patrolRoutes"), mission.fleet.routes)
                     ]
                 )
             ]
@@ -6120,26 +6588,26 @@
         const children = [];
         if (definition.supportsTerrain) {
             children.push({
-                title: "Terrain",
+                title: t("layers.terrain"),
                 open: true,
                 glyph: "⌁",
                 options: [
-                    layerOption("True topographic terrain", topographicMapLayer)
+                    layerOption(t("layers.trueTopographic"), topographicMapLayer)
                 ]
             });
         }
         if (definition.supportsRoads) {
             children.push({
-                title: "Road network",
+                title: t("layers.roadNetwork"),
                 glyph: "╫",
                 options: [
-                    layerOption("Asphalt roads", asphaltRoadGroup),
-                    layerOption("Gravel/sand roads", gravelRoadGroup)
+                    layerOption(t("layers.asphaltRoads"), asphaltRoadGroup),
+                    layerOption(t("layers.gravelSandRoads"), gravelRoadGroup)
                 ]
             });
         }
         return {
-            title: definition.supportsTerrain ? "MAP & TERRAIN" : "MAP",
+            title: definition.supportsTerrain ? t("layers.mapTerrain") : t("layers.map"),
             open: true,
             force: true,
             glyph: "⌖",
@@ -6160,7 +6628,7 @@
                 toggle.setAttribute("aria-expanded", String(!collapsed));
                 toggle.setAttribute(
                     "aria-label",
-                    collapsed ? "Expand layer controls" : "Collapse layer controls"
+                    collapsed ? t("layers.expand") : t("layers.collapse")
                 );
             }
             toggle.addEventListener("click", () => {
@@ -6230,10 +6698,10 @@
                     anyVisible && !allVisible
                 );
                 node.eyeButton.title = hasSnapshot || inheritedSnapshot
-                    ? `Restore previous ${node.title}`
+                    ? t("layers.restorePrevious", { title: node.title })
                     : anyVisible
-                        ? `Hide all ${node.title}`
-                        : `Show all ${node.title}`;
+                        ? t("layers.hideAll", { title: node.title })
+                        : t("layers.showAll", { title: node.title });
                 node.eyeButton.setAttribute(
                     "aria-label",
                     node.eyeButton.title
@@ -6433,8 +6901,8 @@
         groupedLayerControl?.remove();
         groupedLayerControl = addGroupedLayerControl([
             makeMapCategory(),
-            makeForceCategory(1, "REDFOR"),
-            makeForceCategory(2, "BLUFOR")
+            makeForceCategory(1, teamLabel(1)),
+            makeForceCategory(2, teamLabel(2))
         ]);
     }
 

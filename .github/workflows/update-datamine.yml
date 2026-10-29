@@ -62,4 +62,5 @@ jobs:
             presets.json
             unit_specs.json
             unit_display_names.json
+            unit_weapon_display_names.json
             datamine-lock.json
