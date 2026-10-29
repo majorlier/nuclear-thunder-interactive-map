@@ -4531,6 +4531,21 @@
     const WIKI_IMAGE_BASE = "https://static.encyclopedia.warthunder.com/images/";
     const SLOT_IMAGE_BASE = "images/slots/";
     const PORTRAIT_IMAGE_BASE = "images/portraits/";
+    // Slot and portrait files that exist (tools/build_image_manifest.py).
+    // Many event-only units have no art at all, so candidates outside this
+    // list are skipped instead of requested. Until it loads, or if it is
+    // missing, every candidate is tried as before.
+    let availableArt = null;
+    fetch("images/manifest.json")
+        .then(response => (response.ok ? response.json() : null))
+        .then(manifest => {
+            if (!manifest) return;
+            availableArt = new Set([
+                ...(manifest.slots || []).map(name => SLOT_IMAGE_BASE + name),
+                ...(manifest.portraits || []).map(name => PORTRAIT_IMAGE_BASE + name)
+            ]);
+        })
+        .catch(() => {});
     // Event naval entries sometimes use an `_ec`/`_ai` suffix even though
     // their playable encyclopedia entry uses the base class name.
     const PLAYABLE_IMAGE_ALIASES = {
@@ -4635,9 +4650,15 @@
     // requested the same missing slot/portrait files again.
     const failedImageUrls = new Set();
 
+    function isKnownMissingArt(source) {
+        return availableArt !== null &&
+            (source.startsWith(SLOT_IMAGE_BASE) || source.startsWith(PORTRAIT_IMAGE_BASE)) &&
+            !availableArt.has(source);
+    }
+
     function usableImageSources(sources) {
         return [...new Set((sources || []).filter(Boolean))]
-            .filter(source => !failedImageUrls.has(source));
+            .filter(source => !failedImageUrls.has(source) && !isKnownMissingArt(source));
     }
 
     // Shared onerror handler for card and tooltip images. Remembers the

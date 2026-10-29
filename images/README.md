@@ -20,6 +20,12 @@ the default; Vanilla uses neutral `def_*` symbols and Pact uses `def_ussr_*`.
 
 The map uses local assets first. Missing slot art falls back to the team NATO symbol; missing portrait art can still fall back to the existing local artwork and encyclopedia image where available.
 
+`manifest.json` lists the slot and portrait files that exist, so the page never
+requests art for units that have none (AI-only SAM parts, carriers, convoy
+trucks). Regenerate it with `python tools/build_image_manifest.py` after adding
+images by hand; the sync below updates it automatically, and
+`tools/check_frontend.js` fails when it is out of date.
+
 To populate these folders from a full local datamine checkout, run
 `python tools/sync_datamine_assets.py --datamine <path-to-datamine>` from the
 map repository. The generated JSON report records the source path and whether

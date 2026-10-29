@@ -20,6 +20,7 @@
     "images/portraits/nebo_55j6.png",
     "images/portraits/tps_59_radar.png",
     "images/portraits/us_an_tps_43_radar.png",
-    "generated/southeastern_city_heightmap/southeastern_city_height_meta.json"
+    "generated/southeastern_city_heightmap/southeastern_city_height_meta.json",
+    "images/manifest.json"
   ]
 }

@@ -151,5 +151,18 @@ assert.deepEqual(
     Object.keys(unitNames).sort(),
     "Localized name tables expose different locales"
 );
+// The page only requests slot/portrait art listed in images/manifest.json, so
+// a stale list would hide new artwork. Regenerate with
+// tools/build_image_manifest.py.
+const imageManifest = JSON.parse(fs.readFileSync(path.join(root, "images", "manifest.json"), "utf8"));
+for (const [key, folder] of [["slots", "images/slots"], ["portraits", "images/portraits"]]) {
+    const onDisk = fs.readdirSync(path.join(root, folder)).filter(name => name.endsWith(".png")).sort();
+    assert.deepEqual(
+        imageManifest[key],
+        onDisk,
+        `images/manifest.json is out of date for ${folder}: run python tools/build_image_manifest.py`
+    );
+}
+
 console.log(`Frontend passed: ${scripts} script(s), ${displayed.size} mission variants, ` +
     `${locales.length} language pack(s) with ${Object.keys(english).length} keys.`);
