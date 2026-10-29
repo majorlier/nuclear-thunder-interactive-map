@@ -90,6 +90,14 @@
             backdrop-filter: blur(5px);
         }
 
+        /* On phones the open legend covers the bottom-left map tools and
+           terrain readout; hide them until the legend is collapsed. */
+        @media (max-width: 700px) {
+            body.legend-open .leaflet-bottom.leaflet-left {
+                visibility: hidden;
+            }
+        }
+
         .composition-window.is-collapsed {
             transform: translateX(calc(100% + 12px));
         }
@@ -1758,6 +1766,17 @@
     function drawerStartsCollapsed(saved) {
         return typeof saved === "boolean" ? saved : narrowViewport;
     }
+    // On a narrow screen only one drawer is open at a time: opening one
+    // collapses the others, which would otherwise cover it. Checked on every
+    // click so a resized window behaves the same way.
+    const narrowQuery = window.matchMedia?.("(max-width: 700px)");
+    const phoneDrawerCollapsers = {};
+    function drawerOpened(name) {
+        if (!narrowQuery?.matches) return;
+        Object.entries(phoneDrawerCollapsers).forEach(([other, collapse]) => {
+            if (other !== name) collapse();
+        });
+    }
     function saveUiState(changes) {
         Object.assign(uiState, changes);
         try {
@@ -1901,7 +1920,13 @@
         const collapsed = !infoPanel.classList.contains("is-collapsed");
         setInfoPanelCollapsed(collapsed);
         saveUiState({ controlsCollapsed: collapsed });
+        if (!collapsed) drawerOpened("controls");
     });
+    phoneDrawerCollapsers.controls = () => {
+        if (infoPanel.classList.contains("is-collapsed")) return;
+        setInfoPanelCollapsed(true);
+        saveUiState({ controlsCollapsed: true });
+    };
     infoPanel.appendChild(infoDrawerToggle);
     setInfoPanelCollapsed(uiState.controlsCollapsed === true);
 
@@ -1909,6 +1934,7 @@
     const compositionWindowToggle = document.getElementById("composition-window-toggle");
     function setCompositionWindowCollapsed(collapsed) {
         compositionWindow.classList.toggle("is-collapsed", collapsed);
+        document.body.classList.toggle("legend-open", !collapsed);
         compositionWindowToggle.textContent = collapsed ? "‹" : "›";
         compositionWindowToggle.setAttribute("aria-expanded", String(!collapsed));
         compositionWindowToggle.setAttribute(
@@ -1920,7 +1946,13 @@
         const collapsed = !compositionWindow.classList.contains("is-collapsed");
         setCompositionWindowCollapsed(collapsed);
         saveUiState({ legendCollapsed: collapsed });
+        if (!collapsed) drawerOpened("legend");
     });
+    phoneDrawerCollapsers.legend = () => {
+        if (compositionWindow.classList.contains("is-collapsed")) return;
+        setCompositionWindowCollapsed(true);
+        saveUiState({ legendCollapsed: true });
+    };
     setCompositionWindowCollapsed(drawerStartsCollapsed(uiState.legendCollapsed));
 
     const standardMapLayer = L.imageOverlay(activeMapDefinition().image, bounds).addTo(map);
@@ -6638,7 +6670,14 @@
                 const collapsed = !drawer.classList.contains("is-collapsed");
                 setDrawerCollapsed(collapsed);
                 saveUiState({ layersCollapsed: collapsed });
+                if (!collapsed) drawerOpened("layers");
             });
+            // Replaced on every rebuild so it always targets the live drawer.
+            phoneDrawerCollapsers.layers = () => {
+                if (drawer.classList.contains("is-collapsed")) return;
+                setDrawerCollapsed(true);
+                saveUiState({ layersCollapsed: true });
+            };
             // The control is rebuilt on every map switch; keep its state.
             setDrawerCollapsed(drawerStartsCollapsed(uiState.layersCollapsed));
             L.DomEvent.disableClickPropagation(drawer);
