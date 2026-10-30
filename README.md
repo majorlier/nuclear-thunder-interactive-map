@@ -6,9 +6,13 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
 
 ## Use the map
 
-- Choose **Archipelago** or **South Eastern City** first. Archipelago has the
-  terrain-height overlay; City has its own extracted vehicle-road network and
-  navigation mesh for route previews.
+- Choose **Archipelago**, **South Eastern City** or **Kamchatka** (in-game
+  "Volcano Valley", added in 2.60) first. Archipelago has the terrain-height
+  overlay; City has its own extracted vehicle-road network and navigation mesh
+  for route previews. Kamchatka has no mirrored mission in the datamine yet,
+  and its terrain and roads still need extracting from
+  `levels/air_kamchatka.bin`, so Swap sides, line of sight and threat cover
+  are unavailable there and convoys show straight-line previews.
 - Choose a scenario. The selector converts the mission's rank range to BR
   using War Thunder's balance-level scale (`BR = 1 + rank / 3`), with the lower
   bound raised to the event's 8.7 minimum BR (a matchmaking rule that is not
@@ -16,7 +20,7 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   precedence if one is provided.
 - Use the **Icons** selector to switch the whole map between NATO (default),
   WT, and USSR role symbols.
-- Use **Swap sides** on either map to load its game-defined mirrored mission,
+- Use **Swap sides** on Archipelago or South Eastern City to load its game-defined mirrored mission,
   including the opposing-side site locations and mission routes.
 - Open folders in the map controls to show forces, airfields, depots, routes, and range overlays.
 - Use **Threat cover** in the map tools to shade where one team's radars

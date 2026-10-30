@@ -59,6 +59,8 @@ jobs:
             mission_logic_mirror.json
             mission_logic_city.json
             mission_logic_city_mirror.json
+            map_data_kamchatka.json
+            mission_logic_kamchatka.json
             presets.json
             unit_specs.json
             unit_display_names.json
