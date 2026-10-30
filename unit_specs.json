@@ -563,20 +563,16 @@
     "sensors": {
       "detection": {
         "kind": "detection",
-        "nominal": null,
-        "maximum": null,
+        "nominal": 150000.0,
+        "maximum": 200000.0,
         "band": 5,
         "scope_ranges": [
-          40000.0,
-          80000.0,
-          120000.0
+          200000.0
         ],
         "designation_range": 180000.0,
         "ai": false,
         "sensor": "us_tps_59",
-        "range_status": "unresolved_internal",
-        "raw_nominal": 2.0,
-        "raw_maximum": 2.0
+        "range_status": "confirmed"
       }
     },
     "weapons": [],
@@ -803,15 +799,15 @@
     "maximum_speed_kph": 0.0,
     "target_channels": null,
     "sensors": {
-      "tracking": {
-        "kind": "tracking",
+      "detection": {
+        "kind": "detection",
         "nominal": 100000.0,
         "maximum": 180000.0,
         "band": 6,
         "scope_ranges": [],
-        "designation_range": null,
+        "designation_range": 180000.0,
         "ai": false,
-        "sensor": "us_an_mpq_53",
+        "sensor": "us_an_mpq_53_search_and_track",
         "range_status": "confirmed"
       }
     },
@@ -891,7 +887,7 @@
     "unit_type": "typeShip",
     "on_radar_as": null,
     "exp_class": "exp_cv_ship",
-    "maximum_speed_kph": 80.0,
+    "maximum_speed_kph": 55.0,
     "target_channels": null,
     "sensors": {},
     "weapons": [
@@ -1491,20 +1487,16 @@
     "sensors": {
       "detection": {
         "kind": "detection",
-        "nominal": null,
-        "maximum": null,
+        "nominal": 150000.0,
+        "maximum": 200000.0,
         "band": 5,
         "scope_ranges": [
-          40000.0,
-          80000.0,
-          120000.0
+          200000.0
         ],
         "designation_range": 180000.0,
         "ai": false,
         "sensor": "su_55zh6",
-        "range_status": "unresolved_internal",
-        "raw_nominal": 2.0,
-        "raw_maximum": 2.0
+        "range_status": "confirmed"
       }
     },
     "weapons": [],
@@ -1582,15 +1574,15 @@
     "maximum_speed_kph": 75.0,
     "target_channels": null,
     "sensors": {
-      "tracking": {
-        "kind": "tracking",
-        "nominal": 100000.0,
+      "detection": {
+        "kind": "detection",
+        "nominal": 60000.0,
         "maximum": 60000.0,
         "band": 8,
         "scope_ranges": [],
-        "designation_range": null,
+        "designation_range": 60000.0,
         "ai": false,
-        "sensor": "su_9s35",
+        "sensor": "su_9s35_search_and_track",
         "range_status": "confirmed"
       }
     },
@@ -1623,15 +1615,15 @@
     "maximum_speed_kph": 75.0,
     "target_channels": null,
     "sensors": {
-      "tracking": {
-        "kind": "tracking",
-        "nominal": 100000.0,
+      "detection": {
+        "kind": "detection",
+        "nominal": 60000.0,
         "maximum": 60000.0,
         "band": 8,
         "scope_ranges": [],
-        "designation_range": null,
+        "designation_range": 60000.0,
         "ai": false,
-        "sensor": "su_9s35m1",
+        "sensor": "su_9s35m1_search_and_track",
         "range_status": "confirmed"
       }
     },
@@ -1693,15 +1685,15 @@
     "maximum_speed_kph": 0.0,
     "target_channels": null,
     "sensors": {
-      "tracking": {
-        "kind": "tracking",
+      "detection": {
+        "kind": "detection",
         "nominal": 100000.0,
         "maximum": 180000.0,
         "band": 8,
         "scope_ranges": [],
-        "designation_range": null,
+        "designation_range": 180000.0,
         "ai": false,
-        "sensor": "su_5n63s",
+        "sensor": "su_5n63s_search_and_track",
         "range_status": "confirmed"
       }
     },
@@ -1908,7 +1900,7 @@
     "unit_type": "typeShip",
     "on_radar_as": null,
     "exp_class": "exp_cv_ship",
-    "maximum_speed_kph": 80.0,
+    "maximum_speed_kph": 55.0,
     "target_channels": 8,
     "sensors": {
       "detection": {
@@ -1973,7 +1965,7 @@
     "unit_type": "typeShip",
     "on_radar_as": null,
     "exp_class": "exp_cv_ship",
-    "maximum_speed_kph": 80.0,
+    "maximum_speed_kph": 55.0,
     "target_channels": null,
     "sensors": {},
     "weapons": [

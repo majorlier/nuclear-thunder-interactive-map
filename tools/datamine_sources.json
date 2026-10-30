@@ -25,6 +25,12 @@
       "label": "South Eastern City — swapped locations",
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx",
       "name": "air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx"
+    },
+    {
+      "id": "kamchatka",
+      "label": "Kamchatka",
+      "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_kamchatka_nuclear_escalation_tdm.blkx",
+      "name": "air_kamchatka_nuclear_escalation_tdm.blkx"
     }
   ],
   "generator_files": [
@@ -59,6 +65,10 @@
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/sam_sites.blkx",
       "name": "sam_sites.blkx"
+    },
+    {
+      "path": "aces.vromfs.bin_u/templates/nuclear_escalation/awacs.blkx",
+      "name": "awacs.blkx"
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships.blkx",

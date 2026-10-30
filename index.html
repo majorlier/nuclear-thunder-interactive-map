@@ -1482,7 +1482,7 @@
     </div>
 
     <p class="feedback-contact"><span data-i18n="app.updated"
-        data-i18n-args='{"version":"2.59.0.93"}'>Updated 2.59.0.93</span><br><span
+        data-i18n-args='{"version":"2.60.0.20"}'>Updated 2.60.0.20</span><br><span
         data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
 </div>
 
@@ -1693,6 +1693,7 @@
     // interactive.
     const THREAT_CELL_METERS = 512;
     const CITY_MAP_IMAGE = "air_south_eastern_city_map.png";
+    const KAMCHATKA_MAP_IMAGE = "air_kamchatka_map.png";
     const MAP_DEFINITIONS = {
         archipelago: {
             id: "archipelago",
@@ -1741,6 +1742,27 @@
             navmeshFile: "navmesh_city.json",
             // From air_south_eastern_city.blkx: this map is half the width
             // of Archipelago, not a 262 km square.
+            mapCoord0: [-65536, -65536],
+            mapCoord1: [65536, 65536]
+        },
+        // Added in 2.60. The datamine has no mirrored mission yet, and the
+        // terrain, roads and navigation mesh need levels/air_kamchatka.bin
+        // from the game client; until then LOS, threat cover and road
+        // routing are unavailable here and convoys show straight lines.
+        kamchatka: {
+            id: "kamchatka",
+            label: "Kamchatka",
+            image: KAMCHATKA_MAP_IMAGE,
+            variants: ["kamchatka"],
+            defaultVariant: "kamchatka",
+            mirroredVariant: null,
+            supportsTeamSwap: false,
+            supportsTerrain: false,
+            // air_kamchatka.blkx: water_level -5.
+            waterLevel: -5,
+            supportsRoads: false,
+            supportsNavmesh: false,
+            // From air_kamchatka.blkx: the same extent as South Eastern City.
             mapCoord0: [-65536, -65536],
             mapCoord1: [65536, 65536]
         }
@@ -6364,6 +6386,14 @@
             if (!response.ok) throw httpError("mission_logic_city_mirror.json", response);
             return response.json();
         }),
+        fetch("map_data_kamchatka.json").then(response => {
+            if (!response.ok) throw httpError("map_data_kamchatka.json", response);
+            return response.json();
+        }),
+        fetch("mission_logic_kamchatka.json").then(response => {
+            if (!response.ok) throw httpError("mission_logic_kamchatka.json", response);
+            return response.json();
+        }),
         fetch("presets.json").then(response => {
             if (!response.ok) throw httpError("presets.json", response);
             return response.json();
@@ -6398,6 +6428,8 @@
             cityLogicData,
             cityMirrorSiteData,
             cityMirrorLogicData,
+            kamchatkaSiteData,
+            kamchatkaLogicData,
             presetData,
             unitSpecs,
             unitDisplayNames,
@@ -6410,13 +6442,15 @@
                 standard: standardSiteData,
                 mirror: mirrorSiteData,
                 city: citySiteData,
-                city_mirror: cityMirrorSiteData
+                city_mirror: cityMirrorSiteData,
+                kamchatka: kamchatkaSiteData
             };
             globalMissionLogicVariants = {
                 standard: standardLogicData,
                 mirror: mirrorLogicData,
                 city: cityLogicData,
-                city_mirror: cityMirrorLogicData
+                city_mirror: cityMirrorLogicData,
+                kamchatka: kamchatkaLogicData
             };
             globalPresetData = presetData;
             globalUnitSpecs = unitSpecs;
