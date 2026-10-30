@@ -8,6 +8,11 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <!-- Condensed UI face in the spirit of War Thunder's menus; the theme
+         falls back to system fonts if it cannot load. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700&display=swap">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <style>
@@ -1428,6 +1433,411 @@
             background: #202734;
             font: 600 11px/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
             text-transform: none;
+        }
+
+        /* ================================================================
+         * War Thunder theme
+         * Restyles the panels, controls, popups and tooltips after the
+         * game's menus: slate gradient windows with thin keylines, gradient
+         * title bars, bevelled grey buttons, gold for the selected state and
+         * key values, uppercase condensed headings. Layout and behaviour are
+         * defined above; this block only changes appearance. Team colours on
+         * the map are unchanged.
+         * ================================================================ */
+        :root {
+            --wt-font: "Roboto Condensed", "Arial Narrow", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+            --wt-window: linear-gradient(180deg, rgba(38, 45, 53, 0.95) 0%, rgba(23, 28, 34, 0.95) 100%);
+            --wt-window-solid: #1b2128;
+            --wt-titlebar: linear-gradient(180deg, #3c4652 0%, #2b333c 100%);
+            --wt-row: linear-gradient(180deg, #343d47 0%, #2a3139 100%);
+            --wt-row-hover: linear-gradient(180deg, #414b56 0%, #323a43 100%);
+            --wt-inset: #14181d;
+            --wt-line: #47525e;
+            --wt-line-soft: rgba(255, 255, 255, 0.08);
+            --wt-line-strong: #6b7783;
+            --wt-text: #e7ebee;
+            --wt-text-dim: #95a1ad;
+            --wt-gold: #e9b530;
+            --wt-gold-text: #ffd35c;
+            --wt-gold-fill: linear-gradient(180deg, #5a4a20 0%, #3b3117 100%);
+            --wt-button: linear-gradient(180deg, #4b5662 0%, #353d46 100%);
+            --wt-button-hover: linear-gradient(180deg, #5a6672 0%, #3f4852 100%);
+            --wt-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55), 0 8px 22px rgba(0, 0, 0, 0.55);
+            --wt-radius: 2px;
+            font-family: var(--wt-font);
+        }
+
+        body { background: #0b0e11; color: var(--wt-text); }
+
+        /* ---- Windows ---- */
+        .info-panel,
+        .composition-window,
+        .grouped-layers,
+        .map-tools-control,
+        .terrain-readout,
+        .terrain-legend {
+            border: 1px solid var(--wt-line);
+            border-radius: var(--wt-radius);
+            color: var(--wt-text);
+            background: var(--wt-window);
+            box-shadow: var(--wt-shadow), inset 0 1px 0 var(--wt-line-soft);
+            font-family: var(--wt-font);
+        }
+
+        .info-panel { padding: 0 14px 12px; }
+
+        /* Title bars span the window width like the game's window headers. */
+        .info-panel > .title,
+        .composition-window .legend-heading,
+        .map-tools-control > strong {
+            position: relative;
+            margin: 0 -14px 10px;
+            padding: 9px 14px 8px 17px;
+            border-bottom: 1px solid #56626e;
+            color: #ffffff;
+            background: var(--wt-titlebar);
+            font: 700 14px/1.2 var(--wt-font);
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+        }
+
+        .info-panel > .title::before,
+        .composition-window .legend-heading::before,
+        .map-tools-control > strong::before {
+            content: "";
+            position: absolute;
+            top: 7px;
+            bottom: 7px;
+            left: 7px;
+            width: 3px;
+            background: var(--wt-gold);
+        }
+
+        .composition-window { padding: 0 12px 10px; }
+        .composition-window .legend-heading { margin: 0 -12px 0; font-size: 12px; }
+        .map-tools-control { padding: 0 8px 8px; }
+        .map-tools-control > strong { margin: 0 -8px 8px; padding-left: 15px; font-size: 12px; }
+
+        .grouped-layers,
+        .map-tools-control,
+        .terrain-readout,
+        .terrain-legend { font-size: 12px; }
+
+        .feedback-contact,
+        .era-selector { border-top-color: var(--wt-line-soft); }
+        .feedback-contact { color: var(--wt-text-dim); }
+
+        /* ---- Drawer tabs ---- */
+        .drawer-toggle,
+        .layers-drawer-toggle {
+            border: 1px solid var(--wt-line);
+            color: var(--wt-gold-text);
+            background: var(--wt-titlebar);
+            box-shadow: var(--wt-shadow);
+            font: 700 18px/1 var(--wt-font);
+        }
+
+        .drawer-toggle { border-radius: 0 var(--wt-radius) var(--wt-radius) 0; }
+        .composition-window .drawer-toggle,
+        .layers-drawer-toggle { border-radius: var(--wt-radius) 0 0 var(--wt-radius); }
+
+        .drawer-toggle:hover,
+        .layers-drawer-toggle:hover { background: var(--wt-row-hover); }
+
+        /* ---- Buttons ---- */
+        .team-swap,
+        .map-tools-actions button,
+        .legend-team-switch button,
+        .layer-actions button,
+        .site-popup-back,
+        .icon-family-option,
+        .map-selector label {
+            border: 1px solid var(--wt-line-strong);
+            border-bottom-color: #20262c;
+            border-radius: var(--wt-radius);
+            color: var(--wt-text);
+            background: var(--wt-button);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 1px 2px rgba(0, 0, 0, 0.6);
+            font-family: var(--wt-font);
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.7);
+        }
+
+        .map-tools-actions button { padding: 5px 6px; font-size: 11px; }
+        .team-swap { padding: 6px 9px; font-size: 12px; }
+        .site-popup-back { font-size: 10px; }
+        .map-selector label { padding: 6px 8px; font-size: 13px; }
+        /* The native radio is redundant on a tab-styled option. */
+        .map-selector input { position: absolute; opacity: 0; pointer-events: none; }
+
+        .team-swap:hover,
+        .map-tools-actions button:hover,
+        .legend-team-switch button:hover,
+        .layer-actions button:hover,
+        .site-popup-back:hover,
+        .site-popup-back:focus-visible,
+        .icon-family-option:hover,
+        .icon-family-option:focus-visible,
+        .map-selector label:hover {
+            border-color: #8d99a5;
+            color: #ffffff;
+            background: var(--wt-button-hover);
+        }
+
+        /* Selected state: gold keyline, gold text and an underline, after the
+           game's highlighted tabs. */
+        .map-selector label:has(input:checked),
+        .map-tools-actions button[aria-pressed="true"],
+        .icon-family-option.is-selected,
+        .team-swap[aria-pressed="true"] {
+            border-color: var(--wt-gold);
+            color: var(--wt-gold-text);
+            background: var(--wt-gold-fill);
+            box-shadow: inset 0 -2px 0 var(--wt-gold), 0 0 6px rgba(233, 181, 48, 0.25);
+        }
+
+        .team-swap:disabled,
+        .team-swap:disabled:hover {
+            border-color: #3a434c;
+            color: #6c7884;
+            background: #262c33;
+            box-shadow: none;
+            text-shadow: none;
+        }
+
+        .legend-team-switch button[data-legend-team="1"].is-selected {
+            border-color: #e05a50;
+            color: #ff8a80;
+            background: linear-gradient(180deg, #4f2a28 0%, #33201f 100%);
+            box-shadow: inset 0 -2px 0 #e05a50;
+        }
+
+        .legend-team-switch button[data-legend-team="2"].is-selected {
+            border-color: #4f9be0;
+            color: #8fc6ff;
+            background: linear-gradient(180deg, #24384d 0%, #1b2836 100%);
+            box-shadow: inset 0 -2px 0 #4f9be0;
+        }
+
+        /* ---- Fields ---- */
+        #scenario-options,
+        .language-selector select,
+        .threat-options input,
+        .threat-options select,
+        .los-options input,
+        .brush-options select {
+            border: 1px solid var(--wt-line);
+            border-radius: var(--wt-radius);
+            color: var(--wt-text);
+            background: var(--wt-inset);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        #scenario-options { padding: 5px 8px; }
+        .language-selector select { font-family: var(--wt-font); font-size: 12px; }
+
+        #scenario-options:focus,
+        .language-selector select:focus,
+        .threat-options input:focus,
+        .threat-options select:focus,
+        .los-options input:focus,
+        .brush-options select:focus {
+            border-color: var(--wt-gold);
+            outline: none;
+        }
+
+        .grouped-layers input[type="checkbox"],
+        .brush-options input[type="range"] { accent-color: var(--wt-gold); }
+
+        .icon-family-selector,
+        .language-selector,
+        .selector-heading,
+        .brush-options span,
+        .los-hint,
+        .threat-legend,
+        .map-tools-status { color: var(--wt-text-dim); }
+
+        .threat-status { color: var(--wt-gold-text); }
+
+        /* ---- Layer tree ---- */
+        .grouped-layers summary {
+            border: 1px solid transparent;
+            border-radius: var(--wt-radius);
+            background: var(--wt-row);
+        }
+
+        .grouped-layers summary:hover { background: var(--wt-row-hover); }
+
+        .force-details > summary {
+            border-color: var(--wt-line);
+            background: var(--wt-titlebar);
+            font-family: var(--wt-font);
+            font-size: 13px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .force-children > details > summary { background: #252b33; }
+        .folder-triangle { color: var(--wt-gold); }
+        .folder-eye.partial { color: var(--wt-gold-text); }
+        .global-layer-actions { border-bottom-color: var(--wt-line-soft); }
+
+        /* ---- Map legend ---- */
+        .composition-panel > p,
+        .composition-site-description { color: var(--wt-text-dim); }
+
+        .site-legend-item { color: #d3dae0; font-size: 11px; }
+
+        button.site-legend-item:hover,
+        button.site-legend-item.is-selected {
+            border-color: var(--wt-gold);
+            background: rgba(233, 181, 48, 0.12);
+        }
+
+        .legend-composition { border-top-color: var(--wt-line-soft); }
+
+        .composition-section-title {
+            color: var(--wt-gold-text);
+            letter-spacing: .1em;
+        }
+
+        .composition-site {
+            border: 1px solid var(--wt-line);
+            border-radius: var(--wt-radius);
+            background: rgba(20, 24, 29, 0.85);
+        }
+
+        .composition-site summary::marker { color: var(--wt-gold); }
+
+        /* ---- Popups and cards ---- */
+        .leaflet-popup-content-wrapper {
+            border: 1px solid var(--wt-line);
+            border-radius: var(--wt-radius);
+            color: var(--wt-text);
+            background: var(--wt-window-solid);
+            box-shadow: var(--wt-shadow);
+            font-family: var(--wt-font);
+        }
+
+        .leaflet-popup-tip {
+            background: var(--wt-window-solid);
+            box-shadow: none;
+        }
+
+        .leaflet-container a.leaflet-popup-close-button { color: var(--wt-text-dim); }
+        .leaflet-container a.leaflet-popup-close-button:hover { color: var(--wt-gold-text); }
+
+        .site-popup-title {
+            padding: 9px 11px 6px;
+            color: #ffffff;
+            font: 700 14px/1.2 var(--wt-font);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .airfield-popup h3 { border-top-color: var(--wt-line-soft); color: var(--wt-gold-text); }
+        .airfield-popup-meta { color: var(--wt-text-dim); }
+
+        .site-popup-unit {
+            border: 1px solid var(--wt-line);
+            border-radius: var(--wt-radius);
+            background: linear-gradient(180deg, #2c343d 0%, #1b2026 100%);
+        }
+
+        .site-popup-unit:hover,
+        .site-popup-unit:focus-visible {
+            border-color: var(--wt-gold);
+            background: linear-gradient(180deg, #38414b 0%, #22282f 100%);
+        }
+
+        .vehicle-card,
+        .leaflet-popup-content .vehicle-card {
+            border: 1px solid var(--wt-line);
+            border-top: 3px solid #4f9be0;
+            border-radius: var(--wt-radius);
+            background: linear-gradient(180deg, #2a323b 0%, #171b20 100%);
+        }
+
+        .vehicle-card.team-1,
+        .leaflet-popup-content .vehicle-card.team-1 { border-top-color: #e05a50; }
+
+        .vehicle-card-header {
+            border-bottom: 1px solid var(--wt-line-soft);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
+            font-family: var(--wt-font);
+            font-size: 13px;
+            letter-spacing: .05em;
+        }
+
+        .vehicle-card-role { color: var(--wt-text-dim); letter-spacing: .08em; }
+        .vehicle-card-stats { border-top-color: var(--wt-line-soft); background: var(--wt-inset); }
+        .vehicle-card-stat { color: var(--wt-text-dim); font-size: 11px; }
+        .vehicle-card-stat b { color: var(--wt-gold-text); font-size: 12px; }
+        .vehicle-card-weapons { border-top-color: var(--wt-line-soft); color: var(--wt-text-dim); font-size: 11px; }
+        .vehicle-card-weapons strong { color: #ffffff; }
+
+        .vehicle-card-count,
+        .vehicle-card-timer,
+        .vehicle-card-depot-context,
+        .site-popup-unit-count { border-radius: var(--wt-radius); }
+
+        /* ---- Tooltips (Leaflet's default is a white box) ---- */
+        .leaflet-tooltip {
+            padding: 6px 9px;
+            border: 1px solid var(--wt-line);
+            border-radius: var(--wt-radius);
+            color: var(--wt-text);
+            background: rgba(25, 30, 36, 0.96);
+            box-shadow: var(--wt-shadow);
+            font: 13px/1.35 var(--wt-font);
+        }
+
+        .leaflet-tooltip b { color: #ffffff; }
+        .leaflet-tooltip-top::before { border-top-color: var(--wt-line); }
+        .leaflet-tooltip-bottom::before { border-bottom-color: var(--wt-line); }
+        .leaflet-tooltip-left::before { border-left-color: var(--wt-line); }
+        .leaflet-tooltip-right::before { border-right-color: var(--wt-line); }
+
+        /* ---- Notices ---- */
+        .range-disclaimer-control {
+            border: 1px solid var(--wt-gold);
+            border-radius: var(--wt-radius);
+            color: var(--wt-text);
+            background: linear-gradient(180deg, rgba(58, 48, 22, 0.96), rgba(36, 30, 15, 0.96));
+            box-shadow: var(--wt-shadow);
+            font-family: var(--wt-font);
+        }
+
+        .range-disclaimer-control strong { color: var(--wt-gold-text); letter-spacing: .08em; }
+        .range-disclaimer-close { color: var(--wt-gold-text); }
+
+        .ruler-waypoint { border-color: #1b2026; background: var(--wt-gold); font-family: var(--wt-font); }
+
+        /* ---- Scrollbars ---- */
+        .grouped-layers,
+        .composition-panel,
+        .site-popup .vehicle-card-grid {
+            scrollbar-color: #56616d var(--wt-inset);
+            scrollbar-width: thin;
+        }
+
+        .grouped-layers::-webkit-scrollbar,
+        .composition-panel::-webkit-scrollbar,
+        .site-popup .vehicle-card-grid::-webkit-scrollbar { width: 8px; }
+
+        .grouped-layers::-webkit-scrollbar-track,
+        .composition-panel::-webkit-scrollbar-track,
+        .site-popup .vehicle-card-grid::-webkit-scrollbar-track { background: var(--wt-inset); }
+
+        .grouped-layers::-webkit-scrollbar-thumb,
+        .composition-panel::-webkit-scrollbar-thumb,
+        .site-popup .vehicle-card-grid::-webkit-scrollbar-thumb {
+            border: 2px solid var(--wt-inset);
+            border-radius: 4px;
+            background: #56616d;
         }
 
     </style>
