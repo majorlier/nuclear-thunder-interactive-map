@@ -33,9 +33,9 @@
   "team.redfor": "REDFOR",
   "team.blufor": "BLUFOR",
 
-  "swap.swap": "SWAP SIDES",
-  "swap.restore": "RESTORE SIDES",
-  "swap.unavailable": "SWAP SIDES (UNAVAILABLE)",
+  "swap.swap": "Swap sides",
+  "swap.restore": "Restore sides",
+  "swap.unavailable": "Swap sides (unavailable)",
 
   "icons.label": "Map icon style",
   "icons.vanilla": "WT icons",
@@ -267,8 +267,8 @@
   "layers.restorePrevious": "Restore previous {title}",
   "layers.hideAll": "Hide all {title}",
   "layers.showAll": "Show all {title}",
-  "layers.mapTerrain": "MAP & TERRAIN",
-  "layers.map": "MAP",
+  "layers.mapTerrain": "Map & terrain",
+  "layers.map": "Map",
   "layers.terrain": "Terrain",
   "layers.roadNetwork": "Road network",
   "layers.trueTopographic": "True topographic terrain",

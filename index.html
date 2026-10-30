@@ -8,11 +8,11 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <!-- Condensed UI face in the spirit of War Thunder's menus; the theme
-         falls back to system fonts if it cannot load. -->
+    <!-- Condensed UI face close to War Thunder's menus; the theme falls
+         back to system fonts if it cannot load. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500;600&display=swap">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <style>
@@ -1437,37 +1437,37 @@
 
         /* ================================================================
          * War Thunder theme
-         * Restyles the panels, controls, popups and tooltips after the
-         * game's menus: slate gradient windows with thin keylines, gradient
-         * title bars, bevelled grey buttons, gold for the selected state and
-         * key values, uppercase condensed headings. Layout and behaviour are
-         * defined above; this block only changes appearance. Team colours on
-         * the map are unchanged.
+         * Modelled on the game's 2.x menus (hangar, test flight,
+         * modifications, respawn screen): flat blue-slate windows with square
+         * corners, plain title bars, lighter section strips, flat buttons,
+         * near-black drop-down fields, an orange-red underline for the
+         * selected tab, grey labels with dotted leaders and white values.
+         * Layout and behaviour are defined above; this block only changes
+         * appearance. Team colours on the map are unchanged.
          * ================================================================ */
         :root {
-            --wt-font: "Roboto Condensed", "Arial Narrow", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-            --wt-window: linear-gradient(180deg, rgba(38, 45, 53, 0.95) 0%, rgba(23, 28, 34, 0.95) 100%);
-            --wt-window-solid: #1b2128;
-            --wt-titlebar: linear-gradient(180deg, #3c4652 0%, #2b333c 100%);
-            --wt-row: linear-gradient(180deg, #343d47 0%, #2a3139 100%);
-            --wt-row-hover: linear-gradient(180deg, #414b56 0%, #323a43 100%);
-            --wt-inset: #14181d;
-            --wt-line: #47525e;
-            --wt-line-soft: rgba(255, 255, 255, 0.08);
-            --wt-line-strong: #6b7783;
-            --wt-text: #e7ebee;
-            --wt-text-dim: #95a1ad;
-            --wt-gold: #e9b530;
-            --wt-gold-text: #ffd35c;
-            --wt-gold-fill: linear-gradient(180deg, #5a4a20 0%, #3b3117 100%);
-            --wt-button: linear-gradient(180deg, #4b5662 0%, #353d46 100%);
-            --wt-button-hover: linear-gradient(180deg, #5a6672 0%, #3f4852 100%);
-            --wt-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55), 0 8px 22px rgba(0, 0, 0, 0.55);
-            --wt-radius: 2px;
+            --wt-font: "Fira Sans Condensed", "Roboto Condensed", "Arial Narrow", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+            --wt-window: rgba(27, 35, 44, 0.94);
+            --wt-window-solid: #1b232c;
+            --wt-titlebar: #2a3540;
+            --wt-strip: #37434f;
+            --wt-button: #384450;
+            --wt-button-hover: #475461;
+            --wt-button-selected: #55636f;
+            --wt-field: #11171d;
+            --wt-line: rgba(255, 255, 255, 0.07);
+            --wt-text: #e3e8ec;
+            --wt-text-dim: #98a4b0;
+            --wt-accent: #e45a2c;
+            --wt-blue: #3c8ad0;
+            --wt-link: #6db7ff;
+            --wt-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
+            --wt-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23c9d1d8' stroke-width='1.4'/%3E%3C/svg%3E");
+            --wt-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1.5' fill='none' stroke='%23ffffff' stroke-width='1.8'/%3E%3C/svg%3E");
             font-family: var(--wt-font);
         }
 
-        body { background: #0b0e11; color: var(--wt-text); }
+        body { background: #0b0f13; color: var(--wt-text); }
 
         /* ---- Windows ---- */
         .info-panel,
@@ -1476,76 +1476,56 @@
         .map-tools-control,
         .terrain-readout,
         .terrain-legend {
-            border: 1px solid var(--wt-line);
-            border-radius: var(--wt-radius);
+            border: 0;
+            border-radius: 0;
             color: var(--wt-text);
             background: var(--wt-window);
-            box-shadow: var(--wt-shadow), inset 0 1px 0 var(--wt-line-soft);
+            box-shadow: var(--wt-shadow);
             font-family: var(--wt-font);
         }
 
-        .info-panel { padding: 0 14px 12px; }
+        .info-panel { padding: 0 12px 12px; font-size: 14px; }
+        .composition-window { padding: 0 10px 10px; }
+        .map-tools-control { padding: 0 8px 8px; font-size: 13px; }
+        .grouped-layers,
+        .terrain-readout,
+        .terrain-legend { font-size: 13px; }
 
-        /* Title bars span the window width like the game's window headers. */
+        /* Plain title bars spanning the window, as on the game's windows. */
         .info-panel > .title,
         .composition-window .legend-heading,
         .map-tools-control > strong {
-            position: relative;
-            margin: 0 -14px 10px;
-            padding: 9px 14px 8px 17px;
-            border-bottom: 1px solid #56626e;
+            margin: 0 -12px 10px;
+            padding: 8px 12px 7px;
             color: #ffffff;
             background: var(--wt-titlebar);
-            font: 700 14px/1.2 var(--wt-font);
-            letter-spacing: .09em;
-            text-transform: uppercase;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+            font: 400 17px/1.2 var(--wt-font);
+            letter-spacing: 0;
+            text-transform: none;
         }
 
-        .info-panel > .title::before,
-        .composition-window .legend-heading::before,
-        .map-tools-control > strong::before {
-            content: "";
-            position: absolute;
-            top: 7px;
-            bottom: 7px;
-            left: 7px;
-            width: 3px;
-            background: var(--wt-gold);
-        }
-
-        .composition-window { padding: 0 12px 10px; }
-        .composition-window .legend-heading { margin: 0 -12px 0; font-size: 12px; }
-        .map-tools-control { padding: 0 8px 8px; }
-        .map-tools-control > strong { margin: 0 -8px 8px; padding-left: 15px; font-size: 12px; }
-
-        .grouped-layers,
-        .map-tools-control,
-        .terrain-readout,
-        .terrain-legend { font-size: 12px; }
+        .composition-window .legend-heading { margin: 0 -10px; padding: 7px 10px 6px; font-size: 16px; }
+        .map-tools-control > strong { margin: 0 -8px 8px; padding: 6px 8px 5px; font-size: 15px; }
 
         .feedback-contact,
-        .era-selector { border-top-color: var(--wt-line-soft); }
-        .feedback-contact { color: var(--wt-text-dim); }
+        .era-selector { border-top-color: var(--wt-line); }
+        .feedback-contact { color: var(--wt-text-dim); font-size: 12px; }
 
         /* ---- Drawer tabs ---- */
         .drawer-toggle,
         .layers-drawer-toggle {
-            border: 1px solid var(--wt-line);
-            color: var(--wt-gold-text);
+            border: 0;
+            border-radius: 0;
+            color: var(--wt-text);
             background: var(--wt-titlebar);
             box-shadow: var(--wt-shadow);
-            font: 700 18px/1 var(--wt-font);
+            font: 400 20px/1 var(--wt-font);
         }
 
-        .drawer-toggle { border-radius: 0 var(--wt-radius) var(--wt-radius) 0; }
-        .composition-window .drawer-toggle,
-        .layers-drawer-toggle { border-radius: var(--wt-radius) 0 0 var(--wt-radius); }
-
         .drawer-toggle:hover,
-        .layers-drawer-toggle:hover { background: var(--wt-row-hover); }
+        .layers-drawer-toggle:hover { color: #ffffff; background: var(--wt-button-hover); }
 
-        /* ---- Buttons ---- */
+        /* ---- Buttons: flat slate, normal case ---- */
         .team-swap,
         .map-tools-actions button,
         .legend-team-switch button,
@@ -1553,23 +1533,24 @@
         .site-popup-back,
         .icon-family-option,
         .map-selector label {
-            border: 1px solid var(--wt-line-strong);
-            border-bottom-color: #20262c;
-            border-radius: var(--wt-radius);
+            border: 0;
+            border-radius: 0;
             color: var(--wt-text);
             background: var(--wt-button);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 1px 2px rgba(0, 0, 0, 0.6);
+            box-shadow: none;
             font-family: var(--wt-font);
-            font-weight: 700;
-            letter-spacing: .05em;
-            text-transform: uppercase;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.7);
+            font-weight: 400;
+            letter-spacing: 0;
+            text-transform: none;
+            text-shadow: none;
         }
 
-        .map-tools-actions button { padding: 5px 6px; font-size: 11px; }
-        .team-swap { padding: 6px 9px; font-size: 12px; }
-        .site-popup-back { font-size: 10px; }
-        .map-selector label { padding: 6px 8px; font-size: 13px; }
+        .map-tools-actions button { padding: 5px 6px; font-size: 14px; }
+        .team-swap { padding: 6px 9px; font-size: 15px; }
+        .legend-team-switch button { padding: 5px; font-size: 13px; }
+        .layer-actions button { font-size: 13px; }
+        .site-popup-back { padding: 4px 8px; font-size: 13px; }
+        .map-selector label { padding: 6px 10px; font-size: 16px; }
         /* The native radio is redundant on a tab-styled option. */
         .map-selector input { position: absolute; opacity: 0; pointer-events: none; }
 
@@ -1582,62 +1563,69 @@
         .icon-family-option:hover,
         .icon-family-option:focus-visible,
         .map-selector label:hover {
-            border-color: #8d99a5;
             color: #ffffff;
             background: var(--wt-button-hover);
         }
 
-        /* Selected state: gold keyline, gold text and an underline, after the
-           game's highlighted tabs. */
+        /* Selected: lighter tab with an orange-red underline. */
         .map-selector label:has(input:checked),
         .map-tools-actions button[aria-pressed="true"],
         .icon-family-option.is-selected,
         .team-swap[aria-pressed="true"] {
-            border-color: var(--wt-gold);
-            color: var(--wt-gold-text);
-            background: var(--wt-gold-fill);
-            box-shadow: inset 0 -2px 0 var(--wt-gold), 0 0 6px rgba(233, 181, 48, 0.25);
+            color: #ffffff;
+            background: var(--wt-button-selected);
+            box-shadow: inset 0 -2px 0 var(--wt-accent);
         }
 
         .team-swap:disabled,
         .team-swap:disabled:hover {
-            border-color: #3a434c;
-            color: #6c7884;
-            background: #262c33;
+            color: #6f7b87;
+            background: #262f38;
             box-shadow: none;
-            text-shadow: none;
         }
 
-        .legend-team-switch button[data-legend-team="1"].is-selected {
-            border-color: #e05a50;
-            color: #ff8a80;
-            background: linear-gradient(180deg, #4f2a28 0%, #33201f 100%);
-            box-shadow: inset 0 -2px 0 #e05a50;
-        }
-
+        .legend-team-switch button[data-legend-team="1"].is-selected,
         .legend-team-switch button[data-legend-team="2"].is-selected {
-            border-color: #4f9be0;
-            color: #8fc6ff;
-            background: linear-gradient(180deg, #24384d 0%, #1b2836 100%);
-            box-shadow: inset 0 -2px 0 #4f9be0;
+            color: #ffffff;
+            background: var(--wt-button-selected);
         }
 
-        /* ---- Fields ---- */
+        .legend-team-switch button[data-legend-team="1"].is-selected { box-shadow: inset 0 -2px 0 #e0463c; }
+        .legend-team-switch button[data-legend-team="2"].is-selected { box-shadow: inset 0 -2px 0 #3c8ad0; }
+
+        /* ---- Fields: near-black with a thin chevron ---- */
         #scenario-options,
         .language-selector select,
         .threat-options input,
         .threat-options select,
         .los-options input,
         .brush-options select {
-            border: 1px solid var(--wt-line);
-            border-radius: var(--wt-radius);
-            color: var(--wt-text);
-            background: var(--wt-inset);
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+            border: 0;
+            border-radius: 0;
+            color: #ffffff;
+            background-color: var(--wt-field);
+            box-shadow: none;
         }
 
-        #scenario-options { padding: 5px 8px; }
-        .language-selector select { font-family: var(--wt-font); font-size: 12px; }
+        #scenario-options,
+        .language-selector select,
+        .threat-options select,
+        .brush-options select {
+            appearance: none;
+            padding-right: 26px;
+            background-image: var(--wt-chevron);
+            background-position: right 9px center;
+            background-repeat: no-repeat;
+        }
+
+        #scenario-options { padding-top: 6px; padding-bottom: 6px; }
+        .language-selector select { padding: 5px 26px 5px 8px; font: 400 14px/1.2 var(--wt-font); }
+        .threat-options select,
+        .brush-options select,
+        .threat-options input,
+        .los-options input { padding: 4px 6px; font: 400 13px/1.2 var(--wt-font); }
+        .threat-options select,
+        .brush-options select { padding-right: 24px; }
 
         #scenario-options:focus,
         .language-selector select:focus,
@@ -1645,200 +1633,275 @@
         .threat-options select:focus,
         .los-options input:focus,
         .brush-options select:focus {
-            border-color: var(--wt-gold);
-            outline: none;
+            outline: 1px solid var(--wt-button-selected);
         }
 
-        .grouped-layers input[type="checkbox"],
-        .brush-options input[type="range"] { accent-color: var(--wt-gold); }
-
         .icon-family-selector,
-        .language-selector,
+        .language-selector {
+            color: var(--wt-text-dim);
+            font: 400 14px/1.2 var(--wt-font);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
         .selector-heading,
         .brush-options span,
         .los-hint,
         .threat-legend,
-        .map-tools-status { color: var(--wt-text-dim); }
+        .map-tools-status { color: var(--wt-text-dim); font-weight: 400; }
 
-        .threat-status { color: var(--wt-gold-text); }
+        .threat-status { color: #ffffff; }
+
+        /* Checkboxes: dark square with a white tick. */
+        .grouped-layers input[type="checkbox"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #5d6976;
+            background: var(--wt-field) center / 11px no-repeat;
+            cursor: pointer;
+        }
+
+        .grouped-layers input[type="checkbox"]:checked { background-image: var(--wt-check); }
+        .brush-options input[type="range"] { accent-color: var(--wt-blue); }
 
         /* ---- Layer tree ---- */
         .grouped-layers summary {
-            border: 1px solid transparent;
-            border-radius: var(--wt-radius);
-            background: var(--wt-row);
+            border: 0;
+            border-radius: 0;
+            background: var(--wt-button);
+            font-weight: 500;
         }
 
-        .grouped-layers summary:hover { background: var(--wt-row-hover); }
+        .grouped-layers summary:hover { background: var(--wt-button-hover); }
 
         .force-details > summary {
-            border-color: var(--wt-line);
-            background: var(--wt-titlebar);
-            font-family: var(--wt-font);
-            font-size: 13px;
-            letter-spacing: .08em;
-            text-transform: uppercase;
+            border: 0;
+            background: var(--wt-strip);
+            font: 500 15px/1.2 var(--wt-font);
+            letter-spacing: 0;
         }
 
-        .force-children > details > summary { background: #252b33; }
-        .folder-triangle { color: var(--wt-gold); }
-        .folder-eye.partial { color: var(--wt-gold-text); }
-        .global-layer-actions { border-bottom-color: var(--wt-line-soft); }
+        .force-children > details > summary { background: #2c3641; font-weight: 400; }
+        .folder-triangle { color: var(--wt-text-dim); }
+        .folder-eye.partial { color: var(--wt-link); }
+        .global-layer-actions { border-bottom-color: var(--wt-line); }
 
         /* ---- Map legend ---- */
+        .composition-panel { font-size: 13px; }
         .composition-panel > p,
         .composition-site-description { color: var(--wt-text-dim); }
 
-        .site-legend-item { color: #d3dae0; font-size: 11px; }
+        .site-legend-item { color: var(--wt-text); font-size: 13px; font-weight: 400; }
 
-        button.site-legend-item:hover,
+        button.site-legend-item { border: 0; border-radius: 0; font-family: var(--wt-font); }
+
+        button.site-legend-item:hover { background: var(--wt-button-hover); }
+
         button.site-legend-item.is-selected {
-            border-color: var(--wt-gold);
-            background: rgba(233, 181, 48, 0.12);
+            background: var(--wt-button-selected);
+            box-shadow: inset 0 -2px 0 var(--wt-accent);
         }
 
-        .legend-composition { border-top-color: var(--wt-line-soft); }
+        .legend-composition { border-top: 0; }
 
-        .composition-section-title {
-            color: var(--wt-gold-text);
-            letter-spacing: .1em;
+        /* Section strips, like "Secondary Weapons" or "Mobility". */
+        .composition-section-title,
+        .airfield-popup h3 {
+            margin: 6px 0 4px;
+            padding: 3px 7px;
+            border: 0;
+            color: var(--wt-text);
+            background: var(--wt-strip);
+            font: 400 13px/1.3 var(--wt-font);
+            letter-spacing: 0;
+            text-transform: none;
         }
+
+        .airfield-popup h3 { margin: 0 0 4px; padding: 3px 11px; }
 
         .composition-site {
-            border: 1px solid var(--wt-line);
-            border-radius: var(--wt-radius);
-            background: rgba(20, 24, 29, 0.85);
+            border: 0;
+            border-radius: 0;
+            background: rgba(14, 19, 24, 0.7);
         }
 
-        .composition-site summary::marker { color: var(--wt-gold); }
+        .composition-site summary { font-weight: 500; }
+        .composition-site summary::marker { color: var(--wt-text-dim); }
 
         /* ---- Popups and cards ---- */
         .leaflet-popup-content-wrapper {
-            border: 1px solid var(--wt-line);
-            border-radius: var(--wt-radius);
+            border: 0;
+            border-radius: 0;
             color: var(--wt-text);
             background: var(--wt-window-solid);
             box-shadow: var(--wt-shadow);
             font-family: var(--wt-font);
         }
 
-        .leaflet-popup-tip {
-            background: var(--wt-window-solid);
-            box-shadow: none;
-        }
-
+        .leaflet-popup-tip { background: var(--wt-window-solid); box-shadow: none; }
         .leaflet-container a.leaflet-popup-close-button { color: var(--wt-text-dim); }
-        .leaflet-container a.leaflet-popup-close-button:hover { color: var(--wt-gold-text); }
+        .leaflet-container a.leaflet-popup-close-button:hover { color: #ffffff; }
 
         .site-popup-title {
-            padding: 9px 11px 6px;
+            padding: 8px 11px 7px;
             color: #ffffff;
-            font: 700 14px/1.2 var(--wt-font);
-            letter-spacing: .06em;
-            text-transform: uppercase;
+            background: var(--wt-titlebar);
+            font: 400 16px/1.2 var(--wt-font);
+            letter-spacing: 0;
+            text-transform: none;
         }
 
-        .airfield-popup h3 { border-top-color: var(--wt-line-soft); color: var(--wt-gold-text); }
-        .airfield-popup-meta { color: var(--wt-text-dim); }
+        .site-popup-back + .site-popup-title { margin-top: 0; }
+        .airfield-popup-meta { padding-top: 6px; color: var(--wt-text-dim); }
+        .airfield-popup-composition { color: var(--wt-text); font-size: 13px; }
+
+        .site-popup-unit-grid { padding-top: 8px; }
 
         .site-popup-unit {
-            border: 1px solid var(--wt-line);
-            border-radius: var(--wt-radius);
-            background: linear-gradient(180deg, #2c343d 0%, #1b2026 100%);
+            border: 1px solid transparent;
+            border-radius: 0;
+            background: #26303a;
         }
 
         .site-popup-unit:hover,
         .site-popup-unit:focus-visible {
-            border-color: var(--wt-gold);
-            background: linear-gradient(180deg, #38414b 0%, #22282f 100%);
+            border-color: #c9d1d8;
+            background: #313c47;
+        }
+
+        .site-popup-unit-label { font: 400 12px/1.15 var(--wt-font); }
+        .site-popup-unit-count,
+        .vehicle-card-count {
+            border: 0;
+            border-radius: 0;
+            color: #ffffff;
+            background: rgba(10, 14, 18, 0.85);
         }
 
         .vehicle-card,
         .leaflet-popup-content .vehicle-card {
-            border: 1px solid var(--wt-line);
-            border-top: 3px solid #4f9be0;
-            border-radius: var(--wt-radius);
-            background: linear-gradient(180deg, #2a323b 0%, #171b20 100%);
+            border: 0;
+            border-top: 2px solid #3c8ad0;
+            border-radius: 0;
+            background: #222b34;
+            box-shadow: none;
         }
 
         .vehicle-card.team-1,
-        .leaflet-popup-content .vehicle-card.team-1 { border-top-color: #e05a50; }
+        .leaflet-popup-content .vehicle-card.team-1 { border-top-color: #e0463c; }
 
         .vehicle-card-header {
-            border-bottom: 1px solid var(--wt-line-soft);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
-            font-family: var(--wt-font);
-            font-size: 13px;
-            letter-spacing: .05em;
+            background: var(--wt-strip);
+            font: 500 15px/1.2 var(--wt-font);
+            letter-spacing: 0;
+            text-transform: none;
         }
 
-        .vehicle-card-role { color: var(--wt-text-dim); letter-spacing: .08em; }
-        .vehicle-card-stats { border-top-color: var(--wt-line-soft); background: var(--wt-inset); }
-        .vehicle-card-stat { color: var(--wt-text-dim); font-size: 11px; }
-        .vehicle-card-stat b { color: var(--wt-gold-text); font-size: 12px; }
-        .vehicle-card-weapons { border-top-color: var(--wt-line-soft); color: var(--wt-text-dim); font-size: 11px; }
-        .vehicle-card-weapons strong { color: #ffffff; }
+        .vehicle-card-art,
+        .vehicle-card-art-wrap.no-art { background: linear-gradient(180deg, #2c3742 0%, #1a2129 100%); }
 
-        .vehicle-card-count,
+        .vehicle-card-role {
+            padding: 5px 8px;
+            color: var(--wt-text-dim);
+            font: 400 13px/1.2 var(--wt-font);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        /* Stats as label ..... value rows, like the hangar vehicle info. */
+        .vehicle-card-stats {
+            grid-template-columns: 1fr;
+            gap: 0;
+            padding: 3px 8px 6px;
+            border-top: 0;
+            background: transparent;
+        }
+
+        .vehicle-card-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            padding: 1px 0;
+            color: var(--wt-text-dim);
+            font: 400 13px/1.35 var(--wt-font);
+        }
+
+        .vehicle-card-stat::after {
+            content: "";
+            flex: 1 1 auto;
+            order: 1;
+            min-width: 12px;
+            border-bottom: 1px dotted #5d6976;
+        }
+
+        .vehicle-card-stat b {
+            order: 2;
+            display: inline;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .vehicle-card-weapons {
+            border-top: 1px solid var(--wt-line);
+            color: var(--wt-text-dim);
+            font: 400 13px/1.4 var(--wt-font);
+        }
+
+        .vehicle-card-weapons strong { color: #ffffff; font-weight: 500; }
+
         .vehicle-card-timer,
-        .vehicle-card-depot-context,
-        .site-popup-unit-count { border-radius: var(--wt-radius); }
+        .vehicle-card-depot-context { border-radius: 0; background: rgba(10, 14, 18, 0.85); }
 
         /* ---- Tooltips (Leaflet's default is a white box) ---- */
         .leaflet-tooltip {
             padding: 6px 9px;
-            border: 1px solid var(--wt-line);
-            border-radius: var(--wt-radius);
+            border: 0;
+            border-radius: 0;
             color: var(--wt-text);
-            background: rgba(25, 30, 36, 0.96);
+            background: rgba(27, 35, 44, 0.97);
             box-shadow: var(--wt-shadow);
-            font: 13px/1.35 var(--wt-font);
+            font: 400 14px/1.35 var(--wt-font);
         }
 
-        .leaflet-tooltip b { color: #ffffff; }
-        .leaflet-tooltip-top::before { border-top-color: var(--wt-line); }
-        .leaflet-tooltip-bottom::before { border-bottom-color: var(--wt-line); }
-        .leaflet-tooltip-left::before { border-left-color: var(--wt-line); }
-        .leaflet-tooltip-right::before { border-right-color: var(--wt-line); }
+        .leaflet-tooltip b { color: #ffffff; font-weight: 500; }
+        .leaflet-tooltip-top::before { border-top-color: rgba(27, 35, 44, 0.97); }
+        .leaflet-tooltip-bottom::before { border-bottom-color: rgba(27, 35, 44, 0.97); }
+        .leaflet-tooltip-left::before { border-left-color: rgba(27, 35, 44, 0.97); }
+        .leaflet-tooltip-right::before { border-right-color: rgba(27, 35, 44, 0.97); }
 
-        /* ---- Notices ---- */
+        /* ---- Notices: light-blue information text, as in the hangar ---- */
         .range-disclaimer-control {
-            border: 1px solid var(--wt-gold);
-            border-radius: var(--wt-radius);
+            border: 0;
+            border-left: 3px solid var(--wt-blue);
+            border-radius: 0;
             color: var(--wt-text);
-            background: linear-gradient(180deg, rgba(58, 48, 22, 0.96), rgba(36, 30, 15, 0.96));
+            background: var(--wt-window);
             box-shadow: var(--wt-shadow);
-            font-family: var(--wt-font);
+            font: 400 13px/1.4 var(--wt-font);
         }
 
-        .range-disclaimer-control strong { color: var(--wt-gold-text); letter-spacing: .08em; }
-        .range-disclaimer-close { color: var(--wt-gold-text); }
+        .range-disclaimer-control strong { color: var(--wt-link); font-weight: 500; letter-spacing: 0; text-transform: none; }
+        .range-disclaimer-close { color: var(--wt-text-dim); }
 
-        .ruler-waypoint { border-color: #1b2026; background: var(--wt-gold); font-family: var(--wt-font); }
+        .ruler-waypoint { border-color: #11171d; background: #ffffff; font-family: var(--wt-font); }
 
         /* ---- Scrollbars ---- */
         .grouped-layers,
         .composition-panel,
         .site-popup .vehicle-card-grid {
-            scrollbar-color: #56616d var(--wt-inset);
+            scrollbar-color: #4c5a68 transparent;
             scrollbar-width: thin;
         }
 
         .grouped-layers::-webkit-scrollbar,
         .composition-panel::-webkit-scrollbar,
-        .site-popup .vehicle-card-grid::-webkit-scrollbar { width: 8px; }
-
-        .grouped-layers::-webkit-scrollbar-track,
-        .composition-panel::-webkit-scrollbar-track,
-        .site-popup .vehicle-card-grid::-webkit-scrollbar-track { background: var(--wt-inset); }
+        .site-popup .vehicle-card-grid::-webkit-scrollbar { width: 6px; }
 
         .grouped-layers::-webkit-scrollbar-thumb,
         .composition-panel::-webkit-scrollbar-thumb,
-        .site-popup .vehicle-card-grid::-webkit-scrollbar-thumb {
-            border: 2px solid var(--wt-inset);
-            border-radius: 4px;
-            background: #56616d;
-        }
+        .site-popup .vehicle-card-grid::-webkit-scrollbar-thumb { background: #4c5a68; }
 
     </style>
 </head>
@@ -1862,7 +1925,7 @@
 
     <button id="team-swap" class="team-swap" type="button" aria-pressed="false"
         data-i18n="swap.swap" disabled>
-        SWAP SIDES
+        Swap sides
     </button>
 
     <div class="icon-family-selector">
