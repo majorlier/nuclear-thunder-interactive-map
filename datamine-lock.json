@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "bdb4575cf12de70a513eff44e6bd1ef29cf2fb75",
+  "accepted_commit": "501af3e34af2cb82d65140297e1b994b444c4b88",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
@@ -105,12 +105,12 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm.blkx",
-      "sha": "4cd7d6bc1f00b9af6f76f08dd191553f92ac8e24",
+      "sha": "5568f3e60c3f81e467dc0d9e4681d8370912cd33",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "63bbc0c4e54d39692115def9263aa1c97b93bf54",
+      "sha": "7cecc665bf389bf84ad0e0badbd197a708487918",
       "used_for_generation": true
     },
     {
@@ -130,12 +130,12 @@
     },
     {
       "path": "lang.vromfs.bin_u/lang/units.csv",
-      "sha": "6f751e8a6bc75a02526936ad87f169612bd9e655",
+      "sha": "d42e851d6ad3ad3016fc4c25e8081f1d700973a7",
       "used_for_generation": true
     },
     {
       "path": "lang.vromfs.bin_u/lang/units_weaponry.csv",
-      "sha": "2716fed7ccae83846600a48111cd8bebd1d0c158",
+      "sha": "42659f7082d0d26a852904204af6ae170163fe48",
       "used_for_generation": true
     },
     {
@@ -160,7 +160,7 @@
     },
     {
       "path": "aces.vromfs.bin_u/gamedata/objectgroups/dynaf_pg_1line_2000_universal.blkx",
-      "sha": "d788a3eea9c24da655c4e4336f1425224ae08561",
+      "sha": "0d6a1ae2fb7e08dc6cf0d9f5c461950780d0d219",
       "used_for_generation": true
     },
     {
