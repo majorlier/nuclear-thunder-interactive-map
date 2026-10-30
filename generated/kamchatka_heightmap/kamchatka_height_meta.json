@@ -1,0 +1,34 @@
+{
+  "source": "air_kamchatka.bin",
+  "source_sha256": "83df5bcff0739c97122f80709c90d68f72077201db73d0b8ffb49b16a6bf95df",
+  "stream": "HM2",
+  "width": 4096,
+  "height": 4096,
+  "cell_size_m": 32.0,
+  "origin_x_m": -65536.0,
+  "origin_z_m": -65536.0,
+  "world_bounds_m": [
+    -65536.0,
+    65536.0
+  ],
+  "world_bounds_z_m": [
+    -65536.0,
+    65536.0
+  ],
+  "water_level_m": -5.0,
+  "hm2_min_height_m": -95.0,
+  "hm2_height_range_m": 4352.0,
+  "actual_min_height_m": -70.29649353027344,
+  "actual_max_height_m": 4255.2734375,
+  "height_encoding": {
+    "format": "rg16",
+    "image": "kamchatka_height_16bit.webp",
+    "width": 2048,
+    "height": 2048,
+    "min_m": -71.0,
+    "step_m": 0.25,
+    "max_m": 4250.75
+  },
+  "raster_cell_size_m": 64.0,
+  "height_downsample": 2
+}

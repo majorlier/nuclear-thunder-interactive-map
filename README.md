@@ -9,10 +9,10 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
 - Choose **Archipelago**, **South Eastern City** or **Kamchatka** (in-game
   "Volcano Valley", added in 2.60) first. Archipelago has the terrain-height
   overlay; City has its own extracted vehicle-road network and navigation mesh
-  for route previews. Kamchatka has no mirrored mission in the datamine yet,
-  and its terrain and roads still need extracting from
-  `levels/air_kamchatka.bin`, so Swap sides, line of sight and threat cover
-  are unavailable there and convoys show straight-line previews.
+  for route previews. Kamchatka has terrain height (line of sight, threat
+  cover and the topographic layer work), but no mirrored mission in the
+  datamine yet, so Swap sides is unavailable there; its level yields no usable
+  road network, so convoys show straight-line previews.
 - Choose a scenario. The selector converts the mission's rank range to BR
   using War Thunder's balance-level scale (`BR = 1 + rank / 3`), with the lower
   bound raised to the event's 8.7 minimum BR (a matchmaking rule that is not
@@ -68,6 +68,12 @@ extractor with a City filename prefix so Archipelago assets are not overwritten:
 
 ```text
 python tools/extract_heightmap.py "<War Thunder>\levels\air_south_eastern_city.bin" --output-dir generated\southeastern_city_heightmap --output-stem southeastern_city --height-downsample 2
+```
+
+Kamchatka (2.60) works the same way; its level sets the water level to -5 m:
+
+```text
+python tools/extract_heightmap.py "<War Thunder>\levels\air_kamchatka.bin" --output-dir generated\kamchatka_heightmap --output-stem kamchatka --height-downsample 2 --water-level -5
 ```
 
 If `pyooz` is unavailable, add `--asset-explorer <folder>` to use the local

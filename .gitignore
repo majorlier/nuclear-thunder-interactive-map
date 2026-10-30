@@ -7,3 +7,4 @@ datamine-update-report.md
 # Analysis-only source data; the browser consumes the 8-bit PNG and WebP
 # terrain layers beside it, which are deliberately kept under version control.
 generated/southeastern_city_heightmap/southeastern_city_height_f32.bin
+generated/kamchatka_heightmap/kamchatka_height_f32.bin

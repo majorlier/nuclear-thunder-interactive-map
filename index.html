@@ -1694,6 +1694,8 @@
     const THREAT_CELL_METERS = 512;
     const CITY_MAP_IMAGE = "air_south_eastern_city_map.png";
     const KAMCHATKA_MAP_IMAGE = "air_kamchatka_map.png";
+    const KAMCHATKA_TOPOGRAPHIC_IMAGE = "generated/kamchatka_heightmap/kamchatka_topography.webp";
+    const KAMCHATKA_TERRAIN_HEIGHT_IMAGE = "generated/kamchatka_heightmap/kamchatka_height_16bit.webp";
     const MAP_DEFINITIONS = {
         archipelago: {
             id: "archipelago",
@@ -1745,10 +1747,10 @@
             mapCoord0: [-65536, -65536],
             mapCoord1: [65536, 65536]
         },
-        // Added in 2.60. The datamine has no mirrored mission yet, and the
-        // terrain, roads and navigation mesh need levels/air_kamchatka.bin
-        // from the game client; until then LOS, threat cover and road
-        // routing are unavailable here and convoys show straight lines.
+        // Added in 2.60. The datamine has no mirrored mission yet. The level's
+        // road extraction yields a single decal road and its navigation
+        // mesh is a flat 73-triangle placeholder, so neither is used and
+        // convoys show straight-line previews.
         kamchatka: {
             id: "kamchatka",
             label: "Kamchatka",
@@ -1757,7 +1759,12 @@
             defaultVariant: "kamchatka",
             mirroredVariant: null,
             supportsTeamSwap: false,
-            supportsTerrain: false,
+            supportsTerrain: true,
+            terrainImage: KAMCHATKA_TERRAIN_HEIGHT_IMAGE,
+            terrainOverlay: KAMCHATKA_TOPOGRAPHIC_IMAGE,
+            terrainMeta: "generated/kamchatka_heightmap/kamchatka_height_meta.json",
+            terrainEncoding: { format: "rg16", min_m: -71, step_m: 0.25 },
+            terrainDisplayRange: [-70, 4255],
             // air_kamchatka.blkx: water_level -5.
             waterLevel: -5,
             supportsRoads: false,
