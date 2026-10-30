@@ -22,6 +22,9 @@
     "images/portraits/tps_59_radar.png",
     "images/portraits/us_an_tps_43_radar.png",
     "generated/southeastern_city_heightmap/southeastern_city_height_meta.json",
-    "images/manifest.json"
+    "images/manifest.json",
+    "generated/kamchatka_heightmap/kamchatka_topography.webp",
+    "generated/kamchatka_heightmap/kamchatka_height_16bit.webp",
+    "generated/kamchatka_heightmap/kamchatka_height_meta.json"
   ]
 }

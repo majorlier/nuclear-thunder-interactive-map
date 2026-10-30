@@ -8,9 +8,8 @@
 
 - 先选择 **热带海岸**、**东南渔湾** 或 **焚风山谷**（2.60 新增，数据中名为 Kamchatka）。
   热带海岸带地形高程覆盖层；东南渔湾有独立提取的载具道路网络与导航网格，可用于路线
-  预览。焚风山谷在 datamine 中还没有镜像任务，其地形与道路也仍需从
-  `levels/air_kamchatka.bin` 提取，因此该地图暂不支持交换阵营、视线和威胁覆盖，
-  车队路线只显示直线预览。
+  预览。焚风山谷已有地形高程（视线、威胁覆盖和地形图层可用），但 datamine 中还没有
+  镜像任务，因此暂不支持交换阵营；其关卡没有可用的道路网络，车队路线只显示直线预览。
 - 选择场景。选择器会按《战争雷霆》的平衡等级尺度（`BR = 1 + rank / 3`）把任务的
   等级区间换算为 BR，并把下界抬到该事件 8.7 的最低 BR（这条匹配规则并不存放在
   客户端文件里）。如果生成的数据里给出了明确的 BR 值，则以该值为准。
@@ -58,6 +57,12 @@ python tools/extract_heightmap.py "F:\Steam\steamapps\common\War Thunder\levels\
 
 ```text
 python tools/extract_heightmap.py "<War Thunder>\levels\air_south_eastern_city.bin" --output-dir generated\southeastern_city_heightmap --output-stem southeastern_city --height-downsample 2
+```
+
+焚风山谷（2.60）同理，其关卡的水位为 -5 m：
+
+```text
+python tools/extract_heightmap.py "<War Thunder>\levels\air_kamchatka.bin" --output-dir generated\kamchatka_heightmap --output-stem kamchatka --height-downsample 2 --water-level -5
 ```
 
 如果没有 `pyooz`，可加 `--asset-explorer <folder>` 使用 Windows 上本地的 Dagor Asset
