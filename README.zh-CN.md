@@ -4,6 +4,25 @@
 
 面向《战争雷霆》"核升级"事件的社区自建互动参考地图。
 
+## 快速开始
+
+地图本身是静态页面，但浏览器不允许它直接读取磁盘上的数据文件，所以双击 `index.html`
+只会看到报错。请用 HTTP 方式访问本文件夹，再打开服务器打印的地址。
+
+- **Windows** —— 双击 `start-map.cmd`：脚本会自动挑一个空闲端口、启动本地服务器并
+  打开默认浏览器，在控制台窗口按 `Ctrl+C` 关闭。装了 Python 就用 `python -m http.server`，
+  没装则退回内置的 PowerShell 服务器，因此不需要预先安装任何东西。可选参数：
+  `start-map.cmd -Port 9000` 指定端口、`-NoBrowser` 只起服务不开浏览器、
+  `-Internal` 强制使用内置服务器。
+- **其他系统，或习惯命令行** —— 在本文件夹执行下面任一命令，然后打开它打印的地址：
+
+```text
+python -m http.server 8000
+npx --yes serve -l 8000
+```
+
+页面需要的全部文件都在仓库里，加载之后断网也能用。下面的小节介绍界面上各个控件的用法。
+
 ## 使用地图
 
 - 先选择 **热带海岸**、**东南渔湾** 或 **焚风山谷**（2.60 新增，数据中名为 Kamchatka）。
@@ -83,9 +102,8 @@ python tools/extract_navmesh.py "<War Thunder>\levels\air_south_eastern_city.bin
 导航提取需要 `zstandard`（`pip install zstandard`）。路线预览是根据导出的道路几何和
 导航网格重建的，并非录制游戏内实时 AI 路径。战术底图另行维护，不会被这些命令替换。
 
-要在本地测试，请在此文件夹中启动一个小型本地 Web 服务器，然后在浏览器中打开
-`http://localhost:8000`（例如运行 `python -m http.server 8000`）。直接用磁盘打开
-`index.html` 在多数浏览器中会被数据文件的加载策略拦住。
+要在本地测试，请见上文的「快速开始」；直接用磁盘打开 `index.html` 会被浏览器拦截
+数据文件的读取。
 
 更新器也可以手动运行：`python tools/update_from_datamine.py`。它会下载锁定版本的
 "核升级"输入，重新生成全部四个地图变体以及单位/射程数据，并把来源提交记录在
