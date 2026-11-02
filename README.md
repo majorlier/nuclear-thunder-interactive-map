@@ -4,6 +4,30 @@ English | [简体中文](README.zh-CN.md)
 
 Community-built interactive reference map for War Thunder's Nuclear Escalation event.
 
+## Getting started
+
+The map is a static page, but browsers refuse to read its data files from
+disk, so double-clicking `index.html` shows an error instead of the map. Serve
+this folder over HTTP and open the address the server prints.
+
+- **Windows** — double-click `start-map.cmd`. It picks a free port, starts a
+  local server and opens your default browser; stop it with `Ctrl+C` in the
+  console window. Python is used when it is installed, otherwise the script
+  falls back to a built-in PowerShell server, so nothing needs to be installed
+  first. Optional arguments: `start-map.cmd -Port 9000` for a fixed port,
+  `-NoBrowser` to start the server without a browser window, `-Internal` to
+  force the built-in server.
+- **Other systems, or the command line** — run one of these in this folder and
+  open the printed address:
+
+```text
+python -m http.server 8000
+npx --yes serve -l 8000
+```
+
+Everything the page needs ships with the repository, so it also works offline
+once loaded. The next section describes the controls you will find.
+
 ## Use the map
 
 - Choose **Archipelago**, **South Eastern City** or **Kamchatka** (in-game
@@ -97,10 +121,8 @@ previews are reconstructed from the exported road geometry and navigation
 mesh, not recordings of the game's live AI paths. The tactical background
 image is maintained separately and is not replaced by these commands.
 
-To test a local copy, run a small local web server from this folder and open
-`http://localhost:8000` in a browser (for example, run
-`python -m http.server 8000`). Opening `index.html` directly from disk
-will block the data files in most browsers.
+To test a local copy, see [Getting started](#getting-started); opening
+`index.html` directly from disk will block the data files in most browsers.
 
 The updater can be run manually with `python tools/update_from_datamine.py`.
 It downloads the pinned Nuclear Escalation inputs, regenerates all four map
