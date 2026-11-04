@@ -309,5 +309,9 @@
 
   "error.http": "{file}: HTTP {status}",
   "error.mapData": "Map data could not be loaded: {error}",
-  "error.localFile": "Map data cannot load from a local file. Run a local web server (see README)."
+  "error.localFile": "Map data cannot load from a local file. Run a local web server (see README).",
+  "mode.title": "Nuclear Escalation",
+  "swap.label": "Sides",
+  "icons.short": "Icons",
+  "app.version": "Version {version}"
 }

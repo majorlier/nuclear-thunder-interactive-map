@@ -309,5 +309,9 @@
 
   "error.http": "{file}：HTTP {status}",
   "error.mapData": "地图数据加载失败：{error}",
-  "error.localFile": "无法从本地文件加载地图数据，请启动本地 Web 服务器（见 README）。"
+  "error.localFile": "无法从本地文件加载地图数据，请启动本地 Web 服务器（见 README）。",
+  "mode.title": "核战冲突",
+  "swap.label": "阵营",
+  "icons.short": "图标",
+  "app.version": "版本 {version}"
 }

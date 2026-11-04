@@ -1903,60 +1903,254 @@
         .composition-panel::-webkit-scrollbar-thumb,
         .site-popup .vehicle-card-grid::-webkit-scrollbar-thumb { background: #4c5a68; }
 
+        /* ---- Game-screen layout ----
+           A full-width top bar like the hangar's (map tabs as plain text
+           tabs, version in the corner), settings as form rows with
+           right-aligned grey labels like the test-flight window, and help
+           text behind small [?] badges instead of on screen. */
+        :root { --wt-topbar-h: 40px; }
+
+        .wt-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+            display: flex;
+            align-items: stretch;
+            height: var(--wt-topbar-h);
+            padding: 0 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: linear-gradient(180deg, rgba(18, 24, 30, 0.97) 0%, rgba(27, 35, 44, 0.93) 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+            font-family: var(--wt-font);
+        }
+
+        .wt-topbar-brand {
+            display: flex;
+            align-items: center;
+            margin-right: 4px;
+            padding-right: 16px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            color: #cfd6dc;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+
+        .wt-version {
+            align-self: flex-start;
+            margin-left: auto;
+            padding-top: 2px;
+            color: #c9d1d8;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .wt-topbar .map-selector { display: flex; margin: 0; }
+        .wt-topbar #map-options { flex-direction: row; gap: 0; width: auto; height: 100%; }
+
+        .wt-topbar .map-selector label,
+        .wt-topbar .map-selector label:hover {
+            display: flex;
+            align-items: center;
+            width: auto;
+            height: 100%;
+            padding: 0 15px;
+            color: var(--wt-text-dim);
+            background: transparent;
+            box-shadow: none;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        .wt-topbar .map-selector label + label { border-left: 1px solid rgba(255, 255, 255, 0.07); }
+        .wt-topbar .map-selector label:hover { color: #ffffff; background: rgba(255, 255, 255, 0.04); }
+
+        .wt-topbar .map-selector label:has(input:checked) {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: inset 0 -2px 0 var(--wt-accent);
+        }
+
+        .info-panel { top: calc(var(--wt-topbar-h) + 10px); width: min(320px, calc(100vw - 84px)); }
+        .leaflet-top { top: var(--wt-topbar-h); }
+
+        /* Settings as label / field rows. */
+        .wt-form {
+            display: grid;
+            grid-template-columns: max-content minmax(0, 1fr);
+            align-items: center;
+            gap: 7px 10px;
+        }
+
+        .wt-form .wt-row { display: contents; }
+
+        .wt-row-label {
+            justify-self: end;
+            color: var(--wt-text-dim);
+            font: 400 15px/1.2 var(--wt-font);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .info-panel #scenario-options,
+        .info-panel .language-selector select { width: 100%; font: 400 15px/1.2 var(--wt-font); }
+        .info-panel .team-swap { margin: 0; }
+        .info-panel .icon-family-options { gap: 4px; }
+        .info-panel .feedback-contact { margin-top: 12px; }
+
+        /* [?] help badges carry the longer explanations as tooltips. */
+        .wt-help {
+            grid-column: 1 / -1;
+            justify-self: end;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 17px;
+            height: 17px;
+            border: 1px solid #66727e;
+            color: #c9d1d8;
+            cursor: help;
+            font: 500 12px/1 var(--wt-font);
+        }
+
+        .wt-help:hover,
+        .wt-help:focus-visible { border-color: #ffffff; color: #ffffff; outline: none; }
+
+        .composition-panel > p:first-child { display: none; }
+        .composition-window .legend-heading { position: relative; cursor: help; }
+
+        .composition-window .legend-heading::after {
+            content: "?";
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 17px;
+            height: 17px;
+            margin-top: -9px;
+            border: 1px solid #66727e;
+            color: #c9d1d8;
+            font: 500 12px/1 var(--wt-font);
+        }
+
+        .composition-panel { padding-top: 6px; }
+
+        /* Layer tree: tri-state boxes instead of eye glyphs, chevrons
+           instead of triangles, no decorative glyph icons. */
+        .folder-icon:not(:has(img)) { display: none; }
+
+        .folder-triangle {
+            flex: 0 0 10px;
+            width: 10px;
+            font-size: 0;
+        }
+
+        .folder-triangle::before {
+            content: "";
+            display: block;
+            width: 6px;
+            height: 6px;
+            margin-left: 1px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: rotate(-45deg);
+        }
+
+        .folder-eye {
+            flex: 0 0 16px;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #5d6976;
+            background: var(--wt-field) center / 11px no-repeat;
+            font-size: 0;
+        }
+
+        .folder-eye.active { background-image: var(--wt-check); }
+        .folder-eye.partial { background-image: none; }
+
+        .folder-eye.partial::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            background: #c9d1d8;
+        }
+
+        .folder-eye:not(.active)::after { display: none; }
+
+        @media (max-width: 700px) {
+            .wt-topbar { padding: 0 4px; }
+            .wt-topbar-brand,
+            .wt-version { display: none; }
+            .wt-topbar .map-selector { overflow-x: auto; scrollbar-width: none; }
+            .wt-topbar .map-selector label,
+            .wt-topbar .map-selector label:hover { padding: 0 11px; font-size: 15px; }
+        }
+
     </style>
 </head>
 <body>
 
-<div class="info-panel">
-    <div class="title" data-i18n="app.title">Nuclear Thunder Interactive Map</div>
-
+<header class="wt-topbar">
+    <div class="wt-topbar-brand" data-i18n="app.title">Nuclear Thunder Interactive Map</div>
     <div class="map-selector" id="map-selector" role="radiogroup" aria-label="Map"
         data-i18n-aria="map.label">
         <span id="map-options" data-i18n="map.loading">Loading maps…</span>
     </div>
+    <div class="wt-version" data-i18n="app.version"
+        data-i18n-args='{"version":"2.60.0.20"}'>Version 2.60.0.20</div>
+</header>
 
-    <div class="era-selector" id="scenario-selector">
-        <div class="scenario-select-row">
+<div class="info-panel">
+    <div class="title" data-i18n="mode.title">Nuclear Escalation</div>
+
+    <div class="wt-form">
+        <div class="wt-row era-selector" id="scenario-selector">
+            <label class="wt-row-label" for="scenario-options" data-i18n="scenario.label">Scenario</label>
             <select id="scenario-options" aria-label="Scenario" data-i18n-aria="scenario.label" disabled>
                 <option data-i18n="scenario.loading">Loading scenarios…</option>
             </select>
         </div>
-    </div>
 
-    <button id="team-swap" class="team-swap" type="button" aria-pressed="false"
-        data-i18n="swap.swap" disabled>
-        Swap sides
-    </button>
+        <div class="wt-row">
+            <span class="wt-row-label" data-i18n="swap.label">Sides</span>
+            <button id="team-swap" class="team-swap" type="button" aria-pressed="false"
+                data-i18n="swap.swap" disabled>
+                Swap sides
+            </button>
+        </div>
 
-    <div class="icon-family-selector">
-        <div id="icon-family-options" class="icon-family-options" role="radiogroup"
-            aria-label="Map icon style" data-i18n-aria="icons.label">
-            <button type="button" class="icon-family-option" data-icon-family="vanilla"
-                aria-label="WT icons" data-i18n-aria="icons.vanilla" title="WT icons"
-                data-i18n-title="icons.vanilla">
-                <img data-icon-preview="vanilla" src="images/icons/vanilla/def_spaa_radar.svg" alt="">
-            </button>
-            <button type="button" class="icon-family-option is-selected" data-icon-family="nato"
-                aria-label="NATO icons" data-i18n-aria="icons.nato" title="NATO icons"
-                data-i18n-title="icons.nato">
-                <img data-icon-preview="nato" src="images/icons/nato/def_nato_ally_sam_radar.svg" alt="">
-            </button>
-            <button type="button" class="icon-family-option" data-icon-family="pact"
-                aria-label="USSR icons" data-i18n-aria="icons.pact" title="USSR icons"
-                data-i18n-title="icons.pact">
-                <img data-icon-preview="pact" src="images/icons/pact/def_ussr_sam_radar.svg" alt="">
-            </button>
+        <div class="wt-row icon-family-selector">
+            <span class="wt-row-label" data-i18n="icons.short">Icons</span>
+            <div id="icon-family-options" class="icon-family-options" role="radiogroup"
+                aria-label="Map icon style" data-i18n-aria="icons.label">
+                <button type="button" class="icon-family-option" data-icon-family="vanilla"
+                    aria-label="WT icons" data-i18n-aria="icons.vanilla" title="WT icons"
+                    data-i18n-title="icons.vanilla">
+                    <img data-icon-preview="vanilla" src="images/icons/vanilla/def_spaa_radar.svg" alt="">
+                </button>
+                <button type="button" class="icon-family-option is-selected" data-icon-family="nato"
+                    aria-label="NATO icons" data-i18n-aria="icons.nato" title="NATO icons"
+                    data-i18n-title="icons.nato">
+                    <img data-icon-preview="nato" src="images/icons/nato/def_nato_ally_sam_radar.svg" alt="">
+                </button>
+                <button type="button" class="icon-family-option" data-icon-family="pact"
+                    aria-label="USSR icons" data-i18n-aria="icons.pact" title="USSR icons"
+                    data-i18n-title="icons.pact">
+                    <img data-icon-preview="pact" src="images/icons/pact/def_ussr_sam_radar.svg" alt="">
+                </button>
+            </div>
+        </div>
+
+        <div class="wt-row language-selector">
+            <label class="wt-row-label" for="language-options" data-i18n="language.label">Language</label>
+            <select id="language-options" aria-label="Language" data-i18n-aria="language.label"></select>
         </div>
     </div>
 
-    <div class="language-selector">
-        <label for="language-options" data-i18n="language.label">Language</label>
-        <select id="language-options" aria-label="Language" data-i18n-aria="language.label"></select>
-    </div>
-
-    <p class="feedback-contact"><span data-i18n="app.updated"
-        data-i18n-args='{"version":"2.60.0.20"}'>Updated 2.60.0.20</span><br><span
-        data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
+    <p class="feedback-contact"><span data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
 </div>
 
 <aside id="composition-window" class="composition-window">
@@ -1964,7 +2158,8 @@
         aria-label="Collapse map legend" data-i18n-aria="legend.collapse"
         aria-expanded="true">›</button>
     <section class="composition-drawer">
-        <h2 class="legend-heading" data-i18n="legend.title">Map legend</h2>
+        <h2 class="legend-heading" data-i18n="legend.title" data-i18n-title="legend.hint"
+            title="Click a legend type to highlight every matching site. Click a map site once for ranges and composition; click it again to zoom in.">Map legend</h2>
         <section id="composition-panel" class="composition-panel" aria-live="polite">
             <p data-i18n="legend.loading">Loading map legend…</p>
         </section>
@@ -3460,7 +3655,7 @@
             <div class="los-options" hidden>
                 <label><span data-i18n="tools.observerHeight">${escapeHtml(t("tools.observerHeight"))}</span><input data-tool="los-observer-height" type="number" min="0" max="1000" step="1" value="2" data-i18n-aria="tools.observerHeightAria" aria-label="${escapeHtml(t("tools.observerHeightAria"))}"></label>
                 <label><span data-i18n="tools.targetHeight">${escapeHtml(t("tools.targetHeight"))}</span><input data-tool="los-target-height" type="number" min="0" max="1000" step="1" value="2" data-i18n-aria="tools.targetHeightAria" aria-label="${escapeHtml(t("tools.targetHeightAria"))}"></label>
-                <small class="los-hint" data-i18n="tools.losHint">${escapeHtml(t("tools.losHint"))}</small>
+                <span class="wt-help" tabindex="0" data-i18n-title="tools.losHint" title="${escapeHtml(t("tools.losHint"))}">?</span>
             </div>
             <div class="threat-options" hidden>
                 <label><span data-i18n="tools.threatsFrom">${escapeHtml(t("tools.threatsFrom"))}</span><select data-tool="threat-team" data-i18n-aria="tools.threatTeamAria" aria-label="${escapeHtml(t("tools.threatTeamAria"))}">
@@ -3477,7 +3672,7 @@
                     <span><i style="background: rgba(246, 224, 94, 0.7)"></i><em data-i18n="tools.legendRadarCoverage">${escapeHtml(t("tools.legendRadarCoverage"))}</em></span>
                     <span><i style="background: rgba(26, 32, 44, 0.9)"></i><em data-i18n="tools.legendBelowTerrain">${escapeHtml(t("tools.legendBelowTerrain"))}</em></span>
                 </div>
-                <small class="los-hint" data-i18n="tools.threatHint">${escapeHtml(t("tools.threatHint"))}</small>
+                <span class="wt-help" tabindex="0" data-i18n-title="tools.threatHint" title="${escapeHtml(t("tools.threatHint"))}">?</span>
                 <div class="threat-status" aria-live="polite"></div>
             </div>
             <div class="map-tools-status" aria-live="polite"></div>
@@ -3912,22 +4107,14 @@
             const br = presetBrLabel(preset);
             return br ? `[${br}]` : "";
         };
-        // Native select options cannot contain flex markup. Right-align the
-        // BR suffixes in the (monospace) list by padding to the longest
-        // entry only, so the closed select stays narrow enough to show the
-        // full BR on phones as well.
-        const width = Math.max(0, ...presets.map(preset =>
-            labelFor(preset).length + suffixFor(preset).length + 1
-        ));
+        // The list uses the proportional UI font, so the BR follows the
+        // label instead of being padded into a column.
         presets.forEach(preset => {
             const option = document.createElement("option");
             option.value = preset.id;
             const label = labelFor(preset);
             const suffix = suffixFor(preset);
-            const gap = suffix
-                ? "\u00a0".repeat(Math.max(1, width - label.length - suffix.length))
-                : "";
-            option.textContent = `${label}${gap}${suffix}`;
+            option.textContent = suffix ? `${label}\u00a0\u00a0${suffix}` : label;
             options.append(option);
         });
         options.disabled = !presets.length;
