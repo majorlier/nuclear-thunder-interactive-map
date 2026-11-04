@@ -41,9 +41,10 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
 
 The map checks the public [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine) for Nuclear Escalation changes. Updates are prepared for review before they reach the public map.
 
-The updater follows the mission's imported ship-set files as well as the
-mission itself. This keeps the 1970 fleets separate from the 1980/2018 fleets
-and places each ship at its mission-defined patrol route.
+The updater follows the mission's imported ship-set files, including the
+per-era files that the shared fleet index imports (1970, 1980 and 2000), as
+well as the mission itself. This keeps each era's fleet separate and places
+each ship at its mission-defined patrol route.
 
 Terrain and roads are maintained separately from the event data because they come from the compiled game level.
 

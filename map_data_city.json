@@ -53071,7 +53071,7 @@
       "rank-40-50": [
         {
           "id": "t1_aircraftcarrier_01",
-          "name": "ussr_aircraftcarrier_admiral_kuznetsov_ai",
+          "name": "cn_aircraftcarrier_fujian_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -53348,7 +53348,7 @@
       "rank-40-50": [
         {
           "id": "t1_aircraftcarrier_02",
-          "name": "ussr_aircraftcarrier_admiral_kuznetsov_ai",
+          "name": "cn_aircraftcarrier_fujian_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -53625,7 +53625,7 @@
       "rank-40-50": [
         {
           "id": "t1_destroyer_01",
-          "name": "ussr_destroyer_rckt_pr956",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -53902,7 +53902,7 @@
       "rank-40-50": [
         {
           "id": "t1_destroyer_02",
-          "name": "ussr_destroyer_rckt_pr956",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -54179,7 +54179,7 @@
       "rank-40-50": [
         {
           "id": "t1_destroyer_03",
-          "name": "ussr_destroyer_rckt_pr956",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -54396,7 +54396,7 @@
       "rank-40-50": [
         {
           "id": "t1_destroyer_04",
-          "name": "ussr_destroyer_rckt_pr956",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -54613,7 +54613,7 @@
       "rank-40-50": [
         {
           "id": "t1_destroyer_05",
-          "name": "ussr_destroyer_rckt_pr956",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -54890,7 +54890,7 @@
       "rank-40-50": [
         {
           "id": "t1_frigate_01",
-          "name": "ussr_mpk_pr_1124_ec",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -55167,7 +55167,7 @@
       "rank-40-50": [
         {
           "id": "t1_frigate_02",
-          "name": "ussr_mpk_pr_1124_ec",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -55444,7 +55444,7 @@
       "rank-40-50": [
         {
           "id": "t1_frigate_03",
-          "name": "ussr_mpk_pr_1124_ec",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -55661,7 +55661,7 @@
       "rank-40-50": [
         {
           "id": "t1_frigate_04",
-          "name": "ussr_mpk_pr_1124_ec",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -55878,7 +55878,7 @@
       "rank-40-50": [
         {
           "id": "t1_frigate_05",
-          "name": "ussr_mpk_pr_1124_ec",
+          "name": "cn_destroyer_type052d",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56099,7 +56099,7 @@
       "rank-31-36": [
         {
           "id": "t2_aircraftcarrier_01",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56127,7 +56127,7 @@
       "rank-37-39": [
         {
           "id": "t2_aircraftcarrier_01",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56155,7 +56155,7 @@
       "rank-40-50": [
         {
           "id": "t2_aircraftcarrier_01",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_gerald_ford_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56376,7 +56376,7 @@
       "rank-31-36": [
         {
           "id": "t2_aircraftcarrier_02",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56404,7 +56404,7 @@
       "rank-37-39": [
         {
           "id": "t2_aircraftcarrier_02",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56432,7 +56432,7 @@
       "rank-40-50": [
         {
           "id": "t2_aircraftcarrier_02",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_gerald_ford_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56709,7 +56709,7 @@
       "rank-40-50": [
         {
           "id": "t2_destroyer_01",
-          "name": "us_cruiser_rckt_california",
+          "name": "us_destroyer_halsey",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56986,7 +56986,7 @@
       "rank-40-50": [
         {
           "id": "t2_destroyer_02",
-          "name": "us_cruiser_rckt_california",
+          "name": "us_destroyer_halsey",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57263,7 +57263,7 @@
       "rank-40-50": [
         {
           "id": "t2_destroyer_03",
-          "name": "us_cruiser_rckt_california",
+          "name": "us_destroyer_halsey",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57480,7 +57480,7 @@
       "rank-40-50": [
         {
           "id": "t2_destroyer_04",
-          "name": "us_cruiser_rckt_california",
+          "name": "us_destroyer_halsey",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57697,7 +57697,7 @@
       "rank-40-50": [
         {
           "id": "t2_destroyer_05",
-          "name": "us_cruiser_rckt_california",
+          "name": "us_destroyer_halsey",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57918,7 +57918,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_01",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57946,7 +57946,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_01",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57974,7 +57974,7 @@
       "rank-40-50": [
         {
           "id": "t2_frigate_01",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58195,7 +58195,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_02",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58223,7 +58223,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_02",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58251,7 +58251,7 @@
       "rank-40-50": [
         {
           "id": "t2_frigate_02",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58472,7 +58472,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_03",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58500,7 +58500,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_03",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58528,7 +58528,7 @@
       "rank-40-50": [
         {
           "id": "t2_frigate_03",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58689,7 +58689,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_04",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58717,7 +58717,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_04",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58745,7 +58745,7 @@
       "rank-40-50": [
         {
           "id": "t2_frigate_04",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58906,7 +58906,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_05",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58934,7 +58934,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_05",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58962,7 +58962,7 @@
       "rank-40-50": [
         {
           "id": "t2_frigate_05",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",

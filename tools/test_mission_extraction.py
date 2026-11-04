@@ -7,7 +7,7 @@ from build_map_data import (
     mission_site_category, ship_with_mission_route,
     unit_spawn_rank_rules, spawned_at_rank,
 )
-from update_from_datamine import mission_import_paths
+from update_from_datamine import mission_import_paths, new_import_paths
 
 
 def matrix(x=0, y=0, z=0):
@@ -73,6 +73,23 @@ class MissionExtractionTests(unittest.TestCase):
         self.assertEqual(mission_import_paths(mission), [
             "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1980.blkx",
         ])
+
+    def test_import_nested_in_a_listed_fleet_file_is_discovered(self):
+        # The fleet index imports one file per era. When Gaijin added the
+        # 2000 set, the updater silently dropped it (and every 2018 ship)
+        # because only mission files were searched for imports.
+        sets = "mis.vromfs.bin_u/gamedata/missions/templates/units_sets/nuclear_escalation_ship_sets/"
+        fleet_index = {"imports": {"import_record": [
+            {"file": "gameData/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_1980.blk", "rankRange": [31, 38]},
+            {"file": "gameData/missions/templates/units_sets/nuclear_escalation_ship_sets/nuclear_escalation_ships_2000.blk", "rankRange": [39, 50]},
+        ]}}
+        known = {sets + "nuclear_escalation_ships_1980.blkx"}
+        self.assertEqual(
+            new_import_paths([fleet_index], known),
+            [sets + "nuclear_escalation_ships_2000.blkx"],
+        )
+        # Each path is reported once, and listed files are not re-fetched.
+        self.assertEqual(new_import_paths([fleet_index, fleet_index], known), [])
 
     def test_mlrs_spawn_only_above_1970_rank_boundary(self):
         mission = {"triggers": {"spawn_mlrs": {
