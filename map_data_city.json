@@ -49966,1726 +49966,22 @@
     }
   },
   {
-    "name": "t1_tactical_missile_launcher_01",
-    "unit_class": "ussr_ai_tbm_9k79_tochka",
-    "team": 1,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      -9309.92,
-      7.7099,
-      2116.79
-    ],
-    "editor_world_pos": [
-      -154624.0,
-      93.1191,
-      41319.6
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        0.707107,
-        0.0,
-        -0.707107
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.707107,
-        0.0,
-        0.707107
-      ],
-      [
-        -154624.0,
-        93.1191,
-        41319.6
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [
-        {
-          "id": "t1_tactical_missile_launcher_01",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -9309.92,
-            7.7099,
-            2116.79
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-27-30": [
-        {
-          "id": "t1_tactical_missile_launcher_01",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -9309.92,
-            7.7099,
-            2116.79
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-31-36": [
-        {
-          "id": "t1_tactical_missile_launcher_01",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -9309.92,
-            7.7099,
-            2116.79
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t1_tactical_missile_launcher_01",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -9309.92,
-            7.7099,
-            2116.79
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t1_tactical_missile_launcher_01",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -9309.92,
-            7.7099,
-            2116.79
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t1_tactical_missile_launcher_02",
-    "unit_class": "ussr_ai_tbm_9k79_tochka",
-    "team": 1,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      -33712.0,
-      53.6874,
-      33122.2
-    ],
-    "editor_world_pos": [
-      -154628.0,
-      93.1191,
-      41316.1
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        0.707107,
-        0.0,
-        -0.707107
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.707107,
-        0.0,
-        0.707107
-      ],
-      [
-        -154628.0,
-        93.1191,
-        41316.1
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [
-        {
-          "id": "t1_tactical_missile_launcher_02",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -33712.0,
-            53.6874,
-            33122.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-27-30": [
-        {
-          "id": "t1_tactical_missile_launcher_02",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -33712.0,
-            53.6874,
-            33122.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-31-36": [
-        {
-          "id": "t1_tactical_missile_launcher_02",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -33712.0,
-            53.6874,
-            33122.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t1_tactical_missile_launcher_02",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -33712.0,
-            53.6874,
-            33122.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t1_tactical_missile_launcher_02",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -33712.0,
-            53.6874,
-            33122.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t1_tactical_missile_launcher_03",
-    "unit_class": "ussr_ai_tbm_9k79_tochka",
-    "team": 1,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      -34016.9,
-      22.0498,
-      44699.9
-    ],
-    "editor_world_pos": [
-      -154632.0,
-      93.1191,
-      41312.5
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        0.707107,
-        0.0,
-        -0.707107
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.707107,
-        0.0,
-        0.707107
-      ],
-      [
-        -154632.0,
-        93.1191,
-        41312.5
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [
-        {
-          "id": "t1_tactical_missile_launcher_03",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -34016.9,
-            22.0498,
-            44699.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-27-30": [
-        {
-          "id": "t1_tactical_missile_launcher_03",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -34016.9,
-            22.0498,
-            44699.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-31-36": [
-        {
-          "id": "t1_tactical_missile_launcher_03",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -34016.9,
-            22.0498,
-            44699.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t1_tactical_missile_launcher_03",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -34016.9,
-            22.0498,
-            44699.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t1_tactical_missile_launcher_03",
-          "name": "ussr_ai_tbm_9k79_tochka",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -34016.9,
-            22.0498,
-            44699.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t2_tactical_missile_launcher_01",
-    "unit_class": "us_ai_tbm_m752_lance",
-    "team": 2,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      2227.38,
-      32.2148,
-      9451.42
-    ],
-    "editor_world_pos": [
-      -154730.0,
-      90.4365,
-      41210.0
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        0.707107,
-        0.0,
-        -0.707107
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.707107,
-        0.0,
-        0.707107
-      ],
-      [
-        -154730.0,
-        90.4365,
-        41210.0
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [
-        {
-          "id": "t2_tactical_missile_launcher_01",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            2227.38,
-            32.2148,
-            9451.42
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-27-30": [
-        {
-          "id": "t2_tactical_missile_launcher_01",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            2227.38,
-            32.2148,
-            9451.42
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-31-36": [
-        {
-          "id": "t2_tactical_missile_launcher_01",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            2227.38,
-            32.2148,
-            9451.42
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t2_tactical_missile_launcher_01",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            2227.38,
-            32.2148,
-            9451.42
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t2_tactical_missile_launcher_01",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            2227.38,
-            32.2148,
-            9451.42
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t2_tactical_missile_launcher_02",
-    "unit_class": "us_ai_tbm_m752_lance",
-    "team": 2,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      20586.3,
-      60.3643,
-      42682.2
-    ],
-    "editor_world_pos": [
-      -154733.0,
-      90.4365,
-      41207.2
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        0.707107,
-        0.0,
-        -0.707107
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.707107,
-        0.0,
-        0.707107
-      ],
-      [
-        -154733.0,
-        90.4365,
-        41207.2
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [
-        {
-          "id": "t2_tactical_missile_launcher_02",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            20586.3,
-            60.3643,
-            42682.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-27-30": [
-        {
-          "id": "t2_tactical_missile_launcher_02",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            20586.3,
-            60.3643,
-            42682.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-31-36": [
-        {
-          "id": "t2_tactical_missile_launcher_02",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            20586.3,
-            60.3643,
-            42682.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t2_tactical_missile_launcher_02",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            20586.3,
-            60.3643,
-            42682.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t2_tactical_missile_launcher_02",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            20586.3,
-            60.3643,
-            42682.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t2_tactical_missile_launcher_03",
-    "unit_class": "us_ai_tbm_m752_lance",
-    "team": 2,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      24937.5,
-      50.1162,
-      56345.1
-    ],
-    "editor_world_pos": [
-      -154735.0,
-      90.4365,
-      41204.3
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        0.707107,
-        0.0,
-        -0.707107
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.707107,
-        0.0,
-        0.707107
-      ],
-      [
-        -154735.0,
-        90.4365,
-        41204.3
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [
-        {
-          "id": "t2_tactical_missile_launcher_03",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            24937.5,
-            50.1162,
-            56345.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-27-30": [
-        {
-          "id": "t2_tactical_missile_launcher_03",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            24937.5,
-            50.1162,
-            56345.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-31-36": [
-        {
-          "id": "t2_tactical_missile_launcher_03",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            24937.5,
-            50.1162,
-            56345.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t2_tactical_missile_launcher_03",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            24937.5,
-            50.1162,
-            56345.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t2_tactical_missile_launcher_03",
-          "name": "us_ai_tbm_m752_lance",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            24937.5,
-            50.1162,
-            56345.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t1_mlrs_01",
-    "unit_class": "ussr_ai_mlrs_9a52_2_smerch",
-    "team": 1,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      -19777.5,
-      110.71,
-      38385.6
-    ],
-    "editor_world_pos": [
-      -112951.0,
-      93.1191,
-      -105587.0
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        1.0,
-        0.0,
-        0.0
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.0,
-        0.0,
-        1.0
-      ],
-      [
-        -112951.0,
-        93.1191,
-        -105587.0
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [
-        {
-          "id": "t1_mlrs_01",
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -19777.5,
-            110.71,
-            38385.6
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t1_mlrs_01",
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -19777.5,
-            110.71,
-            38385.6
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t1_mlrs_01",
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -19777.5,
-            110.71,
-            38385.6
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t1_mlrs_02",
-    "unit_class": "ussr_ai_mlrs_9a52_2_smerch",
-    "team": 1,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      -16909.9,
-      64.8691,
-      43806.4
-    ],
-    "editor_world_pos": [
-      -112951.0,
-      93.1191,
-      -105592.0
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        1.0,
-        0.0,
-        0.0
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.0,
-        0.0,
-        1.0
-      ],
-      [
-        -112951.0,
-        93.1191,
-        -105592.0
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [
-        {
-          "id": "t1_mlrs_02",
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -16909.9,
-            64.8691,
-            43806.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t1_mlrs_02",
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -16909.9,
-            64.8691,
-            43806.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t1_mlrs_02",
-          "name": "ussr_ai_mlrs_9a52_2_smerch",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -16909.9,
-            64.8691,
-            43806.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t2_mlrs_01",
-    "unit_class": "us_ai_mlrs_m270",
-    "team": 2,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      6492.95,
-      69.8378,
-      44698.4
-    ],
-    "editor_world_pos": [
-      -112951.0,
-      93.1191,
-      -105737.0
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        1.0,
-        0.0,
-        0.0
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.0,
-        0.0,
-        1.0
-      ],
-      [
-        -112951.0,
-        93.1191,
-        -105737.0
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [
-        {
-          "id": "t2_mlrs_01",
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            6492.95,
-            69.8378,
-            44698.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t2_mlrs_01",
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            6492.95,
-            69.8378,
-            44698.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t2_mlrs_01",
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            6492.95,
-            69.8378,
-            44698.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
-    "name": "t2_mlrs_02",
-    "unit_class": "us_ai_mlrs_m270",
-    "team": 2,
-    "source_group": "tankModels",
-    "category": null,
-    "world_pos": [
-      6506.79,
-      88.0885,
-      42325.1
-    ],
-    "editor_world_pos": [
-      -112951.0,
-      93.1191,
-      -105742.0
-    ],
-    "runtime_relocated": true,
-    "runtime_position_kind": "random_spawn_area_center",
-    "tm": [
-      [
-        1.0,
-        0.0,
-        0.0
-      ],
-      [
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.0,
-        0.0,
-        1.0
-      ],
-      [
-        -112951.0,
-        93.1191,
-        -105742.0
-      ]
-    ],
-    "runways": [],
-    "route": null,
-    "buildings_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [],
-      "rank-37-39": [],
-      "rank-40-50": []
-    },
-    "units_by_era": {
-      "rank-0-26": [],
-      "rank-27-30": [],
-      "rank-31-36": [
-        {
-          "id": "t2_mlrs_02",
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            6506.79,
-            88.0885,
-            42325.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-37-39": [
-        {
-          "id": "t2_mlrs_02",
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            6506.79,
-            88.0885,
-            42325.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ],
-      "rank-40-50": [
-        {
-          "id": "t2_mlrs_02",
-          "name": "us_ai_mlrs_m270",
-          "role": "vehicle",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            6506.79,
-            88.0885,
-            42325.1
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
-    }
-  },
-  {
     "name": "t1_longrange_radar_01",
     "unit_class": "ussr_ai_aew_radar_55j6",
     "team": 1,
     "source_group": "tankModels",
     "category": null,
     "world_pos": [
-      -35751.3,
-      340.409,
-      32639.3
+      -154665.0,
+      93.1191,
+      41360.6
     ],
     "editor_world_pos": [
       -154665.0,
       93.1191,
       41360.6
     ],
-    "runtime_relocated": true,
+    "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
@@ -51727,9 +50023,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -35751.3,
-            340.409,
-            32639.3
+            -154665.0,
+            93.1191,
+            41360.6
           ],
           "local_pos": [
             0.0,
@@ -51755,9 +50051,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -35751.3,
-            340.409,
-            32639.3
+            -154665.0,
+            93.1191,
+            41360.6
           ],
           "local_pos": [
             0.0,
@@ -51783,9 +50079,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -35751.3,
-            340.409,
-            32639.3
+            -154665.0,
+            93.1191,
+            41360.6
           ],
           "local_pos": [
             0.0,
@@ -51811,9 +50107,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -35751.3,
-            340.409,
-            32639.3
+            -154665.0,
+            93.1191,
+            41360.6
           ],
           "local_pos": [
             0.0,
@@ -51839,9 +50135,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -35751.3,
-            340.409,
-            32639.3
+            -154665.0,
+            93.1191,
+            41360.6
           ],
           "local_pos": [
             0.0,
@@ -51868,16 +50164,16 @@
     "source_group": "tankModels",
     "category": null,
     "world_pos": [
-      -39018.5,
-      289.806,
-      8694.86
+      -154668.0,
+      93.1191,
+      41357.8
     ],
     "editor_world_pos": [
       -154668.0,
       93.1191,
       41357.8
     ],
-    "runtime_relocated": true,
+    "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
@@ -51919,9 +50215,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -39018.5,
-            289.806,
-            8694.86
+            -154668.0,
+            93.1191,
+            41357.8
           ],
           "local_pos": [
             0.0,
@@ -51947,9 +50243,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -39018.5,
-            289.806,
-            8694.86
+            -154668.0,
+            93.1191,
+            41357.8
           ],
           "local_pos": [
             0.0,
@@ -51975,9 +50271,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -39018.5,
-            289.806,
-            8694.86
+            -154668.0,
+            93.1191,
+            41357.8
           ],
           "local_pos": [
             0.0,
@@ -52003,9 +50299,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -39018.5,
-            289.806,
-            8694.86
+            -154668.0,
+            93.1191,
+            41357.8
           ],
           "local_pos": [
             0.0,
@@ -52031,9 +50327,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -39018.5,
-            289.806,
-            8694.86
+            -154668.0,
+            93.1191,
+            41357.8
           ],
           "local_pos": [
             0.0,
@@ -52060,16 +50356,16 @@
     "source_group": "tankModels",
     "category": null,
     "world_pos": [
-      -29173.1,
-      233.065,
-      -20930.5
+      -154671.0,
+      93.1191,
+      41355.0
     ],
     "editor_world_pos": [
       -154671.0,
       93.1191,
       41355.0
     ],
-    "runtime_relocated": true,
+    "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
@@ -52111,9 +50407,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -29173.1,
-            233.065,
-            -20930.5
+            -154671.0,
+            93.1191,
+            41355.0
           ],
           "local_pos": [
             0.0,
@@ -52139,9 +50435,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -29173.1,
-            233.065,
-            -20930.5
+            -154671.0,
+            93.1191,
+            41355.0
           ],
           "local_pos": [
             0.0,
@@ -52167,9 +50463,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -29173.1,
-            233.065,
-            -20930.5
+            -154671.0,
+            93.1191,
+            41355.0
           ],
           "local_pos": [
             0.0,
@@ -52195,9 +50491,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -29173.1,
-            233.065,
-            -20930.5
+            -154671.0,
+            93.1191,
+            41355.0
           ],
           "local_pos": [
             0.0,
@@ -52223,9 +50519,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            -29173.1,
-            233.065,
-            -20930.5
+            -154671.0,
+            93.1191,
+            41355.0
           ],
           "local_pos": [
             0.0,
@@ -52252,16 +50548,16 @@
     "source_group": "tankModels",
     "category": null,
     "world_pos": [
-      32237.5,
-      384.569,
-      15718.1
+      -154772.0,
+      93.1191,
+      41254.6
     ],
     "editor_world_pos": [
       -154772.0,
       93.1191,
       41254.6
     ],
-    "runtime_relocated": true,
+    "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
@@ -52303,9 +50599,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32237.5,
-            384.569,
-            15718.1
+            -154772.0,
+            93.1191,
+            41254.6
           ],
           "local_pos": [
             0.0,
@@ -52331,9 +50627,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32237.5,
-            384.569,
-            15718.1
+            -154772.0,
+            93.1191,
+            41254.6
           ],
           "local_pos": [
             0.0,
@@ -52359,9 +50655,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32237.5,
-            384.569,
-            15718.1
+            -154772.0,
+            93.1191,
+            41254.6
           ],
           "local_pos": [
             0.0,
@@ -52387,9 +50683,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32237.5,
-            384.569,
-            15718.1
+            -154772.0,
+            93.1191,
+            41254.6
           ],
           "local_pos": [
             0.0,
@@ -52415,9 +50711,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            32237.5,
-            384.569,
-            15718.1
+            -154772.0,
+            93.1191,
+            41254.6
           ],
           "local_pos": [
             0.0,
@@ -52444,16 +50740,16 @@
     "source_group": "tankModels",
     "category": null,
     "world_pos": [
-      24768.1,
-      334.064,
-      30308.0
+      -154774.0,
+      93.1191,
+      41251.7
     ],
     "editor_world_pos": [
       -154774.0,
       93.1191,
       41251.7
     ],
-    "runtime_relocated": true,
+    "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
@@ -52495,9 +50791,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            24768.1,
-            334.064,
-            30308.0
+            -154774.0,
+            93.1191,
+            41251.7
           ],
           "local_pos": [
             0.0,
@@ -52523,9 +50819,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            24768.1,
-            334.064,
-            30308.0
+            -154774.0,
+            93.1191,
+            41251.7
           ],
           "local_pos": [
             0.0,
@@ -52551,9 +50847,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            24768.1,
-            334.064,
-            30308.0
+            -154774.0,
+            93.1191,
+            41251.7
           ],
           "local_pos": [
             0.0,
@@ -52579,9 +50875,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            24768.1,
-            334.064,
-            30308.0
+            -154774.0,
+            93.1191,
+            41251.7
           ],
           "local_pos": [
             0.0,
@@ -52607,9 +50903,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            24768.1,
-            334.064,
-            30308.0
+            -154774.0,
+            93.1191,
+            41251.7
           ],
           "local_pos": [
             0.0,
@@ -52636,16 +50932,16 @@
     "source_group": "tankModels",
     "category": null,
     "world_pos": [
-      29217.1,
-      180.164,
-      48592.2
+      -154777.0,
+      93.1191,
+      41248.9
     ],
     "editor_world_pos": [
       -154777.0,
       93.1191,
       41248.9
     ],
-    "runtime_relocated": true,
+    "runtime_relocated": false,
     "runtime_position_kind": "fixed",
     "tm": [
       [
@@ -52687,9 +50983,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            29217.1,
-            180.164,
-            48592.2
+            -154777.0,
+            93.1191,
+            41248.9
           ],
           "local_pos": [
             0.0,
@@ -52715,9 +51011,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            29217.1,
-            180.164,
-            48592.2
+            -154777.0,
+            93.1191,
+            41248.9
           ],
           "local_pos": [
             0.0,
@@ -52743,9 +51039,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            29217.1,
-            180.164,
-            48592.2
+            -154777.0,
+            93.1191,
+            41248.9
           ],
           "local_pos": [
             0.0,
@@ -52771,9 +51067,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            29217.1,
-            180.164,
-            48592.2
+            -154777.0,
+            93.1191,
+            41248.9
           ],
           "local_pos": [
             0.0,
@@ -52799,9 +51095,9 @@
           "slot_type": "origin",
           "preset": "mission unit",
           "world_pos": [
-            29217.1,
-            180.164,
-            48592.2
+            -154777.0,
+            93.1191,
+            41248.9
           ],
           "local_pos": [
             0.0,
@@ -53068,34 +51364,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_aircraftcarrier_01",
-          "name": "ussr_aircraftcarrier_admiral_kuznetsov_ai",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -48762.5,
-            2.10093e-10,
-            5145.25
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -53345,34 +51614,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_aircraftcarrier_02",
-          "name": "ussr_aircraftcarrier_admiral_kuznetsov_ai",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -48309.0,
-            0.0,
-            33564.5
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -53622,34 +51864,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_destroyer_01",
-          "name": "ussr_destroyer_rckt_pr956",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -47098.9,
-            0.0,
-            -33028.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -53899,34 +52114,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_destroyer_02",
-          "name": "ussr_destroyer_rckt_pr956",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -21340.1,
-            0.0,
-            -22376.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -54176,34 +52364,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_destroyer_03",
-          "name": "ussr_destroyer_rckt_pr956",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -34918.2,
-            0.0,
-            -4990.99
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -54393,34 +52554,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_destroyer_04",
-          "name": "ussr_destroyer_rckt_pr956",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -46455.5,
-            0.0,
-            6656.94
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -54610,34 +52744,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_destroyer_05",
-          "name": "ussr_destroyer_rckt_pr956",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -43945.5,
-            0.0,
-            30432.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -54887,34 +52994,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_frigate_01",
-          "name": "ussr_mpk_pr_1124_ec",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -10006.2,
-            0.0,
-            -15867.0
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -55164,34 +53244,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_frigate_02",
-          "name": "ussr_mpk_pr_1124_ec",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -7873.93,
-            0.0,
-            -31421.3
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -55441,34 +53494,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_frigate_03",
-          "name": "ussr_mpk_pr_1124_ec",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -11310.1,
-            0.0,
-            -45881.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -55658,34 +53684,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_frigate_04",
-          "name": "ussr_mpk_pr_1124_ec",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -43374.2,
-            0.0,
-            6888.86
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -55875,34 +53874,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t1_frigate_05",
-          "name": "ussr_mpk_pr_1124_ec",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            -19928.8,
-            0.0,
-            18286.3
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -56099,7 +54071,7 @@
       "rank-31-36": [
         {
           "id": "t2_aircraftcarrier_01",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56127,7 +54099,7 @@
       "rank-37-39": [
         {
           "id": "t2_aircraftcarrier_01",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56152,34 +54124,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_aircraftcarrier_01",
-          "name": "us_aircraftcarrier_forrestal_ai",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            50037.3,
-            0.0,
-            39409.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -56376,7 +54321,7 @@
       "rank-31-36": [
         {
           "id": "t2_aircraftcarrier_02",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56404,7 +54349,7 @@
       "rank-37-39": [
         {
           "id": "t2_aircraftcarrier_02",
-          "name": "us_aircraftcarrier_forrestal_ai",
+          "name": "us_aircraftcarrier_nimitz_ai",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -56429,34 +54374,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_aircraftcarrier_02",
-          "name": "us_aircraftcarrier_forrestal_ai",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            49318.9,
-            0.0,
-            -859.021
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -56706,34 +54624,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_destroyer_01",
-          "name": "us_cruiser_rckt_california",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            22160.3,
-            0.0,
-            -10474.0
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -56983,34 +54874,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_destroyer_02",
-          "name": "us_cruiser_rckt_california",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            40328.0,
-            0.0,
-            -33402.8
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -57260,34 +55124,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_destroyer_03",
-          "name": "us_cruiser_rckt_california",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            18244.4,
-            0.0,
-            -34365.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -57477,34 +55314,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_destroyer_04",
-          "name": "us_cruiser_rckt_california",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            33650.6,
-            0.00390625,
-            13016.5
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -57694,34 +55504,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_destroyer_05",
-          "name": "us_cruiser_rckt_california",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            28014.4,
-            0.0,
-            13354.4
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -57918,7 +55701,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_01",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57946,7 +55729,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_01",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -57971,34 +55754,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_frigate_01",
-          "name": "germ_destroyer_lutjens_class_lutjens",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            13418.6,
-            -0.00585938,
-            -17351.9
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -58195,7 +55951,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_02",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58223,7 +55979,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_02",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58248,34 +56004,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_frigate_02",
-          "name": "germ_destroyer_lutjens_class_lutjens",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            8742.94,
-            0.0,
-            -38934.8
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -58472,7 +56201,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_03",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58500,7 +56229,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_03",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58525,34 +56254,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_frigate_03",
-          "name": "germ_destroyer_lutjens_class_lutjens",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            14099.4,
-            0.0,
-            -51551.2
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -58689,7 +56391,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_04",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58717,7 +56419,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_04",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58742,34 +56444,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_frigate_04",
-          "name": "germ_destroyer_lutjens_class_lutjens",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            30060.2,
-            0.00585938,
-            5228.84
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   },
   {
@@ -58906,7 +56581,7 @@
       "rank-31-36": [
         {
           "id": "t2_frigate_05",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58934,7 +56609,7 @@
       "rank-37-39": [
         {
           "id": "t2_frigate_05",
-          "name": "germ_destroyer_lutjens_class_lutjens",
+          "name": "us_frigate_oliver_hazard_perry",
           "role": "ship",
           "slot_type": "origin",
           "preset": "mission unit",
@@ -58959,34 +56634,7 @@
           "unplaced": false
         }
       ],
-      "rank-40-50": [
-        {
-          "id": "t2_frigate_05",
-          "name": "germ_destroyer_lutjens_class_lutjens",
-          "role": "ship",
-          "slot_type": "origin",
-          "preset": "mission unit",
-          "world_pos": [
-            17044.8,
-            0.0,
-            26132.0
-          ],
-          "local_pos": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "number": 1,
-          "count": 1,
-          "threat_range": null,
-          "template": "",
-          "lifecycle": {
-            "kind": "none",
-            "source": "mission"
-          },
-          "unplaced": false
-        }
-      ]
+      "rank-40-50": []
     }
   }
 ]
