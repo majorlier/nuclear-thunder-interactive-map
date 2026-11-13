@@ -10,9 +10,9 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   "Volcano Valley", added in 2.60) first. Archipelago has the terrain-height
   overlay; City has its own extracted vehicle-road network and navigation mesh
   for route previews. Kamchatka has terrain height (line of sight, threat
-  cover and the topographic layer work) and, since 2.61, a mirrored mission;
-  its level yields no usable road network, so convoys show straight-line
-  previews.
+  cover and the topographic layer work), since 2.61 a mirrored mission, and a
+  road network of mostly dirt tracks for route previews; its level has no
+  usable navigation mesh.
 - Choose a scenario. The selector converts the mission's rank range to BR
   using War Thunder's balance-level scale (`BR = 1 + rank / 3`), with the lower
   bound raised to the event's 8.7 minimum BR (a matchmaking rule that is not
@@ -92,6 +92,17 @@ Refresh City roads and navigation from that same installed level:
 python tools/extract_roads.py "<War Thunder>\levels\air_south_eastern_city.bin" --include-local-roads --output road_network_city.json
 python tools/extract_navmesh.py "<War Thunder>\levels\air_south_eastern_city.bin" --output navmesh_city.json
 ```
+
+Kamchatka's roads are not asphalt or gravel decals but cart tracks
+(`decal_cart_road_*`) and splines left with the editor's default `Spline_`
+name, whose surface the level does not record. Both match the roads drawn on
+the 2.61 tactical map, so name them with `--road-prefix NAME=SURFACE`:
+
+```text
+python tools/extract_roads.py "<War Thunder>\levels\air_kamchatka.bin" --include-local-roads --road-prefix decal_cart_road_=dirt --road-prefix Spline_=unclassified --output road_network_kamchatka.json
+```
+
+Kamchatka's navigation mesh is a flat placeholder and is not exported.
 
 Navigation extraction needs `zstandard` (`pip install zstandard`). Route
 previews are reconstructed from the exported road geometry and navigation

@@ -276,6 +276,7 @@
   "layers.trueTopographic": "真实地形图",
   "layers.asphaltRoads": "柏油路",
   "layers.gravelSandRoads": "碎石/沙土路",
+  "layers.tracksOtherRoads": "土路及其他道路",
   "layers.strongpoints": "据点",
   "layers.vehicleDepots": "载具仓库",
   "layers.fuelAmmoDepots": "油库/弹药库",

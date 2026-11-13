@@ -8,8 +8,8 @@
 
 - 先选择 **热带海岸**、**东南渔湾** 或 **焚风山谷**（2.60 新增，数据中名为 Kamchatka）。
   热带海岸带地形高程覆盖层；东南渔湾有独立提取的载具道路网络与导航网格，可用于路线
-  预览。焚风山谷已有地形高程（视线、威胁覆盖和地形图层可用），并自 2.61 起有了
-  镜像任务；其关卡没有可用的道路网络，车队路线只显示直线预览。
+  预览。焚风山谷已有地形高程（视线、威胁覆盖和地形图层可用），自 2.61 起有了
+  镜像任务，并有以土路为主的道路网络用于路线预览；其关卡没有可用的导航网格。
 - 选择场景。选择器会按《战争雷霆》的平衡等级尺度（`BR = 1 + rank / 3`）把任务的
   等级区间换算为 BR，并把下界抬到该事件 8.7 的最低 BR（这条匹配规则并不存放在
   客户端文件里）。如果生成的数据里给出了明确的 BR 值，则以该值为准。
@@ -80,6 +80,16 @@ Explorer 解压 DLL，或使用 `--ooz <ooz.exe>`。东南渔湾的源数据是 
 python tools/extract_roads.py "<War Thunder>\levels\air_south_eastern_city.bin" --include-local-roads --output road_network_city.json
 python tools/extract_navmesh.py "<War Thunder>\levels\air_south_eastern_city.bin" --output navmesh_city.json
 ```
+
+焚风山谷的道路不是柏油或碎石贴花，而是土路（`decal_cart_road_*`）以及保留编辑器默认
+名称 `Spline_` 的样条，关卡中没有记录后者的路面类型。两者都与 2.61 战术地图上绘制的
+道路吻合，因此用 `--road-prefix NAME=SURFACE` 指定它们：
+
+```text
+python tools/extract_roads.py "<War Thunder>\levels\air_kamchatka.bin" --include-local-roads --road-prefix decal_cart_road_=dirt --road-prefix Spline_=unclassified --output road_network_kamchatka.json
+```
+
+焚风山谷的导航网格只是一个平面占位网格，不导出。
 
 导航提取需要 `zstandard`（`pip install zstandard`）。路线预览是根据导出的道路几何和
 导航网格重建的，并非录制游戏内实时 AI 路径。战术底图另行维护，不会被这些命令替换。
