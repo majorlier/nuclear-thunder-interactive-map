@@ -66,6 +66,10 @@
     {
       "id": "kamchatka",
       "label": "Kamchatka"
+    },
+    {
+      "id": "kamchatka_mirror",
+      "label": "Kamchatka \u2014 swapped locations"
     }
   ]
 }

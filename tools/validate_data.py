@@ -48,6 +48,13 @@ def validate_variant(name, map_data, preset_ids, errors):
             errors.append(f"{name}/{site_name} has invalid team")
         if not valid_position(site.get("world_pos")):
             errors.append(f"{name}/{site_name} has invalid world_pos")
+        # Long-range radars, MLRS and TBMs are delayed units whose editor
+        # transform is an off-map placeholder; a spawn trigger or area gives
+        # the real position. Staying put means that source was not found.
+        if site.get("source_group") == "tankModels" and not site.get("runtime_relocated"):
+            errors.append(
+                f"{name}/{site_name} is still at its editor placeholder position"
+            )
         era_units = site.get("units_by_era", {})
         era_buildings = site.get("buildings_by_era", {})
         if set(era_units) != set(era_buildings):
@@ -156,9 +163,10 @@ def main() -> int:
     mission_logic_mirror = load_json(root / "mission_logic_mirror.json")
     mission_logic_city = load_json(root / "mission_logic_city.json")
     mission_logic_city_mirror = load_json(root / "mission_logic_city_mirror.json")
-    # Kamchatka has no mirrored mission in the datamine yet.
     map_data_kamchatka = load_json(root / "map_data_kamchatka.json")
     mission_logic_kamchatka = load_json(root / "mission_logic_kamchatka.json")
+    map_data_kamchatka_mirror = load_json(root / "map_data_kamchatka_mirror.json")
+    mission_logic_kamchatka_mirror = load_json(root / "mission_logic_kamchatka_mirror.json")
     road_network = load_json(root / "road_network.json")
     unit_specs = load_json(root / "unit_specs.json")
     html = (root / "index.html").read_text(encoding="utf-8")
@@ -185,10 +193,15 @@ def main() -> int:
     city_mirror_sites, city_mirror_units = validate_variant(
         "city_mirror", map_data_city_mirror, preset_ids, errors
     )
-    _, kamchatka_units = validate_variant(
+    kamchatka_sites, kamchatka_units = validate_variant(
         "kamchatka", map_data_kamchatka, preset_ids, errors
     )
-    expected_variants = {"standard", "mirror", "city", "city_mirror", "kamchatka"}
+    kamchatka_mirror_sites, kamchatka_mirror_units = validate_variant(
+        "kamchatka_mirror", map_data_kamchatka_mirror, preset_ids, errors
+    )
+    expected_variants = {
+        "standard", "mirror", "city", "city_mirror", "kamchatka", "kamchatka_mirror",
+    }
     actual_variants = {item.get("id") for item in presets_document.get("variants", [])}
     if actual_variants != expected_variants:
         errors.append(
@@ -198,6 +211,7 @@ def main() -> int:
     for label, normal, mirrored in (
         ("Archipelago", standard_sites, mirror_sites),
         ("City", city_sites, city_mirror_sites),
+        ("Kamchatka", kamchatka_sites, kamchatka_mirror_sites),
     ):
         if set(normal) != set(mirrored):
             errors.append(f"{label} normal and mirrored maps contain different site names")
@@ -218,6 +232,7 @@ def main() -> int:
         ("city", mission_logic_city),
         ("city_mirror", mission_logic_city_mirror),
         ("kamchatka", mission_logic_kamchatka),
+        ("kamchatka_mirror", mission_logic_kamchatka_mirror),
     ):
         for site in logic.get("sites", []):
             if not valid_position(site.get("world_pos")):
@@ -234,7 +249,10 @@ def main() -> int:
 
     known_specs = {name.lower() for name in unit_specs}
     missing = sorted(
-        (standard_units | mirror_units | city_units | city_mirror_units | kamchatka_units)
+        (
+            standard_units | mirror_units | city_units | city_mirror_units
+            | kamchatka_units | kamchatka_mirror_units
+        )
         - known_specs
     )
     if missing:
@@ -261,6 +279,8 @@ def main() -> int:
         'fetch("mission_logic_city_mirror.json")',
         'fetch("map_data_kamchatka.json")',
         'fetch("mission_logic_kamchatka.json")',
+        'fetch("map_data_kamchatka_mirror.json")',
+        'fetch("mission_logic_kamchatka_mirror.json")',
         'fetch("presets.json")',
     ):
         if required_fetch not in html:
@@ -272,8 +292,9 @@ def main() -> int:
         print("ERROR:", error)
     print(
         f"Checked {len(map_data)} standard, {len(map_data_mirror)} mirrored, "
-        f"{len(map_data_city)} City, {len(map_data_city_mirror)} mirrored City, and "
-        f"{len(map_data_kamchatka)} Kamchatka map objects, "
+        f"{len(map_data_city)} City, {len(map_data_city_mirror)} mirrored City, "
+        f"{len(map_data_kamchatka)} Kamchatka, and "
+        f"{len(map_data_kamchatka_mirror)} mirrored Kamchatka map objects, "
         f"{len(roads) if isinstance(roads, list) else 0} roads, and {len(unit_specs)} unit specs."
     )
     if errors:

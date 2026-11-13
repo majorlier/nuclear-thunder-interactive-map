@@ -20,6 +20,8 @@
   "variant.mirror": "Swapped locations",
   "variant.city": "South Eastern City",
   "variant.city_mirror": "South Eastern City — swapped locations",
+  "variant.kamchatka": "Kamchatka",
+  "variant.kamchatka_mirror": "Kamchatka — swapped locations",
 
   "scenario.label": "Scenario",
   "scenario.loading": "Loading scenarios…",
@@ -274,6 +276,7 @@
   "layers.trueTopographic": "True topographic terrain",
   "layers.asphaltRoads": "Asphalt roads",
   "layers.gravelSandRoads": "Gravel/sand roads",
+  "layers.tracksOtherRoads": "Tracks and other roads",
   "layers.strongpoints": "Strongpoints",
   "layers.vehicleDepots": "Vehicle depots",
   "layers.fuelAmmoDepots": "Fuel/ammo depots",

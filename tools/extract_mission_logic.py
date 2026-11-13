@@ -4,7 +4,10 @@ import math
 import os
 import re
 
-from build_map_data import TemplateRegistry, mission_site_category
+from build_map_data import (
+    TemplateRegistry, imported_documents, launcher_spawn_area_name,
+    mission_site_category, trigger_objects_exist,
+)
 
 
 def matrix_position(matrix):
@@ -388,6 +391,26 @@ def load_template_documents(templates_dir, filenames):
     return templates
 
 
+def load_mission_documents(templates_dir):
+    """Every converted BLKX in ``templates_dir``, keyed like mission imports."""
+    documents = {}
+    if not templates_dir:
+        return documents
+    root = os.path.abspath(templates_dir)
+    for filename in sorted(os.listdir(root)):
+        stem, extension = os.path.splitext(filename)
+        if extension.lower() not in (".blkx", ".blk"):
+            continue
+        try:
+            with open(os.path.join(root, filename), "r", encoding="utf-8") as source:
+                document = json.load(source)
+        except (OSError, ValueError):
+            continue
+        if isinstance(document, dict):
+            documents[stem.lower()] = document
+    return documents
+
+
 def template_value(template, key):
     """Read an ECS component from a resolved template or its ``_group``."""
     if not isinstance(template, dict):
@@ -553,10 +576,16 @@ def extract_rule_constants(templates_dir, convoys):
     return constants
 
 
-def extract_respawn_rules(mission):
+def extract_respawn_rules(mission, imported=()):
+    """Fixed respawn timers from the mission's triggers and its imports'.
+
+    Since 2.61 the long-range radar, MLRS and TBM timers live in imported
+    files. A trigger whose ``objectExists`` area is missing on this map never
+    runs, so its timers are not reported.
+    """
     rules = []
 
-    def walk(value, trigger_name=""):
+    def walk(value, triggers, trigger_name=""):
         if isinstance(value, dict):
             for key, child in value.items():
                 if key == "unitRespawnAfterTime" and isinstance(child, list):
@@ -582,12 +611,17 @@ def extract_respawn_rules(mission):
                             "mode": "restore" if item.get("just_restore") else "respawn",
                             "trigger": trigger_name,
                         })
-                walk(child, key if key in mission.get("triggers", {}) else trigger_name)
+                if key in triggers and not trigger_objects_exist(child, mission):
+                    continue
+                walk(child, triggers, key if key in triggers else trigger_name)
         elif isinstance(value, list):
             for child in value:
-                walk(child, trigger_name)
+                walk(child, triggers, trigger_name)
 
-    walk(mission.get("triggers", {}))
+    for document in (mission, *imported):
+        triggers = document.get("triggers", {})
+        if isinstance(triggers, dict):
+            walk(triggers, triggers)
     unique = {}
     for rule in rules:
         unique[(rule["object"], rule["seconds"], rule["mode"])] = rule
@@ -658,20 +692,33 @@ def main():
             mlrs_tbm_targets.append(site)
 
     area_definitions = mission.get("areas", {})
-    tank_models = mission.get("units", {}).get("tankModels", [])
+    # Since 2.61 the launchers are defined in imported ground-set files. Their
+    # spawn and move areas stay in the mission, so a launcher whose spawn area
+    # this map lacks is never spawned (its trigger checks objectExists). The
+    # first definition is kept; the per-era vehicle is in map_data.
+    imported = imported_documents(mission, load_mission_documents(args.templates_dir))
+    tank_models = list(mission.get("units", {}).get("tankModels", []))
+    mission_unit_names = {unit.get("name") for unit in tank_models}
+    for document in imported:
+        units = document.get("units", {})
+        for unit in units.get("tankModels", []) if isinstance(units, dict) else []:
+            name = unit.get("name") if isinstance(unit, dict) else None
+            spawn_area_name = launcher_spawn_area_name(name or "")
+            if (
+                not spawn_area_name
+                or name in mission_unit_names
+                or spawn_area_name not in area_definitions
+            ):
+                continue
+            mission_unit_names.add(name)
+            tank_models.append(unit)
     mobile_fire_units = []
     for unit in tank_models:
         name = unit.get("name", "")
-        if "_mlrs_" in name:
-            unit_type = "mlrs"
-            spawn_area_name = name.replace("_mlrs_", "_mlrs_spawn_area_")
-        elif "_tactical_missile_launcher_" in name:
-            unit_type = "tbm"
-            spawn_area_name = name.replace(
-                "_tactical_missile_launcher_", "_tactical_missile_spawn_area_"
-            )
-        else:
+        spawn_area_name = launcher_spawn_area_name(name)
+        if not spawn_area_name:
             continue
+        unit_type = "mlrs" if "_mlrs_" in name else "tbm"
 
         spawn_area = area_definitions.get(spawn_area_name)
         move_areas = []
@@ -737,7 +784,7 @@ def main():
         site["capture_radius"] = capture_radii.get(site["category"])
 
     mission_settings = mission.get("mission_settings", {}).get("mission", {})
-    respawn_rules = extract_respawn_rules(mission)
+    respawn_rules = extract_respawn_rules(mission, imported)
     airfield_rules = extract_airfield_rules(mission)
     template_restore = extract_template_restore_metadata(args.templates_dir)
     runtime_constants = extract_runtime_constants(args.templates_dir)

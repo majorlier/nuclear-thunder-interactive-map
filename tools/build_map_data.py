@@ -393,6 +393,82 @@ def spawned_at_rank(rank_rules, unit_name, rank):
     )
 
 
+def imported_documents(document, documents, rank=None):
+    """Every document ``document`` imports, recursively, in import order.
+
+    With ``rank`` only the imports active at that mission rank are followed;
+    without it every import is, for era-independent data such as spawn areas.
+    """
+    found = []
+    visited = {id(document)}
+    queue = [document]
+    while queue:
+        current = queue.pop(0)
+        imports = current.get("imports", {}) if isinstance(current, dict) else {}
+        records = imports.get("import_record", []) if isinstance(imports, dict) else []
+        if isinstance(records, dict):
+            records = [records]
+        for record in records if isinstance(records, list) else []:
+            if not isinstance(record, dict):
+                continue
+            if rank is not None and not config_is_active(record, rank):
+                continue
+            child = documents.get(import_document_name(record))
+            if not isinstance(child, dict) or id(child) in visited:
+                continue
+            visited.add(id(child))
+            found.append(child)
+            queue.append(child)
+    return found
+
+
+def mission_spawn_rank_rules(mission, documents, rank):
+    """``unit_spawn_rank_rules`` over the mission and its imports at ``rank``.
+
+    Since 2.61 the MLRS and TBM spawn triggers live in imported ground-set
+    files rather than in the mission itself.
+    """
+    rules = {}
+    for document in [mission, *imported_documents(mission, documents, rank)]:
+        for unit_name, conditions in unit_spawn_rank_rules(document).items():
+            rules.setdefault(unit_name, []).extend(conditions)
+    return rules
+
+
+def launcher_spawn_area_name(unit_name):
+    """The mission area an MLRS or TBM launcher respawns in, or None."""
+    if "_mlrs_" in unit_name:
+        return unit_name.replace("_mlrs_", "_mlrs_spawn_area_")
+    if "_tactical_missile_launcher_" in unit_name:
+        return unit_name.replace(
+            "_tactical_missile_launcher_", "_tactical_missile_spawn_area_"
+        )
+    return None
+
+
+def trigger_objects_exist(trigger, mission):
+    """False when a trigger's ``objectExists`` condition names a missing area.
+
+    The shared 2.61 MLRS file defines five launchers per team, and each spawn
+    trigger first checks that its area exists, so a map with fewer MLRS spawn
+    areas simply never spawns the rest.
+    """
+    conditions = trigger.get("conditions", {}) if isinstance(trigger, dict) else {}
+    checks = conditions.get("objectExists", []) if isinstance(conditions, dict) else []
+    if isinstance(checks, dict):
+        checks = [checks]
+    if not isinstance(checks, list):
+        checks = []
+    areas = mission.get("areas", {})
+    if not isinstance(areas, dict):
+        areas = {}
+    return all(
+        check.get("target") in areas
+        for check in checks
+        if isinstance(check, dict) and check.get("type") == "area"
+    )
+
+
 def mission_object_groups(mission):
     units = mission.get("units", {})
     if not isinstance(units, dict):
@@ -758,7 +834,10 @@ def main():
     if not isinstance(mission_data, dict):
         raise SystemExit(f"Invalid mission file: {args.mission}")
     presets = discover_presets(mission_data)
-    rank_rules = unit_spawn_rank_rules(mission_data)
+    rank_rules_by_rank = {
+        preset["rank"]: mission_spawn_rank_rules(mission_data, documents, preset["rank"])
+        for preset in presets
+    }
     sites = []
     source_counts = Counter()
 
@@ -781,10 +860,14 @@ def main():
                 squad_members[unit["name"]] = members
 
     runtime_positions = {}
-    triggers = mission_data.get("triggers", {})
-    if not isinstance(triggers, dict):
-        triggers = {}
-    for trigger in triggers.values():
+    # Since 2.61 the long-range radar spawn trigger lives in the imported
+    # nuclear_escalation_template, so read the imports' triggers as well.
+    all_triggers = []
+    for document in [mission_data, *imported_documents(mission_data, documents)]:
+        triggers = document.get("triggers", {})
+        if isinstance(triggers, dict):
+            all_triggers.extend(triggers.values())
+    for trigger in all_triggers:
         if not isinstance(trigger, dict):
             continue
         actions = trigger.get("actions", {})
@@ -807,25 +890,6 @@ def main():
                 if target and is_matrix(target.get("tm")):
                     runtime_positions[member_name] = target["tm"][3][:3]
 
-    # MLRS/TBM editor transforms are off-map holding positions. The mission
-    # respawns each vehicle randomly inside its named 600 m sphere; use the
-    # sphere centre as the honest representative marker position.
-    all_areas = mission_data.get("areas", {})
-    if not isinstance(all_areas, dict):
-        all_areas = {}
-    for unit_name in all_mission_units:
-        if "_mlrs_" in unit_name:
-            spawn_area_name = unit_name.replace("_mlrs_", "_mlrs_spawn_area_")
-        elif "_tactical_missile_launcher_" in unit_name:
-            spawn_area_name = unit_name.replace(
-                "_tactical_missile_launcher_", "_tactical_missile_spawn_area_"
-            )
-        else:
-            continue
-        area = all_areas.get(spawn_area_name)
-        if isinstance(area, dict) and is_matrix(area.get("tm")):
-            runtime_positions[unit_name] = area["tm"][3][:3]
-
     direct_groups = [
         (source_group, group_units)
         for source_group, group_units in units_root.items()
@@ -836,6 +900,21 @@ def main():
             mission_data, documents, preset["rank"]
         ):
             imported_by_group.setdefault(source_group, {})[unit.get("name", "")] = unit
+
+    # MLRS/TBM editor transforms are off-map holding positions (or, since
+    # 2.61, the zero placeholders of the imported ground-set files). The
+    # mission respawns each vehicle randomly inside its named 600 m sphere;
+    # use the sphere centre as the honest representative marker position.
+    all_areas = mission_data.get("areas", {})
+    if not isinstance(all_areas, dict):
+        all_areas = {}
+    for unit_name in [*all_mission_units, *imported_by_group.get("tankModels", {})]:
+        spawn_area_name = launcher_spawn_area_name(unit_name)
+        if not spawn_area_name:
+            continue
+        area = all_areas.get(spawn_area_name)
+        if isinstance(area, dict) and is_matrix(area.get("tm")):
+            runtime_positions[unit_name] = area["tm"][3][:3]
 
     for source_group, group_units in direct_groups:
         if not isinstance(group_units, list):
@@ -867,10 +946,7 @@ def main():
                     "runtime_relocated": runtime_world_pos != editor_world_pos,
                     "runtime_position_kind": (
                         "random_spawn_area_center"
-                        if (
-                            "_mlrs_" in site.get("name", "")
-                            or "_tactical_missile_launcher_" in site.get("name", "")
-                        )
+                        if launcher_spawn_area_name(site.get("name", ""))
                         else "fixed"
                     ),
                     "tm": site["tm"],
@@ -897,7 +973,9 @@ def main():
                         output_site["buildings_by_era"][preset_id] = []
                         output_site["units_by_era"][preset_id] = (
                             [direct_unit(site)]
-                            if spawned_at_rank(rank_rules, site.get("name"), preset_rank)
+                            if spawned_at_rank(
+                                rank_rules_by_rank[preset_rank], site.get("name"), preset_rank
+                            )
                             else []
                         )
                         continue
@@ -967,6 +1045,57 @@ def main():
                     }
                     sites.append(output_site)
                 output_site["buildings_by_era"][preset["id"]] = []
+                output_site["units_by_era"][preset["id"]] = [direct_unit(site)]
+
+    # Since 2.61 the MLRS and TBM launchers are imported too, with zero
+    # placeholder transforms and era-selected vehicles (Tochka/Lance, then
+    # Iskander/ATACMS). Place each at its mission spawn area; a launcher whose
+    # area this map lacks is never spawned (its trigger checks objectExists).
+    for site_name in sorted(imported_by_group.get("tankModels", {})):
+        if site_name in all_mission_units or site_name not in runtime_positions:
+            continue
+        runtime_world_pos = runtime_positions[site_name]
+        output_site = None
+        for preset in presets:
+            raw_site = next(
+                (
+                    unit
+                    for group, unit in imported_mission_units(
+                        mission_data, documents, preset["rank"]
+                    )
+                    if group == "tankModels" and unit.get("name") == site_name
+                ),
+                None,
+            )
+            if raw_site is None or not is_matrix(raw_site.get("tm")):
+                continue
+            site = {
+                **raw_site,
+                "_source_group": "tankModels",
+                "_runtime_world_pos": runtime_world_pos,
+            }
+            if output_site is None:
+                source_counts["tankModels"] += 1
+                output_site = {
+                    "name": site_name,
+                    "unit_class": site["unit_class"],
+                    "team": site.get("props", {}).get("army"),
+                    "source_group": "tankModels",
+                    "category": mission_site_category(site, registry),
+                    "world_pos": runtime_world_pos,
+                    "editor_world_pos": site["tm"][3][:3],
+                    "runtime_relocated": True,
+                    "runtime_position_kind": "random_spawn_area_center",
+                    "tm": site["tm"],
+                    "runways": [],
+                    "route": extract_route(site),
+                    "buildings_by_era": {item["id"]: [] for item in presets},
+                    "units_by_era": {item["id"]: [] for item in presets},
+                }
+                sites.append(output_site)
+            if spawned_at_rank(
+                rank_rules_by_rank[preset["rank"]], site_name, preset["rank"]
+            ):
                 output_site["units_by_era"][preset["id"]] = [direct_unit(site)]
 
     output_path = args.output

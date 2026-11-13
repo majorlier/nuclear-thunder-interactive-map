@@ -3,7 +3,7 @@ import struct
 import unittest
 
 from extract_navmesh import parse_candidate, parse_vand
-from extract_roads import sample_spline
+from extract_roads import classify_surface, parse_road_prefix, sample_spline
 
 
 class LevelExtractionTests(unittest.TestCase):
@@ -34,6 +34,20 @@ class LevelExtractionTests(unittest.TestCase):
         self.assertEqual(len(points), 7)
         self.assertEqual(points[0], [100, 5, 200])
         self.assertEqual(points[-1], [200, 5, 300])
+
+    def test_extra_road_prefixes_only_add_named_spline_classes(self):
+        # Defaults are unchanged: cart tracks and unnamed splines are skipped.
+        self.assertIsNone(classify_surface("decal_cart_road_dry_low_1379"))
+        self.assertIsNone(classify_surface("Spline_031"))
+        self.assertIsNone(classify_surface("water_3d", True))
+        self.assertEqual(classify_surface("decal_road_gravel_sand_004"), "gravel_sand")
+        self.assertIsNone(classify_surface("decal_asphalt_road_worn_c_1380"))
+        self.assertEqual(classify_surface("decal_asphalt_road_worn_c_1380", True), "asphalt")
+        extra = [parse_road_prefix("decal_cart_road_=dirt"), parse_road_prefix("Spline_=unclassified")]
+        self.assertEqual(extra, [("decal_cart_road_", "dirt"), ("Spline_", "unclassified")])
+        self.assertEqual(classify_surface("decal_cart_road_dry_hd_002", True, extra), "dirt")
+        self.assertEqual(classify_surface("Spline_031", True, extra), "unclassified")
+        self.assertIsNone(classify_surface("water_3d", True, extra))
 
 
 if __name__ == "__main__":

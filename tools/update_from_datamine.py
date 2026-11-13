@@ -178,6 +178,21 @@ def mission_import_paths(document: dict) -> list[str]:
     return result
 
 
+def new_import_paths(documents, known: set[str]) -> list[str]:
+    """Event imports referenced by ``documents`` that are not in ``known`` yet.
+
+    ``known`` is updated in place, so each path is reported only once however
+    many documents import it.
+    """
+    found: list[str] = []
+    for document in documents:
+        for path in mission_import_paths(document):
+            if path not in known:
+                known.add(path)
+                found.append(path)
+    return found
+
+
 def unit_loadout(site: dict) -> dict[str, tuple[tuple, ...]]:
     """Return a compact comparison signature for every detected scenario."""
     result = {}
@@ -401,6 +416,8 @@ def main() -> int:
         generated.mkdir()
         missions: dict[str, Path] = {}
         mission_documents: dict[str, dict] = {}
+        # Manifest-listed generator files can import further event files too.
+        listed_documents: list[dict] = []
         localization_file: Path | None = None
         weaponry_file: Path | None = None
 
@@ -436,6 +453,10 @@ def main() -> int:
             if source_path in generator_by_path:
                 destination = inputs / generator_by_path[source_path]["name"]
                 destination.write_bytes(content)
+                try:
+                    listed_documents.append(json.loads(content))
+                except json.JSONDecodeError:
+                    pass
             if source_path in runtime_by_path:
                 destination = inputs / runtime_by_path[source_path]["name"]
                 destination.write_bytes(content)
@@ -451,15 +472,15 @@ def main() -> int:
         # global manifest. Resolve them recursively so newly split resources
         # (such as today's map-specific carrier files) cannot silently vanish
         # from the generated map.
-        pending_imports = []
-        # Generator files already include the shared, rank-selected ship sets.
-        # Only fetch imports not yet present, including any future split files.
+        # Generator files already include the shared, rank-selected ship sets,
+        # but the fleet index (nuclear_escalation_ships.blkx) imports one file
+        # per era and Gaijin adds or re-ranges those. Follow imports from the
+        # listed files as well as from the missions, and only fetch the ones
+        # not yet present, so a newly split era file cannot silently vanish.
         queued_imports: set[str] = set(all_paths)
-        for document in mission_documents.values():
-            for path in mission_import_paths(document):
-                if path not in queued_imports:
-                    queued_imports.add(path)
-                    pending_imports.append(path)
+        pending_imports = new_import_paths(
+            [*mission_documents.values(), *listed_documents], queued_imports
+        )
         while pending_imports:
             source_path = pending_imports.pop(0)
             encoded_path = urllib.parse.quote(source_path, safe="/")
@@ -487,10 +508,7 @@ def main() -> int:
                 raise RuntimeError(
                     f"Mission import is not valid converted BLKX JSON: {source_path}"
                 ) from exc
-            for child_path in mission_import_paths(document):
-                if child_path not in queued_imports:
-                    queued_imports.add(child_path)
-                    pending_imports.append(child_path)
+            pending_imports.extend(new_import_paths([document], queued_imports))
             print(f"Downloaded mission import {source_path}")
 
         # The client-facing unit labels live in the localization table rather

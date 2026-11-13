@@ -8,14 +8,14 @@
 
 - 先选择 **热带海岸**、**东南渔湾** 或 **焚风山谷**（2.60 新增，数据中名为 Kamchatka）。
   热带海岸带地形高程覆盖层；东南渔湾有独立提取的载具道路网络与导航网格，可用于路线
-  预览。焚风山谷已有地形高程（视线、威胁覆盖和地形图层可用），但 datamine 中还没有
-  镜像任务，因此暂不支持交换阵营；其关卡没有可用的道路网络，车队路线只显示直线预览。
+  预览。焚风山谷已有地形高程（视线、威胁覆盖和地形图层可用），自 2.61 起有了
+  镜像任务，并有以土路为主的道路网络用于路线预览；其关卡没有可用的导航网格。
 - 选择场景。选择器会按《战争雷霆》的平衡等级尺度（`BR = 1 + rank / 3`）把任务的
   等级区间换算为 BR，并把下界抬到该事件 8.7 的最低 BR（这条匹配规则并不存放在
   客户端文件里）。如果生成的数据里给出了明确的 BR 值，则以该值为准。
 - 用 **图标** 选择器在 NATO（默认）、WT 和苏联三种兵种符号之间切换整张地图的
   图标风格。
-- 热带海岸或东南渔湾上的 **交换阵营** 会载入由游戏定义的镜像任务，包括对立阵营的点位
+- 任一地图上的 **交换阵营** 都会载入由游戏定义的镜像任务，包括对立阵营的点位
   位置和任务路线。
 - 展开地图控件中的各个文件夹，可显示部队、机场、仓库、路线和射程覆盖层。
 - 用地图工具里的 **威胁覆盖** 可以着色显示某一方的雷达（黄色）与防空武器（红色）
@@ -33,8 +33,9 @@
 地图会检查公开的 [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine)
 中与"核升级"相关的变化。更新会先准备好供审阅，通过后才进入公开地图。
 
-更新器除了任务本身，还会跟随任务导入的舰船配置集文件。这样可以把 1970 年代舰队与
-1980/2018 年舰队区分开，并让每艘舰船落在任务定义的巡逻路线上。
+更新器除了任务本身，还会跟随任务导入的舰船配置集文件，包括共享舰队索引为各时代导入的
+文件（1970、1980 和 2000）。这样可以把各时代的舰队区分开，并让每艘舰船落在任务定义的
+巡逻路线上。
 
 地形与道路与事件数据分开维护，因为它们来自编译后的游戏关卡。
 
@@ -80,6 +81,16 @@ python tools/extract_roads.py "<War Thunder>\levels\air_south_eastern_city.bin" 
 python tools/extract_navmesh.py "<War Thunder>\levels\air_south_eastern_city.bin" --output navmesh_city.json
 ```
 
+焚风山谷的道路不是柏油或碎石贴花，而是土路（`decal_cart_road_*`）以及保留编辑器默认
+名称 `Spline_` 的样条，关卡中没有记录后者的路面类型。两者都与 2.61 战术地图上绘制的
+道路吻合，因此用 `--road-prefix NAME=SURFACE` 指定它们：
+
+```text
+python tools/extract_roads.py "<War Thunder>\levels\air_kamchatka.bin" --include-local-roads --road-prefix decal_cart_road_=dirt --road-prefix Spline_=unclassified --output road_network_kamchatka.json
+```
+
+焚风山谷的导航网格只是一个平面占位网格，不导出。
+
 导航提取需要 `zstandard`（`pip install zstandard`）。路线预览是根据导出的道路几何和
 导航网格重建的，并非录制游戏内实时 AI 路径。战术底图另行维护，不会被这些命令替换。
 
@@ -88,7 +99,7 @@ python tools/extract_navmesh.py "<War Thunder>\levels\air_south_eastern_city.bin
 `index.html` 在多数浏览器中会被数据文件的加载策略拦住。
 
 更新器也可以手动运行：`python tools/update_from_datamine.py`。它会下载锁定版本的
-"核升级"输入，重新生成全部四个地图变体以及单位/射程数据，并把来源提交记录在
+"核升级"输入，重新生成全部六个地图变体以及单位/射程数据，并把来源提交记录在
 `datamine-lock.json` 中。提交或合并更新提案前，请先审阅生成的文件和地图预览。
 
 如果要用本地完整 checkout 中的单位定义，可加

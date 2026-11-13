@@ -104,8 +104,41 @@ def iter_dbld_blocks(data):
         position = end
 
 
-def find_hspl_section(data, include_local_roads=False):
-    prefixes = ROAD_PREFIXES + ((LOCAL_ASPHALT_PREFIX,) if include_local_roads else ())
+def parse_road_prefix(value):
+    """Parse a ``--road-prefix NAME=SURFACE`` argument into (prefix, surface)."""
+    prefix, separator, surface = value.partition("=")
+    if not separator or not prefix or not surface:
+        raise argparse.ArgumentTypeError(
+            f"expected NAME=SURFACE, for example decal_cart_road_=dirt (got {value!r})"
+        )
+    return prefix, surface
+
+
+def classify_surface(name, include_local_roads=False, extra_prefixes=()):
+    """Return the road surface for a spline name, or None if it is not a road.
+
+    ``extra_prefixes`` are (prefix, surface) pairs for levels whose roads use
+    other spline classes, such as Kamchatka's cart tracks.  They are checked
+    first, so they can also reclassify a built-in prefix.
+    """
+    for prefix, surface in extra_prefixes:
+        if name.startswith(prefix):
+            return surface
+    if name.startswith("decal_asphalt_road_highway_") or (
+        include_local_roads and name.startswith(LOCAL_ASPHALT_PREFIX)
+    ):
+        return "asphalt"
+    if name.startswith("decal_road_gravel_sand_"):
+        return "gravel_sand"
+    return None
+
+
+def find_hspl_section(data, include_local_roads=False, extra_prefixes=()):
+    prefixes = (
+        ROAD_PREFIXES
+        + ((LOCAL_ASPHALT_PREFIX,) if include_local_roads else ())
+        + tuple(prefix for prefix, _ in extra_prefixes)
+    )
     # Packed compiled levels keep hspl inside the DBLD block table.  The
     # payload begins with the spline count; the tag itself is outside it.
     for tag, payload, _ in iter_dbld_blocks(data) or ():
@@ -173,6 +206,17 @@ def main():
         action="store_true",
         help="Include local asphalt road splines such as Southeastern City street segments",
     )
+    parser.add_argument(
+        "--road-prefix",
+        action="append",
+        default=[],
+        type=parse_road_prefix,
+        metavar="NAME=SURFACE",
+        help=(
+            "Also export splines whose name starts with NAME, tagged with "
+            "SURFACE (repeatable), e.g. decal_cart_road_=dirt for Kamchatka"
+        ),
+    )
     args = parser.parse_args()
 
     if args.subdivisions < 1:
@@ -181,17 +225,12 @@ def main():
     with open(args.level, "rb") as source:
         data = source.read()
 
-    splines = find_hspl_section(data, args.include_local_roads)
+    splines = find_hspl_section(data, args.include_local_roads, args.road_prefix)
     roads = []
     for spline in splines:
         name = spline["name"]
-        if name.startswith("decal_asphalt_road_highway_") or (
-            args.include_local_roads and name.startswith(LOCAL_ASPHALT_PREFIX)
-        ):
-            surface = "asphalt"
-        elif name.startswith("decal_road_gravel_sand_"):
-            surface = "gravel_sand"
-        else:
+        surface = classify_surface(name, args.include_local_roads, args.road_prefix)
+        if surface is None:
             continue
         roads.append(
             {
@@ -205,11 +244,13 @@ def main():
     with open(output_path, "w", encoding="utf-8") as destination:
         json.dump(roads, destination, separators=(",", ":"))
 
-    asphalt = sum(road["surface"] == "asphalt" for road in roads)
-    gravel = sum(road["surface"] == "gravel_sand" for road in roads)
+    counts = {}
+    for road in roads:
+        counts[road["surface"]] = counts.get(road["surface"], 0) + 1
+    summary = ", ".join(f"{count} {surface}" for surface, count in counts.items())
     sampled_points = sum(len(road["points"]) for road in roads)
     print(
-        f"Saved {len(roads)} roads ({asphalt} asphalt, {gravel} gravel/sand) "
+        f"Saved {len(roads)} roads ({summary or 'none'}) "
         f"with {sampled_points} sampled points to {output_path}"
     )
 

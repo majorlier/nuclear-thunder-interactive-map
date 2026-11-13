@@ -10,9 +10,9 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   "Volcano Valley", added in 2.60) first. Archipelago has the terrain-height
   overlay; City has its own extracted vehicle-road network and navigation mesh
   for route previews. Kamchatka has terrain height (line of sight, threat
-  cover and the topographic layer work), but no mirrored mission in the
-  datamine yet, so Swap sides is unavailable there; its level yields no usable
-  road network, so convoys show straight-line previews.
+  cover and the topographic layer work), since 2.61 a mirrored mission, and a
+  road network of mostly dirt tracks for route previews; its level has no
+  usable navigation mesh.
 - Choose a scenario. The selector converts the mission's rank range to BR
   using War Thunder's balance-level scale (`BR = 1 + rank / 3`), with the lower
   bound raised to the event's 8.7 minimum BR (a matchmaking rule that is not
@@ -20,7 +20,7 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   precedence if one is provided.
 - Use the **Icons** selector to switch the whole map between NATO (default),
   WT, and USSR role symbols.
-- Use **Swap sides** on Archipelago or South Eastern City to load its game-defined mirrored mission,
+- Use **Swap sides** on any map to load its game-defined mirrored mission,
   including the opposing-side site locations and mission routes.
 - Open folders in the map controls to show forces, airfields, depots, routes, and range overlays.
 - Use **Threat cover** in the map tools to shade where one team's radars
@@ -41,9 +41,10 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
 
 The map checks the public [War Thunder Datamine](https://github.com/gszabi99/War-Thunder-Datamine) for Nuclear Escalation changes. Updates are prepared for review before they reach the public map.
 
-The updater follows the mission's imported ship-set files as well as the
-mission itself. This keeps the 1970 fleets separate from the 1980/2018 fleets
-and places each ship at its mission-defined patrol route.
+The updater follows the mission's imported ship-set files, including the
+per-era files that the shared fleet index imports (1970, 1980 and 2000), as
+well as the mission itself. This keeps each era's fleet separate and places
+each ship at its mission-defined patrol route.
 
 Terrain and roads are maintained separately from the event data because they come from the compiled game level.
 
@@ -92,6 +93,17 @@ python tools/extract_roads.py "<War Thunder>\levels\air_south_eastern_city.bin" 
 python tools/extract_navmesh.py "<War Thunder>\levels\air_south_eastern_city.bin" --output navmesh_city.json
 ```
 
+Kamchatka's roads are not asphalt or gravel decals but cart tracks
+(`decal_cart_road_*`) and splines left with the editor's default `Spline_`
+name, whose surface the level does not record. Both match the roads drawn on
+the 2.61 tactical map, so name them with `--road-prefix NAME=SURFACE`:
+
+```text
+python tools/extract_roads.py "<War Thunder>\levels\air_kamchatka.bin" --include-local-roads --road-prefix decal_cart_road_=dirt --road-prefix Spline_=unclassified --output road_network_kamchatka.json
+```
+
+Kamchatka's navigation mesh is a flat placeholder and is not exported.
+
 Navigation extraction needs `zstandard` (`pip install zstandard`). Route
 previews are reconstructed from the exported road geometry and navigation
 mesh, not recordings of the game's live AI paths. The tactical background
@@ -103,7 +115,7 @@ To test a local copy, run a small local web server from this folder and open
 will block the data files in most browsers.
 
 The updater can be run manually with `python tools/update_from_datamine.py`.
-It downloads the pinned Nuclear Escalation inputs, regenerates all four map
+It downloads the pinned Nuclear Escalation inputs, regenerates all six map
 variants and unit/range data, and records the source commit in
 `datamine-lock.json`. Review the generated files and the map preview before
 committing or merging the update proposal.

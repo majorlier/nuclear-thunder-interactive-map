@@ -1482,7 +1482,7 @@
     </div>
 
     <p class="feedback-contact"><span data-i18n="app.updated"
-        data-i18n-args='{"version":"2.60.0.20"}'>Updated 2.60.0.20</span><br><span
+        data-i18n-args='{"version":"2.61.0.17"}'>Updated 2.61.0.17</span><br><span
         data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
 </div>
 
@@ -1747,18 +1747,19 @@
             mapCoord0: [-65536, -65536],
             mapCoord1: [65536, 65536]
         },
-        // Added in 2.60. The datamine has no mirrored mission yet. The level's
-        // road extraction yields a single decal road and its navigation
-        // mesh is a flat 73-triangle placeholder, so neither is used and
-        // convoys show straight-line previews.
+        // Added in 2.60; its mirrored mission arrived in 2.61. Its roads are
+        // one asphalt decal road plus cart-track and unnamed "Spline_"
+        // splines, which match the roads drawn on the 2.61 tactical map
+        // (see the README for the extract_roads.py prefixes). The level's
+        // navigation mesh is a flat 72-triangle placeholder and is not used.
         kamchatka: {
             id: "kamchatka",
             label: "Kamchatka",
             image: KAMCHATKA_MAP_IMAGE,
-            variants: ["kamchatka"],
+            variants: ["kamchatka", "kamchatka_mirror"],
             defaultVariant: "kamchatka",
-            mirroredVariant: null,
-            supportsTeamSwap: false,
+            mirroredVariant: "kamchatka_mirror",
+            supportsTeamSwap: true,
             supportsTerrain: true,
             terrainImage: KAMCHATKA_TERRAIN_HEIGHT_IMAGE,
             terrainOverlay: KAMCHATKA_TOPOGRAPHIC_IMAGE,
@@ -1767,8 +1768,16 @@
             terrainDisplayRange: [-70, 4255],
             // air_kamchatka.blkx: water_level -5.
             waterLevel: -5,
-            supportsRoads: false,
+            supportsRoads: true,
             supportsNavmesh: false,
+            roadFile: "road_network_kamchatka.json",
+            // Everything except the one asphalt road is a dirt track or a
+            // spline whose surface the level does not name.
+            minorRoadsAreTracks: true,
+            // Two junctions drawn on the tactical map (the Koryaki bridge
+            // road and a track fork) have a spline node left 50-70 m off the
+            // terrain, and there are no flyovers to keep apart here.
+            roadJoinIgnoresHeight: true,
             // From air_kamchatka.blkx: the same extent as South Eastern City.
             mapCoord0: [-65536, -65536],
             mapCoord1: [65536, 65536]
@@ -3513,7 +3522,9 @@
         // Convoys use vehicle road splines wherever available.  The City
         // navmesh is useful as a fallback for off-road armoured movement, but
         // its triangle-centre shortest path can cut across streets and fields.
-        globalRoadGraph = definition.supportsRoads ? buildRoadGraph(roads) : null;
+        globalRoadGraph = definition.supportsRoads
+            ? buildRoadGraph(roads, 50, definition.roadJoinIgnoresHeight ? Infinity : 20)
+            : null;
         globalNavmeshGraph = definition.supportsNavmesh
             ? buildNavmeshGraph(globalNavmeshDataByMap[currentMapId])
             : null;
@@ -3764,7 +3775,7 @@
         };
     }
 
-    function buildRoadGraph(roads, joinTolerance = 50) {
+    function buildRoadGraph(roads, joinTolerance = 50, maxHeightGap = 20) {
         const nodes = [];
         const roadIds = [];
         const edges = [];
@@ -3813,7 +3824,9 @@
                         const otherRoad = roadIds[otherIndex];
                         if (otherRoad === roadIds[nodeIndex]) return;
                         const other = nodes[otherIndex];
-                        if (Math.abs(point[1] - other[1]) > 20) return;
+                        // Keeps a City flyover from joining the street
+                        // beneath it.
+                        if (Math.abs(point[1] - other[1]) > maxHeightGap) return;
                         const distance = Math.hypot(
                             point[0] - other[0],
                             point[2] - other[2]
@@ -6369,6 +6382,10 @@
             if (!response.ok) throw httpError("navmesh_city.json", response);
             return response.json();
         }),
+        fetch("road_network_kamchatka.json").then(response => {
+            if (!response.ok) throw httpError("road_network_kamchatka.json", response);
+            return response.json();
+        }),
         fetch("mission_logic.json").then(response => {
             if (!response.ok) throw httpError("mission_logic.json", response);
             return response.json();
@@ -6401,6 +6418,14 @@
             if (!response.ok) throw httpError("mission_logic_kamchatka.json", response);
             return response.json();
         }),
+        fetch("map_data_kamchatka_mirror.json").then(response => {
+            if (!response.ok) throw httpError("map_data_kamchatka_mirror.json", response);
+            return response.json();
+        }),
+        fetch("mission_logic_kamchatka_mirror.json").then(response => {
+            if (!response.ok) throw httpError("mission_logic_kamchatka_mirror.json", response);
+            return response.json();
+        }),
         fetch("presets.json").then(response => {
             if (!response.ok) throw httpError("presets.json", response);
             return response.json();
@@ -6429,6 +6454,7 @@
             roadData,
             cityRoadData,
             cityNavmeshData,
+            kamchatkaRoadData,
             standardLogicData,
             mirrorLogicData,
             citySiteData,
@@ -6437,6 +6463,8 @@
             cityMirrorLogicData,
             kamchatkaSiteData,
             kamchatkaLogicData,
+            kamchatkaMirrorSiteData,
+            kamchatkaMirrorLogicData,
             presetData,
             unitSpecs,
             unitDisplayNames,
@@ -6450,14 +6478,16 @@
                 mirror: mirrorSiteData,
                 city: citySiteData,
                 city_mirror: cityMirrorSiteData,
-                kamchatka: kamchatkaSiteData
+                kamchatka: kamchatkaSiteData,
+                kamchatka_mirror: kamchatkaMirrorSiteData
             };
             globalMissionLogicVariants = {
                 standard: standardLogicData,
                 mirror: mirrorLogicData,
                 city: cityLogicData,
                 city_mirror: cityMirrorLogicData,
-                kamchatka: kamchatkaLogicData
+                kamchatka: kamchatkaLogicData,
+                kamchatka_mirror: kamchatkaMirrorLogicData
             };
             globalPresetData = presetData;
             globalUnitSpecs = unitSpecs;
@@ -6469,7 +6499,8 @@
             globalRoadData = roadData;
             globalRoadDataByMap = {
                 archipelago: roadData,
-                city: cityRoadData
+                city: cityRoadData,
+                kamchatka: kamchatkaRoadData
             };
             globalNavmeshDataByMap = {
                 city: cityNavmeshData
@@ -6699,7 +6730,12 @@
                 glyph: "╫",
                 options: [
                     layerOption(t("layers.asphaltRoads"), asphaltRoadGroup),
-                    layerOption(t("layers.gravelSandRoads"), gravelRoadGroup)
+                    layerOption(
+                        definition.minorRoadsAreTracks
+                            ? t("layers.tracksOtherRoads")
+                            : t("layers.gravelSandRoads"),
+                        gravelRoadGroup
+                    )
                 ]
             });
         }
