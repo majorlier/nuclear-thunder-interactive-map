@@ -3,10 +3,12 @@
 import unittest
 
 from build_map_data import (
-    TemplateRegistry, create_buildings, lifecycle_for_unit,
-    mission_site_category, ship_with_mission_route,
-    unit_spawn_rank_rules, spawned_at_rank,
+    TemplateRegistry, create_buildings, imported_documents,
+    launcher_spawn_area_name, lifecycle_for_unit, mission_site_category,
+    mission_spawn_rank_rules, ship_with_mission_route, spawned_at_rank,
+    trigger_objects_exist, unit_spawn_rank_rules,
 )
+from extract_mission_logic import extract_respawn_rules
 from update_from_datamine import mission_import_paths, new_import_paths
 
 
@@ -90,6 +92,99 @@ class MissionExtractionTests(unittest.TestCase):
         )
         # Each path is reported once, and listed files are not re-fetched.
         self.assertEqual(new_import_paths([fleet_index, fleet_index], known), [])
+
+    def ground_sets(self):
+        """A 2.61-style mission: launchers and their triggers are imported."""
+        ground = "gameData/missions/templates/units_sets/nuclear_escalation_ground_sets/"
+        mission = {
+            "imports": {"import_record": [
+                {"file": ground + "nuclear_escalation_tbm.blk"},
+                {"file": ground + "nuclear_escalation_mlrs.blk"},
+            ]},
+            "areas": {
+                "t1_mlrs_spawn_area_01": {"tm": matrix(10, 0, 20)},
+                "t1_tactical_missile_spawn_area_01": {"tm": matrix(30, 0, 40)},
+            },
+        }
+        mlrs_trigger = {
+            "conditions": {
+                "varCompareInt": {
+                    "var_value": "mission_rank", "value": 30,
+                    "comparasion_func": "more",
+                },
+                "objectExists": [{"target": "t1_mlrs_spawn_area_01", "type": "area"}],
+            },
+            "actions": {
+                "unitRespawn": [{"object": "t1_mlrs_01", "target": "t1_mlrs_spawn_area_01"}],
+                "unitRespawnAfterTime": [{
+                    "object_name": "t1_mlrs_01", "time_to_respawn": 600.0,
+                }],
+            },
+        }
+        missing_area_trigger = {
+            "conditions": {"objectExists": [{"target": "t1_mlrs_spawn_area_05", "type": "area"}]},
+            "actions": {"unitRespawnAfterTime": [{
+                "object_name": "t1_mlrs_05", "time_to_respawn": 600.0,
+            }]},
+        }
+        documents = {
+            "nuclear_escalation_tbm": {"imports": {"import_record": [
+                {"file": ground + "nuclear_escalation_tbm_1970.blk", "rankRange": [0, 38]},
+                {"file": ground + "nuclear_escalation_tbm_2000.blk", "rankRange": [39, 50]},
+            ]}},
+            "nuclear_escalation_tbm_1970": {"units": {"tankModels": [
+                {"name": "t1_tactical_missile_launcher_01", "unit_class": "tochka"},
+            ]}},
+            "nuclear_escalation_tbm_2000": {"units": {"tankModels": [
+                {"name": "t1_tactical_missile_launcher_01", "unit_class": "iskander"},
+            ]}},
+            "nuclear_escalation_mlrs": {
+                "units": {"tankModels": [{"name": "t1_mlrs_01", "unit_class": "smerch"}]},
+                "triggers": {
+                    "spawn_mlrs_01": mlrs_trigger,
+                    "spawn_mlrs_05": missing_area_trigger,
+                },
+            },
+        }
+        return mission, documents
+
+    def test_imported_launchers_follow_the_era_and_imported_triggers(self):
+        mission, documents = self.ground_sets()
+
+        def tbm_class(rank):
+            return [
+                unit["unit_class"]
+                for document in imported_documents(mission, documents, rank)
+                for unit in document.get("units", {}).get("tankModels", [])
+                if "tactical" in unit["name"]
+            ]
+
+        self.assertEqual(tbm_class(37), ["tochka"])
+        self.assertEqual(tbm_class(40), ["iskander"])
+        # Without a rank every import is followed, both era files included.
+        self.assertEqual(len(imported_documents(mission, documents)), 4)
+        # The MLRS rank rule now lives in the imported file, not the mission.
+        self.assertEqual(unit_spawn_rank_rules(mission), {})
+        for rank, spawned in [(30, False), (31, True)]:
+            rules = mission_spawn_rank_rules(mission, documents, rank)
+            self.assertEqual(spawned_at_rank(rules, "t1_mlrs_01", rank), spawned)
+        self.assertEqual(launcher_spawn_area_name("t1_mlrs_01"), "t1_mlrs_spawn_area_01")
+        self.assertEqual(
+            launcher_spawn_area_name("t2_tactical_missile_launcher_03"),
+            "t2_tactical_missile_spawn_area_03",
+        )
+        self.assertIsNone(launcher_spawn_area_name("t1_longrange_radar_01"))
+
+    def test_respawn_timers_come_from_imports_and_need_their_area(self):
+        mission, documents = self.ground_sets()
+        mlrs_triggers = documents["nuclear_escalation_mlrs"]["triggers"]
+        self.assertTrue(trigger_objects_exist(mlrs_triggers["spawn_mlrs_01"], mission))
+        self.assertFalse(trigger_objects_exist(mlrs_triggers["spawn_mlrs_05"], mission))
+        rules = extract_respawn_rules(mission, imported_documents(mission, documents))
+        self.assertEqual(
+            [(rule["object"], rule["system"], rule["trigger"]) for rule in rules],
+            [("t1_mlrs_01", "MLRS", "spawn_mlrs_01")],
+        )
 
     def test_mlrs_spawn_only_above_1970_rank_boundary(self):
         mission = {"triggers": {"spawn_mlrs": {

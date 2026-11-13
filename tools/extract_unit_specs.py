@@ -398,9 +398,12 @@ def weapon_specs(unit, source, allow_air_gun_range=False):
             or "aam" in bullet_type
             or proximity_fuse.get("detectAirUnits") is True
         )
+        # Event MLRS and TBM launchers. 2.61 added Iskander-M (9K720) and
+        # ATACMS for the 2000-era TBM set; Iskander's cluster warhead is not a
+        # SAM-like bullet type, so it is only recognised by name here.
         is_strategic_rocket = any(
             token in Path(path).stem.lower()
-            for token in ("m270", "9k58", "9k79", "mgm_52")
+            for token in ("m270", "9k58", "9k79", "mgm_52", "9k720", "atacms")
         )
         if not is_air_weapon and not is_strategic_rocket:
             continue

@@ -10,9 +10,9 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   "Volcano Valley", added in 2.60) first. Archipelago has the terrain-height
   overlay; City has its own extracted vehicle-road network and navigation mesh
   for route previews. Kamchatka has terrain height (line of sight, threat
-  cover and the topographic layer work), but no mirrored mission in the
-  datamine yet, so Swap sides is unavailable there; its level yields no usable
-  road network, so convoys show straight-line previews.
+  cover and the topographic layer work) and, since 2.61, a mirrored mission;
+  its level yields no usable road network, so convoys show straight-line
+  previews.
 - Choose a scenario. The selector converts the mission's rank range to BR
   using War Thunder's balance-level scale (`BR = 1 + rank / 3`), with the lower
   bound raised to the event's 8.7 minimum BR (a matchmaking rule that is not
@@ -20,7 +20,7 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   precedence if one is provided.
 - Use the **Icons** selector to switch the whole map between NATO (default),
   WT, and USSR role symbols.
-- Use **Swap sides** on Archipelago or South Eastern City to load its game-defined mirrored mission,
+- Use **Swap sides** on any map to load its game-defined mirrored mission,
   including the opposing-side site locations and mission routes.
 - Open folders in the map controls to show forces, airfields, depots, routes, and range overlays.
 - Use **Threat cover** in the map tools to shade where one team's radars
@@ -104,7 +104,7 @@ To test a local copy, run a small local web server from this folder and open
 will block the data files in most browsers.
 
 The updater can be run manually with `python tools/update_from_datamine.py`.
-It downloads the pinned Nuclear Escalation inputs, regenerates all four map
+It downloads the pinned Nuclear Escalation inputs, regenerates all six map
 variants and unit/range data, and records the source commit in
 `datamine-lock.json`. Review the generated files and the map preview before
 committing or merging the update proposal.

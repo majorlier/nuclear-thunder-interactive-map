@@ -24,18 +24,18 @@
     },
     "weapons": [
       {
-        "name": "152mm_9m311_naval_rocket_launcher",
-        "ammo": 72,
+        "name": "rocket_hhq10_naval_rocket_launcher",
+        "ammo": 18,
         "minimum": 30.0,
-        "effective_maximum": 8000.0,
-        "physical_maximum": 8000.0,
-        "ai_minimum": 800.0,
-        "ai_maximum": 8500.0,
-        "guidance": "saclos",
+        "effective_maximum": 10000.0,
+        "physical_maximum": 10000.0,
+        "ai_minimum": 500.0,
+        "ai_maximum": 8000.0,
+        "guidance": "optical",
         "reload_seconds": 1.0
       },
       {
-        "name": "30mm_54_ak630_naval_user_cannon",
+        "name": "30mm_hpj11_naval_user_cannon",
         "ammo": null,
         "minimum": 0,
         "effective_maximum": 6000.0,
@@ -43,15 +43,15 @@
         "ai_minimum": 0.05,
         "ai_maximum": 4000.0,
         "guidance": null,
-        "reload_seconds": 30.0
+        "reload_seconds": 60.0
       }
     ],
-    "engagement_range": 8000.0,
+    "engagement_range": 10000.0,
     "ai_gun_range": 4000.0,
     "ai_attack_max_radius": 12000.0,
     "ai_shell_max_radius": 20000.0,
-    "ai_target_priority_max_radius": 30000.0,
-    "ai_engagement_range": 8500.0
+    "ai_target_priority_max_radius": 100000.0,
+    "ai_engagement_range": 8000.0
   },
   "cn_destroyer_type052d": {
     "unit_class": "cn_destroyer_type052d",
@@ -87,40 +87,40 @@
     },
     "weapons": [
       {
-        "name": "rocket_mk41_vls_naval_rocket_launcher",
+        "name": "rocket_hhq9_vls_naval_rocket_launcher",
         "ammo": 32,
-        "minimum": 3000.0,
-        "effective_maximum": 80000.0,
-        "physical_maximum": 80000.0,
-        "ai_minimum": 3500.0,
-        "ai_maximum": 30000.0,
+        "minimum": 1000.0,
+        "effective_maximum": 125000.0,
+        "physical_maximum": 125000.0,
+        "ai_minimum": 3000.0,
+        "ai_maximum": 80000.0,
         "guidance": "radar",
         "reload_seconds": 3.0
       },
       {
-        "name": "127mm_54_mk45_naval_user_cannon",
+        "name": "130mm_70_hpj45_naval_user_cannon",
         "ammo": null,
         "minimum": 0,
-        "effective_maximum": 20000.0,
-        "physical_maximum": 20000.0,
+        "effective_maximum": 15000.0,
+        "physical_maximum": 15000.0,
         "ai_minimum": 0.05,
         "ai_maximum": 15000.0,
         "guidance": null,
         "reload_seconds": null
       },
       {
-        "name": "152mm_9m311_naval_rocket_launcher",
+        "name": "rocket_hhq10_naval_rocket_launcher",
         "ammo": 24,
         "minimum": 30.0,
-        "effective_maximum": 8000.0,
-        "physical_maximum": 8000.0,
-        "ai_minimum": 800.0,
-        "ai_maximum": 8500.0,
-        "guidance": "saclos",
+        "effective_maximum": 10000.0,
+        "physical_maximum": 10000.0,
+        "ai_minimum": 500.0,
+        "ai_maximum": 8000.0,
+        "guidance": "optical",
         "reload_seconds": 1.0
       },
       {
-        "name": "30mm_77_type1130_naval_user_cannon",
+        "name": "30mm_hpj11_naval_user_cannon",
         "ammo": null,
         "minimum": 0,
         "effective_maximum": 6000.0,
@@ -131,12 +131,88 @@
         "reload_seconds": 60.0
       }
     ],
-    "engagement_range": 80000.0,
+    "engagement_range": 125000.0,
     "ai_gun_range": 15000.0,
-    "ai_attack_max_radius": 30000.0,
+    "ai_attack_max_radius": 15000.0,
     "ai_shell_max_radius": 40000.0,
-    "ai_target_priority_max_radius": 60000.0,
-    "ai_engagement_range": 30000.0
+    "ai_target_priority_max_radius": 100000.0,
+    "ai_engagement_range": 80000.0
+  },
+  "cn_frigate_type054a": {
+    "unit_class": "cn_frigate_type054a",
+    "model": "frigate_type054a",
+    "unit_type": "typeDestroyer",
+    "on_radar_as": "missile_frigate",
+    "exp_class": "exp_torpedo_gun_boat",
+    "maximum_speed_kph": 80.0,
+    "target_channels": null,
+    "sensors": {
+      "detection": {
+        "kind": "detection",
+        "nominal": 120000.0,
+        "maximum": 150000.0,
+        "band": 6,
+        "scope_ranges": [
+          60000.0
+        ],
+        "designation_range": 150000.0,
+        "ai": false,
+        "sensor": "us_an_sps_49",
+        "range_status": "confirmed"
+      },
+      "tracking": {
+        "kind": "tracking",
+        "nominal": 100000.0,
+        "maximum": 60000.0,
+        "band": 8,
+        "scope_ranges": [],
+        "designation_range": null,
+        "ai": true,
+        "sensor": "cn_hljp_345_ai",
+        "range_status": "confirmed"
+      }
+    },
+    "weapons": [
+      {
+        "name": "rocket_hhq16_vls_naval_rocket_launcher",
+        "ammo": 32,
+        "minimum": 3000.0,
+        "effective_maximum": 70000.0,
+        "physical_maximum": 70000.0,
+        "ai_minimum": 3000.0,
+        "ai_maximum": 35000.0,
+        "guidance": "radar",
+        "reload_seconds": 2.0
+      },
+      {
+        "name": "30mm_hpj11_naval_user_cannon",
+        "ammo": null,
+        "minimum": 0,
+        "effective_maximum": 6000.0,
+        "physical_maximum": 6000.0,
+        "ai_minimum": 0.05,
+        "ai_maximum": 4000.0,
+        "guidance": null,
+        "reload_seconds": 60.0
+      },
+      {
+        "name": "76mm_60_ak_126_naval_user_cannon",
+        "ammo": null,
+        "minimum": 0,
+        "effective_maximum": 5000.0,
+        "physical_maximum": 5000.0,
+        "ai_minimum": 0.05,
+        "ai_maximum": 4500.0,
+        "guidance": null,
+        "reload_seconds": 3.0
+      }
+    ],
+    "engagement_range": 70000.0,
+    "ai_gun_range": 4500.0,
+    "ai_attack_max_radius": 35000.0,
+    "ai_shell_max_radius": 35000.0,
+    "ai_target_priority_max_radius": 100000.0,
+    "ai_engagement_range": 35000.0
   },
   "cn_hq_11": {
     "unit_class": "cn_hq_11",
@@ -655,6 +731,35 @@
     "ai_target_priority_max_radius": null,
     "ai_engagement_range": null
   },
+  "us_ai_mlrs_atacms_m270": {
+    "unit_class": "us_ai_mlrs_atacms_m270",
+    "model": "us_m_270_mlrs",
+    "unit_type": "typeTankDestroyer",
+    "on_radar_as": "mlrs",
+    "exp_class": "exp_tank",
+    "maximum_speed_kph": 75.0,
+    "target_channels": null,
+    "sensors": {},
+    "weapons": [
+      {
+        "name": "610mm_atacms_rocket_launcher",
+        "ammo": 2,
+        "minimum": 15000.0,
+        "effective_maximum": 70000.0,
+        "physical_maximum": 70000.0,
+        "ai_minimum": 15000.0,
+        "ai_maximum": 70000.0,
+        "guidance": "sns",
+        "reload_seconds": 15.0
+      }
+    ],
+    "engagement_range": 70000.0,
+    "ai_gun_range": null,
+    "ai_attack_max_radius": 70000.0,
+    "ai_shell_max_radius": null,
+    "ai_target_priority_max_radius": null,
+    "ai_engagement_range": 70000.0
+  },
   "us_ai_mlrs_m270": {
     "unit_class": "us_ai_mlrs_m270",
     "model": "us_m_270_mlrs",
@@ -993,32 +1098,41 @@
     "sensors": {
       "detection": {
         "kind": "detection",
-        "nominal": 120000.0,
-        "maximum": 150000.0,
+        "nominal": 100000.0,
+        "maximum": 100000.0,
         "band": 5,
-        "scope_ranges": [
-          60000.0
-        ],
-        "designation_range": 150000.0,
-        "ai": false,
-        "sensor": "us_an_sps_48",
+        "scope_ranges": [],
+        "designation_range": 100000.0,
+        "ai": true,
+        "sensor": "us_an_spy_1_ai",
         "range_status": "confirmed"
       }
     },
     "weapons": [
       {
-        "name": "152mm_9m311_naval_rocket_launcher",
-        "ammo": 84,
+        "name": "rocket_rim162_essm_block2_naval_rocket_launcher",
+        "ammo": 8,
+        "minimum": 1000.0,
+        "effective_maximum": 40000.0,
+        "physical_maximum": 40000.0,
+        "ai_minimum": 1000.0,
+        "ai_maximum": 40000.0,
+        "guidance": "radar",
+        "reload_seconds": 3.0
+      },
+      {
+        "name": "rocket_rim116c_ram_naval_rocket_launcher",
+        "ammo": 21,
         "minimum": 30.0,
-        "effective_maximum": 8000.0,
-        "physical_maximum": 8000.0,
-        "ai_minimum": 800.0,
-        "ai_maximum": 8500.0,
-        "guidance": "saclos",
+        "effective_maximum": 10000.0,
+        "physical_maximum": 10000.0,
+        "ai_minimum": 500.0,
+        "ai_maximum": 9500.0,
+        "guidance": "optical",
         "reload_seconds": 1.0
       },
       {
-        "name": "20mm_m61_vulcan_naval_user_cannon",
+        "name": "20mm_m61_phalanx_block1b_naval_user_cannon",
         "ammo": null,
         "minimum": 0,
         "effective_maximum": 6000.0,
@@ -1026,7 +1140,7 @@
         "ai_minimum": 0.05,
         "ai_maximum": 3000.0,
         "guidance": null,
-        "reload_seconds": 60.0
+        "reload_seconds": 605.0
       },
       {
         "name": "25mm_87_mark_38_naval_user_cannon",
@@ -1040,12 +1154,12 @@
         "reload_seconds": 10.0
       }
     ],
-    "engagement_range": 8000.0,
+    "engagement_range": 40000.0,
     "ai_gun_range": 3000.0,
     "ai_attack_max_radius": 12000.0,
-    "ai_shell_max_radius": 20000.0,
-    "ai_target_priority_max_radius": 30000.0,
-    "ai_engagement_range": 8500.0
+    "ai_shell_max_radius": 40000.0,
+    "ai_target_priority_max_radius": 100000.0,
+    "ai_engagement_range": 40000.0
   },
   "us_aircraftcarrier_nimitz_ai": {
     "unit_class": "us_aircraftcarrier_nimitz_ai",
@@ -1072,8 +1186,19 @@
     },
     "weapons": [
       {
+        "name": "rocket_rim116c_ram_naval_rocket_launcher",
+        "ammo": 21,
+        "minimum": 30.0,
+        "effective_maximum": 10000.0,
+        "physical_maximum": 10000.0,
+        "ai_minimum": 500.0,
+        "ai_maximum": 9500.0,
+        "guidance": "optical",
+        "reload_seconds": 1.0
+      },
+      {
         "name": "152mm_9m311_naval_rocket_launcher",
-        "ammo": 84,
+        "ammo": 32,
         "minimum": 30.0,
         "effective_maximum": 8000.0,
         "physical_maximum": 8000.0,
@@ -1083,7 +1208,7 @@
         "reload_seconds": 1.0
       },
       {
-        "name": "20mm_m61_vulcan_naval_user_cannon",
+        "name": "20mm_m61_phalanx_block1b_naval_user_cannon",
         "ammo": null,
         "minimum": 0,
         "effective_maximum": 6000.0,
@@ -1091,7 +1216,7 @@
         "ai_minimum": 0.05,
         "ai_maximum": 3000.0,
         "guidance": null,
-        "reload_seconds": 60.0
+        "reload_seconds": 605.0
       },
       {
         "name": "25mm_87_mark_38_naval_user_cannon",
@@ -1105,12 +1230,12 @@
         "reload_seconds": 10.0
       }
     ],
-    "engagement_range": 8000.0,
+    "engagement_range": 10000.0,
     "ai_gun_range": 3000.0,
     "ai_attack_max_radius": 12000.0,
     "ai_shell_max_radius": 20000.0,
-    "ai_target_priority_max_radius": 30000.0,
-    "ai_engagement_range": 8500.0
+    "ai_target_priority_max_radius": 100000.0,
+    "ai_engagement_range": 9500.0
   },
   "us_ashville_class_douglas": {
     "unit_class": "us_ashville_class_douglas",
@@ -1211,14 +1336,14 @@
     },
     "weapons": [
       {
-        "name": "rocket_mk13_naval_rocket_launcher",
+        "name": "rocket_mk13_ai_naval_rocket_launcher",
         "ammo": 41,
-        "minimum": 3000.0,
-        "effective_maximum": 80000.0,
-        "physical_maximum": 80000.0,
+        "minimum": 0,
+        "effective_maximum": 14000.0,
+        "physical_maximum": 14500.0,
         "ai_minimum": 3500.0,
         "ai_maximum": 56300.0,
-        "guidance": "radar",
+        "guidance": "saclos",
         "reload_seconds": 10.0
       },
       {
@@ -1244,11 +1369,11 @@
         "reload_seconds": 60.0
       }
     ],
-    "engagement_range": 80000.0,
+    "engagement_range": 14000.0,
     "ai_gun_range": 10000.0,
     "ai_attack_max_radius": 56300.0,
     "ai_shell_max_radius": 56300.0,
-    "ai_target_priority_max_radius": 60000.0,
+    "ai_target_priority_max_radius": 80000.0,
     "ai_engagement_range": 56300.0
   },
   "us_destroyer_cf_adams_class_cf_adams_ec": {
@@ -1352,37 +1477,37 @@
     },
     "weapons": [
       {
-        "name": "rocket_mk41_vls_naval_rocket_launcher",
+        "name": "rocket_rim174_sm6_vls_naval_rocket_launcher",
         "ammo": 64,
-        "minimum": 3000.0,
-        "effective_maximum": 80000.0,
-        "physical_maximum": 80000.0,
-        "ai_minimum": 3500.0,
-        "ai_maximum": 30000.0,
+        "minimum": 1000.0,
+        "effective_maximum": 240000.0,
+        "physical_maximum": 240000.0,
+        "ai_minimum": 3000.0,
+        "ai_maximum": 80000.0,
         "guidance": "radar",
         "reload_seconds": 3.0
       },
       {
-        "name": "127mm_54_mk45_naval_user_cannon",
-        "ammo": null,
-        "minimum": 0,
-        "effective_maximum": 10000.0,
-        "physical_maximum": 10000.0,
-        "ai_minimum": 0.05,
-        "ai_maximum": 10000.0,
-        "guidance": null,
-        "reload_seconds": null
+        "name": "rocket_rim66m_sm2_block3b_vls_naval_rocket_launcher",
+        "ammo": 32,
+        "minimum": 1000.0,
+        "effective_maximum": 163000.0,
+        "physical_maximum": 163000.0,
+        "ai_minimum": 1000.0,
+        "ai_maximum": 35000.0,
+        "guidance": "optical",
+        "reload_seconds": 3.0
       },
       {
-        "name": "30mm_38_mk103_1942_naval_user_cannon",
+        "name": "127mm_62_mk45_mod4_naval_user_cannon",
         "ammo": null,
         "minimum": 0,
-        "effective_maximum": 10000.0,
-        "physical_maximum": 10000.0,
+        "effective_maximum": 15000.0,
+        "physical_maximum": 15000.0,
         "ai_minimum": 0.05,
-        "ai_maximum": 2500.0,
+        "ai_maximum": 15000.0,
         "guidance": null,
-        "reload_seconds": 8.5
+        "reload_seconds": null
       },
       {
         "name": "12_7mm_m2_browning_naval_user_machinegun",
@@ -1396,7 +1521,18 @@
         "reload_seconds": 12.0
       },
       {
-        "name": "20mm_m61_vulcan_naval_user_cannon",
+        "name": "25mm_87_mark_38_naval_user_cannon",
+        "ammo": null,
+        "minimum": 0,
+        "effective_maximum": 6000.0,
+        "physical_maximum": 6000.0,
+        "ai_minimum": 0.05,
+        "ai_maximum": 2000.0,
+        "guidance": null,
+        "reload_seconds": 10.0
+      },
+      {
+        "name": "20mm_m61_phalanx_block1b_naval_user_cannon",
         "ammo": null,
         "minimum": 0,
         "effective_maximum": 6000.0,
@@ -1404,15 +1540,15 @@
         "ai_minimum": 0.05,
         "ai_maximum": 3000.0,
         "guidance": null,
-        "reload_seconds": 60.0
+        "reload_seconds": 605.0
       }
     ],
-    "engagement_range": 80000.0,
-    "ai_gun_range": 10000.0,
-    "ai_attack_max_radius": 30000.0,
+    "engagement_range": 240000.0,
+    "ai_gun_range": 15000.0,
+    "ai_attack_max_radius": 35000.0,
     "ai_shell_max_radius": 40000.0,
-    "ai_target_priority_max_radius": 60000.0,
-    "ai_engagement_range": 30000.0
+    "ai_target_priority_max_radius": 100000.0,
+    "ai_engagement_range": 80000.0
   },
   "us_frigate_oliver_hazard_perry": {
     "unit_class": "us_frigate_oliver_hazard_perry",
@@ -1427,11 +1563,9 @@
         "kind": "detection",
         "nominal": 120000.0,
         "maximum": 150000.0,
-        "band": 0,
+        "band": 6,
         "scope_ranges": [
-          10000.0,
-          20000.0,
-          50000.0
+          60000.0
         ],
         "designation_range": 150000.0,
         "ai": false,
@@ -1452,26 +1586,15 @@
     },
     "weapons": [
       {
-        "name": "rocket_mk13_naval_rocket_launcher",
+        "name": "rocket_mk13_ai_naval_rocket_launcher",
         "ammo": 41,
-        "minimum": 3000.0,
-        "effective_maximum": 80000.0,
-        "physical_maximum": 80000.0,
+        "minimum": 0,
+        "effective_maximum": 14000.0,
+        "physical_maximum": 14500.0,
         "ai_minimum": 3500.0,
         "ai_maximum": 56300.0,
-        "guidance": "radar",
+        "guidance": "saclos",
         "reload_seconds": 10.0
-      },
-      {
-        "name": "76mm_62_oto_melara_compact_naval_user_cannon",
-        "ammo": null,
-        "minimum": 0,
-        "effective_maximum": 20000.0,
-        "physical_maximum": 20000.0,
-        "ai_minimum": 0.05,
-        "ai_maximum": 4500.0,
-        "guidance": null,
-        "reload_seconds": 0.705
       },
       {
         "name": "20mm_m61_vulcan_naval_user_cannon",
@@ -1483,13 +1606,24 @@
         "ai_maximum": 3000.0,
         "guidance": null,
         "reload_seconds": 60.0
+      },
+      {
+        "name": "76mm_62_oto_melara_compact_naval_user_cannon",
+        "ammo": null,
+        "minimum": 0,
+        "effective_maximum": 5000.0,
+        "physical_maximum": 5000.0,
+        "ai_minimum": 0.05,
+        "ai_maximum": 4500.0,
+        "guidance": null,
+        "reload_seconds": 0.705
       }
     ],
-    "engagement_range": 80000.0,
+    "engagement_range": 14000.0,
     "ai_gun_range": 4500.0,
     "ai_attack_max_radius": 56300.0,
     "ai_shell_max_radius": 56300.0,
-    "ai_target_priority_max_radius": 60000.0,
+    "ai_target_priority_max_radius": 100000.0,
     "ai_engagement_range": 56300.0
   },
   "us_m109a1": {
@@ -2241,6 +2375,35 @@
     "ai_target_priority_max_radius": null,
     "ai_engagement_range": 50000.0
   },
+  "ussr_ai_tbm_9k720_m_iskander": {
+    "unit_class": "ussr_ai_tbm_9k720_m_iskander",
+    "model": "iskander_m",
+    "unit_type": "typeLightTank",
+    "on_radar_as": "tbm_launcher",
+    "exp_class": "exp_tank",
+    "maximum_speed_kph": 75.0,
+    "target_channels": null,
+    "sensors": {},
+    "weapons": [
+      {
+        "name": "920mm_9k720_m_rocket_launcher",
+        "ammo": 2,
+        "minimum": 15000.0,
+        "effective_maximum": 70000.0,
+        "physical_maximum": 70000.0,
+        "ai_minimum": 15000.0,
+        "ai_maximum": 70000.0,
+        "guidance": "sns",
+        "reload_seconds": 15.0
+      }
+    ],
+    "engagement_range": 70000.0,
+    "ai_gun_range": null,
+    "ai_attack_max_radius": 70000.0,
+    "ai_shell_max_radius": null,
+    "ai_target_priority_max_radius": null,
+    "ai_engagement_range": 70000.0
+  },
   "ussr_ai_tbm_9k79_tochka": {
     "unit_class": "ussr_ai_tbm_9k79_tochka",
     "model": "9k79_tochka",
@@ -2332,7 +2495,7 @@
     "ai_gun_range": 4000.0,
     "ai_attack_max_radius": 12000.0,
     "ai_shell_max_radius": 20000.0,
-    "ai_target_priority_max_radius": 30000.0,
+    "ai_target_priority_max_radius": 100000.0,
     "ai_engagement_range": 8500.0
   },
   "ussr_aircraftcarrier_baku_ai": {
@@ -2659,7 +2822,7 @@
     "ai_gun_range": 10000.0,
     "ai_attack_max_radius": 35000.0,
     "ai_shell_max_radius": 35000.0,
-    "ai_target_priority_max_radius": 60000.0,
+    "ai_target_priority_max_radius": 80000.0,
     "ai_engagement_range": 35000.0
   },
   "ussr_mpk_pr_1124_ec": {

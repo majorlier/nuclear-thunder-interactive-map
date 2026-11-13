@@ -20,6 +20,8 @@
   "variant.mirror": "Swapped locations",
   "variant.city": "South Eastern City",
   "variant.city_mirror": "South Eastern City — swapped locations",
+  "variant.kamchatka": "Kamchatka",
+  "variant.kamchatka_mirror": "Kamchatka — swapped locations",
 
   "scenario.label": "Scenario",
   "scenario.loading": "Loading scenarios…",

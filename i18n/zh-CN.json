@@ -20,6 +20,8 @@
   "variant.mirror": "交换位置",
   "variant.city": "东南渔湾",
   "variant.city_mirror": "东南渔湾 — 交换位置",
+  "variant.kamchatka": "焚风山谷",
+  "variant.kamchatka_mirror": "焚风山谷 — 交换位置",
 
   "scenario.label": "场景",
   "scenario.loading": "正在加载场景…",

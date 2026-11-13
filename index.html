@@ -1482,7 +1482,7 @@
     </div>
 
     <p class="feedback-contact"><span data-i18n="app.updated"
-        data-i18n-args='{"version":"2.60.0.20"}'>Updated 2.60.0.20</span><br><span
+        data-i18n-args='{"version":"2.61.0.17"}'>Updated 2.61.0.17</span><br><span
         data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
 </div>
 
@@ -1747,7 +1747,7 @@
             mapCoord0: [-65536, -65536],
             mapCoord1: [65536, 65536]
         },
-        // Added in 2.60. The datamine has no mirrored mission yet. The level's
+        // Added in 2.60; its mirrored mission arrived in 2.61. The level's
         // road extraction yields a single decal road and its navigation
         // mesh is a flat 73-triangle placeholder, so neither is used and
         // convoys show straight-line previews.
@@ -1755,10 +1755,10 @@
             id: "kamchatka",
             label: "Kamchatka",
             image: KAMCHATKA_MAP_IMAGE,
-            variants: ["kamchatka"],
+            variants: ["kamchatka", "kamchatka_mirror"],
             defaultVariant: "kamchatka",
-            mirroredVariant: null,
-            supportsTeamSwap: false,
+            mirroredVariant: "kamchatka_mirror",
+            supportsTeamSwap: true,
             supportsTerrain: true,
             terrainImage: KAMCHATKA_TERRAIN_HEIGHT_IMAGE,
             terrainOverlay: KAMCHATKA_TOPOGRAPHIC_IMAGE,
@@ -6401,6 +6401,14 @@
             if (!response.ok) throw httpError("mission_logic_kamchatka.json", response);
             return response.json();
         }),
+        fetch("map_data_kamchatka_mirror.json").then(response => {
+            if (!response.ok) throw httpError("map_data_kamchatka_mirror.json", response);
+            return response.json();
+        }),
+        fetch("mission_logic_kamchatka_mirror.json").then(response => {
+            if (!response.ok) throw httpError("mission_logic_kamchatka_mirror.json", response);
+            return response.json();
+        }),
         fetch("presets.json").then(response => {
             if (!response.ok) throw httpError("presets.json", response);
             return response.json();
@@ -6437,6 +6445,8 @@
             cityMirrorLogicData,
             kamchatkaSiteData,
             kamchatkaLogicData,
+            kamchatkaMirrorSiteData,
+            kamchatkaMirrorLogicData,
             presetData,
             unitSpecs,
             unitDisplayNames,
@@ -6450,14 +6460,16 @@
                 mirror: mirrorSiteData,
                 city: citySiteData,
                 city_mirror: cityMirrorSiteData,
-                kamchatka: kamchatkaSiteData
+                kamchatka: kamchatkaSiteData,
+                kamchatka_mirror: kamchatkaMirrorSiteData
             };
             globalMissionLogicVariants = {
                 standard: standardLogicData,
                 mirror: mirrorLogicData,
                 city: cityLogicData,
                 city_mirror: cityMirrorLogicData,
-                kamchatka: kamchatkaLogicData
+                kamchatka: kamchatkaLogicData,
+                kamchatka_mirror: kamchatkaMirrorLogicData
             };
             globalPresetData = presetData;
             globalUnitSpecs = unitSpecs;
