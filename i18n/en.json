@@ -5,6 +5,9 @@
   "app.title": "Nuclear Thunder Interactive Map",
   "app.updated": "Updated {version}",
   "app.feedback": "Feedback: Discord @majorlier",
+  "update.available": "The map was updated to {version}.",
+  "update.reload": "Reload",
+  "update.dismiss": "Dismiss",
 
   "controls.collapse": "Collapse left controls",
   "controls.expand": "Expand left controls",
@@ -29,8 +32,9 @@
   "preset.rank-0-26": "1970 Early",
   "preset.rank-27-30": "1970 Late",
   "preset.rank-31-36": "1980",
-  "preset.rank-37-39": "2018 1",
-  "preset.rank-40-50": "2018 2",
+  "preset.rank-37-38": "2018 1",
+  "preset.rank-39-39": "2018 2",
+  "preset.rank-40-50": "2018 3",
 
   "team.redfor": "REDFOR",
   "team.blufor": "BLUFOR",

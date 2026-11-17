@@ -3,7 +3,7 @@
 import unittest
 
 from build_map_data import (
-    TemplateRegistry, create_buildings, imported_documents,
+    TemplateRegistry, create_buildings, discover_presets, imported_documents,
     launcher_spawn_area_name, lifecycle_for_unit, mission_site_category,
     mission_spawn_rank_rules, ship_with_mission_route, spawned_at_rank,
     trigger_objects_exist, unit_spawn_rank_rules,
@@ -184,6 +184,33 @@ class MissionExtractionTests(unittest.TestCase):
         self.assertEqual(
             [(rule["object"], rule["system"], rule["trigger"]) for rule in rules],
             [("t1_mlrs_01", "MLRS", "spawn_mlrs_01")],
+        )
+
+    def test_era_split_imports_add_scenario_boundaries(self):
+        # Templates switch at 37 and 40, but the 2000-era ship set starts at
+        # 39, so 37-39 would mix two fleets in one scenario.
+        site = {"additionalEcsTemplates": {
+            "assembly_area_1980": {"rankRange": [31, 36]},
+            "assembly_area_2018_1": {"rankRange": [37, 39]},
+            "assembly_area_2018_2": {"rankRange": [40, 50]},
+        }}
+        sets = "gameData/missions/templates/units_sets/nuclear_escalation_ship_sets/"
+        mission = {
+            "units": {"objectGroups": [site]},
+            "imports": {"import_record": [{"file": sets + "nuclear_escalation_ships.blk"}]},
+        }
+        documents = {"nuclear_escalation_ships": {"imports": {"import_record": [
+            {"file": sets + "nuclear_escalation_ships_1980.blk", "rankRange": [31, 38]},
+            {"file": sets + "nuclear_escalation_ships_2000.blk", "rankRange": [39, 50]},
+        ]}}}
+        self.assertEqual(
+            [preset["rank_range"] for preset in discover_presets(mission)],
+            [[31, 36], [37, 39], [40, 50]],
+        )
+        self.assertEqual(
+            [(preset["rank_range"], preset["label"]) for preset in discover_presets(mission, documents)],
+            [([31, 36], "1980"), ([37, 38], "2018 1"), ([39, 39], "2018 2"),
+             ([40, 50], "2018 3")],
         )
 
     def test_mlrs_spawn_only_above_1970_rank_boundary(self):
