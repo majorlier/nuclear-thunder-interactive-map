@@ -120,6 +120,25 @@ variants and unit/range data, and records the source commit in
 `datamine-lock.json`. Review the generated files and the map preview before
 committing or merging the update proposal.
 
+### Releases and cache refresh
+
+Every published change carries a release number, `<game version>-<revision>`
+(for example `2.61.0.25-2`), stored in `version.json` and in `APP_VERSION` in
+`index.html`. The page requests its data and map images as `file?v=<release>`,
+so visitors get fresh files as soon as a new release is published (no Ctrl+F5)
+and reuse their cache while it stays the same. A tab that is already open
+checks `version.json` every few minutes and offers a reload when it changes.
+
+The updater bumps the release whenever it changes map data. For any other
+change you publish (images, terrain, fixes), bump it yourself:
+
+```text
+python tools/bump_version.py 2.61.0.25   # first release for a new game version
+python tools/bump_version.py             # another release of the same version
+```
+
+`tools/check_frontend.js` fails if the two copies of the number differ.
+
 For unit definitions from your local full checkout, add
 `--aces-root F:\WT_Stuff\War-Thunder-Datamine\aces.vromfs.bin_u`; the mission
 inputs still come from the configured datamine revision unless you change the

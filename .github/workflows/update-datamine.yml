@@ -68,3 +68,5 @@ jobs:
             unit_display_names.json
             unit_weapon_display_names.json
             datamine-lock.json
+            version.json
+            index.html

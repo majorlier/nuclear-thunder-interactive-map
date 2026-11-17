@@ -98,6 +98,23 @@ python tools/extract_roads.py "<War Thunder>\levels\air_kamchatka.bin" --include
 `http://localhost:8000`（例如运行 `python -m http.server 8000`）。直接用磁盘打开
 `index.html` 在多数浏览器中会被数据文件的加载策略拦住。
 
+### 发布与缓存刷新
+
+每次发布都有一个版本号 `<游戏版本>-<修订号>`（例如 `2.61.0.25-2`），保存在
+`version.json` 以及 `index.html` 的 `APP_VERSION` 中。页面以 `文件?v=<版本号>`
+的形式请求数据和地图图片，因此新版本发布后访客无需 Ctrl+F5 就能拿到新文件，
+版本不变时则继续使用缓存。已经打开的页面每隔几分钟检查一次 `version.json`，
+发现新版本时会提示重新加载。
+
+更新器在改动地图数据时会自动提升版本号。其他发布（图片、地形、修复）需手动提升：
+
+```text
+python tools/bump_version.py 2.61.0.25   # 新游戏版本的第一次发布
+python tools/bump_version.py             # 同一游戏版本的下一次发布
+```
+
+两处版本号不一致时，`tools/check_frontend.js` 会报错。
+
 更新器也可以手动运行：`python tools/update_from_datamine.py`。它会下载锁定版本的
 "核升级"输入，重新生成全部六个地图变体以及单位/射程数据，并把来源提交记录在
 `datamine-lock.json` 中。提交或合并更新提案前，请先审阅生成的文件和地图预览。

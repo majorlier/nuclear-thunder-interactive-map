@@ -480,12 +480,37 @@ def mission_object_groups(mission):
     ]
 
 
-def discover_presets(mission):
+def import_rank_ranges(mission, documents):
+    """Rank ranges of every import the mission makes, nested ones included.
+
+    Era-split imports (ship and TBM sets) can switch at a rank where no
+    mission template does: since 2.60.0.27 the 2000-era ships and TBMs start
+    at rank 39, inside the 37-39 template era.
+    """
+    ranges = []
+    for document in [mission, *imported_documents(mission, documents or {})]:
+        imports = document.get("imports", {})
+        records = imports.get("import_record", []) if isinstance(imports, dict) else []
+        if isinstance(records, dict):
+            records = [records]
+        for record in records if isinstance(records, list) else []:
+            rank_range = record.get("rankRange") if isinstance(record, dict) else None
+            if (
+                isinstance(rank_range, list)
+                and len(rank_range) >= 2
+                and all(isinstance(value, int) for value in rank_range[:2])
+            ):
+                ranges.append((rank_range[0], rank_range[1]))
+    return ranges
+
+
+def discover_presets(mission, documents=None):
     """Create non-overlapping scenario presets from the mission's rank ranges.
 
     This deliberately does not assume that an event has 1970/1980/2018
     presets. New boundaries in a future mission become new UI choices without
-    requiring a hand edit here.
+    requiring a hand edit here. Imported unit sets (``documents``) add their
+    own boundaries, so every preset shows one consistent set of units.
     """
     ranges = []
     for site in mission_object_groups(mission):
@@ -506,6 +531,8 @@ def discover_presets(mission):
                     and all(isinstance(value, int) for value in rank_range[:2])
                 ):
                     ranges.append((rank_range[0], rank_range[1]))
+    if ranges:
+        ranges.extend(import_rank_ranges(mission, documents))
 
     if not ranges:
         return [{"id": "rank-0-50", "label": "Rank 0–50", "rank": 0, "rank_range": [0, 50]}]
@@ -833,7 +860,7 @@ def main():
     mission_data = load_json(args.mission)
     if not isinstance(mission_data, dict):
         raise SystemExit(f"Invalid mission file: {args.mission}")
-    presets = discover_presets(mission_data)
+    presets = discover_presets(mission_data, documents)
     rank_rules_by_rank = {
         preset["rank"]: mission_spawn_rank_rules(mission_data, documents, preset["rank"])
         for preset in presets

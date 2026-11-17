@@ -5,6 +5,9 @@
   "app.title": "Nuclear Thunder 互动地图",
   "app.updated": "更新于 {version}",
   "app.feedback": "反馈：Discord @majorlier",
+  "update.available": "地图已更新至 {version}。",
+  "update.reload": "重新加载",
+  "update.dismiss": "关闭",
 
   "controls.collapse": "收起左侧控制面板",
   "controls.expand": "展开左侧控制面板",
@@ -29,8 +32,9 @@
   "preset.rank-0-26": "1970 早期",
   "preset.rank-27-30": "1970 后期",
   "preset.rank-31-36": "1980",
-  "preset.rank-37-39": "2018 一期",
-  "preset.rank-40-50": "2018 二期",
+  "preset.rank-37-38": "2018 一期",
+  "preset.rank-39-39": "2018 二期",
+  "preset.rank-40-50": "2018 三期",
 
   "team.redfor": "红方",
   "team.blufor": "蓝方",

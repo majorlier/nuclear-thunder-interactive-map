@@ -52,6 +52,36 @@
             transform: translateX(calc(-100% - 12px));
         }
 
+        .update-banner {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: calc(100vw - 32px);
+            padding: 8px 10px 8px 14px;
+            border: 1px solid #f6e05e;
+            border-radius: 6px;
+            background: rgba(13, 17, 23, .96);
+            color: #e2e8f0;
+            font: 600 13px/1.3 sans-serif;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+        }
+        .update-banner[hidden] { display: none; }
+        .update-banner button {
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            background: #2d3748;
+            color: #fff;
+            font: inherit;
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+        .update-banner .update-reload { border-color: #f6e05e; color: #f6e05e; }
+
         .feedback-contact {
             margin: 12px 0 0;
             padding-top: 9px;
@@ -1433,6 +1463,11 @@
     </style>
 </head>
 <body>
+<div id="update-banner" class="update-banner" role="status" hidden>
+    <span id="update-banner-text" data-i18n="update.available">A newer version of the map is available.</span>
+    <button type="button" class="update-reload" id="update-reload" data-i18n="update.reload">Reload</button>
+    <button type="button" id="update-dismiss" data-i18n-aria="update.dismiss" aria-label="Dismiss">×</button>
+</div>
 
 <div class="info-panel">
     <div class="title" data-i18n="app.title">Nuclear Thunder Interactive Map</div>
@@ -1482,7 +1517,7 @@
     </div>
 
     <p class="feedback-contact"><span data-i18n="app.updated"
-        data-i18n-args='{"version":"2.61.0.25"}'>Updated 2.61.0.25</span><br><span
+        data-i18n-args='{"version":"2.61.0.25-2"}'>Updated 2.61.0.25-2</span><br><span
         data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
 </div>
 
@@ -1501,6 +1536,23 @@
 <div id="map"></div>
 
 <script>
+    // ---- Release version ------------------------------------------------------
+    // One number per published release: the game version plus a revision for
+    // several releases of the same patch (2.61.0.25-1, 2.61.0.25-2, ...).
+    // tools/bump_version.py keeps it equal to version.json, which
+    // tools/check_frontend.js enforces.
+    const APP_VERSION = "2.61.0.25-2";
+    // Local data and images are requested with ?v=<release>, so a new release
+    // never mixes with files a browser or the host cached from the previous
+    // one, and nothing is downloaded again while the release is unchanged.
+    function assetUrl(path) {
+        if (typeof path !== "string" || !path || /^(?:[a-z]+:|\/\/)/i.test(path)) return path;
+        if (/[?&]v=/.test(path)) return path;
+        return `${path}${path.includes("?") ? "&" : "?"}v=${encodeURIComponent(APP_VERSION)}`;
+    }
+    // Every fetch() in this page goes through the same versioning.
+    const nativeFetch = (...args) => globalThis.fetch(...args);
+    const fetch = (input, init) => nativeFetch(assetUrl(input), init);
     // ---- Internationalisation -------------------------------------------------
     // User-facing copy lives in i18n/<locale>.json. The English text is also
     // kept in the markup so the page paints before the packs arrive;
@@ -1680,11 +1732,11 @@
         });
     }
 
-    const MAP_IMAGE = "map_4k.png";
-    const TOPOGRAPHIC_IMAGE = "topographic_map.webp";
-    const TERRAIN_HEIGHT_IMAGE = "terrain_height_16bit.webp";
-    const CITY_TOPOGRAPHIC_IMAGE = "generated/southeastern_city_heightmap/southeastern_city_topography.webp";
-    const CITY_TERRAIN_HEIGHT_IMAGE = "generated/southeastern_city_heightmap/southeastern_city_height_16bit.webp";
+    const MAP_IMAGE = assetUrl("map_4k.png");
+    const TOPOGRAPHIC_IMAGE = assetUrl("topographic_map.webp");
+    const TERRAIN_HEIGHT_IMAGE = assetUrl("terrain_height_16bit.webp");
+    const CITY_TOPOGRAPHIC_IMAGE = assetUrl("generated/southeastern_city_heightmap/southeastern_city_topography.webp");
+    const CITY_TERRAIN_HEIGHT_IMAGE = assetUrl("generated/southeastern_city_heightmap/southeastern_city_height_16bit.webp");
     const IMG_SIZE = 4096;
     const LOS_GRID_SIZE = 256;
     // Threat coverage sweeps every emitter across the whole map. Work grows
@@ -1692,10 +1744,10 @@
     // map (512 cells on Archipelago, 256 on the smaller City) to stay
     // interactive.
     const THREAT_CELL_METERS = 512;
-    const CITY_MAP_IMAGE = "air_south_eastern_city_map.png";
-    const KAMCHATKA_MAP_IMAGE = "air_kamchatka_map.png";
-    const KAMCHATKA_TOPOGRAPHIC_IMAGE = "generated/kamchatka_heightmap/kamchatka_topography.webp";
-    const KAMCHATKA_TERRAIN_HEIGHT_IMAGE = "generated/kamchatka_heightmap/kamchatka_height_16bit.webp";
+    const CITY_MAP_IMAGE = assetUrl("air_south_eastern_city_map.png");
+    const KAMCHATKA_MAP_IMAGE = assetUrl("air_kamchatka_map.png");
+    const KAMCHATKA_TOPOGRAPHIC_IMAGE = assetUrl("generated/kamchatka_heightmap/kamchatka_topography.webp");
+    const KAMCHATKA_TERRAIN_HEIGHT_IMAGE = assetUrl("generated/kamchatka_heightmap/kamchatka_height_16bit.webp");
     const MAP_DEFINITIONS = {
         archipelago: {
             id: "archipelago",
@@ -1783,6 +1835,46 @@
             mapCoord1: [65536, 65536]
         }
     };
+
+    {
+        const updatedLabel = document.querySelector('[data-i18n="app.updated"]');
+        if (updatedLabel) {
+            updatedLabel.dataset.i18nArgs = JSON.stringify({ version: APP_VERSION });
+            updatedLabel.textContent = `Updated ${APP_VERSION}`;
+        }
+    }
+
+    // A tab left open keeps the release it loaded. Check the published
+    // version.json (never from cache) every few minutes and when the tab is
+    // shown again, and offer a reload when a newer release is out.
+    {
+        const banner = document.getElementById("update-banner");
+        let dismissedVersion = null;
+        async function checkForNewRelease() {
+            try {
+                const response = await nativeFetch(`version.json?t=${Date.now()}`, { cache: "no-store" });
+                if (!response.ok) return;
+                const published = String((await response.json())?.version || "");
+                if (!published || published === APP_VERSION || published === dismissedVersion) return;
+                document.getElementById("update-banner-text").textContent =
+                    t("update.available", { version: published });
+                banner.hidden = false;
+                banner.dataset.version = published;
+            } catch (error) {
+                // Offline or blocked: keep using the loaded release quietly.
+            }
+        }
+        document.getElementById("update-reload").addEventListener("click", () => location.reload());
+        document.getElementById("update-dismiss").addEventListener("click", () => {
+            dismissedVersion = banner.dataset.version || null;
+            banner.hidden = true;
+        });
+        setInterval(checkForNewRelease, 5 * 60 * 1000);
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible") checkForNewRelease();
+        });
+        setTimeout(checkForNewRelease, 15 * 1000);
+    }
     // Map, scenario, side, icon and drawer choices persist between visits under one
     // namespaced key. Storage may be blocked or throw, and stored values may
     // be stale after a data update, so every consumer validates its field and
@@ -3433,7 +3525,8 @@
             };
             const lower = toBr(range[0], true);
             const upper = toBr(range[1]);
-            if (lower && upper) return `${lower}–${upper}`;
+            // A one-rank scenario (2018 2 is rank 39 only) has a single BR.
+            if (lower && upper) return lower === upper ? lower : `${lower}–${upper}`;
         }
         return t("scenario.brUnset");
     }

@@ -1,5 +1,6 @@
 {
   "required": [
+    "version.json",
     "favicon.svg",
     "favicon.ico",
     "map_4k.png",

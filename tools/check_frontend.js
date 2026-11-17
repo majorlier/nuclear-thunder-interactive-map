@@ -41,6 +41,16 @@ for (const definition of Object.values(definitions)) {
 }
 assert.deepEqual([...displayed].sort(), [...declared].sort());
 
+// The release number shown on the page and the one open tabs poll for must be
+// the same, or every visitor would be told to reload forever.
+const versionFile = JSON.parse(fs.readFileSync(path.join(root, "version.json"), "utf8"));
+const pageVersion = html.match(/const APP_VERSION = "([^"]+)";/);
+assert(pageVersion, "APP_VERSION missing from index.html");
+assert.match(versionFile.version, /^\d+\.\d+\.\d+\.\d+-\d+$/,
+    "version.json must look like 2.61.0.25-1");
+assert.equal(pageVersion[1], versionFile.version,
+    "index.html APP_VERSION differs from version.json; run tools/bump_version.py");
+
 // Keep continuous height sampling when regenerating either terrain raster.
 const terrainFunction = html.match(/    function terrainHeightAtMapPoint\([^]*?^    \}/m);
 assert(terrainFunction, "Bilinear terrain sampler missing");
@@ -58,7 +68,7 @@ for (const definition of Object.values(definitions)) {
     assert.equal(meta.height_encoding.step_m, 0.25);
     assert.equal(meta.height_encoding.min_m, definition.terrainEncoding.min_m,
         `${definition.id}: initial terrain encoding differs from metadata`);
-    assert.equal(meta.height_encoding.image, path.basename(definition.terrainImage));
+    assert.equal(meta.height_encoding.image, path.basename(definition.terrainImage.split("?")[0]));
     assert.equal(meta.world_bounds_m[0], definition.mapCoord0[0]);
     assert.equal(meta.world_bounds_m[1], definition.mapCoord1[0]);
     if (definition.supportsRoads) {

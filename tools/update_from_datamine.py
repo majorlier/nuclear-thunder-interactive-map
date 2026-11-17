@@ -7,6 +7,7 @@ from collections import Counter
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -20,6 +21,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 DEFAULT_MANIFEST = TOOLS / "datamine_sources.json"
+sys.path.insert(0, str(TOOLS))
+import bump_version  # noqa: E402  (sibling tool module)
 def load_json(path: Path):
     with path.open("r", encoding="utf-8") as source:
         return json.load(source)
@@ -62,10 +65,17 @@ def git_blob_sha(content: bytes) -> str:
     return hashlib.sha1(header + content).hexdigest()
 
 
-def resolve_commit(repository: str, ref: str) -> str:
+def resolve_commit(repository: str, ref: str) -> tuple[str, str | None]:
+    """Commit SHA and, when its message names one, the game version.
+
+    The War Thunder datamine titles each commit with the client version
+    (for example ``2.61.0.25``).
+    """
     encoded_ref = urllib.parse.quote(ref, safe="")
     value = github_json(f"https://api.github.com/repos/{repository}/commits/{encoded_ref}")
-    return value["sha"]
+    title = str(value.get("commit", {}).get("message", "")).strip().splitlines()
+    match = re.fullmatch(r"\d+\.\d+\.\d+\.\d+", title[0].strip()) if title else None
+    return value["sha"], match.group(0) if match else None
 
 
 def run(command: list[str]) -> None:
@@ -355,6 +365,11 @@ def main() -> int:
         help="Use a known upstream commit instead of resolving the manifest ref.",
     )
     parser.add_argument(
+        "--game-version",
+        help="Game version of --commit (e.g. 2.61.0.25); read from the commit "
+        "title when the commit is resolved through the GitHub API.",
+    )
+    parser.add_argument(
         "--check",
         action="store_true",
         help="Report differences without changing repository files.",
@@ -379,7 +394,11 @@ def main() -> int:
     manifest = load_json(args.manifest)
     repository = manifest["repository"]
     ref = manifest.get("ref", "master")
-    commit = args.commit or resolve_commit(repository, ref)
+    if args.commit:
+        commit, game_version = args.commit, args.game_version
+    else:
+        commit, game_version = resolve_commit(repository, ref)
+        game_version = args.game_version or game_version
     print(f"Datamine: {repository}@{commit}")
 
     source_records: list[dict] = []
@@ -819,6 +838,16 @@ def main() -> int:
             for name in changed_files:
                 shutil.copyfile(generated / name, ROOT / name)
             print("Updated repository files. Review and validate them before publishing.")
+            # A data change is a new release: open tabs offer a reload and
+            # browsers fetch the new files. A lock-only change is not.
+            if any(name != "datamine-lock.json" for name in changed_files):
+                previous, release = bump_version.bump(game_version)
+                print(f"Release {previous} -> {release}")
+                if not game_version:
+                    print(
+                        "WARNING: game version unknown; bumped the revision. Pass "
+                        "--game-version or run tools/bump_version.py <version>."
+                    )
         elif changed:
             print("Check-only mode: repository files were not changed.")
 
