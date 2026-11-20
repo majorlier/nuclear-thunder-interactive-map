@@ -1,7 +1,7 @@
 {
   "repository": "gszabi99/War-Thunder-Datamine",
   "ref": "master",
-  "accepted_commit": "4280398e434cba0e5a56f703ce380de1cecf8abc",
+  "accepted_commit": "6ee0add55df2612ca6100885f60db603c54ed606",
   "sources": [
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/common.blkx",
@@ -10,12 +10,12 @@
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/airfields.blkx",
-      "sha": "9395dc83284d405058e44fde4ce592aa393ed91a",
+      "sha": "f918cbd9a857ca76280888ba42445ded28f9520c",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/strongpoints.blkx",
-      "sha": "371af4f0e0d023aa2558d4c66ac8a2e16e3af04d",
+      "sha": "302356cc5d5759989b5e35ebebe379cee626cc56",
       "used_for_generation": true
     },
     {
@@ -25,17 +25,17 @@
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_tank.blkx",
-      "sha": "0f90e381d310bb57f58221911e381be640da4832",
+      "sha": "51940973f110ca6fafca59a5ab38ee75013ae526",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_equip.blkx",
-      "sha": "42733ecc4f590f1acadd3b502ef27e553d5a3f62",
+      "sha": "eaca7845d1d87b782d06ecd4bd10e62c93009523",
       "used_for_generation": true
     },
     {
       "path": "aces.vromfs.bin_u/templates/nuclear_escalation/factory_air_defence_presets.blkx",
-      "sha": "a160b2ba200d882b959fed6e8891f29efd65e7e9",
+      "sha": "8ba2f8cdb306f5bc79d7c7aafff1c58ae18ba1d7",
       "used_for_generation": true
     },
     {
@@ -105,32 +105,32 @@
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_nuclear_escalation_tdm.blkx",
-      "sha": "a143bd121f740295c23306f5c11ac0b6ecaa8601",
+      "sha": "70e62c058319204d5eaecdeb1394b6dd341f743f",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_archipelago_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "031ef43349dfe066486fe79d2ace54b1ff209802",
+      "sha": "91d9e014572972ac631f2c167ba5ba7b6a8a05a5",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_nuclear_escalation_tdm.blkx",
-      "sha": "fccf2ec3869903cc218ed416f48847ce889ac873",
+      "sha": "f5f20304a74bafe8ba3de1cc900ffbad4a002861",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_south_eastern_city_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "93fd62935f2423410de29f37c3bf1a9c0f67813c",
+      "sha": "97ffaf117fa757ab9a881e1b926ead104ffb18fe",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_kamchatka_nuclear_escalation_tdm.blkx",
-      "sha": "fb320a02bff66a8463f9d50eed6750959db2d804",
+      "sha": "50a1f5a52225f5a82399cf6062ece3ec097b4cf1",
       "used_for_generation": true
     },
     {
       "path": "mis.vromfs.bin_u/gamedata/missions/cta/planes/nuclear_escalation/air_kamchatka_mirror_nuclear_escalation_tdm.blkx",
-      "sha": "b27c65c19c15cb83d7cbb45d0eee621de1325ee0",
+      "sha": "82d5aadeb529804d23abc6c16f73397f81bd6e3f",
       "used_for_generation": true
     },
     {
@@ -175,12 +175,12 @@
     },
     {
       "path": "lang.vromfs.bin_u/lang/units.csv",
-      "sha": "63cab6ddcbd022ce8a529b4cb583dbc5f7175b0f",
+      "sha": "f1af9c027d57bcfdf269f8cfe539ac9b56507f19",
       "used_for_generation": true
     },
     {
       "path": "lang.vromfs.bin_u/lang/units_weaponry.csv",
-      "sha": "47a0bf5b8d9388a6281fa317a9931e4adfe4ec3f",
+      "sha": "77f89c039cd1efa8de26a9c18b06f5c64189b735",
       "used_for_generation": true
     },
     {
