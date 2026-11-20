@@ -1517,7 +1517,7 @@
     </div>
 
     <p class="feedback-contact"><span data-i18n="app.updated"
-        data-i18n-args='{"version":"2.61.0.33-1"}'>Updated 2.61.0.33-1</span><br><span
+        data-i18n-args='{"version":"2.61.0.33-2"}'>Updated 2.61.0.33-2</span><br><span
         data-i18n="app.feedback">Feedback: Discord @majorlier</span></p>
 </div>
 
@@ -1541,7 +1541,7 @@
     // several releases of the same patch (2.61.0.25-1, 2.61.0.25-2, ...).
     // tools/bump_version.py keeps it equal to version.json, which
     // tools/check_frontend.js enforces.
-    const APP_VERSION = "2.61.0.33-1";
+    const APP_VERSION = "2.61.0.33-2";
     // Local data and images are requested with ?v=<release>, so a new release
     // never mixes with files a browser or the host cached from the previous
     // one, and nothing is downloaded again while the release is unchanged.
@@ -1560,7 +1560,7 @@
     // scenario names are translated from the data files instead (displayName),
     // so a data update never has to touch this dictionary.
     const I18N_DIRECTORY = "i18n/";
-    const I18N_SUPPORTED_LOCALES = ["en", "zh-CN"];
+    const I18N_SUPPORTED_LOCALES = ["en", "zh-CN", "ru"];
     const I18N_FALLBACK_LOCALE = "en";
     const i18nPacks = {};
     let i18nLocale = I18N_FALLBACK_LOCALE;

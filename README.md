@@ -28,8 +28,8 @@ Community-built interactive reference map for War Thunder's Nuclear Escalation e
   altitude above ground or sea level, including terrain masking. It uses the
   same extracted ranges as the range rings and does not model SAM altitude
   limits, radar clutter, or Earth curvature.
-- Use **Language** to switch the interface between English and Simplified
-  Chinese. The first visit follows the browser preference; the choice is then
+- Use **Language** to switch the interface between English, Simplified
+  Chinese and Russian. The first visit follows the browser preference; the choice is then
   remembered.
 - The selected map, scenario, side, icon style, language, drawer states, and
   threat settings are remembered in the browser between visits.
@@ -219,7 +219,7 @@ SVGs; team colour is applied by the map when rendered.
 Readable unit names come from the datamine localization table
 `lang.vromfs.bin_u/lang/units.csv` (the `_0` row is the full name). That table
 has one column per language; the extractor writes the languages the map
-offers (English and Simplified Chinese) in a single pass. Refresh the lookup after changing `unit_specs.json` or pulling a
+offers (English, Simplified Chinese and Russian) in a single pass. Refresh the lookup after changing `unit_specs.json` or pulling a
 new datamine:
 
 ```text
