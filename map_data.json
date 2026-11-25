@@ -8278,6 +8278,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16795.5,
+            642.044,
+            -5487.96
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16795.5,
+            642.044,
+            -5487.96
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16795.5,
+            642.044,
+            -5487.96
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -8355,6 +8430,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16795.5,
+            642.044,
+            -5487.96
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16795.5,
+            642.044,
+            -5487.96
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16795.5,
+            642.044,
+            -5487.96
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -8883,6 +9033,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -2086.41,
+            487.381,
+            -20723.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -2086.41,
+            487.381,
+            -20723.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -2086.41,
+            487.381,
+            -20723.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -8960,6 +9185,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -2086.41,
+            487.381,
+            -20723.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -2086.41,
+            487.381,
+            -20723.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -2086.41,
+            487.381,
+            -20723.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -9488,6 +9788,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            16080.0,
+            293.642,
+            -38365.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            16080.0,
+            293.642,
+            -38365.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            16080.0,
+            293.642,
+            -38365.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -9565,6 +9940,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            16080.0,
+            293.642,
+            -38365.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            16080.0,
+            293.642,
+            -38365.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            16080.0,
+            293.642,
+            -38365.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -11908,6 +12358,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -7566.29,
+            684.132,
+            -14822.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -7566.29,
+            684.132,
+            -14822.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -7566.29,
+            684.132,
+            -14822.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -11985,6 +12510,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -7566.29,
+            684.132,
+            -14822.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -7566.29,
+            684.132,
+            -14822.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -7566.29,
+            684.132,
+            -14822.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -12513,6 +13113,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            7328.1,
+            385.266,
+            -29585.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            7328.1,
+            385.266,
+            -29585.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            7328.1,
+            385.266,
+            -29585.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -12590,6 +13265,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            7328.1,
+            385.266,
+            -29585.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            7328.1,
+            385.266,
+            -29585.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            7328.1,
+            385.266,
+            -29585.1
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -13118,6 +13868,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            23979.3,
+            349.862,
+            -45676.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            23979.3,
+            349.862,
+            -45676.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            23979.3,
+            349.862,
+            -45676.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -13195,6 +14020,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            23979.3,
+            349.862,
+            -45676.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            23979.3,
+            349.862,
+            -45676.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            23979.3,
+            349.862,
+            -45676.6
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -15706,6 +16606,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16800.1,
+            513.66,
+            5611.89
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16800.1,
+            513.66,
+            5611.89
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16800.1,
+            513.66,
+            5611.89
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -15783,6 +16758,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16800.1,
+            513.66,
+            5611.89
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16800.1,
+            513.66,
+            5611.89
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -16800.1,
+            513.66,
+            5611.89
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -16479,6 +17529,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -8241.3,
+            636.001,
+            -3198.74
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -8241.3,
+            636.001,
+            -3198.74
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -8241.3,
+            636.001,
+            -3198.74
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -16556,6 +17681,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -8241.3,
+            636.001,
+            -3198.74
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -8241.3,
+            636.001,
+            -3198.74
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            -8241.3,
+            636.001,
+            -3198.74
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -17252,6 +18452,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            392.426,
+            541.178,
+            -11488.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            392.426,
+            541.178,
+            -11488.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            392.426,
+            541.178,
+            -11488.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -17329,6 +18604,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            392.426,
+            541.178,
+            -11488.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            392.426,
+            541.178,
+            -11488.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            392.426,
+            541.178,
+            -11488.5
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -18025,6 +19375,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            8318.37,
+            363.548,
+            -20076.7
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            8318.37,
+            363.548,
+            -20076.7
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            8318.37,
+            363.548,
+            -20076.7
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -18102,6 +19527,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            8318.37,
+            363.548,
+            -20076.7
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            8318.37,
+            363.548,
+            -20076.7
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            8318.37,
+            363.548,
+            -20076.7
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -18798,6 +20298,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            17509.8,
+            374.745,
+            -29243.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            17509.8,
+            374.745,
+            -29243.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            17509.8,
+            374.745,
+            -29243.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -18875,6 +20450,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            17509.8,
+            374.745,
+            -29243.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            17509.8,
+            374.745,
+            -29243.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            17509.8,
+            374.745,
+            -29243.3
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -19571,6 +21221,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            25659.8,
+            364.118,
+            -37451.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            25659.8,
+            364.118,
+            -37451.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            25659.8,
+            364.118,
+            -37451.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -19648,6 +21373,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            25659.8,
+            364.118,
+            -37451.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            25659.8,
+            364.118,
+            -37451.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            25659.8,
+            364.118,
+            -37451.2
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -20344,6 +22144,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            33578.4,
+            405.268,
+            -44221.9
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            33578.4,
+            405.268,
+            -44221.9
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            33578.4,
+            405.268,
+            -44221.9
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-39-39": [
@@ -20421,6 +22296,81 @@
             "source": "template"
           },
           "unplaced": false
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            33578.4,
+            405.268,
+            -44221.9
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 1,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            33578.4,
+            405.268,
+            -44221.9
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 2,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
+        },
+        {
+          "name": "ussr_zprk_2s6",
+          "role": "spaa",
+          "slot_type": "origin",
+          "preset": "factory_air_defence_preset_2010",
+          "world_pos": [
+            33578.4,
+            405.268,
+            -44221.9
+          ],
+          "local_pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "number": 3,
+          "count": 3,
+          "threat_range": 12000.0,
+          "template": "tank+nuclear_escalation_spaa_radar_on",
+          "lifecycle": {
+            "kind": "repair_with_site",
+            "source": "template"
+          },
+          "unplaced": true
         }
       ],
       "rank-40-50": [
@@ -35722,7 +37672,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -35738,7 +37688,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -35874,7 +37824,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -35890,7 +37840,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -36026,7 +37976,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -36042,7 +37992,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -36687,7 +38637,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -36703,7 +38653,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -36839,7 +38789,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -36855,7 +38805,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -36991,7 +38941,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -37007,7 +38957,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -37652,7 +39602,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -37668,7 +39618,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -37804,7 +39754,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -37820,7 +39770,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -37956,7 +39906,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -37972,7 +39922,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -38617,7 +40567,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -38633,7 +40583,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -38769,7 +40719,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -38785,7 +40735,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -38921,7 +40871,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -38937,7 +40887,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -39582,7 +41532,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -39598,7 +41548,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -39734,7 +41684,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -39750,7 +41700,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -39886,7 +41836,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -39902,7 +41852,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -40547,7 +42497,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -40563,7 +42513,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -40699,7 +42649,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -40715,7 +42665,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -40851,7 +42801,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -40867,7 +42817,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -41056,7 +43006,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -41208,7 +43158,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -41512,7 +43462,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -41528,7 +43478,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -41664,7 +43614,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -41680,7 +43630,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -41816,7 +43766,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -41832,7 +43782,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -42021,7 +43971,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -42173,7 +44123,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -42477,7 +44427,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -42493,7 +44443,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -42629,7 +44579,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -42645,7 +44595,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -42781,7 +44731,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -42797,7 +44747,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -42986,7 +44936,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -43138,7 +45088,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -43442,7 +45392,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -43458,7 +45408,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -43594,7 +45544,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -43610,7 +45560,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -43746,7 +45696,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -43762,7 +45712,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -43951,7 +45901,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -44103,7 +46053,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -44407,7 +46357,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -44423,7 +46373,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -44559,7 +46509,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -44575,7 +46525,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -44711,7 +46661,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -44727,7 +46677,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -44916,7 +46866,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -45068,7 +47018,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -45372,7 +47322,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -45388,7 +47338,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -45524,7 +47474,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -45540,7 +47490,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -45676,7 +47626,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -45692,7 +47642,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -45881,7 +47831,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -46033,7 +47983,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -46337,7 +48287,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -46353,7 +48303,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -46489,7 +48439,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -46505,7 +48455,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -46641,7 +48591,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -46657,7 +48607,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -61102,7 +63052,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -61118,7 +63068,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -61254,7 +63204,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -61270,7 +63220,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -61406,7 +63356,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -61422,7 +63372,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -62067,7 +64017,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -62083,7 +64033,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -62219,7 +64169,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -62235,7 +64185,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -62371,7 +64321,7 @@
           "unplaced": false
         },
         {
-          "name": "ussr_pantsyr_s1",
+          "name": "ussr_zprk_2s6",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -62387,7 +64337,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -62576,7 +64526,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -62728,7 +64678,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -63032,7 +64982,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -63048,7 +64998,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -63184,7 +65134,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -63200,7 +65150,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -63336,7 +65286,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -63352,7 +65302,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -63541,7 +65491,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -63693,7 +65643,7 @@
           "unplaced": false
         },
         {
-          "name": "us_m163_vulcan",
+          "name": "germ_flakpz_I_Gepard",
           "role": "vehicle",
           "slot_type": "tm",
           "preset": "strongpoint_1970",
@@ -63997,7 +65947,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -64013,7 +65963,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -64149,7 +66099,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -64165,7 +66115,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
@@ -64301,7 +66251,7 @@
           "unplaced": false
         },
         {
-          "name": "sw_crotale_ng",
+          "name": "germ_flarakrad",
           "role": "spaa",
           "slot_type": "tm",
           "preset": "strongpoint_2018",
@@ -64317,7 +66267,7 @@
           ],
           "number": 1,
           "count": 1,
-          "threat_range": 15000.0,
+          "threat_range": 12000.0,
           "template": "tank+nuclear_escalation_spaa_with_threat_radar",
           "lifecycle": {
             "kind": "none",
