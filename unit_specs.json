@@ -321,6 +321,61 @@
     "ai_target_priority_max_radius": 25000.0,
     "ai_engagement_range": 5000.0
   },
+  "germ_flakpz_i_gepard": {
+    "unit_class": "germ_flakpz_I_Gepard",
+    "model": "flakpz_I_gepard",
+    "unit_type": "typeSPAA",
+    "on_radar_as": null,
+    "exp_class": "exp_SPAA",
+    "maximum_speed_kph": 75.0,
+    "target_channels": null,
+    "sensors": {
+      "detection": {
+        "kind": "detection",
+        "nominal": 16000.0,
+        "maximum": 20000.0,
+        "band": 4,
+        "scope_ranges": [
+          10000.0,
+          20000.0
+        ],
+        "designation_range": 15000.0,
+        "ai": false,
+        "sensor": "de_gepard_sr",
+        "range_status": "confirmed"
+      },
+      "tracking": {
+        "kind": "tracking",
+        "nominal": 15000.0,
+        "maximum": 20000.0,
+        "band": 9,
+        "scope_ranges": [],
+        "designation_range": null,
+        "ai": false,
+        "sensor": "de_gepard_fr",
+        "range_status": "confirmed"
+      }
+    },
+    "weapons": [
+      {
+        "name": "35mm_oerlikon_kda_user_cannon",
+        "ammo": null,
+        "minimum": 0,
+        "effective_maximum": 3000.0,
+        "physical_maximum": 3000.0,
+        "ai_minimum": 0.1,
+        "ai_maximum": 3000.0,
+        "guidance": null,
+        "reload_seconds": 1.0
+      }
+    ],
+    "engagement_range": 3000.0,
+    "ai_gun_range": 3000.0,
+    "ai_attack_max_radius": null,
+    "ai_shell_max_radius": 3000.0,
+    "ai_target_priority_max_radius": 5000.0,
+    "ai_engagement_range": 3000.0
+  },
   "germ_flarakpz_1": {
     "unit_class": "germ_flarakpz_1",
     "model": "flarakpz_1",
@@ -382,10 +437,76 @@
     ],
     "engagement_range": 6300.0,
     "ai_gun_range": null,
-    "ai_attack_max_radius": 10000.0,
+    "ai_attack_max_radius": 8000.0,
     "ai_shell_max_radius": null,
     "ai_target_priority_max_radius": 25000.0,
     "ai_engagement_range": 8000.0
+  },
+  "germ_flarakrad": {
+    "unit_class": "germ_flarakrad",
+    "model": "flarakrad",
+    "unit_type": "typeSPAA",
+    "on_radar_as": "sam",
+    "exp_class": "exp_SPAA",
+    "maximum_speed_kph": 75.0,
+    "target_channels": 1,
+    "sensors": {
+      "detection": {
+        "kind": "detection",
+        "nominal": 16000.0,
+        "maximum": 20000.0,
+        "band": 3,
+        "scope_ranges": [
+          10000.0,
+          20000.0
+        ],
+        "designation_range": 16000.0,
+        "ai": false,
+        "sensor": "de_roland_sr",
+        "range_status": "confirmed"
+      },
+      "tracking": {
+        "kind": "tracking",
+        "nominal": 16000.0,
+        "maximum": 20000.0,
+        "band": 9,
+        "scope_ranges": [],
+        "designation_range": null,
+        "ai": false,
+        "sensor": "de_flarakrad_fr",
+        "range_status": "confirmed"
+      },
+      "irst": {
+        "kind": "irst",
+        "nominal": 15000.0,
+        "maximum": 16000.0,
+        "band": -1,
+        "scope_ranges": [],
+        "designation_range": null,
+        "ai": false,
+        "sensor": "de_flarakrad_fr",
+        "range_status": "confirmed"
+      }
+    },
+    "weapons": [
+      {
+        "name": "163mm_roland_vt_1_launcher_user_cannon",
+        "ammo": 10,
+        "minimum": 30.0,
+        "effective_maximum": 12000.0,
+        "physical_maximum": 12000.0,
+        "ai_minimum": 1000.0,
+        "ai_maximum": 10000.0,
+        "guidance": "saclos",
+        "reload_seconds": 5.0
+      }
+    ],
+    "engagement_range": 12000.0,
+    "ai_gun_range": null,
+    "ai_attack_max_radius": 10000.0,
+    "ai_shell_max_radius": null,
+    "ai_target_priority_max_radius": 25000.0,
+    "ai_engagement_range": 10000.0
   },
   "germ_pzh_2000": {
     "unit_class": "germ_pzh_2000",
