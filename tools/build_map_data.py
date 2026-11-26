@@ -144,11 +144,68 @@ class TemplateRegistry:
             visit(name)
         return ordered
 
+    def resolved_components(self, template_name):
+        """Components of one entity, composed the way the game's ECS does it.
+
+        Each ``_use`` parent is applied in order and the template's own
+        components last, so a later definition of a component replaces an
+        earlier one instead of adding to it. ``+``-joined parts compose the
+        same way. Returns ``{component: (value, defining template)}``.
+
+        This matters for templates such as ``tank_factory_2010`` (2.61.0.42),
+        which is ``tank_factory_2018`` with ``factory_air_defence_preset_2010``
+        replacing its air-defence unit list.
+        """
+        result = {}
+
+        def apply(name, stack):
+            if name in stack or name not in self.definitions:
+                return
+            definition = self.definitions[name]
+            bases = definition.get("_use", [])
+            if isinstance(bases, str):
+                bases = [bases]
+            for base in bases if isinstance(bases, list) else []:
+                apply(base, stack | {name})
+            for key, value in definition.items():
+                if key == "_use":
+                    continue
+                if key == "_group" and isinstance(value, dict):
+                    for group_key, group_value in value.items():
+                        if group_key != "_tags":
+                            result[group_key] = (group_value, name)
+                    continue
+                result[key] = (value, name)
+
+        for component in self.components(template_name):
+            apply(component, frozenset())
+        return result
+
     def unit_settings(self, template_names, team):
+        """Units spawned by the given site templates for one team.
+
+        Every entity is resolved on its own (``resolved_components``); entities
+        a template points at through a ``...Templ`` component (an assembly
+        area's tank factory) are separate buildings whose units add up.
+        """
         settings = []
         seen = set()
-        for preset_name, definition in self.closure(template_names):
-            for key, value in iter_dict_items(definition):
+        pending = list(template_names)
+        visited_entities = set()
+        entity_components = []
+        while pending:
+            entity = pending.pop(0)
+            if not isinstance(entity, str) or entity in visited_entities:
+                continue
+            visited_entities.add(entity)
+            components = self.resolved_components(entity)
+            entity_components.append(components)
+            for key, (value, _) in components.items():
+                for nested_key, nested_value in [(key, value), *iter_dict_items(value)]:
+                    if isinstance(nested_value, str) and nested_key.endswith("Templ"):
+                        pending.append(nested_value)
+        for components in entity_components:
+            for key, (value, preset_name) in components.items():
                 is_spawn_settings = (
                     key.startswith("units_spawn_on_init__unitSettings")
                     or key == "sam_site__unitSettings:array"

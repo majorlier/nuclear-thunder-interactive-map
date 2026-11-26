@@ -213,6 +213,25 @@ class MissionExtractionTests(unittest.TestCase):
              ([40, 50], "2018 3")],
         )
 
+    def test_later_template_replaces_inherited_unit_list(self):
+        # 2.61.0.42: tank_factory_2010 is tank_factory_2018 with the 2010
+        # air-defence preset; its unit list replaces the 2018 one rather than
+        # adding to it. A ...Templ building's units still add up.
+        key = "units_spawn_on_init__unitSettingsTeam1:array"
+        registry = TemplateRegistry({
+            "preset_2018": {"_group": {key: {"unit:object": [{"name": "pantsir", "count": 1}]}}},
+            "preset_2010": {"_group": {key: {"unit:object": {"name": "2s6", "count": 3}}}},
+            "tank_factory_2018": {"_use": "preset_2018"},
+            "tank_factory_2010": {"_use": ["tank_factory_2018", "preset_2010"]},
+            "assembly_area_2010": {"assembly_area__tankFactoryTempl": "fortification+tank_factory_2010",
+                                   "units_spawn_on_init__unitSettingsTeam1:array": {"unit:object": {"name": "truck"}}},
+        })
+        names = lambda templates: sorted(u["name"] for u in registry.unit_settings(templates, 1))
+        self.assertEqual(names(["tank_factory_2018"]), ["pantsir"])
+        self.assertEqual(names(["tank_factory_2010"]), ["2s6"])
+        self.assertEqual(names(["assembly_area_2010"]), ["2s6", "truck"])
+        self.assertEqual(names(["tank_factory_2010"]) and registry.unit_settings(["tank_factory_2010"], 2), [])
+
     def test_mlrs_spawn_only_above_1970_rank_boundary(self):
         mission = {"triggers": {"spawn_mlrs": {
             "conditions": {"varCompareInt": {
